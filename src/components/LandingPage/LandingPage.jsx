@@ -1,16 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import style from "./LandingPage.module.css";
+import NavBar from "../NavBar/NavBar"
 
 export default function LandingPage(){
     return (
         <div className={style.body}>
-            <div className={style.frame}>
-                <h1 className="text-3xl font-bold underline"> UNIVERSAL MUSIC </h1>
-                    <Link  to="/Home">
-                        <button className={style.button}> Go to Play </button>    
-                    </Link>
-            </div>
+            <NavBar/>
         </div>
     )
 }
