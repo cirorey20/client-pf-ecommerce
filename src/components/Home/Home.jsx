@@ -1,10 +1,19 @@
 import React, { Fragment } from "react";
-import Products from './products';
+import {useSelector, useDispatch} from 'react-redux';
+import { getProducts } from '../../redux/actions/products';
+import { useEffect } from "react";
 
 const Home = () => {
 
-    const products = new Products().products;
-    console.log(products)
+    const dispatch = useDispatch();
+    const allProducts = useSelector((state) => state.productReducer.products)
+
+    useEffect(() => {
+        dispatch(getProducts());
+        console.log(allProducts);
+    }, [dispatch])
+
+    
     return(
         <Fragment>
             <h1 className="text-6xl">Universal Music</h1>
@@ -14,13 +23,13 @@ const Home = () => {
             <div className="md:container md:mx-auto">    
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     {
-                        products.map((e, i) => {
+                        allProducts.map((e, i) => {
                             return(
                                 <div key={i} className="group relative m-5">
 
                                     <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                                         <img
-                                        src={e.img}
+                                        src={e.image}
                                         alt="NOT_FOUND"
                                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                                         />
