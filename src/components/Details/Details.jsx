@@ -16,6 +16,7 @@ const Details = () => {
 
     return (
         <Fragment>
+            <NavBar />
             <h1 className="text-6xl">{details.name}</h1>
             <br />
             <br />
@@ -67,6 +68,7 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </Fragment>
     )
 }
