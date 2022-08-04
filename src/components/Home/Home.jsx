@@ -46,7 +46,7 @@ const Home = () => {
                                                 <div className="mt-4 flex justify-between">
                                                     <div>
                                                         <h3 className="text-sm text-gray-700">
-                                                            <Link to={'/product/1'}>
+                                                            <Link to={`/product/${e.id}`}>
                                                                 <span aria-hidden="true" className="absolute inset-0" />
                                                                 {e.name } 
                                                             </Link>
@@ -58,7 +58,7 @@ const Home = () => {
                                                     
                                                 </div>
                                             </div>
-                                            <button class="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            <button className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                 Add Cart
                                             </button>
                                         </div>
