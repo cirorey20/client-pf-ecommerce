@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SliderShow from "../SliderShow/SliderShow";
 import ProductsTendencia from "../ProductsTendencia/ProductsTendencia";
 import Novedades from "../Novedades/Novedades";
+import Categories from "../Categories/Categories";
 import Paginado from "../Paginado/Paginado";
 
 export default function LandingPage() {
@@ -123,6 +124,7 @@ export default function LandingPage() {
         </Popover.Panel>
       </Transition>
       <SliderShow />
+      <Categories />
       <ProductsTendencia />
       <Novedades />
       <Paginado />

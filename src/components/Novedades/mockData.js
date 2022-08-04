@@ -1,7 +1,7 @@
 export const data = [
   {
     id: 1,
-    img: "https://images.unsplash.com/photo-1547005327-ef75a6961556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8b2NlYW58ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    img: "https://media.musiciansfriend.com/is/image/MMGS7/J13212000003000-02-2000x2000.jpg",
   },
   {
     id: 2,

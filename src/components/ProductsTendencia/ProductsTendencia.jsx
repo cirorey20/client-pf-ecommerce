@@ -4,14 +4,14 @@ import "flowbite";
 export default function ProductsTendencia() {
   return (
     <>
-      <div class="relative flex py-10 items-center">
+      <div class="relative flex py-10 items-center border-gray-200 shadow-md">
         <div class="flex-grow border-t border-gray-400"></div>
         <span class="flex-shrink mx-4 px-3 text-xl text-gray-400">
           Tendencia
         </span>
-        <div class="flex-grow border-t border-gray-400"></div>
+        <div class="flex-grow border-t border-gray-400 "></div>
       </div>
-      <div className="md:container md:mx-auto mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div className="md:container md:mx-auto mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
         <div class="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img

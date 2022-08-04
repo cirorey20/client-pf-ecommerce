@@ -35,7 +35,7 @@ export default function Novedades() {
         >
           {data.map((item) => (
             <img
-              className="w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+              className="w-[250px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
               src={item.img}
               alt="/"
             />
