@@ -2,6 +2,8 @@ import React, {Fragment, useEffect} from "react";
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { detailProduct } from '../../redux/actions/products';
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer.jsx";
 
 const Details = () => {
 

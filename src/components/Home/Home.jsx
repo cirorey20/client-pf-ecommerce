@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import { useEffect } from "react";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer.jsx";
 
 const Home = () => {
 
@@ -17,7 +19,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <h1 className="text-6xl">Universal Music</h1>
+            <NavBar />
             <br />
             <br />
 
@@ -70,6 +72,7 @@ const Home = () => {
 
                 </div>
             </div>
+            <Footer />            
         </Fragment>
     )
 }
