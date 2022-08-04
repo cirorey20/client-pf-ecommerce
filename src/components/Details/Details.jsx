@@ -1,10 +1,22 @@
-import React from "react";
-import { Fragment } from "react";
+import React, {Fragment, useEffect} from "react";
+import {useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import { detailProduct } from '../../redux/actions/products';
 
 const Details = () => {
+
+    const dispatch = useDispatch();
+    const details = useSelector((state)=> state.productReducer.productDetail)
+    let {id} = useParams()
+    
+    useEffect(()=>{
+        dispatch(detailProduct(id));
+    }, [dispatch, id])
+
+
     return (
         <Fragment>
-            <h1 className="text-6xl">Detail Product</h1>
+            <h1 className="text-6xl">{details.name}</h1>
             <br />
             <br />
 
@@ -14,7 +26,7 @@ const Details = () => {
 
                         <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                             <img
-                                src="https://www.el-atril.com/orquesta/Instrumentos/imagenes/guitarra.jpg"
+                                src={details.image}
                                 alt="NOT_FOUND"
                                 className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                             />
@@ -25,7 +37,7 @@ const Details = () => {
                                 <h3 className="text-sm text-gray-700">
                                     <a href="#">
                                         <span aria-hidden="true" className="absolute inset-0" />
-                                        PRODUCT
+                                        {details.name}
                                     </a>
 
                                 </h3>
@@ -40,16 +52,16 @@ const Details = () => {
                                 <h3 className="text-sm text-gray-700">
                                     <a href="#">
                                         <span aria-hidden="true" className="absolute inset-0" />
-                                        Description
+                                        {details.description}
                                     </a>
 
                                 </h3>
                                 
                             </div>
-                            <p className="text-sm font-medium text-gray-900">$PRODUCT</p>
+                            <p className="text-sm font-medium text-gray-900">$ {details.price}</p>
 
                         </div>
-                        <button class="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Buy
                         </button>
                     </div>
