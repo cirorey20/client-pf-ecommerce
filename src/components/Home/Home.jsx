@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
-import { useEffect } from "react";
+
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 
@@ -10,6 +11,17 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
+
+    //paginado
+    const [paginaActual, setPaginaActual] = useState(1)
+    const [productsDePagina] = useState(2)
+    const iUltima = paginaActual * productsDePagina
+    const iPrimera = iUltima - productsDePagina
+    const productsActuales = allProducts.slice(iPrimera, iUltima)
+
+    const paged = (numPagina) => {
+        setPaginaActual(numPagina);
+    }
 
     useEffect(() => {
         dispatch(getProducts());
@@ -22,7 +34,11 @@ const Home = () => {
             <NavBar />
             <br />
             <br />
-
+            <Paginate
+                productsDePagina={productsDePagina}
+                allProducts={allProducts.length}
+                paged={paged}
+            />
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
@@ -31,7 +47,7 @@ const Home = () => {
                         allProducts.length <= 0 ?
                             <div>NO HAY PRODUCTOS...</div>
                             :
-                            allProducts.map((e, i) => {
+                            productsActuales.map((e, i) => {
                                 if (e.enable === true) {
                                     return (
                                         <div key={i} className="  ">
