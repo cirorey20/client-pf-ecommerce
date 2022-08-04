@@ -15,7 +15,14 @@ export default function Novedades() {
 
   return (
     <>
-      <p className="flex p-5 text-2xl font-medium text-gray-500">Novedades</p>
+      <div class="relative flex py-10 items-center">
+        <div class="flex-grow border-t border-gray-400"></div>
+        <span class="flex-shrink mx-4 px-3 text-xl text-gray-400">
+          Novedades
+        </span>
+        <div class="flex-grow border-t border-gray-400"></div>
+      </div>
+
       <div className="relative flex items-center">
         <MdChevronLeft
           className="opacity-50 cursor-pointer hover:opacity-100"

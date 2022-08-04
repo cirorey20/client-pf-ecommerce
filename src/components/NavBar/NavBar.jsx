@@ -1,11 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import SearchBtn from "../SearchBar/SearchBar";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SliderShow from "../SliderShow/SliderShow";
-import ProductsCategory from "../ProductsCategory/ProductsCategory";
+import ProductsTendencia from "../ProductsTendencia/ProductsTendencia";
 import Novedades from "../Novedades/Novedades";
+import Paginado from "../Paginado/Paginado";
 
 export default function LandingPage() {
   return (
@@ -123,8 +123,9 @@ export default function LandingPage() {
         </Popover.Panel>
       </Transition>
       <SliderShow />
-      <ProductsCategory />
+      <ProductsTendencia />
       <Novedades />
+      <Paginado />
     </Popover>
   );
 }
