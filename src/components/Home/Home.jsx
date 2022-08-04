@@ -1,20 +1,20 @@
 import React, { Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import { useEffect } from "react";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 
 const Home = () => {
-
+    const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
 
     useEffect(() => {
-        dispatch(getProducts());
+        dispatch(getProducts(search));
         console.log(allProducts);
-    }, [dispatch])
+    }, [dispatch,search])
 
 
     return (

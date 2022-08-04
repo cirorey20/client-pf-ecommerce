@@ -72,10 +72,11 @@ export default function FilterCategory() {
             return prev;
         },'');
 
-        // const oldUrl = search.split('&').filter(v => )
+        const oldUrl = search.split('&').filter(v => !v.includes('categories')).join('&');
+        console.log(oldUrl)
 
         const url = (search.length === 0 ) ? `?${joinCategories}` : `${search}&${joinCategories}`;
-        console.log(url)
+        // console.log(url)
         navigate(url);
     }
 
