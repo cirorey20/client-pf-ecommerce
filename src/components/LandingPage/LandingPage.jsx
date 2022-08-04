@@ -5,6 +5,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import SliderShow from "../SliderShow/SliderShow";
 import Tendencia from "../Tendencia/Tendencia";
+import Novedades from "../SeccionNovedades/SeccionNovedades";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <NavBar />
       <SliderShow />
       <Tendencia />
+      <Novedades />
       <Footer />
     </div>
   );
