@@ -4,7 +4,8 @@ import { Popover, Transition } from "@headlessui/react";
 import SearchBtn from "../SearchBar/SearchBar";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SliderShow from "../SliderShow/SliderShow";
-import ProductsNovedades from "../ProductsNovedades/ProductsNovedades";
+import ProductsCategory from "../ProductsCategory/ProductsCategory";
+import Novedades from "../Novedades/Novedades";
 
 export default function LandingPage() {
   return (
@@ -122,7 +123,8 @@ export default function LandingPage() {
         </Popover.Panel>
       </Transition>
       <SliderShow />
-      {/* <ProductsNovedades /> */}
+      <ProductsCategory />
+      <Novedades />
     </Popover>
   );
 }
