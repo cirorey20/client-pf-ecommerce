@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import { useEffect } from "react";
+import Filters from "../Filters/Filters";
+import FilterCategories from "../Filters/FilterCategories";
 
 const Home = () => {
 
@@ -21,6 +23,9 @@ const Home = () => {
             <br />
             <br />
 
+            <Filters />
+            <FilterCategories />
+            
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
