@@ -25,7 +25,7 @@ export default function LandingPage() {
               Home
             </a>
           </div>
-            <a href="#" className="text-5xl mr-8 font-medium text-gray-500 hover:text-gray-900">
+            <a href="#" className="text-5xl mr-8 my-10 font-medium text-gray-500 hover:text-gray-900">
               Universal Music
             </a>
             <SearchBtn/>
