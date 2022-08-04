@@ -1,9 +1,11 @@
 const {
-    GET_PRODUCTS
+    GET_PRODUCTS,
+    DETAILS_PRODUCT
 } = require('../actions/products');
 
 const initialState = {
     products: [],
+    productDetail: [],
 }
 
 export function productReducer(state = initialState, action) {
@@ -12,6 +14,13 @@ export function productReducer(state = initialState, action) {
         return {
             ...state,
             products: action.payload
+        }
+    }
+
+    if ( action.type === DETAILS_PRODUCT ) {
+        return {
+            ...state,
+            productDetail: action.payload
         }
     }
 
