@@ -4,6 +4,13 @@ import { getProducts } from '../../redux/actions/products';
 import { useEffect } from "react";
 
 const Home = () => {
+  const products = new Products().products;
+  console.log(products);
+  return (
+    <Fragment>
+      <h1 className="text-6xl">Universal Music</h1>
+      <br />
+      <br />
 
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
@@ -68,40 +75,16 @@ const Home = () => {
                         }
 
                 </div>
-            </div>
-        </Fragment>
-    )
-}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </Fragment>
+  );
+};
 
 export default Home;
 
-/*
-    allProducts.map((e, i) => {
-        return(
-            <div key={i} className="group relative m-5">
 
-                <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img
-                    src={e.image}
-                    alt="NOT_FOUND"
-                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                    />
-                </div>
 
-                <div className="mt-4 flex justify-between">
-                    <div>
-                    <h3 className="text-sm text-gray-700">
-                        <a href="#">
-                            <span aria-hidden="true" className="absolute inset-0" />
-                            {e.name}
-                        </a>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">Stock</p>
-                    </div>
-                    <p className="text-sm font-medium text-gray-900">${e.price}</p>
-                </div>
-            </div>
-        )
-    })
-
-*/
