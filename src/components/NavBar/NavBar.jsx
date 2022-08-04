@@ -1,4 +1,4 @@
-
+/* This example requires Tailwind CSS v2.0+ */
 import { Popover } from '@headlessui/react'
 import SearchBtn from "../SearchBar/SearchBar";
 
@@ -25,7 +25,6 @@ export default function LandingPage() {
               Home
             </a>
           </div>
-
             <a href="#" className="text-5xl mr-8 my-10 font-medium text-gray-500 hover:text-gray-900">
               Universal Music
             </a>
@@ -33,7 +32,6 @@ export default function LandingPage() {
 
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <a href="#" className="whitespace-nowrap text-base font-medium text-gray-400 hover:text-black">
-
               Sign in
             </a>
             <a
@@ -46,5 +44,5 @@ export default function LandingPage() {
         </div>
       </div>
     </Popover>
-  );
+  )
 }
