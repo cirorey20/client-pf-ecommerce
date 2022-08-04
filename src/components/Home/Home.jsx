@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import { useEffect } from "react";
 
@@ -45,10 +46,10 @@ const Home = () => {
                                                 <div className="mt-4 flex justify-between">
                                                     <div>
                                                         <h3 className="text-sm text-gray-700">
-                                                            <a href="#">
+                                                            <Link to={'/product/1'}>
                                                                 <span aria-hidden="true" className="absolute inset-0" />
                                                                 {e.name } 
-                                                            </a>
+                                                            </Link>
                                                             
                                                         </h3>
                                                         <p className="mt-1 text-sm text-gray-500">Stock {e.stock}</p>
