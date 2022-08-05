@@ -11,18 +11,34 @@ const Paginate = ({productsDePagina, allProducts, paged}) => {
 
     return (
         <Fragment>
-            <h1>PAGINATE</h1>
-            <ul>
-                {
+
+            <ul className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <a
+                    href="#"
+                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                        Prev 
+                </a>
+                          {
                     pageNumbers?
-                    pageNumbers.map((num, index) => (
+                    pageNumbers.map((num, index) =>  (
                         <li key={index}>
-                            <a href={'#'+num} onClick={()=>paged(num)}>{num}</a>
+                            <a 
+                                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" 
+                                href={'#'+num} 
+                                onClick={()=>paged(num)}>{num}
+                            </a>
                         </li>
                     ))
                     :
                     <span></span>
                 }
+                <a
+                href="#"
+                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                    Next 
+                </a>
             </ul>
         </Fragment>
     )
