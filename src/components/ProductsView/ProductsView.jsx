@@ -25,7 +25,7 @@ export default function ProductsView() {
             alt=""
           />
           <div class="p-4 bg-white">
-            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">
+            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
             </spna>
             <h1 class="mt-4 font-bold text-2xl">Piano</h1>
@@ -39,7 +39,7 @@ export default function ProductsView() {
             alt=""
           />
           <div class="p-4 bg-white">
-            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">
+            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
             </spna>
             <h1 class="mt-4 font-bold text-2xl">Baterias</h1>
@@ -53,7 +53,7 @@ export default function ProductsView() {
             alt=""
           />
           <div class="p-4 bg-white">
-            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">
+            <spna class="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
             </spna>
             <h1 class="mt-4 font-bold text-2xl">Guitarras</h1>
