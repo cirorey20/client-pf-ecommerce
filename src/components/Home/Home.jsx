@@ -71,7 +71,7 @@ const Home = () => {
                                                 </div>
         
                                                 <div className="mt-4 flex justify-between">
-                                                    <div>
+                                                    <div >
                                                         <h3 className="text-sm text-gray-700">
                                                             <Link to={`/product/${e.id}`}>
                                                                 <span aria-hidden="true" className="absolute inset-0" />

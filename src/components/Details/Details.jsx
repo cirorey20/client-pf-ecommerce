@@ -21,28 +21,31 @@ const Details = () => {
            <NavBar />
              <br />
              <br />
-
-           <h1 className="text-6xl">{details.name}</h1>
+           <div className="flex justify-center italic">
+             <div className="relative w-96 border-x-2">
+                <h1 className="text-6xl">{details.name}</h1>
+              </div>
+           </div>
            <br />
 
-             <div className=" max-w-3xl h-96 mx-auto m-8 sm:px-6 bg-white border-x-4 border-gray ">
+             <div className=" max-w-4xl h-100 mx-auto m-8 sm:px-6 bg-white border-x-4 border-gray ">
                  <div className=" grid lg:grid-cols-3"> 
-                   <div className="mt-8 h-80 m-5 bg-white pr-30 w-54">
-                         <div className="lg:h-40 m-10">
+                   <div className="mt-8 h-80 bg-white w-80 border-r-2">
+                         <div className=" mb-8 ml-4">
                              <img
                                 src={details.image}
                                 alt="NOT_FOUND"
-                                className="lg:w-full lg:h-full"
+                                className="lg:w-70 lg:h-80"
                              />
                          </div>
                     </div>
-                    <div className="pl-8 pr-8 h-80 m-8 px-4 w-96  border-gray border-l-2 w-96">
+                    <div className="pl-8 pr-8 h-80 m-8 px-4 w-96 border-gray w-96">
                            <div className="bg-white relative m-5 group h-69">
                                <div>
                                    <h3 className="mx-16 my-8 justify-self-end text-2xl text-gray-700 italic w-full ">
                                        <a href="#">
                                            <span aria-hidden="true"/>
-                                           {  details.name}
+                                           { details.name}
                                         </a>
 
                                     </h3>
@@ -64,7 +67,7 @@ const Details = () => {
                                 </h3>
                             </div>
                             <div className="pb-3 text-gray-700 italic w-full mb-2 ml-16">
-                                    <button  className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded">
+                                    <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded">
                                         Buy
                                     </button>
                             </div>
