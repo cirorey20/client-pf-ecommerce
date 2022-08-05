@@ -15,12 +15,12 @@ export default function NewSection() {
 
   return (
     <div className="md:container md:mx-auto bg-[#e2e8f0]">
-      <div class="relative flex py-10 items-center">
-        <div class="flex-grow border-t border-gray-400"></div>
-        <span class="flex-shrink mx-4 px-3 text-xl text-gray-400">
+      <div className="relative flex py-10 items-center">
+        <div className="flex-grow border-t border-gray-400"></div>
+        <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
           Novedades
         </span>
-        <div class="flex-grow border-t border-gray-400"></div>
+        <div className="flex-grow border-t border-gray-400"></div>
       </div>
 
       <div className="relative flex items-center">
