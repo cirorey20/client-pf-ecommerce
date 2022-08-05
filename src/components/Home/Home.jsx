@@ -9,6 +9,7 @@ import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
+import Cart from "../Cart/Cart";
 
 const Home = () => {
     const { search } = useLocation();
@@ -40,9 +41,11 @@ const Home = () => {
             <br />
             <br />
 
+            <Cart 
+                productsActuales={productsActuales}
+            />
             <Filters />
             <FilterCategories allCategories={allCategories} />
-            
             <Paginate
                 productsDePagina={productsDePagina}
                 allProducts={allProducts.length}
