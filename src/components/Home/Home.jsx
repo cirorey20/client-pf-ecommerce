@@ -3,14 +3,17 @@ import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
+import { getCategories } from '../../redux/actions/categories';
 
 import NavBar from "../NavBar/NavBar";
+import FilterCategory from "../Filter/FilterCategory";
 import Footer from "../Footer/Footer.jsx";
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
+    const allCategories = useSelector((state) => state.categoryReducer.categories)
 
     //paginado
     const [paginaActual, setPaginaActual] = useState(1)
@@ -25,7 +28,9 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getCategories());
         console.log(allProducts);
+        console.log(allCategories);
     }, [dispatch])
 
 
@@ -34,11 +39,15 @@ const Home = () => {
             <NavBar />
             <br />
             <br />
+            <FilterCategory 
+                allCategories={allCategories}
+            />
             <Paginate
                 productsDePagina={productsDePagina}
                 allProducts={allProducts.length}
                 paged={paged}
             />
+
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 

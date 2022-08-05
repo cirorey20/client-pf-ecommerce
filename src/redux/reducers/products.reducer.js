@@ -1,6 +1,6 @@
 const {
     GET_PRODUCTS,
-    DETAILS_PRODUCT
+    DETAILS_PRODUCT,
 } = require('../actions/products');
 
 const initialState = {
