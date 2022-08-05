@@ -1,31 +1,53 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from 'react-redux';
 import {Link, useLocation} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
-import { useEffect } from "react";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
+
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer.jsx";
+import { getCategories } from "../../redux/actions/categories";
 
 const Home = () => {
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
+    const allCategories = useSelector((state) => state.categoryReducer.categories)
+
+    //paginado
+    const [paginaActual, setPaginaActual] = useState(1)
+    const [productsDePagina] = useState(2)
+    const iUltima = paginaActual * productsDePagina
+    const iPrimera = iUltima - productsDePagina
+    const productsActuales = allProducts.slice(iPrimera, iUltima)
+
+    const paged = (numPagina) => {
+        setPaginaActual(numPagina);
+    }
 
     useEffect(() => {
         dispatch(getProducts(search));
         console.log(allProducts);
+        dispatch(getCategories())
     }, [dispatch,search])
 
 
     return (
         <Fragment>
-            <h1 className="text-6xl">Universal Music</h1>
+            <NavBar />
             <br />
             <br />
 
             <Filters />
-            <FilterCategories />
+            <FilterCategories allCategories={allCategories} />
             
+            <Paginate
+                productsDePagina={productsDePagina}
+                allProducts={allProducts.length}
+                paged={paged}
+            />
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
@@ -34,7 +56,7 @@ const Home = () => {
                         allProducts.length <= 0 ?
                             <div>NO HAY PRODUCTOS...</div>
                             :
-                            allProducts.map((e, i) => {
+                            productsActuales.map((e, i) => {
                                 if (e.enable === true) {
                                     return (
                                         <div key={i} className="  ">
@@ -75,6 +97,7 @@ const Home = () => {
 
                 </div>
             </div>
+            <Footer />            
         </Fragment>
     )
 }
