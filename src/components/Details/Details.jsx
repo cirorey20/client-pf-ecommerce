@@ -25,9 +25,9 @@ const Details = () => {
            <h1 className="text-6xl">{details.name}</h1>
            <br />
 
-             <div className=" max-w-3xl h-96 mx-auto px-4 sm:px-6 bg-[#e2e8f0]">
+             <div className=" max-w-3xl h-96 mx-auto m-8 sm:px-6 bg-white border-x-4 border-gray ">
                  <div className=" grid lg:grid-cols-3"> 
-                   <div className="mt-8 h-80 m-5 bg-white pr-30 border-2 w-54">
+                   <div className="mt-8 h-80 m-5 bg-white pr-30 w-54">
                          <div className="lg:h-40 m-10">
                              <img
                                 src={details.image}
@@ -36,7 +36,7 @@ const Details = () => {
                              />
                          </div>
                     </div>
-                    <div className="pl-8 pr-8 h-80 m-8 px-4 bg-[#f1f5f9] w-96  border-gray border-2">
+                    <div className="pl-8 pr-8 h-80 m-8 px-4 w-96  border-gray border-l-2 w-96">
                            <div className="bg-white relative m-5 group h-69">
                                <div>
                                    <h3 className="mx-16 my-8 justify-self-end text-2xl text-gray-700 italic w-full ">
