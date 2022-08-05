@@ -21,14 +21,14 @@ const Home = () => {
     const stateCart = useSelector((state) => state.cartReducer.cart)
 
     //paginado
-    const [paginaActual, setPaginaActual] = useState(1)
-    const [productsDePagina] = useState(2)
-    const iUltima = paginaActual * productsDePagina
-    const iPrimera = iUltima - productsDePagina
-    const productsActuales = allProducts.slice(iPrimera, iUltima)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPage] = useState(2)
+    const lastPage = currentPage * productsPage
+    const firstPage = lastPage - productsPage
+    const productsOfNow = allProducts.slice(firstPage, lastPage)
 
-    const paged = (numPagina) => {
-        setPaginaActual(numPagina);
+    const paged = (numPag) => {
+        setCurrentPage(numPag);
     }
 
     //cart
@@ -68,9 +68,10 @@ const Home = () => {
             <Filters />
             <FilterCategories allCategories={allCategories} />
             <Paginate
-                productsDePagina={productsDePagina}
+                productsPage={productsPage}
                 allProducts={allProducts.length}
                 paged={paged}
+                currentPage={currentPage}
             />
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -80,7 +81,7 @@ const Home = () => {
                         allProducts.length <= 0 ?
                             <div>NO HAY PRODUCTOS...</div>
                             :
-                            productsActuales.map((e, i) => {
+                            productsOfNow.map((e, i) => {
                                 if (e.enable === true) {
                                     return (
                                         <div key={i} className="  ">
