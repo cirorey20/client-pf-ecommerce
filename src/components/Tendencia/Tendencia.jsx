@@ -3,7 +3,7 @@ import "flowbite";
 
 export default function Tendencia() {
   return (
-    <>
+    <div className="md:container md:mx-auto bg-[#e2e8f0]">
       <div class="relative flex py-10 items-center border-gray-200 shadow-md">
         <div class="flex-grow border-t border-gray-400"></div>
         <span class="flex-shrink mx-4 px-3 text-xl text-gray-400">
@@ -341,6 +341,6 @@ export default function Tendencia() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
