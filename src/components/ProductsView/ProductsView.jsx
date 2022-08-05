@@ -11,9 +11,9 @@ export default function ProductsView() {
             alt=""
           />
           <div className="p-4 bg-white">
-            <div className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
+            <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
-            </div>
+            </span>
             <h1 className="mt-4 font-bold text-2xl">Bajo</h1>
           </div>
         </div>
@@ -25,9 +25,9 @@ export default function ProductsView() {
             alt=""
           />
           <div className="p-4 bg-white">
-            <div className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
+            <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
-            </div>
+            </span>
             <h1 className="mt-4 font-bold text-2xl">Piano</h1>
           </div>
         </div>
@@ -39,9 +39,9 @@ export default function ProductsView() {
             alt=""
           />
           <div className="p-4 bg-white">
-            <div className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
+            <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
-            </div>
+            </span>
             <h1 className="mt-4 font-bold text-2xl">Baterias</h1>
           </div>
         </div>
@@ -53,9 +53,9 @@ export default function ProductsView() {
             alt=""
           />
           <div className="p-4 bg-white">
-            <div className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
+            <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
-            </div>
+            </span>
             <h1 className="mt-4 font-bold text-2xl">Guitarras</h1>
           </div>
         </div>
