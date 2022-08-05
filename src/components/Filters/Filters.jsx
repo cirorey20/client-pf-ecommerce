@@ -11,6 +11,15 @@ export default function Filters() {
     const { search } = useLocation();
 
 
+    useEffect(()=> {
+        const urlSearchParams = new URLSearchParams(search);
+        const price = urlSearchParams.get('price');
+        const name = urlSearchParams.get('name');
+        if(price) setPriceSort(price);
+        if(name) setNameSort(name);
+    },[]);
+
+
 
     function onChangedSelect(e) {
         let url = (search[0] === '?') ? search.slice(1) : search;
@@ -43,7 +52,6 @@ export default function Filters() {
         url = chunckUrl.join('&');
         url = (url[0] === '&') ? `?${url.slice(1)}` : `?${url}`;
 
-        console.log(url)
         navigate(url, { replace: false })
 
     }
