@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer.jsx";
 import SliderShow from "../SliderShow/SliderShow";
 import Tendencia from "../Tendencia/Tendencia";
 import ProductsView from "../ProductsView/ProductsView";
+import NewSection from "../NewSection/NewSection";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <SliderShow />
       <ProductsView />
       <Tendencia />
+      <NewSectin />
       <Footer />
     </div>
   );
