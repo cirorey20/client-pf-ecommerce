@@ -1,16 +1,20 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
+import Filters from "../Filters/Filters";
+import FilterCategories from "../Filters/FilterCategories";
 
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
+import { getCategories } from "../../redux/actions/categories";
 
 const Home = () => {
-
+    const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
+    const allCategories = useSelector((state) => state.categoryReducer.categories)
 
     //paginado
     const [paginaActual, setPaginaActual] = useState(1)
@@ -24,9 +28,10 @@ const Home = () => {
     }
 
     useEffect(() => {
-        dispatch(getProducts());
+        dispatch(getProducts(search));
         console.log(allProducts);
-    }, [dispatch])
+        dispatch(getCategories())
+    }, [dispatch,search])
 
 
     return (
@@ -34,6 +39,10 @@ const Home = () => {
             <NavBar />
             <br />
             <br />
+
+            <Filters />
+            <FilterCategories allCategories={allCategories} />
+            
             <Paginate
                 productsDePagina={productsDePagina}
                 allProducts={allProducts.length}
