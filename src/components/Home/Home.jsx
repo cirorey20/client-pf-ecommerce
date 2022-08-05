@@ -9,13 +9,16 @@ import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
+import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+
 
 const Home = () => {
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
     const allCategories = useSelector((state) => state.categoryReducer.categories)
+    const stateCart = useSelector((state) => state.cartReducer.cart)
 
     //paginado
     const [paginaActual, setPaginaActual] = useState(1)
@@ -28,9 +31,27 @@ const Home = () => {
         setPaginaActual(numPagina);
     }
 
+    //cart
+    const [productsCart, setProductsCart] = useState([]);
+    const [countCart, setCountCart] = useState(0);
+    const [totalCart, setTotalCart] = useState(0);
+
+    function handlerAddToCart (product) {
+        let productDes = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+
+        }
+        dispatch(addProductToCart(productDes))
+        // console.log(stateCart);
+    }
+
     useEffect(() => {
         dispatch(getProducts(search));
-        console.log(allProducts);
+        // console.log(allProducts);
         dispatch(getCategories())
     }, [dispatch,search])
 
@@ -42,7 +63,7 @@ const Home = () => {
             <br />
 
             <Cart 
-                productsActuales={productsActuales}
+                stateCart={stateCart}
             />
             <Filters />
             <FilterCategories allCategories={allCategories} />
@@ -88,7 +109,10 @@ const Home = () => {
                                                     
                                                 </div>
                                             </div>
-                                            <button className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            <button 
+                                                className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                onClick={ () => handlerAddToCart(e) }
+                                            >
                                                 Add Cart
                                             </button>
                                         </div>
