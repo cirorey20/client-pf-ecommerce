@@ -16,14 +16,15 @@ export default function Tendencia() {
           <a href="#">
             <img
               className="rounded-t-lg"
-              src="https://cdn.shopify.com/s/files/1/0253/8618/8834/products/fee42e7ae64f_1280x.jpg?v=1653757251"
+              src="https://cdn.shopify.com/s/files/1/0253/8618/8834/products/fee42e7ae64f_1280x.jpg"
               alt="product image"
             />
           </a>
           <div className="p-5 pb-4 mt-2">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                Guitarras
+                Guitarra Acústica
+                <h3>Cort AD810 OP</h3>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -105,7 +106,8 @@ export default function Tendencia() {
           <div className="p-5 pb-4 mt-2">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                Guitarras eléctricas
+                Guitarras eléctrica
+                <h3>Carter-ST350</h3>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -187,7 +189,8 @@ export default function Tendencia() {
           <div className="p-5 pb-4 mt-2">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                Baterías
+                Batería
+                <h3>G.Shelter</h3>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -270,6 +273,7 @@ export default function Tendencia() {
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Piano
+                <h3>Alliston M-5</h3>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
