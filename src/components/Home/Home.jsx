@@ -9,27 +9,49 @@ import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
+import { addProductToCart } from "../../redux/actions/cart";
+import Cart from "../Cart/Cart";
+
 
 const Home = () => {
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
     const allCategories = useSelector((state) => state.categoryReducer.categories)
+    const stateCart = useSelector((state) => state.cartReducer.cart)
 
     //paginado
-    const [paginaActual, setPaginaActual] = useState(1)
-    const [productsDePagina] = useState(2)
-    const iUltima = paginaActual * productsDePagina
-    const iPrimera = iUltima - productsDePagina
-    const productsActuales = allProducts.slice(iPrimera, iUltima)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPage] = useState(2)
+    const lastPage = currentPage * productsPage
+    const firstPage = lastPage - productsPage
+    const productsOfNow = allProducts.slice(firstPage, lastPage)
 
-    const paged = (numPagina) => {
-        setPaginaActual(numPagina);
+    const paged = (numPag) => {
+        setCurrentPage(numPag);
+    }
+
+    //cart
+    const [productsCart, setProductsCart] = useState([]);
+    const [countCart, setCountCart] = useState(0);
+    const [totalCart, setTotalCart] = useState(0);
+
+    function handlerAddToCart (product) {
+        let productDes = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+
+        }
+        dispatch(addProductToCart(productDes))
+        // console.log(stateCart);
     }
 
     useEffect(() => {
         dispatch(getProducts());
-        //console.log(allProducts);
+        //console.log(allProducts)
         dispatch(getCategories())
     }, [dispatch,search])
 
@@ -40,13 +62,16 @@ const Home = () => {
             <br />
             <br />
 
+            <Cart 
+                stateCart={stateCart}
+            />
             <Filters />
             <FilterCategories allCategories={allCategories} />
-            
             <Paginate
-                productsDePagina={productsDePagina}
+                productsPage={productsPage}
                 allProducts={allProducts.length}
                 paged={paged}
+                currentPage={currentPage}
             />
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -56,7 +81,7 @@ const Home = () => {
                         allProducts.length <= 0 ?
                             <div>NO HAY PRODUCTOS...</div>
                             :
-                            productsActuales.map((e, i) => {
+                            productsOfNow.map((e, i) => {
                                 if (e.enable === true) {
                                     return (
                                         <div key={i} className="  ">
@@ -85,7 +110,10 @@ const Home = () => {
                                                     
                                                 </div>
                                             </div>
-                                            <button className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            <button 
+                                                className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                onClick={ () => handlerAddToCart(e) }
+                                            >
                                                 Add Cart
                                             </button>
                                         </div>
