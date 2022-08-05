@@ -13,7 +13,7 @@ export default function LandingPage() {
       <SliderShow />
       <ProductsView />
       <Tendencia />
-      <NewSectin />
+      <NewSection />
       <Footer />
     </div>
   );
