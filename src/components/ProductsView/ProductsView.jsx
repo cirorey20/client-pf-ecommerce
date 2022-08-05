@@ -14,7 +14,7 @@ export default function ProductsView() {
             <spna class="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
             </spna>
-            <h1 class="mt-4 font-bold text-2xl">Bajo</h1>
+            <h1 class="mt-4 font-bold text-2xl">Bajos</h1>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default function ProductsView() {
             <spna class="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
               -30%
             </spna>
-            <h1 class="mt-4 font-bold text-2xl">Piano</h1>
+            <h1 class="mt-4 font-bold text-2xl">Pianos</h1>
           </div>
         </div>
       </div>
