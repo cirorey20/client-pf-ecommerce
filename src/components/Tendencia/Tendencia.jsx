@@ -24,7 +24,7 @@ export default function Tendencia() {
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Guitarra Acústica
-                <h3>Cort AD810 OP</h3>
+                <p>Cort AD810 OP</p>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -107,7 +107,7 @@ export default function Tendencia() {
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Guitarras eléctrica
-                <h3>Carter-ST350</h3>
+                <p>Carter-ST350</p>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -190,7 +190,7 @@ export default function Tendencia() {
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Batería
-                <h3>G.Shelter</h3>
+                <p>G.Shelter</p>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
@@ -273,7 +273,7 @@ export default function Tendencia() {
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Piano
-                <h3>Alliston M-5</h3>
+                <p>Alliston M-5</p>
               </h5>
             </a>
             <div className="flex items-center mt-2.5 mb-5">

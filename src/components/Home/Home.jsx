@@ -50,8 +50,8 @@ const Home = () => {
     }
 
     useEffect(() => {
-        dispatch(getProducts(search));
-        // console.log(allProducts);
+        dispatch(getProducts());
+        //console.log(allProducts)
         dispatch(getCategories())
     }, [dispatch,search])
 
