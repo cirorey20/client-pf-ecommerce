@@ -33,8 +33,9 @@ export default function NewSection() {
           id="slider"
           className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
-          {data.map((item) => (
+          {data.map((item, i) => (
             <img
+              key={i}
               className="w-[250px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
               src={item.img}
               alt="/"
