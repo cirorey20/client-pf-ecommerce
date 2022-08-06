@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { getProducts } from "../../redux/actions/products";
+import { getProducts, getByFilters } from "../../redux/actions/products";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
@@ -31,6 +31,8 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
+
+
   //cart
   const [productsCart, setProductsCart] = useState([]);
   const [countCart, setCountCart] = useState(0);
@@ -48,6 +50,11 @@ const Home = () => {
     // console.log(stateCart);
   }
 
+  function handlerFilters(filter) {
+
+    dispatch(getByFilters(filter))
+  }
+
   useEffect(() => {
     dispatch(getProducts());
     // console.log(allProducts);
@@ -61,7 +68,9 @@ const Home = () => {
       <br />
 
       <Cart stateCart={stateCart} />
-      <Filters />
+      <Filters 
+        handlerFilters={handlerFilters}
+      />
       <FilterCategories allCategories={allCategories} />
       <Paginate
         productsPage={productsPage}

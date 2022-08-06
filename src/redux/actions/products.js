@@ -3,16 +3,34 @@ import { URL_API } from '../../config/config'
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
+export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
-export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"; 
 
 
 export function getProducts(){
     return function(dispatch){
-     axios.get(`${URL_API}products/`)
+        
+     axios.get(`${URL_API}products`)
          .then((json)=>{
              return dispatch({
                  type: GET_PRODUCTS,
+                 payload: json.data
+             })
+         }, (error)=>{
+             console.log(error)
+         })
+
+    }
+}
+
+export function getByFilters(searchFilters){
+    return function(dispatch){
+        
+     axios.get(`${URL_API}products${searchFilters}`)
+         .then((json)=>{
+             return dispatch({
+                 type: PRODUCTS_BY_FILTERS,
                  payload: json.data
              })
          }, (error)=>{
