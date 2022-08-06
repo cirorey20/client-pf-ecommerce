@@ -4,9 +4,9 @@ import {URL_API} from '../../config/config'
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
 
-export function getProducts(searchQuery){
+export function getProducts(){
     return function(dispatch){
-     axios.get(`${URL_API}products/${searchQuery}`)
+     axios.get(`${URL_API}products/`)
          .then((json)=>{
              return dispatch({
                  type: GET_PRODUCTS,
