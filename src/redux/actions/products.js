@@ -3,6 +3,8 @@ import {URL_API} from '../../config/config'
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
+export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+
 
 export function getProducts(){
     return function(dispatch){
@@ -33,4 +35,18 @@ export function getProducts(){
     }
  }
 
- 
+ export function getProductByName(payload) {
+    return async function (dispatch) {
+      try {
+        let productName = await axios.get(`${URL_API}products?name=${payload}`);
+        console.log(productName.data)
+        return dispatch({
+          type: "GET_PRODUCT_BY_NAME",
+          payload: productName.data,
+        });
+      } catch (error) {
+        console.log(error);
+        alert("Product not found");
+      }
+    };
+  }
