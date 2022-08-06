@@ -1,6 +1,7 @@
 const {
     GET_PRODUCTS,
-    DETAILS_PRODUCT
+    DETAILS_PRODUCT,
+    GET_PRODUCT_BY_NAME
 } = require('../actions/products');
 
 const initialState = {
@@ -21,6 +22,13 @@ export function productReducer(state = initialState, action) {
         return {
             ...state,
             productDetail: action.payload
+        }
+    }
+
+    if ( action.type === GET_PRODUCT_BY_NAME ) {
+        return {
+            ...state,
+            products: action.payload
         }
     }
 
