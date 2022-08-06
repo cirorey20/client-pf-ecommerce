@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Home from "./components/Home/Home";
 import Details from "./components/Details/Details";
-import CreateProducts from "./components/createProducts/createProducts";
+import DashBoard from "./components/dashBoard/dashBoard.jsx";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<Details />} />
-        <Route path="/createProduct" element={<CreateProducts />} />
+        <Route path="/DashBoard" element={<DashBoard />} />
       </Routes>
     </div>
   );
