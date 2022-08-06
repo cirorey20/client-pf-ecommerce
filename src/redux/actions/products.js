@@ -1,24 +1,25 @@
 import axios from 'axios';
-import {URL_API} from '../../config/config'
+import { URL_API } from '../../config/config'
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 
-export function getProducts(searchQuery){
-    return function(dispatch){
-     axios.get(`${URL_API}products/${searchQuery}`)
-         .then((json)=>{
-             return dispatch({
-                 type: GET_PRODUCTS,
-                 payload: json.data
-             })
-         }, (error)=>{
-             console.log(error)
-         })
+export function getProducts(searchQuery) {
+    return function (dispatch) {
+        axios.get(`${URL_API}products/${searchQuery}`)
+            .then((json) => {
+                return dispatch({
+                    type: GET_PRODUCTS,
+                    payload: json.data
+                })
+            }, (error) => {
+                console.log(error)
+            })
     }
- }
+}
 
- export function detailProduct(id) {
+export function detailProduct(id) {
     return async function (dispatch) {
         try {
             const detailById = await axios.get(`${URL_API}products/${id}`);
@@ -31,6 +32,17 @@ export function getProducts(searchQuery){
             console.log(error)
         }
     }
- }
+}
 
- 
+export function createProduct(body){
+    return async function(dispatch){
+        try{
+            body.categorie = body.categories;
+            await axios.post(`${URL_API}products/createProducts`,body,{
+                'content-type': 'text/json'
+            });
+        } catch(error){
+            console.log(error);
+        }
+    }
+}
