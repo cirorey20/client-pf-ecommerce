@@ -3,6 +3,7 @@ import { Popover } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import Profile from "../Profile/Profile";
 
 export default function LandingPage() {
   const { loginWithRedirect } = useAuth0();
@@ -41,6 +42,7 @@ export default function LandingPage() {
           >
             login
           </button>
+          <Profile />
         </div>
       </div>
     </Popover>
