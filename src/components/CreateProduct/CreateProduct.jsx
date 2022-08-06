@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { getCategories } from '../../redux/actions/categories';
-import { createProduct } from '../../redux/actions/products';
+import { createProduct, detailProduct, getProducts } from '../../redux/actions/products';
 import NavBar from '../NavBar/NavBar';
 
 const initialFormState = {
@@ -11,16 +12,22 @@ const initialFormState = {
     stock: 0,
     categories: [],
     image: '',
-    description: ''
+    description: '',
+    enable: true
 };
 
 export default function CreateProduct() {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categoryReducer.categories);
+    const productDetail = useSelector(state => state.productReducer.productDetail)
     const [ form, setForm ] = useState(initialFormState);
+    const { idProduct } = useParams();
 
     useEffect(() => {
         dispatch(getCategories());
+        if(idProduct){
+            dispatch(detailProduct(idProduct));
+        }
     }, []);
 
     useEffect(() => {
@@ -28,6 +35,28 @@ export default function CreateProduct() {
         newState.categories = categories.map(category => ({...category, checked:false}));
         setForm(newState);
     }, [categories]);
+
+    // useEffect(() => {
+        
+    // }, [idProduc]);
+
+    useEffect(() => {
+        if(!Array.isArray(productDetail) && typeof(productDetail) === 'object' && productDetail !== null){
+            const categoriesDetail = productDetail['ProductCategories'].map(v => v['Category'].name);
+            const newState = {...form};
+            newState.categories = newState.categories.map(category => {
+                if(categoriesDetail.includes(category.name)) category.checked = true;
+                return category;
+            });
+            newState.name = productDetail.name;
+            newState.price = productDetail.price;
+            newState.stock = productDetail.stock;
+            newState.description = productDetail.description;
+            newState.image = productDetail.image;
+            newState.enable = productDetail.enable;
+            setForm(newState);
+        }
+    }, [productDetail]);
 
 
     function onChangeValue(e){
@@ -48,9 +77,11 @@ export default function CreateProduct() {
         e.preventDefault();
         const body = {...form};
         body.categories = body.categories.map(category => category.name)
-        dispatch(createProduct(body));
+        (idProduct) ? dispatch() : dispatch(createProduct(body));
         setForm(initialFormState);
     }
+
+
 
     return (
         <>
@@ -71,7 +102,7 @@ export default function CreateProduct() {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="price">
                             Price
                         </label>
-                        <input value={form.price} name="price" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" min="0" type="number" placeholder="90210" />
+                        <input value={form.price} name="price" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" min="0" type="number" placeholder="90210" />
                         <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
 
@@ -81,7 +112,7 @@ export default function CreateProduct() {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="stock">
                             Stock
                         </label>
-                        <input value={form.stock} name="stock" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="stock" min="0" type="number" placeholder="25" />
+                        <input value={form.stock} name="stock" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="stock" min="0" type="number" placeholder="25" />
                         <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
 
@@ -124,13 +155,13 @@ export default function CreateProduct() {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="description">
                             Description
                         </label>
-                        <textarea value={form.description} name="description" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" type="text" placeholder="Description of the product to create..." />
+                        <textarea rows="10" value={form.description} name="description" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" type="text" placeholder="Description of the product to create..." />
                         <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
                 </div>
 
                 <button onClick={onSubmit} className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                    Create
+                    {(idProduct) ? 'Update' : 'Create'}
                 </button>
 
             </form>
