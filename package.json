@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "auth0": "^2.37.0",
     "axios": "^0.27.2",
     "flowbite": "^1.5.1",
     "react": "^17.0.2",
