@@ -1,7 +1,7 @@
 
 import {React, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameProducts } from "../../redux/actions/products";
+import { getNameProducts, resetPage } from "../../redux/actions/products";
 
 export default function SearchBar() {
 
@@ -16,6 +16,7 @@ export default function SearchBar() {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
+    dispatch(resetPage())
     dispatch(getNameProducts(searchName))
     setSearchName("")
   };

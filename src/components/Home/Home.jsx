@@ -9,22 +9,25 @@ import  SearchBar  from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
+import  {setPaginaActual}  from "../../redux/actions/products"
 
 export default function Home (){
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
     const allCategories = useSelector((state) => state.categoryReducer.categories)
-
+    const paginaActual = useSelector((state) => state.productReducer.paginaActual)
+    console.log(paginaActual)
+    
     //paginado
-    const [paginaActual, setPaginaActual] = useState(1)
-    const [productsDePagina] = useState(2)
+    //const [paginaActual, setPaginaActual] = useState(1)
+    const [productsDePagina, setProductsDePagina] = useState(2)
     const iUltima = paginaActual * productsDePagina
     const iPrimera = iUltima - productsDePagina
     const productsActuales = allProducts.slice(iPrimera, iUltima)
 
     const paged = (numPagina) => {
-        setPaginaActual(numPagina);
+       dispatch(setPaginaActual(numPagina));
     }
 
     useEffect(() => {

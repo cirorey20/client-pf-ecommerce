@@ -4,6 +4,8 @@ import {URL_API} from '../../config/config'
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
 export const GET_NAME_PRODUCTS = "GET_NAME_PRODUCTS";
+export const SET_PAGINA_ACTUAL = "SET_PAGINA_ACTUAL";
+export const RESET_PAGE = "RESET_PAGE";
 
 export function getProducts(){
     return function(dispatch){
@@ -47,4 +49,19 @@ export function getProducts(){
         console.log(err)
     }
   }
+};
+
+export function setPaginaActual(numPagina){
+    return{
+        type:"SET_PAGINA_ACTUAL",
+        payload: numPagina
+    }
+};
+
+
+export function resetPage(){
+    return{
+        type:"RESET_PAGE",
+        payload: 1
+    }
 };
