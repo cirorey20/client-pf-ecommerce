@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+
 //comment
 const Home = () => {
   const { search } = useLocation();
@@ -128,6 +129,7 @@ const Home = () => {
     </Fragment>
   );
 };
+
 
 export default Home;
 

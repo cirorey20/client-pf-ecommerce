@@ -3,6 +3,9 @@ import { URL_API } from '../../config/config'
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
+export const GET_NAME_PRODUCTS = "GET_NAME_PRODUCTS";
+export const SET_PAGINA_ACTUAL = "SET_PAGINA_ACTUAL";
+export const RESET_PAGE = "RESET_PAGE";
 export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"; 
@@ -12,10 +15,11 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export function getProducts(){
     return function(dispatch){
         
+
      axios.get(`${URL_API}products`)
          .then((json)=>{
              return dispatch({
-                 type: GET_PRODUCTS,
+                 type: "GET_PRODUCTS",
                  payload: json.data
              })
          }, (error)=>{
@@ -47,7 +51,7 @@ export function detailProduct(id) {
             const detailById = await axios.get(`${URL_API}products/${id}`);
             console.log(detailById.data)
             return dispatch({
-                type: DETAILS_PRODUCT,
+                type: "DETAILS_PRODUCT",
                 payload: detailById.data,
             });
         } catch (error) {
@@ -69,7 +73,38 @@ export function createProduct(body){
     }
 }
 
-export function getProductByName(payload) {
+
+  export function getNameProducts(searchName){
+      return async function (dispatch) {
+          try {
+              const product = await axios.get(`${URL_API}products?searchName=${searchName}`);
+              console.log(product)
+            return dispatch({
+                type: "GET_NAME_PRODUCTS",
+                payload: product.data,
+            })
+        }catch(err){
+        console.log(err)
+    }
+  }
+};
+
+export function setPaginaActual(numPagina){
+    return{
+        type:"SET_PAGINA_ACTUAL",
+        payload: numPagina
+    }
+};
+
+
+export function resetPage(){
+    return{
+        type:"RESET_PAGE",
+        payload: 1
+    }
+};
+
+/*export function getProductByName(payload) {
     return async function (dispatch) {
       try {
         let productName = await axios.get(`${URL_API}products?name=${payload}`);
@@ -83,7 +118,7 @@ export function getProductByName(payload) {
         alert("Product not found");
       }
     };
-  }
+  }*/
 
 export function updateProduct(body){
     return async function(dispatch){
@@ -97,3 +132,4 @@ export function updateProduct(body){
         }
     }
 }
+
