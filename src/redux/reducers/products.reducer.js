@@ -4,7 +4,7 @@ const {
     GET_NAME_PRODUCTS,
     GET_PRODUCT_DETAIL,
     SET_PAGINA_ACTUAL,
-    RESET_PAGE
+    RESET_PAGE,
     GET_PRODUCT_BY_NAME,
     PRODUCTS_BY_FILTERS,
 
@@ -64,7 +64,7 @@ export function productReducer(state = initialState, action) {
     return{
         ...state,
         paginaActual: action.payload
-
+    }     
 
     if ( action.type === GET_PRODUCT_BY_NAME ) {
         return {
