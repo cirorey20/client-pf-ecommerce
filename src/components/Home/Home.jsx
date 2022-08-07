@@ -1,14 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Paginate from "../Paginate/Paginate";
-import { useSelector, useDispatch } from 'react-redux';
-import {Link, useLocation} from 'react-router-dom';
-import { getProducts } from '../../redux/actions/products';
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { getProducts, getByFilters } from "../../redux/actions/products";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
-
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
+
 import  {setPaginaActual}  from "../../redux/actions/products"
 
 const Home = () => {
@@ -108,6 +108,7 @@ const Home = () => {
         </Fragment>
     )
 }
+
 
 export default Home;
 

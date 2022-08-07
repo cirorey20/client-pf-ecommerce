@@ -13,10 +13,27 @@ export function cartReducer(state = initialState, action) {
         let stateCart = state.cart;
         let currentProduct = action.payload
 
-        return {
-            cart: [...stateCart, currentProduct]
+        console.log("Estado de cart", state.cart)
 
+        if ( stateCart.length > 0 ) {
+            for( let i = 0; i < stateCart.length; i++ ) {
+                if( stateCart[i].id === currentProduct.id ) {
+                    stateCart[i].quantity++;
+                    return {cart: stateCart}
+                }
+            }
+            return {
+                cart: [...stateCart, currentProduct]
+    
+            }
+        } else {
+
+            return {
+                cart: [...stateCart, currentProduct]
+    
+            }
         }
+
     }
 
     return state

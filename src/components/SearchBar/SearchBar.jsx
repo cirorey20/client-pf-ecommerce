@@ -1,7 +1,11 @@
 
 import {React, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { getNameProducts, resetPage } from "../../redux/actions/products";
+
+//import { getProductByName } from "../../redux/actions/products";
+
 
 export default function SearchBar() {
 
@@ -16,9 +20,11 @@ export default function SearchBar() {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(resetPage())
     dispatch(getNameProducts(searchName))
     setSearchName("")
+
   };
 
     return (
@@ -26,11 +32,13 @@ export default function SearchBar() {
             <div className="flex border border-purple-200 rounded">
                 <input className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     type="text"
+
                     placeholder="Search..."
                     onChange={(e) => onHandleChange(e)}
                 />
                 <button className="px-4 text-white bg-[#cbd5e1] border-l rounded hover:bg-[#0f172a]"
                 onClick={(e) => onHandleSubmit(e)}>Search</button>
+
             </div>
         </div>
     );
