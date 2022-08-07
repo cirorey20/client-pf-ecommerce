@@ -6,6 +6,7 @@ export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
 export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"; 
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 
 export function getProducts(){
@@ -60,7 +61,7 @@ export function createProduct(body){
         try{
             body.categorie = body.categories;
             await axios.post(`${URL_API}products/createProducts`,body,{
-                'content-type': 'text/json'
+                'content-type': 'application/json'
             });
         } catch(error){
             console.log(error);
@@ -83,3 +84,16 @@ export function getProductByName(payload) {
       }
     };
   }
+
+export function updateProduct(body){
+    return async function(dispatch){
+        try{
+            await axios.put(`${URL_API}products/updateProduct`, body, {
+                'content-type': 'application/json'
+            })
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+}

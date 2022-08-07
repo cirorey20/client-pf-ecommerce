@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCategories } from '../../redux/actions/categories';
-import { createProduct, detailProduct, getProducts } from '../../redux/actions/products';
+import { createProduct, detailProduct, getProducts, updateProduct } from '../../redux/actions/products';
 import NavBar from '../NavBar/NavBar';
 
 const initialFormState = {
@@ -20,32 +20,32 @@ export default function CreateProduct() {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categoryReducer.categories);
     const productDetail = useSelector(state => state.productReducer.productDetail)
-    const [ form, setForm ] = useState(initialFormState);
+    const [form, setForm] = useState(initialFormState);
     const { idProduct } = useParams();
 
     useEffect(() => {
         dispatch(getCategories());
-        if(idProduct){
+        if (idProduct) {
             dispatch(detailProduct(idProduct));
         }
     }, []);
 
     useEffect(() => {
-        const newState = {...form};
-        newState.categories = categories.map(category => ({...category, checked:false}));
+        const newState = { ...form };
+        newState.categories = categories.map(category => ({ ...category, checked: false }));
         setForm(newState);
     }, [categories]);
 
     // useEffect(() => {
-        
+
     // }, [idProduc]);
 
     useEffect(() => {
-        if(!Array.isArray(productDetail) && typeof(productDetail) === 'object' && productDetail !== null){
+        if (!Array.isArray(productDetail) && typeof (productDetail) === 'object' && productDetail !== null) {
             const categoriesDetail = productDetail['ProductCategories'].map(v => v['Category'].name);
-            const newState = {...form};
+            const newState = { ...form };
             newState.categories = newState.categories.map(category => {
-                if(categoriesDetail.includes(category.name)) category.checked = true;
+                if (categoriesDetail.includes(category.name)) category.checked = true;
                 return category;
             });
             newState.name = productDetail.name;
@@ -59,26 +59,39 @@ export default function CreateProduct() {
     }, [productDetail]);
 
 
-    function onChangeValue(e){
-        if(!form.hasOwnProperty(e.target.name)) return;
-        if(e.target.name !== 'categories') {
-            (e.target.name === 'price' || e.target.name === 'stock') ? setForm({...form, [e.target.name]: Number(e.target.value)})
-            : setForm({...form, [e.target.name]: e.target.value})
+    function onChangeValue(e) {
+        if (!form.hasOwnProperty(e.target.name)) return;
+        if (e.target.name !== 'categories') {
+            (e.target.name === 'price' || e.target.name === 'stock') ? setForm({ ...form, [e.target.name]: Number(e.target.value) })
+                : setForm({ ...form, [e.target.name]: e.target.value })
         } else {
             const newCategories = form?.categories?.map(category => {
-                if(e.target.value === category.name)category.checked = e.target.checked;
+                if (e.target.value === category.name) category.checked = e.target.checked;
                 return category;
             });
-            setForm({...form, categories: [...newCategories]})
+            setForm({ ...form, categories: [...newCategories] })
         }
     }
 
-    function onSubmit(e){
+    function onSubmit(e) {
         e.preventDefault();
-        const body = {...form};
-        body.categories = body.categories.map(category => category.name)
-        (idProduct) ? dispatch() : dispatch(createProduct(body));
-        setForm(initialFormState);
+        const body = { ...form };
+
+        // body.categories = body.categories.map(c => {
+        //     ()c.name
+        // });
+
+        body.categories = body.categories.reduce((prev, curr) => {
+            if (curr.checked) return [...prev, curr.name];
+            return prev;
+        }, []);
+        if (idProduct) {
+            body.id = idProduct;
+            dispatch(updateProduct(body))
+        } else {
+            dispatch(createProduct(body))
+            setForm(initialFormState);
+        }
     }
 
 
@@ -88,7 +101,10 @@ export default function CreateProduct() {
             <NavBar />
 
             <form className="w-full max-w-lg mx-auto mt-20">
-                <div className="flex flex-wrap -mx-3 mb-6">
+                {
+                    (idProduct && Object.keys(productDetail)?.length === 0) ? (<p className="text-red-500 text-xs italic">Product not found</p>)
+                    :   
+                (<><div className="flex flex-wrap -mx-3 mb-6">
 
                     <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
@@ -97,6 +113,7 @@ export default function CreateProduct() {
                         <input value={form.name} name="name" onChange={onChangeValue} className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" type="text" placeholder="Piano" />
                         <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
+                    
 
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="price">
@@ -124,7 +141,7 @@ export default function CreateProduct() {
                             Categories
                         </label>
                         <div className="w-full md:w-1/1 flex flex-wrap justify-center justify-evenly gap-4 rounded border-red-500 border-solid border p-4">
-                        {/* {border-stone-300} */}
+                            {/* {border-stone-300} */}
 
                             {
                                 (form?.categories?.length > 0) ? form.categories.map(category => (
@@ -135,7 +152,7 @@ export default function CreateProduct() {
                                         </label>
                                     </div>
                                 )) :
-                                <p className='text-red-500 text-xs italic'>There are no categories, please create one</p>
+                                    <p className='text-red-500 text-xs italic'>There are no categories, please create one</p>
                             }
 
 
@@ -162,7 +179,8 @@ export default function CreateProduct() {
 
                 <button onClick={onSubmit} className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
                     {(idProduct) ? 'Update' : 'Create'}
-                </button>
+                </button></>)
+                }
 
             </form>
         </>
