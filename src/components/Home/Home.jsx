@@ -8,7 +8,8 @@ import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
-
+import {SearchBar} from "../SearchBar/SearchBar";
+import { Cart } from "../Cart/Cart";
 import  {setPaginaActual}  from "../../redux/actions/products"
 
 const Home = () => {
@@ -73,7 +74,9 @@ const Home = () => {
                                                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                                                     />
                                                 </div>
-        
+
+                                               <SearchBar/>
+
                                                 <div className="mt-4 flex justify-between">
                                                     <div >
                                                         <h3 className="text-sm text-gray-700">
