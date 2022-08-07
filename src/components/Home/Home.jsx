@@ -10,7 +10,7 @@ import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
-
+//comment
 const Home = () => {
   const { search } = useLocation();
   const dispatch = useDispatch();
@@ -31,8 +31,6 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
-
-
   //cart
   const [productsCart, setProductsCart] = useState([]);
   const [countCart, setCountCart] = useState(0);
@@ -51,8 +49,7 @@ const Home = () => {
   }
 
   function handlerFilters(filter) {
-
-    dispatch(getByFilters(filter))
+    dispatch(getByFilters(filter));
   }
 
   useEffect(() => {
@@ -68,9 +65,7 @@ const Home = () => {
       <br />
 
       <Cart stateCart={stateCart} />
-      <Filters 
-        handlerFilters={handlerFilters}
-      />
+      <Filters handlerFilters={handlerFilters} />
       <FilterCategories allCategories={allCategories} />
       <Paginate
         productsPage={productsPage}
