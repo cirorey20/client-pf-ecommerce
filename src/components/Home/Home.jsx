@@ -32,7 +32,6 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProducts());
-        //console.log(allProducts)
         dispatch(getCategories())
     }, [dispatch,search])
 
