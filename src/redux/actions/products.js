@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useActionData } from 'react-router-dom';
 import { URL_API } from '../../config/config'
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
@@ -89,10 +90,10 @@ export function createProduct(body){
   }
 };
 
-export function setPaginaActual(numPagina){
+export function setCurrentPage(numPag){
     return{
         type:"SET_PAGINA_ACTUAL",
-        payload: numPagina
+        payload: numPag
     }
 };
 

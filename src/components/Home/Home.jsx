@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { getProducts, getByFilters } from "../../redux/actions/products";
+import { getProducts, getByFilters, setCurrentPage } from "../../redux/actions/products";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
@@ -10,26 +10,27 @@ import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+import SearchBar from "../SearchBar/SearchBar";
 
 //comment
 const Home = () => {
   const { search } = useLocation();
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.productReducer.products);
-  const allCategories = useSelector(
-    (state) => state.categoryReducer.categories
-  );
+  const allCategories = useSelector((state) => state.categoryReducer.categories);
   const stateCart = useSelector((state) => state.cartReducer.cart);
+  const currentPage = useSelector((state) => state.productReducer.currentPage);
+  console.log(currentPage)
 
   //paginado
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPage] = useState(2);
+  //const [currentPage, setCurrentPage] = useState(1);
+  const [productsPage, setProductsPage] = useState(2);
   const lastPage = currentPage * productsPage;
   const firstPage = lastPage - productsPage;
   const productsOfNow = allProducts.slice(firstPage, lastPage);
 
   const paged = (numPag) => {
-    setCurrentPage(numPag);
+    dispatch (setCurrentPage(numPag));
   };
 
   //cart
@@ -91,6 +92,8 @@ const Home = () => {
                           className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                         />
                       </div>
+
+                      <SearchBar/>
 
                       <div className="mt-4 flex justify-between">
                         <div>

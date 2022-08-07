@@ -14,7 +14,7 @@ const initialState = {
     products: [],
     copyProducts: [],
     productDetail: [],
-    paginaActual: 1
+    currentPage: 1
 }
 
 export function productReducer(state = initialState, action) {
@@ -57,13 +57,13 @@ export function productReducer(state = initialState, action) {
     if( action.type === SET_PAGINA_ACTUAL)
     return{
         ...state,
-        paginaActual: action.payload
+        currentPage: action.payload
     }
 
     if( action.type === RESET_PAGE)
     return{
         ...state,
-        paginaActual: action.payload
+        currentPage: action.payload
     }     
 
     if ( action.type === GET_PRODUCT_BY_NAME ) {
