@@ -5,12 +5,12 @@ import {Link, useLocation} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
-
+import  SearchBar  from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 
-const Home = () => {
+export default function Home (){
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
@@ -29,7 +29,6 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProducts());
-        //console.log(allProducts);
         dispatch(getCategories())
     }, [dispatch,search])
 
@@ -69,6 +68,8 @@ const Home = () => {
                                                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                                                     />
                                                 </div>
+
+                                                <SearchBar/>
         
                                                 <div className="mt-4 flex justify-between">
                                                     <div >
@@ -102,7 +103,7 @@ const Home = () => {
     )
 }
 
-export default Home;
+//export default Home;
 
 /*
     allProducts.map((e, i) => {
