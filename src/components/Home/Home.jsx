@@ -5,19 +5,19 @@ import {Link, useLocation} from 'react-router-dom';
 import { getProducts } from '../../redux/actions/products';
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
-import  SearchBar  from "../SearchBar/SearchBar";
+
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import  {setPaginaActual}  from "../../redux/actions/products"
 
-export default function Home (){
+const Home = () => {
     const { search } = useLocation();
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.productReducer.products)
     const allCategories = useSelector((state) => state.categoryReducer.categories)
     const paginaActual = useSelector((state) => state.productReducer.paginaActual)
-    
+    console.log(paginaActual)
     
     //paginado
     //const [paginaActual, setPaginaActual] = useState(1)
@@ -32,6 +32,7 @@ export default function Home (){
 
     useEffect(() => {
         dispatch(getProducts());
+        //console.log(allProducts)
         dispatch(getCategories())
     }, [dispatch,search])
 
@@ -42,13 +43,16 @@ export default function Home (){
             <br />
             <br />
 
+            <Cart 
+                stateCart={stateCart}
+            />
             <Filters />
             <FilterCategories allCategories={allCategories} />
-            
             <Paginate
-                productsDePagina={productsDePagina}
+                productsPage={productsPage}
                 allProducts={allProducts.length}
                 paged={paged}
+                currentPage={currentPage}
             />
             <div className="md:container md:mx-auto bg-[#e2e8f0]">
                 <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -58,7 +62,7 @@ export default function Home (){
                         allProducts.length <= 0 ?
                             <div>NO HAY PRODUCTOS...</div>
                             :
-                            productsActuales.map((e, i) => {
+                            productsOfNow.map((e, i) => {
                                 if (e.enable === true) {
                                     return (
                                         <div key={i} className="  ">
@@ -71,8 +75,6 @@ export default function Home (){
                                                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                                                     />
                                                 </div>
-
-                                                <SearchBar/>
         
                                                 <div className="mt-4 flex justify-between">
                                                     <div >
@@ -89,7 +91,10 @@ export default function Home (){
                                                     
                                                 </div>
                                             </div>
-                                            <button className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            <button 
+                                                className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                onClick={ () => handlerAddToCart(e) }
+                                            >
                                                 Add Cart
                                             </button>
                                         </div>
@@ -106,7 +111,7 @@ export default function Home (){
     )
 }
 
-//export default Home;
+export default Home;
 
 /*
     allProducts.map((e, i) => {

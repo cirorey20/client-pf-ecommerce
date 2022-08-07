@@ -56,7 +56,7 @@ export default function FilterCategory({ allCategories }) {
 
     useEffect(() => {
         allCategories = allCategories.map(category => ({ ...category, checked: false }));
-        console.log(checksCategory)
+        // console.log(checksCategory)
         const urlSearchParams = new URLSearchParams(search);
         const arrayCategories = urlSearchParams.getAll('categories');
         const newState = allCategories.map(category => {
