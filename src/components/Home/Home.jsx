@@ -17,7 +17,6 @@ const Home = () => {
     const allProducts = useSelector((state) => state.productReducer.products)
     const allCategories = useSelector((state) => state.categoryReducer.categories)
     const paginaActual = useSelector((state) => state.productReducer.paginaActual)
-    //console.log(paginaActual)
     
     //paginado
     //const [paginaActual, setPaginaActual] = useState(1)
