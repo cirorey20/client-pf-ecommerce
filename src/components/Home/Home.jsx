@@ -25,7 +25,6 @@ export default function Home (){
     const iUltima = paginaActual * productsDePagina
     const iPrimera = iUltima - productsDePagina
     const productsActuales = allProducts.slice(iPrimera, iUltima)
-    //console.log(productsActuales)
 
     const paged = (numPagina) => {
        dispatch(setPaginaActual(numPagina));
