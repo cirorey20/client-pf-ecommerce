@@ -1,0 +1,60 @@
+const {
+    GET_PRODUCTS,
+    DETAILS_PRODUCT,
+    GET_NAME_PRODUCTS,
+    GET_PRODUCT_DETAIL,
+    SET_PAGINA_ACTUAL,
+    RESET_PAGE
+} = require('../actions/products');
+
+const initialState = {
+    products: [],
+    copyProducts: [],
+    productDetail: [],
+    paginaActual: 1
+}
+
+export function productReducer(state = initialState, action) {
+
+    if (action.type === GET_PRODUCTS) {
+        return {
+            ...state,
+            products: action.payload,
+            copyProducts: action.payload
+        }
+    }
+
+    if ( action.type === DETAILS_PRODUCT ) {
+        return {
+            ...state,
+            productDetail: action.payload
+        }
+    }
+
+     if ( action.type === GET_NAME_PRODUCTS)
+    return{
+        ...state,
+        products: action.payload
+    }
+
+    if( action.type === GET_PRODUCT_DETAIL)
+    return{
+        ...state,
+        products:action.payload
+    }
+
+    if( action.type === SET_PAGINA_ACTUAL)
+    return{
+        ...state,
+        paginaActual: action.payload
+    }
+
+    if( action.type === RESET_PAGE)
+    return{
+        ...state,
+        paginaActual: action.payload
+
+    }
+
+    return state
+}

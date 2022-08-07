@@ -1,17 +1,13 @@
-import {
-} from "../actions/index.js";
+import { combineReducers } from 'redux';
 
+import {productReducer} from './products.reducer';
+import {categoryReducer} from './categories.reducer';
+import {cartReducer} from './cart.reducer';
 
-  const initialState = {
+const rootReducer = combineReducers({
+  productReducer,
+  categoryReducer,
+  cartReducer
+})
 
-  }
-
-  const rootReducer = (state = initialState, action) => {
-    switch(action.type) {
-        // Acá va tu código:
-            default:
-                return {...state}           
-        }}
-
-        
-  export default rootReducer;
+export default rootReducer
