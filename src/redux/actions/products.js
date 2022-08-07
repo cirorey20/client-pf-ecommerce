@@ -4,6 +4,7 @@ import { URL_API } from '../../config/config'
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 export function getProducts(searchQuery) {
     return function (dispatch) {
@@ -39,9 +40,23 @@ export function createProduct(body){
         try{
             body.categorie = body.categories;
             await axios.post(`${URL_API}products/createProducts`,body,{
-                'content-type': 'text/json'
+                'content-type': 'application/json'
             });
         } catch(error){
+            console.log(error);
+        }
+    }
+}
+
+
+export function updateProduct(body){
+    return async function(dispatch){
+        try{
+            await axios.put(`${URL_API}products/updateProduct`, body, {
+                'content-type': 'application/json'
+            })
+
+        }catch(error){
             console.log(error);
         }
     }
