@@ -3,12 +3,12 @@ import {React, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { getNameProducts, resetPage } from "../../redux/actions/products";
-
+import { useNavigate } from "react-router-dom";
 //import { getProductByName } from "../../redux/actions/products";
 
 
 export default function SearchBar() {
-
+    var navigate = useNavigate()
     const [searchName, setSearchName] = useState("");
     console.log(searchName)
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ export default function SearchBar() {
 
     dispatch(resetPage())
     dispatch(getNameProducts(searchName))
+    navigate("/Home")
     setSearchName("")
 
   };
