@@ -54,9 +54,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProducts(search));
     // console.log(allProducts);
     dispatch(getCategories());
+    paged(1);
   }, [dispatch, search]);
 
   return (
