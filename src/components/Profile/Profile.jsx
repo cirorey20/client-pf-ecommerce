@@ -1,29 +1,10 @@
-// import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { useRef, useState, useEffect } from "react";
-
-// export default function Profile() {
-//   const { user, isAuthenticated } = useAuth0();
-//   return (
-//     isAuthenticated && (
-//       <div>
-//         <img src={user.picture} alt={user.name} />
-//         <h2>{user.name}</h2>
-//       </div>
-//     )
-//   );
-// }
-
 import React, { useRef } from "react";
 import "./styles.css";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logout from "../Logout/Logout";
+import { Link } from "react-router-dom";
 
-/*
- * Read the blog post here:
- * https://letsbuildui.dev/articles/building-a-dropdown-menu-component-with-react-hooks
- */
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   const dropdownRef = useRef(null);
@@ -45,10 +26,10 @@ export default function Profile() {
           >
             <ul>
               <li>
-                <a href="#">My Profile</a>
+                <Link to={"/logged/userInfo"}>My Profile</Link>
               </li>
               <li>
-                <a href="#">Settings</a>
+                <a href="/logged/userInfo">Settings</a>
               </li>
               <li>
                 <a href="#">
