@@ -127,11 +127,11 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div>
-      <div class="flex justify-start">
+    <div className="mt-5 pt-10 w-40 pb-10 rounded-xl shadow-lg">
+      <div className="">
         {checksCategory.map((category) => {
           return (
-            <div key={category.id}>
+            <div key={category.id} className="p-4">
               <input
                 type="checkbox"
                 id={`custom-checkbox-${category.id}`}
@@ -139,8 +139,8 @@ export default function FilterCategory({ allCategories }) {
                 value={category.id}
                 checked={category.checked}
                 onChange={() => onChangeCheck(category.id)}
-              />
-              <label htmlFor={`custom-checkbox-${category.id}`}>
+              />         
+              <label  className="p-1" htmlFor={`custom-checkbox-${category.id}`}>
                 {category.name}
               </label>
             </div>
@@ -150,14 +150,14 @@ export default function FilterCategory({ allCategories }) {
       <button
         type="button"
         onClick={onClickFilter}
-        className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        className="focus:outline-none text-gray-900 bg-[#cbd5e1] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
       >
         Filter
       </button>
       <button
         type="button"
         onClick={onClickReset}
-        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        className="focus:outline-none  bg-[#0f172a] text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
         Reset
       </button>

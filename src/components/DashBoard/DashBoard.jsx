@@ -47,9 +47,7 @@ const createProducts = () => {
       <NavBar />
 
       <div class="py-10 flex justify-evenly">
-        <div>
-          <FilterCategory allCategories={categories} />
-        </div>
+
         <Link to={`/product/create`}>
           <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
             Crear Producto
@@ -71,8 +69,11 @@ const createProducts = () => {
           </button>
         </div>
       </div>
-
-      <div>
+      <div className="flex mb-6">
+        <div className="flex-none  m-2 w-40 h-100">
+          <FilterCategory allCategories={categories} />
+        </div>   
+        <div  className="flex-initial w-full">
         <div>
           {allProducts.map((e) => {
             return (
@@ -117,6 +118,7 @@ const createProducts = () => {
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 };

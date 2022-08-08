@@ -48,22 +48,22 @@ export default function Filters() {
     navigate(url, { replace: false });
   }
   return (
-    <div class="flex p-8">
-      <div>
+    <div className="flex justify-center w-35 my-10  rounded-xl shadow-lg">
+      <div className="">
+        <div className="">
         <Link to={"/product/DashBoard"}>
-          <button class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <button class="flex justify-items-center m-1 border-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
             DashBoard
           </button>
         </Link>
         <div />
-
         <select
           name="selectPriceSort"
           value={priceSort}
           onChange={onChangedSelect}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className=" border border-white text-gray-900 m-1 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#cbd5e1] text-white hover:bg-[#0f172a] hover:text-white"
         >
-          <option>CHOOSE A OPTION</option>
+          <option>Order by price</option>
           <option value="asc">Price desc</option>
           <option value="desc">Price asc</option>
         </select>
@@ -73,12 +73,13 @@ export default function Filters() {
           name="selectNameSort"
           value={nameSort}
           onChange={onChangedSelect}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="border border-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black mb-10"
         >
-          <option>CHOOSE A OPTION</option>
+          <option>Order by alphabet</option>
           <option value="A-Z">Product A-Z</option>
           <option value="Z-A">Product Z-A</option>
         </select>
+        </div>
       </div>
     </div>
   );
