@@ -48,7 +48,7 @@ export default function Filters() {
     navigate(url, { replace: false });
   }
   return (
-    <div className="flex justify-center w-35 my-10">
+    <div className="flex justify-center w-35 my-10  rounded-xl shadow-lg">
       <div className="">
         <div className="">
         <Link to={"/product/DashBoard"}>
@@ -73,7 +73,7 @@ export default function Filters() {
           name="selectNameSort"
           value={nameSort}
           onChange={onChangedSelect}
-          className="border border-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black"
+          className="border border-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black mb-10"
         >
           <option>Order by alphabet</option>
           <option value="A-Z">Product A-Z</option>

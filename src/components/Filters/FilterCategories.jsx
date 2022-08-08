@@ -127,7 +127,7 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div className="mt-5 pt-10 w-40 border-y-2 pb-10">
+    <div className="mt-5 pt-10 w-40 pb-10 rounded-xl shadow-lg">
       <div className="">
         {checksCategory.map((category) => {
           return (
