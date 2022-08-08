@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/actions/categories";
+import { getCategories, createCategory } from "../../redux/actions/categories";
 import { getProducts } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+import FilterCategory from "../Filters/FilterCategories";
 
 const createProducts = () => {
   const { search } = useLocation();
@@ -14,6 +15,27 @@ const createProducts = () => {
   const categories = useSelector((state) => state.categoryReducer.categories);
   const allProducts = useSelector((state) => state.productReducer.products);
   console.log(allProducts);
+
+  const [input, setInput] = useState({
+    name: "",
+  });
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (input.name) {
+      dispatch(createCategory(input));
+      setInput("");
+      alert("Se creado con exito");
+      window.location.reload();
+    } else {
+      alert("te faltan espacios por llenar");
+    }
+  };
 
   useEffect(() => {
     dispatch(getCategories());
@@ -25,12 +47,29 @@ const createProducts = () => {
       <NavBar />
 
       <div class="py-10 flex justify-evenly">
-        <div>Categories</div>
+        <div>
+          <FilterCategory allCategories={categories} />
+        </div>
         <Link to={`/product/create`}>
           <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
             Crear Producto
           </button>
         </Link>
+        <div>
+          <input
+            type="text"
+            placeholder="ingrese categoria"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(e)}
+          />
+          <button
+            onClick={(e) => handleSubmit(e)}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            Crear
+          </button>
+        </div>
       </div>
 
       <div>
