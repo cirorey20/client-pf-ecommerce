@@ -5,6 +5,7 @@ import { detailProduct } from '../../redux/actions/products';
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 
+
 const Details = () => {
 
  const dispatch = useDispatch();
