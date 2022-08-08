@@ -23,7 +23,7 @@ const Home = () => {
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPage] = useState(2);
+  const [productsPage] = useState(5);
   const lastPage = currentPage * productsPage;
   const firstPage = lastPage - productsPage;
   const productsOfNow = allProducts.slice(firstPage, lastPage);
@@ -130,7 +130,6 @@ const Home = () => {
     </Fragment>
   );
 };
-
 
 export default Home;
 
