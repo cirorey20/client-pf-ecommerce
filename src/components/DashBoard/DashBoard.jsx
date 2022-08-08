@@ -63,7 +63,7 @@ const createProducts = () => {
                 </div>
                 <div>
                   <div class="font-bold"> Categorias</div>
-                  {e.ProductCategories.map((e) => e.Category.name)}
+                  {e.ProductCategories?.map((e) => e.Category.name)}
                 </div>
 
                 <div>
