@@ -65,18 +65,21 @@ const Home = () => {
       <NavBar />
       <br />
       <br />
-
-      <Cart stateCart={stateCart} />
-      <Filters handlerFilters={handlerFilters} />
-      <FilterCategories allCategories={allCategories} />
+    <div className="mb-4">
       <Paginate
         productsPage={productsPage}
         allProducts={allProducts.length}
         paged={paged}
         currentPage={currentPage}
       />
-      <div className="md:container md:mx-auto bg-[#e2e8f0]">
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    </div>
+    <div className="flex mb-6">
+      <div className="flex-none  m-2 w-40 h-100">
+        <Filters handlerFilters={handlerFilters}/>
+        <FilterCategories allCategories={allCategories}/>
+      </div>
+      <div className="flex-initial w-full md:container md:mx-auto bg-[#e2e8f0]">
+        <div className="m-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {allProducts.length <= 0 ? (
             <div>NO HAY PRODUCTOS...</div>
           ) : (
@@ -126,6 +129,12 @@ const Home = () => {
           )}
         </div>
       </div>
+      <div className="flex-none  m-2 w-40 h-100"> 
+          <div className="border-y-2 p-8 h-40">
+            <Cart stateCart={stateCart} />
+          </div>
+      </div>
+    </div>
       <Footer />
     </Fragment>
   );
