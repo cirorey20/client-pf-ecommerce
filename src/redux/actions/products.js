@@ -12,11 +12,11 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 
-export function getProducts(){
+export function getProducts(queryFilter=''){
     return function(dispatch){
         
 
-     axios.get(`${URL_API}products`)
+     axios.get(`${URL_API}products${queryFilter}`)
          .then((json)=>{
              return dispatch({
                  type: "GET_PRODUCTS",
