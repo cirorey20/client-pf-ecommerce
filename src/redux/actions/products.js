@@ -41,6 +41,8 @@ export function getByFilters(searchFilters){
     }
 }
 
+//HERE FILTERS BY CATEGORIES
+
 export function detailProduct(id) {
     return async function (dispatch) {
         try {

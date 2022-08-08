@@ -6,7 +6,10 @@ const {
 } = require('../actions/products');
 
 const initialState = {
-    products: [],
+    products: [], //1state all products
+    getProducts: [], //3state all products
+    allProducts: [], //2state all products
+    
     productDetail: [],
 }
 
@@ -15,7 +18,9 @@ export function productReducer(state = initialState, action) {
     if (action.type === GET_PRODUCTS) {
         return {
             ...state,
-            products: action.payload
+            products: action.payload,
+            getProducts: action.payload,
+            allProducts: action.payload
         }
     }
 
@@ -25,6 +30,8 @@ export function productReducer(state = initialState, action) {
             products: action.payload
         }
     }
+
+    //HERE TYPE THE FILTERS BY CATEGORIES
 
     if ( action.type === DETAILS_PRODUCT ) {
         return {

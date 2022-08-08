@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getProducts, getByFilters } from "../../redux/actions/products";
 import Filters from "../Filters/Filters";
-import FilterCategories from "../Filters/FilterCategories";
+// import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+import FilterByCategories from "../Filters/FilterByCategories";
 
 const Home = () => {
   const { search } = useLocation();
@@ -71,7 +72,11 @@ const Home = () => {
       <Filters 
         handlerFilters={handlerFilters}
       />
-      <FilterCategories allCategories={allCategories} />
+      {/* <FilterCategories allCategories={allCategories} /> */}
+      <FilterByCategories 
+        allCategories={allCategories} 
+        allProducts={allProducts}
+      />
       <Paginate
         productsPage={productsPage}
         allProducts={allProducts.length}
@@ -107,6 +112,11 @@ const Home = () => {
                               {e.name}
                             </Link>
                           </h3>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Categories: {
+                              e.ProductCategories.map(item => item.Category.name+" ")
+                            }
+                          </p>
                           <p className="mt-1 text-sm text-gray-500">
                             Stock {e.stock}
                           </p>
