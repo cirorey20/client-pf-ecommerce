@@ -49,14 +49,14 @@ export default function FilterCategory({ allCategories }) {
   // },[allCategories]);
 
   useEffect(() => {
-    allCategories = allCategories.map((category) => ({
+    allCategories = allCategories?.map((category) => ({
       ...category,
       checked: false,
     }));
     // console.log(checksCategory)
     const urlSearchParams = new URLSearchParams(search);
     const arrayCategories = urlSearchParams.getAll("categories");
-    const newState = allCategories.map((category) => {
+    const newState = allCategories?.map((category) => {
       if (arrayCategories.includes(category.name)) category.checked = true;
       return Object.assign(category);
     });
