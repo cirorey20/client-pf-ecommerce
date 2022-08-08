@@ -127,11 +127,11 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div className="mt-5 pt-10 w-40 pb-10 rounded-xl shadow-lg">
-      <div className="">
+    <div className="mt-5 mb-1 pt-10 w-40 pb-10 rounded-xl shadow-lg">
+      <div className="flex justify-center grid auto-cols-auto">
         {checksCategory.map((category) => {
           return (
-            <div key={category.id} className="p-4">
+            <div key={category.id} className="flex justify-start p-2">
               <input
                 type="checkbox"
                 id={`custom-checkbox-${category.id}`}
@@ -140,13 +140,14 @@ export default function FilterCategory({ allCategories }) {
                 checked={category.checked}
                 onChange={() => onChangeCheck(category.id)}
               />         
-              <label  className="p-1" htmlFor={`custom-checkbox-${category.id}`}>
+              <label  className="ml-2 " htmlFor={`custom-checkbox-${category.id}`}>
                 {category.name}
               </label>
             </div>
           );
         })}
       </div>
+      <div className="mt-3">
       <button
         type="button"
         onClick={onClickFilter}
@@ -161,6 +162,7 @@ export default function FilterCategory({ allCategories }) {
       >
         Reset
       </button>
+      </div>
     </div>
   );
 }
