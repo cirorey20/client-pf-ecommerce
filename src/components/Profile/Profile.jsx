@@ -29,7 +29,7 @@ export default function Profile() {
                 <Link to={"/logged/userInfo"}>My Profile</Link>
               </li>
               <li>
-                <a href="/logged/userInfo">Settings</a>
+                <a href="">Settings</a>
               </li>
               <li>
                 <a href="#">
