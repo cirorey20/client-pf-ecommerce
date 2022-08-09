@@ -55,7 +55,7 @@ export default function SliderShow() {
           data-carousel-item=""
         >
           <img
-            src="https://tutempo.com.co/wp-content/uploads/2020/05/yamaha-banner.jpg"
+            src="https://www.elfinanciero.com.mx/resizer/i7n2Bb3hCFa-eFKae5JwMTZG8-E=/1440x810/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/IEUM66UOW5ET3LSESPXRUULXU4.jpg"
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
