@@ -8,7 +8,7 @@ import NewSection from "../NewSection/NewSection";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="bg-[#fbfbfccb] flex flex-col min-h-screen">
       <NavBar />
       <SliderShow />
       <ProductsView />

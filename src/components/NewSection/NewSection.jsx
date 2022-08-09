@@ -14,7 +14,7 @@ export default function NewSection() {
   };
 
   return (
-    <div className="md:container md:mx-auto bg-[#e2e8f0]">
+    <div className=" md:container md:mx-auto bg-[#fbfbfccb]">
       <div className="relative flex py-10 items-center">
         <div className="flex-grow border-t border-gray-400"></div>
         <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
@@ -36,7 +36,7 @@ export default function NewSection() {
           {data.map((item, id) => (
             <img
               key={id}
-              className="w-[250px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+              className=" w-[250px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
               src={item.img}
               alt="/"
             />
