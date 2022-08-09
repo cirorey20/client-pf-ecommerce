@@ -3,13 +3,19 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getCategories } from "../../redux/actions/categories";
-import {
-  createProduct,
-  detailProduct,
-  getProducts,
-  updateProduct,
-} from "../../redux/actions/products";
+import {createProduct, detailProduct, getProducts, updateProduct} from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+
+function validate (form){
+  let err = {};
+
+  if(!form.name.length){
+    err.name = "⚠ Name is required"
+  }
+  else if(!form.price.length){
+    err.price = "⚠ Price is required"
+  }
+}
 
 const initialFormState = {
   name: "",
@@ -140,11 +146,11 @@ export default function CreateProduct() {
                   className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="name"
                   type="text"
-                  placeholder="Piano"
+                  placeholder="Piano..."
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -164,9 +170,9 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="90210"
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -186,9 +192,9 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="25"
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -215,14 +221,14 @@ export default function CreateProduct() {
                       </div>
                     ))
                   ) : (
-                    <p className="text-red-500 text-xs italic">
+                    {/* <p className="text-red-500 text-xs italic">
                       There are no categories, please create one
-                    </p>
+                    </p> */}
                   )}
                 </div>
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -241,9 +247,9 @@ export default function CreateProduct() {
                   type="url"
                   placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
               <div className="w-full md:w-1/1 px-3 mt-6">
                 <label
@@ -262,9 +268,9 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Description of the product to create..."
                 />
-                <p className="text-red-500 text-xs italic">
+                {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
             </div>
 
