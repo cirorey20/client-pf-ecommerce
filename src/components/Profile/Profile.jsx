@@ -16,8 +16,8 @@ export default function Profile() {
       <div className="container z-50">
         <div>
           <button onClick={onClick} className="menu-trigger">
-            <span>{user.name}</span>
-            <img className="img" src={user.picture} alt={user.name} />
+            {/* <span>{user.name}</span> */}
+            <img className="img" src={user.pcture} alt={user.name} />
           </button>
 
           <nav
