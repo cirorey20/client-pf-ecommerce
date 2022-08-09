@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr 2.5fr;
   background-color: rgb(26, 26, 26);
   position: fixed;
+  height: 17%;
 }
 
 .navbar_logo {

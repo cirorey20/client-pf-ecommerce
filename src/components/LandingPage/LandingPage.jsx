@@ -14,14 +14,14 @@ export default function LandingPage() {
         <NavBar />
       </div>
       <div className="body_container">
-        <p className="item1">hey</p>
-        <p className="item2">hey</p>
+        <div className="slidershow">
+          <SliderShow />
+        </div>
+        {/*         <ProductsView />
         <p className="item3">hey</p>
-        <p className="item4">hey</p>
+        <p className="item4">hey</p> */}
       </div>
       {/*       
-      <SliderShow />
-      <ProductsView />
       <Tendencia />
       <NewSection />
       <Footer /> */}

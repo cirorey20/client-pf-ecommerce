@@ -1,10 +1,11 @@
 import React from "react";
 //import "flowbite";
+import "./SliderShow.css";
 
 export default function SliderShow() {
   return (
-    <div id="default-carousel" className="relative" data-carousel="static">
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div data-carousel="static">
+      <div className="relative h-56 overflow-hidden  slide_container">
         <div
           className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
           data-carousel-item=""
