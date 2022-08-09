@@ -19,23 +19,24 @@ body {
 }
 
 .menu-trigger {
-  background: #ffffff;
-  border-radius: 8px;
-  width: 150px;
-  height: 60px;
+  background: transparent;
+  border-radius: 10px;
+  width: 200px;
+  height: 65px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 4px 2px;
+
   border: none;
   vertical-align: middle;
-  transition: box-shadow 0.4s ease;
-  margin-left: auto; /* Strictly for positioning */
+  transition: box-shadow 0.5s ease;
+  margin-left: center; /* Strictly for positioning */
 }
 
 .menu-trigger:hover {
+  background: #ffffff;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,7 +53,7 @@ body {
 }
 
 .menu-trigger img {
-  border-radius: 90px;
+  border-radius: 50px;
 }
 
 .menu {
