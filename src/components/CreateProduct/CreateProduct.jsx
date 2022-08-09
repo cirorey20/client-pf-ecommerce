@@ -6,17 +6,6 @@ import { getCategories } from "../../redux/actions/categories";
 import {createProduct, detailProduct, getProducts, updateProduct} from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 
-function validate (form){
-  let err = {};
-
-  if(!form.name.length){
-    err.name = "⚠ Name is required"
-  }
-  else if(!form.price.length){
-    err.price = "⚠ Price is required"
-  }
-}
-
 const initialFormState = {
   name: "",
   price: 0,
