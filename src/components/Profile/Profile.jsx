@@ -13,7 +13,7 @@ export default function Profile() {
 
   return (
     isAuthenticated && (
-      <div className="container z-50 ">
+      <div className="container z-50">
         <div>
           <button onClick={onClick} className="menu-trigger">
             <span>{user.name}</span>
