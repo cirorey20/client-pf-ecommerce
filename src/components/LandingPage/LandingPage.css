@@ -1,0 +1,52 @@
+.app {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: 0.5 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+}
+
+.App-header {
+  grid-column: 1/5;
+}
+
+.body_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column: 1/4;
+  grid-row: 3/5;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%px;
+  background-color: white;
+}
+
+.navbar {
+  grid-column: 1/5;
+}
+
+.item1 {
+  border: 1px solid red;
+  grid-column: 1/4;
+  height: 200px;
+}
+
+.item2 {
+  border: 1px solid red;
+  grid-column: 2/5;
+  height: 200px;
+}
+
+.item3 {
+  border: 1px solid red;
+  grid-column: 1/4;
+  height: 200px;
+}
+
+.item4 {
+  border: 1px solid green;
+  grid-column: 2/5;
+  height: 200px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "flowbite";
+//import "flowbite";
 
 export default function ProductsView() {
   return (

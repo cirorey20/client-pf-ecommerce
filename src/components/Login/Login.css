@@ -1,0 +1,14 @@
+.login_button {
+  width: 80px;
+  border-radius: 50px;
+  padding: 3px;
+  color: rgb(117, 119, 119);
+  transition: all 0.2s linear 0s;
+  font-size: larger;
+}
+
+.login_button:hover {
+  /* background-color: rgb(53, 57, 69); */
+  transition: all 0.2s linear 0s;
+  color: white;
+}
