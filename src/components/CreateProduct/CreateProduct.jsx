@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -10,6 +11,31 @@ import {
   updateProduct,
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+
+function validate(form){
+  let err = {};
+
+    if(!form.name.length){
+      err.name = "⚠ Name is required"
+    }
+    else if(!form.price.length){
+      err.price = "⚠ Price is required"
+    }
+    else if(!form.stock.length){
+      err.stock = "⚠ Stock is required"
+    }
+    else if(!form.categories.length){
+      err.categories = "⚠ Select only the existing Categories"
+    }
+    else if(!form.image.length){
+      err.image = "⚠ Image is required"
+    }
+    else if(!form.description.length){
+      err.description = "⚠ Description is required"
+    }
+    return err;
+}
+
 
 const initialFormState = {
   name: "",
@@ -30,6 +56,7 @@ export default function CreateProduct() {
   );
   const [form, setForm] = useState(initialFormState);
   const { idProduct } = useParams();
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     dispatch(getCategories());
@@ -75,7 +102,7 @@ export default function CreateProduct() {
     }
   }, [productDetail]);
 
-  function onChangeValue(e) {
+   function onChangeValue(e) {
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
       e.target.name === "price" || e.target.name === "stock"
@@ -89,11 +116,20 @@ export default function CreateProduct() {
       });
       setForm({ ...form, categories: [...newCategories] });
     }
-  }
+    setErr(validate({
+      ...setForm,
+      [e.target.value]: e.target.value
+    }))
+  }; 
+
 
   function onSubmit(e) {
     e.preventDefault();
     const body = { ...form };
+    //////////////////////////////////////////////////
+    if(Object.keys(err).length || !form.name || !form.price || !form.stock || !form.categories || !form.image || !form.description){
+      return alert("Must enter valid data")
+    }
 
     // body.categories = body.categories.map(c => {
     //     ()c.name
@@ -140,11 +176,8 @@ export default function CreateProduct() {
                   className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="name"
                   type="text"
-                  placeholder="Piano"
                 />
-                <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p>
+                {err.name && <p className="text-red-500 text-xs italic">{err.name}</p>}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -164,9 +197,9 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="90210"
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -186,9 +219,9 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="25"
                 />
-                <p className="text-red-500 text-xs italic">
+                {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -220,9 +253,9 @@ export default function CreateProduct() {
                     </p>
                   )}
                 </div>
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -241,9 +274,9 @@ export default function CreateProduct() {
                   type="url"
                   placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
                 />
-                <p className="text-red-500 text-xs italic">
+                {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
               <div className="w-full md:w-1/1 px-3 mt-6">
                 <label
@@ -262,9 +295,9 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Description of the product to create..."
                 />
-                <p className="text-red-500 text-xs italic">
+               {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
             </div>
 
@@ -272,6 +305,7 @@ export default function CreateProduct() {
               <button
                 onClick={onSubmit}
                 className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                disabled={Object.keys(err).length}
               >
                 {idProduct ? "Update" : "Create"}
               </button>
