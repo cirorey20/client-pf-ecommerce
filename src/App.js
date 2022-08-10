@@ -7,6 +7,9 @@ import UserInfo from "./components/Profile/UserInfo";
 import ViewCart from "./components/Cart/ViewCart";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
+import Login from "./components/auth/login.jsx";
+import Users from "./components/auth/users";
+import Auth from "./components/auth/auth";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/product/create" element={<CreateProduct />} />
         <Route path="/product/update/:idProduct" element={<CreateProduct />} />
         <Route path="/product/DashBoard" element={<DashBoard />} />
+        <Route path="/createUser" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Users" element={<Users />} />
       </Routes>
     </div>
   );
