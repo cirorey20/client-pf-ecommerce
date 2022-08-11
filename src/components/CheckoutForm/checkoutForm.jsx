@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 //import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import axios from "axios";
@@ -40,4 +40,4 @@ const CheckoutForm = () => {
 };
 
 
-export default CheckoutForm;
+export default CheckoutForm; */
