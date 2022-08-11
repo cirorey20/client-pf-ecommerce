@@ -4,13 +4,40 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../../redux/actions/auth";
+import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
+import useGsi from "./useGsi";
+
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     email: "",
     password: "",
+  });
+
+  const handleCredentialResponse = (response) => {
+    console.log("Encoded JWT ID token: " + response.credential);
+    navigate('/home')
+    dispatch(loginUserGoogle({response}))
+  };
+
+  useGsi('https://accounts.google.com/gsi/client', () => {
+    window.google.accounts.id.initialize({
+      client_id: '677723278728-s1jkmrbpvjhqf98nolkmji6ir1256ql9.apps.googleusercontent.com',
+      callback: handleCredentialResponse,
+      auto_select: false
+    });
+    window.google.accounts.id.renderButton(
+      document.getElementById('buttonDiv'),
+      {
+        theme: 'outline',
+        size: 'medium'
+      }
+    );
+    // window.google.accounts.id.prompt();
   });
 
   console.log(input);
@@ -29,8 +56,12 @@ const Login = () => {
 
     //navigate("/home");
     // window.location.reload();
+
   }
 
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -42,7 +73,7 @@ const Login = () => {
             value={input.email.toLowerCase()}
             onChange={(e) => handleChange(e)}
             autoComplete="off"
-            //required
+          //required
           />
         </div>
         <div>
@@ -53,7 +84,7 @@ const Login = () => {
             value={input.password.toLowerCase()}
             onChange={(e) => handleChange(e)}
             autoComplete="off"
-            //required
+          //required
           />
         </div>
         <button type="submit">LOGIN</button>
@@ -61,6 +92,13 @@ const Login = () => {
       <Link to={"/home"}>
         <button>Home</button>
       </Link>
+
+
+
+      
+        <div id="buttonDiv"></div>
+
+
     </div>
   );
 };

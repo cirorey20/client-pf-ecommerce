@@ -5,11 +5,13 @@ import SearchBtn from "../SearchBar/SearchBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import { useSelector } from "react-redux";
 
 export default function LandingPage() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  // const { isAuthenticated, isLoading } = useAuth0();
+  const {user:userLogin} = useSelector(state => state.authReducer.userLogin)
 
-  if (isLoading) return <h1>Loading...</h1>;
+  // if (isLoading) return <h1>Loading...</h1>;
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -38,7 +40,7 @@ export default function LandingPage() {
             Universal Music
           </Link>
           <SearchBtn />
-          {isAuthenticated ? <Profile /> : <Login />}
+          {(userLogin && Object.keys(userLogin)?.length > 0) ? <Profile /> : <Login />}
         </div>
       </div>
     </Popover>
