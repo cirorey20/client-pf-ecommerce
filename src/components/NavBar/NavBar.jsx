@@ -18,7 +18,7 @@ import Login from "../Login/Login";
 
 export default function LandingPage() {
   // const { isAuthenticated, isLoading } = useAuth0();
-  const { user: userLogin } = useSelector(
+  const {user} = useSelector(
     (state) => state.authReducer.userLogin
   );
 
@@ -74,8 +74,7 @@ export default function LandingPage() {
               </button>
             </Link>
           )} */}
-
-          {userLogin && Object.keys(userLogin)?.length > 0 ? (
+          {user && Object.keys(user || {})?.length > 0 ? (
             <Profile />
           ) : (
             <Login />

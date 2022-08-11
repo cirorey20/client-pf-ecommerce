@@ -17,6 +17,8 @@ const Login = () => {
     password: "",
   });
 
+
+
   const handleCredentialResponse = (response) => {
     console.log("Encoded JWT ID token: " + response.credential);
     navigate("/home");

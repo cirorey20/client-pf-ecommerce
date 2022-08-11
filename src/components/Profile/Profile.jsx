@@ -9,13 +9,12 @@ import { useSelector } from "react-redux";
 export default function Profile() {
   const {user} = useSelector(state => state.authReducer.userLogin)
   // const { user, isAuthenticated } = useAuth0();
-  console.log('****', user)
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
   return (
-    Object.keys(user).length > 0 && (
+    Object.keys(user || {}).length > 0 && (
       <div className="container z-50">
         <div>
           <button onClick={onClick} className="menu-trigger">
