@@ -1,8 +1,10 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 export default function UserInfo() {
-  const { user } = useAuth0();
+  const {user} = useSelector(state => state.authReducer.userLogin)
+  // const { user } = useAuth0();
   return (
     <div>
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -11,7 +13,7 @@ export default function UserInfo() {
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               Profile
             </h3>
-            <img src={user.picture} alt={user.name} />
+            <img src={user.avatar} alt={user.name} />
             <p className="mt-1 text-sm text-gray-600">
               This information will be displayed publicly so be careful what you
               share.

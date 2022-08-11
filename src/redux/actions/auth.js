@@ -1,6 +1,7 @@
 import axios from "axios";
 export const GET_USERS = "GET_USERS";
 export const LOGIN = "LOGIN";
+
 export function createUser(body) {
   return async function (dispatch) {
     try {
@@ -18,6 +19,31 @@ export function loginUser(body) {
     try {
       const login = await axios.post(
         `http://localhost:3001/api/v1/users/login`,
+        body,
+        {
+          "content-type": "application/json",
+        }
+      );
+
+      document.cookie = `token=${login.data.tokenSession}; max-age=${
+        60 * 30
+      }; path=/; samesite=strict`;
+      console.log(login.data);
+      return dispatch({
+        type: LOGIN,
+        payload: login.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function loginUserGoogle(body) {
+  return async (dispatch) => {
+    try {
+      const login = await axios.post(
+        `http://localhost:3001/api/v1/users/loginGoogle`,
         body,
         {
           "content-type": "application/json",
