@@ -10,11 +10,8 @@ import { useNavigate } from "react-router-dom";
 export default function SearchBar() {
     var navigate = useNavigate()
     const [searchName, setSearchName] = useState("");
-<<<<<<< HEAD
 
-=======
     // console.log(searchName)
->>>>>>> 4dcebe094654dfed960ae98e0b2eeaf7152f524b
   const dispatch = useDispatch();
 
   const onHandleChange = (e) => {
