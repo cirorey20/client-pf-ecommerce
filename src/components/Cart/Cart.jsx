@@ -1,8 +1,49 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import axios from "axios";
+//import { Link } from "react-router-dom";
 // import { addProductToCart } from "../../redux/actions/cart";
 
-const Cart = ({ stateCart }) => {
+
+const CheckoutForm = () => {
+
+  const stripe = useStripe()
+  const element = useElements()
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const {error, paymentMethod} = await stripe.createPaymentMethod({
+          type: "card",
+          card: element.getElement(CardElement)
+      })
+      if(!error){
+          
+          const {id} = paymentMethod
+
+          const {data} = await axios.post('http://localhost:3001/api/checkout',{
+              id,
+              amount: 1000
+          });
+          console.log(data);
+          console.log(paymentMethod)
+      }
+  }
+  return (
+    <div className="flex justify-center">
+    <form onSubmit={handleSubmit} className=" w-72 h-80 p-8 mt-36 border-2">
+        
+          <CardElement  className="border-2"/>
+        
+            <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"> 
+                  buy 
+            </button>
+    </form>
+  </div>
+  );
+};
+
+/* const Cart = ({ stateCart }) => {
   // console.log(countCart)
   return (
     <Fragment>
@@ -15,6 +56,6 @@ const Cart = ({ stateCart }) => {
       </div>
     </Fragment>
   );
-};
+}; */
 
-export default Cart;
+export default CheckoutForm;

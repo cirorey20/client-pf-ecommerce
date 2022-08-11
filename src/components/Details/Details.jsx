@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { detailProduct } from '../../redux/actions/products';
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
+import {Link} from "react-router-dom";
 
 
 const Details = () => {
@@ -67,10 +68,14 @@ const Details = () => {
                                   <p> $ { details.price}</p>
                                 </h3>
                             </div>
-                            <div className="pb-3 text-gray-700 italic w-full mb-2 ml-16">
-                                    <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded">
-                                        Buy
+                            <div className="">
+                                <Link to={"/product/carrito"}>
+                                    <button
+                                        className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded"
+                                    >
+                                          Carrito 
                                     </button>
+                                </Link>
                             </div>
                     </div>
               </div>
