@@ -11,13 +11,17 @@ import Login from "./components/auth/login.jsx";
 import Users from "./components/auth/users";
 import Auth from "./components/auth/auth";
 import Profile from "./components/auth/profile.jsx";
+import AuthContextProvider from "./config/authContext";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={<AuthContextProvider element={<Home />} />}
+        />
         <Route path="/product/:id" element={<Details />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
         <Route path="/cart" element={<ViewCart />} />

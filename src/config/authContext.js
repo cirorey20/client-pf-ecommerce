@@ -1,8 +1,19 @@
-import { createContext, useState } from "react";
-//el provider para rodear los componentes que queramos
-export const AuthContext = createContext();
+import { createContext } from "react";
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ element: Element, ...res }) => {
   //logica para saber el estado del usuario
-  const [isAuthenticated, setIsAuthenticated] = useState(document.cookie);
+
+  let token = document?.cookie.split(".")[1];
+  console.log(token);
+  if (token) {
+    let json = JSON.parse(window?.atob(token));
+    console.log(json.rol);
+    if (json.rol === "admin") {
+      return Element;
+    }
+  } else {
+    return <p>No estas Autorizado</p>;
+  }
 };
+
+export default AuthContextProvider;

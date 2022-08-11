@@ -21,7 +21,7 @@ const Home = () => {
     (state) => state.categoryReducer.categories
   );
   const stateCart = useSelector((state) => state.cartReducer.cart);
-  console.log(document.cookie);
+
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPage] = useState(5);
