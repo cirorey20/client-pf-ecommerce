@@ -14,7 +14,7 @@ const CheckoutForm = () => {
         type: 'card',
         card: elements.getElement(CardElement)
     })
-    setLoading(true)
+    //setLoading(true)
     if (!error) {
       const {id} = paymentMethod
       try{
@@ -37,8 +37,8 @@ const CheckoutForm = () => {
           <div className="" >
             <CardElement  className="border-2"/>
           </div>
-              <button disable={!stripe} type="button" className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"> 
-                    {loading ? (<svg className="animate-spin h-5 w-5 mr-3 " viewBox="0 0 24 24"></svg> ): "buy"} 
+              <button type="button" className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"> 
+                  buy
               </button>
       </form>
     </div>
