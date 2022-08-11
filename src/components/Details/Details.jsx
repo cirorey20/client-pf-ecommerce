@@ -18,19 +18,18 @@ const Details = () => {
  dispatch(detailProduct(id));
  }, [dispatch, id])
 
- function handlerAddToCartdos() {
-  // let productDes = {
-  //   id: product.id,
-  //   name: product.name,
-  //   price: product.price,
-  //   image: product.image,
-  //   quantity: 1,
-  // };
-  console.log("p1")
-  // dispatch(addProductToCart(productDes));
-  // console.log(stateCart);
+ function handlerAddToCartdos(product) {
+  let productDes = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+    quantity: 1,
+  };
+  dispatch(addProductToCart(productDes));
+  console.log(stateCart);
 }
-console.log("details"+details.name)
+
 //lg:h-80
     return (
         <Fragment>
@@ -59,20 +58,18 @@ console.log("details"+details.name)
                            <div className="bg-white relative m-5 group h-69">
                                <div>
                                    <h3 className="mx-16 my-8 justify-self-end text-2xl text-gray-700 italic w-full ">
-                                       <a href="#">
                                            <span aria-hidden="true"/>
                                            { details.name}
-                                        </a>
-
+                 
                                     </h3>
                                 </div>
                                 <div>
                                     <h3 className="mx-16 justify-self-end text-2xl text-gray-700 italic w-full ">
                                              <p>
-                                             <a href="#">
+                                             
                                              <span aria-hidden="true" className=" grid justify-items-end absolute inset-0 pr-1" />
                                              {details.description }
-                                             </a>
+                                             
                                              </p>
                                     </h3>
                                 </div>
@@ -84,8 +81,8 @@ console.log("details"+details.name)
                             </div>
                             <div className="">
                                 <button
-                                    className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={() => handlerAddToCartdos(details.name)}
+                                    className="absolute mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => handlerAddToCartdos(details)}
                                     >
                                     Add Cart
                                 </button>
