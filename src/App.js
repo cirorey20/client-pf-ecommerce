@@ -10,6 +10,7 @@ import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import Login from "./components/auth/login.jsx";
 import Users from "./components/auth/users";
 import Auth from "./components/auth/auth";
+import Profile from "./components/auth/profile.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/createUser" element={<Auth />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Users" element={<Users />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </div>
   );

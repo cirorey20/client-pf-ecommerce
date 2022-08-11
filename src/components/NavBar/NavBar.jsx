@@ -3,13 +3,15 @@ import { Popover } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "../Profile/Profile";
-import Login from "../Login/Login";
+import { useDispatch, useSelector } from "react-redux";
+//import Profile from "../Profile/Profile";
+//import Login from "../Login/Login";
 
 export default function LandingPage() {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) return <h1>Loading...</h1>;
+  //const { isAuthenticated, isLoading } = useAuth0();
+  const users = useSelector((state) => state.authReducer.userLogin);
+  // if (isLoading) return <h1>Loading...</h1>;
+  console.log(users.user);
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -38,7 +40,27 @@ export default function LandingPage() {
             Universal Music
           </Link>
           <SearchBtn />
-          {isAuthenticated ? <Profile /> : <Login />}
+          {/* {isAuthenticated ? <Profile /> : <Login />} */}
+
+          {!users.user ? (
+            <div>
+              <Link to={"/login"}>
+                <button>LOGIN</button>
+              </Link>
+              <Link to={"/createUser"}>
+                <button>REGISTER</button>
+              </Link>
+            </div>
+          ) : (
+            <Link to={"/Profile"}>
+              <button class="p-5 border-4">
+                <div>
+                  <img class="w-10" src={users.user.avatar} alt="" />
+                </div>
+                <div>{users.user.name}</div>
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </Popover>

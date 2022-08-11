@@ -2,7 +2,7 @@ const { GET_USERS, LOGIN } = require("../actions/auth");
 
 const initialState = {
   users: [],
-  userLogin: [],
+  userLogin: {},
 };
 
 export function authReducer(state = initialState, action) {
