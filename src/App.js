@@ -8,9 +8,8 @@ import ViewCart from "./components/Cart/ViewCart";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import Login from "./components/auth/login.jsx";
-import Users from "./components/auth/users";
-import Auth from "./components/auth/auth";
-import Profile from "./components/auth/profile.jsx";
+import RegisterUser from "./components/auth/auth.jsx";
+
 import AuthContextProvider from "./config/authContext";
 
 function App() {
@@ -22,13 +21,21 @@ function App() {
         <Route path="/product/:id" element={<Details />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
         <Route path="/cart" element={<ViewCart />} />
-        <Route path="/product/create" element={<CreateProduct />} />
-        <Route path="/product/update/:idProduct" element={<CreateProduct />} />
-        <Route path="/product/DashBoard" element={<DashBoard />} />
-        <Route path="/createUser" element={<Auth />} />
+        <Route
+          path="/product/create"
+          element={<AuthContextProvider element={<CreateProduct />} />}
+        />
+
+        <Route
+          path="/product/update/:idProduct"
+          element={<AuthContextProvider element={<CreateProduct />} />}
+        />
+        <Route
+          path="/product/dashBoard"
+          element={<AuthContextProvider element={<DashBoard />} />}
+        />
+        <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Users" element={<Users />} />
-        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </div>
   );
@@ -36,3 +43,4 @@ function App() {
 
 export default App;
 //element={<AuthContextProvider element={<Home />}
+// //

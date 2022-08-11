@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 
 import { useState } from "react";
@@ -5,7 +6,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/actions/auth";
-const Auth = () => {
+
+const registerUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -100,4 +102,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default registerUser;

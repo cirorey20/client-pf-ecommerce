@@ -2,27 +2,16 @@
 import { Popover } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
-//import Profile from "../Profile/Profile";
-//import Login from "../Login/Login";
 
-//export default function LandingPage() {
-//const { isAuthenticated, isLoading } = useAuth0();
-// const users = useSelector((state) => state.authReducer.userLogin);
-// // if (isLoading) return <h1>Loading...</h1>;
-// console.log(users.user);
+import { useSelector } from "react-redux";
 
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 
 export default function LandingPage() {
-  // const { isAuthenticated, isLoading } = useAuth0();
   const { user: userLogin } = useSelector(
     (state) => state.authReducer.userLogin
   );
-
-  // if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <Popover className="relative bg-white">
@@ -78,7 +67,18 @@ export default function LandingPage() {
           {userLogin && Object.keys(userLogin)?.length > 0 ? (
             <Profile />
           ) : (
-            <Login />
+            <div class="flex">
+              <div>
+                <Login />,{" "}
+              </div>
+              <div>
+                <Link to={"/createUser"}>
+                  <button class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
+                    REGISTER
+                  </button>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -10,6 +10,8 @@ const AuthContextProvider = ({ element: Element, ...res }) => {
     console.log(json.rol);
     if (json.rol === "admin") {
       return Element;
+    } else {
+      return <p>No estas Autorizado</p>;
     }
   } else {
     return <p>No estas Autorizado</p>;

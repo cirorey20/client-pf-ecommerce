@@ -31,7 +31,7 @@ const createProducts = () => {
       dispatch(createCategory(input));
       setInput("");
       alert("Se creado con exito");
-      window.location.reload();
+      // window.location.reload();
     } else {
       alert("te faltan espacios por llenar");
     }
@@ -47,7 +47,6 @@ const createProducts = () => {
       <NavBar />
 
       <div class="py-10 flex justify-evenly">
-
         <Link to={`/product/create`}>
           <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
             Crear Producto
@@ -72,53 +71,53 @@ const createProducts = () => {
       <div className="flex mb-6">
         <div className="flex-none  m-2 w-40 h-100">
           <FilterCategory allCategories={categories} />
-        </div>   
-        <div  className="flex-initial w-full">
-        <div>
-          {allProducts.map((e) => {
-            return (
-              <div
-                key={e.id}
-                class=" flex justify-evenly bg-white-100 rounded-xl shadow-lg p-8"
-              >
-                <div>
-                  <img class="w-28" src={e.image} alt="" />
-                </div>
+        </div>
+        <div className="flex-initial w-full">
+          <div>
+            {allProducts.map((e) => {
+              return (
+                <div
+                  key={e.id}
+                  class=" flex justify-evenly bg-white-100 rounded-xl shadow-lg p-8"
+                >
+                  <div>
+                    <img class="w-28" src={e.image} alt="" />
+                  </div>
 
-                <div>
-                  <div class="font-bold">Name</div>
-                  {e.name}
-                </div>
-                <div>
-                  <div class="font-bold">Description</div>
-                  {e.description}
-                </div>
-                <div>
-                  <div class="font-bold">Stock</div>
-                  {e.stock}
-                </div>
-                <div>
-                  <div class="font-bold">Precio</div>
-                  {e.price}
-                </div>
-                <div>
-                  <div class="font-bold"> Categorias</div>
-                  {e.ProductCategories?.map((e) => e.Category.name)}
-                </div>
+                  <div>
+                    <div class="font-bold">Name</div>
+                    {e.name}
+                  </div>
+                  <div>
+                    <div class="font-bold">Description</div>
+                    {e.description}
+                  </div>
+                  <div>
+                    <div class="font-bold">Stock</div>
+                    {e.stock}
+                  </div>
+                  <div>
+                    <div class="font-bold">Precio</div>
+                    {e.price}
+                  </div>
+                  <div>
+                    <div class="font-bold"> Categorias</div>
+                    {e.ProductCategories?.map((e) => e.Category.name)}
+                  </div>
 
-                <div>
-                  <Link to={`/product/update/${e.id}`}>
-                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                      UPDATE
-                    </button>
-                  </Link>
+                  <div>
+                    <Link to={`/product/update/${e.id}`}>
+                      <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                        UPDATE
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

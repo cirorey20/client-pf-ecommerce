@@ -106,6 +106,7 @@ export default function CreateProduct() {
     if (idProduct) {
       body.id = idProduct;
       dispatch(updateProduct(body));
+      setForm(initialFormState);
       alert("Actualizado Correctamente");
       navigate("/product/DashBoard");
     } else {
