@@ -45,6 +45,7 @@ const Home = () => {
       image: product.image,
       quantity: 1,
     };
+    console.log("p1"+productDes)
     dispatch(addProductToCart(productDes));
     // console.log(stateCart);
   }
@@ -85,6 +86,7 @@ const Home = () => {
           ) : (
             productsOfNow.map((e, i) => {
               if (e.enable === true) {
+                console.log("home"+e)
                 return (
                   <div key={i} className="  ">
                     <div className="relative m-5 group ">
@@ -118,7 +120,7 @@ const Home = () => {
                     </div>
                     <button
                       className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handlerAddToCart(e)}
+                      onClick={(e) => handlerAddToCart(e)}
                     >
                       Add Cart
                     </button>

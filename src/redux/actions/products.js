@@ -49,7 +49,6 @@ export function detailProduct(id) {
     return async function (dispatch) {
         try {
             const detailById = await axios.get(`${URL_API}products/${id}`);
-            console.log(detailById.data)
             return dispatch({
                 type: "DETAILS_PRODUCT",
                 payload: detailById.data,

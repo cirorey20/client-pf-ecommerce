@@ -1,5 +1,7 @@
 import React, {Fragment} from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 
 const ViewCart = () => {
@@ -7,6 +9,7 @@ const ViewCart = () => {
     console.log(stateCart)
     return (
         <Fragment>
+            <NavBar />
             <div className="mt-5 text-2xl">Index Carrito</div>
             <br /><br />
             <div className="sm:container md:mx-auto bg-[#e2e8f0]">
@@ -38,6 +41,13 @@ const ViewCart = () => {
                     </tbody>
                 </table>
                 </div>
+                <Link to={`/product/carrito`}>
+                                    <button
+                                        className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded"
+                                    >
+                                          Buy now
+                                    </button>
+                </Link>
             </div>
         </Fragment>
     )

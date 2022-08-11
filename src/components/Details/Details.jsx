@@ -4,18 +4,33 @@ import {useDispatch, useSelector} from 'react-redux';
 import { detailProduct } from '../../redux/actions/products';
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
-
+import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import { addProductToCart } from "../../redux/actions/cart";
 
 const Details = () => {
-
+ 
+ const stateCart = useSelector((state) => state.cartReducer.cart);
  const dispatch = useDispatch();
  const details = useSelector((state)=> state.productReducer.productDetail)
  let {id} = useParams()
- console.log(details)
  useEffect(()=>{
  dispatch(detailProduct(id));
  }, [dispatch, id])
 
+ function handlerAddToCartdos() {
+  // let productDes = {
+  //   id: product.id,
+  //   name: product.name,
+  //   price: product.price,
+  //   image: product.image,
+  //   quantity: 1,
+  // };
+  console.log("p1")
+  // dispatch(addProductToCart(productDes));
+  // console.log(stateCart);
+}
+console.log("details"+details.name)
 //lg:h-80
     return (
         <Fragment>
@@ -67,12 +82,27 @@ const Details = () => {
                                   <p> $ { details.price}</p>
                                 </h3>
                             </div>
-                            <div className="pb-3 text-gray-700 italic w-full mb-2 ml-16">
-                                    <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded">
-                                        Buy
+                            <div className="">
+                                <button
+                                    className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => handlerAddToCartdos(details.name)}
+                                    >
+                                    Add Cart
+                                </button>
+                                <Link to={`/product/carrito`}>
+                                    <button
+                                        className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded"
+                                    >
+                                          Buy now 
                                     </button>
+                                </Link>
+                            </div> 
                             </div>
-                    </div>
+                            <div className="flex-none  m-2 w-40 h-100"> 
+                            <div className=" rounded-xl shadow-2xl p-8 h-40">
+                            <Cart stateCart={stateCart} />
+                            </div>
+      </div>
               </div>
          </div>
        </div>
