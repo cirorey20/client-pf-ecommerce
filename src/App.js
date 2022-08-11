@@ -18,10 +18,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route
-          path="/home"
-          element={<AuthContextProvider element={<Home />} />}
-        />
+        <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<Details />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
         <Route path="/cart" element={<ViewCart />} />
@@ -38,3 +35,4 @@ function App() {
 }
 
 export default App;
+//element={<AuthContextProvider element={<Home />}

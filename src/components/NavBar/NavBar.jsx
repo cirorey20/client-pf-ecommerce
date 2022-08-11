@@ -3,27 +3,27 @@ import { Popover } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import { useAuth0 } from "@auth0/auth0-react";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 //import Profile from "../Profile/Profile";
 //import Login from "../Login/Login";
 
-export default function LandingPage() {
-  //const { isAuthenticated, isLoading } = useAuth0();
-  const users = useSelector((state) => state.authReducer.userLogin);
-  // if (isLoading) return <h1>Loading...</h1>;
-  console.log(users.user);
-=======
+//export default function LandingPage() {
+//const { isAuthenticated, isLoading } = useAuth0();
+// const users = useSelector((state) => state.authReducer.userLogin);
+// // if (isLoading) return <h1>Loading...</h1>;
+// console.log(users.user);
+
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
-import { useSelector } from "react-redux";
 
 export default function LandingPage() {
   // const { isAuthenticated, isLoading } = useAuth0();
-  const {user:userLogin} = useSelector(state => state.authReducer.userLogin)
+  const { user: userLogin } = useSelector(
+    (state) => state.authReducer.userLogin
+  );
 
   // if (isLoading) return <h1>Loading...</h1>;
->>>>>>> 7ad273a7565e9b1f5653bf3461d7ec32cf9a7afb
+
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -52,10 +52,10 @@ export default function LandingPage() {
             Universal Music
           </Link>
           <SearchBtn />
-<<<<<<< HEAD
+          {/* <<<<<<< HEAD
           {/* {isAuthenticated ? <Profile /> : <Login />} */}
 
-          {!users.user ? (
+          {/* {!users.user ? (
             <div>
               <Link to={"/login"}>
                 <button>LOGIN</button>
@@ -73,10 +73,13 @@ export default function LandingPage() {
                 <div>{users.user.name}</div>
               </button>
             </Link>
+          )} */}
+
+          {userLogin && Object.keys(userLogin)?.length > 0 ? (
+            <Profile />
+          ) : (
+            <Login />
           )}
-=======
-          {(userLogin && Object.keys(userLogin)?.length > 0) ? <Profile /> : <Login />}
->>>>>>> 7ad273a7565e9b1f5653bf3461d7ec32cf9a7afb
         </div>
       </div>
     </Popover>
