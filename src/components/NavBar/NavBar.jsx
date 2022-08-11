@@ -9,9 +9,8 @@ import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 
 export default function LandingPage() {
-  const { user: userLogin } = useSelector(
-    (state) => state.authReducer.userLogin
-  );
+  // const { isAuthenticated, isLoading } = useAuth0();
+  const { user } = useSelector((state) => state.authReducer.userLogin);
 
   return (
     <Popover className="relative bg-white">
@@ -63,8 +62,7 @@ export default function LandingPage() {
               </button>
             </Link>
           )} */}
-
-          {userLogin && Object.keys(userLogin)?.length > 0 ? (
+          {user && Object.keys(user || {})?.length > 0 ? (
             <Profile />
           ) : (
             <div class="flex">

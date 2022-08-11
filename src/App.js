@@ -11,8 +11,19 @@ import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 
 import AuthContextProvider from "./config/authContext";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getLoginUser } from "./redux/actions/auth";
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getLoginUser());
+  },[])
+
+
   return (
     <div className="App">
       <Routes>

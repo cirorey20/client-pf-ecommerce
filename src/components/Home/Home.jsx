@@ -38,6 +38,7 @@ const Home = () => {
   const [countCart, setCountCart] = useState(0);
   const [totalCart, setTotalCart] = useState(0);
 
+
   function handlerAddToCart(product) {
     let productDes = {
       id: product.id,
