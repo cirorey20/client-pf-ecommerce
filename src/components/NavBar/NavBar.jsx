@@ -1,14 +1,18 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { useSelector } from "react-redux";
 import { Popover } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
+import { GrCart } from "react-icons/gr";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import "./NavBarCart.css";
 
 export default function LandingPage() {
   const { isAuthenticated, isLoading } = useAuth0();
-
+  const stateCart = useSelector((state) => state.cartReducer.cart);
+  console.log(stateCart);
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <Popover className="relative bg-white">
@@ -38,6 +42,14 @@ export default function LandingPage() {
             Universal Music
           </Link>
           <SearchBtn />
+
+          <NavLink to="/cart" activeclassname="activeLink">
+            <div className="cartIcon">
+              <GrCart className="menuIcon" />
+              <span className="itemCount">{stateCart.length}</span>
+            </div>
+          </NavLink>
+
           {isAuthenticated ? <Profile /> : <Login />}
         </div>
       </div>
