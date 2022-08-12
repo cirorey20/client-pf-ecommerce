@@ -23,10 +23,8 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
       const allQuantity = stateCart.length;
-      var allToPay = 300;
-      for (var i = 0; i < stateCart.length; i++)
-        allToPay = allToPay + stateCart[i].price;
-      console.log(allToPay);
+      var allToPay = stateCart.total;
+
       try {
         const { data } = await axios.post(
           "http://localhost:3001/api/checkout",
@@ -39,7 +37,7 @@ const CheckoutForm = () => {
         );
         console.log(data);
         elements.getElement(CardElement).clear();
-        dispatch(resetCart);
+        dispatch(resetCart());
       } catch (error) {
         console.log(error);
       }
