@@ -1,14 +1,27 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 
 
-const Alert = () => {
+const Alert = ({alert, textAlert}) => {
 
+    const [isHidden, setIsHidden] = useState("hidden")
+    useEffect(()=> {
+        if(alert) {
+            setIsHidden(null)
+        } else {
+            setIsHidden("hidden")
+        }
+        // console.log(alertC)
+    })
+    // console.log(textAlert)
 
     return (
         <Fragment>
-            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                <p class="font-bold">Informational message</p>
-                <p class="text-sm">Some additional text to explain said message.</p>
+            <div className="fixed z-10 m-4 right-40 ">
+                <div className= {`${isHidden} bg-blue-500 border-t border-b border-blue-500 text-white-700 px-4 py-3`} role="alert" >
+                    <p className="font-bold">{textAlert}</p>
+                    <p className="text-sm">added to cart.</p>
+                </div>
+
             </div>
         </Fragment>
     )
