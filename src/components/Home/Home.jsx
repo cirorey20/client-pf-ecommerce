@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+import Alert from "../Alert/Alert";
 
 //comment
 const Home = () => {
@@ -46,6 +47,7 @@ const Home = () => {
       quantity: 1,
     };
     dispatch(addProductToCart(productDes));
+    
     // console.log(stateCart);
   }
 
@@ -128,6 +130,7 @@ const Home = () => {
             })
           )}
         </div>
+        <Alert/>
       </div>
       <div className="flex-none  m-2 w-40 h-100"> 
           <div className=" rounded-xl shadow-2xl p-8 h-40">
