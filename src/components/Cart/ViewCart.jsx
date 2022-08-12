@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import Swal from "sweetalert2";
 import {
   deleteProductToCart,
   addProductToCart,
@@ -18,6 +19,23 @@ const ViewCart = () => {
   }
   function handlerDeleteToCart(id) {
     dispatch(deleteProductToCart(id));
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "warning",
+      title: "The product was removed from the cart!",
+    });
   }
   function add(product) {
     let productDes = {
@@ -27,6 +45,23 @@ const ViewCart = () => {
       image: product.image,
       quantity: 1,
     };
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "The product was added to the cart!",
+    });
+
     dispatch(addProductToCart(productDes));
   }
 
