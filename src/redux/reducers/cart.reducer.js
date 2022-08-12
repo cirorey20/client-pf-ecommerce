@@ -1,97 +1,103 @@
 const {
-    ADD_CART,
-    DELETE_CART,
-    DELETE_PRODUCT_CART
-} = require('../actions/cart');
+  ADD_CART,
+  DELETE_CART,
+  DELETE_PRODUCT_CART,
+  RESET_CART,
+} = require("../actions/cart");
 
 const initialState = {
-    cart: [],
-    total: 0
-}
+  cart: [],
+  total: 0,
+};
 
 export function cartReducer(state = initialState, action) {
-    function total() {
-        var total = 0;
-        let stateCart = state.cart;
-        for (let i = 0; i < stateCart.length; i++) {
-          total = stateCart[i].price * stateCart[i].quantity + total;
+  function total() {
+    var total = 0;
+    let stateCart = state.cart;
+
+    for (let i = 0; i < stateCart.length; i++) {
+      total = stateCart[i].price * stateCart[i].quantity + total;
+    }
+    return (total = total);
+  } //end total
+
+  if (action.type === ADD_CART) {
+    //console.log("action", state.cart);
+    let stateCart = state.cart;
+    let currentProduct = action.payload;
+
+    // console.log("Estado de cart", state.cart)
+    // console.log("Estado de cart", state.total)
+
+    if (stateCart.length > 0) {
+      
+      for (let i = 0; i < stateCart.length; i++) {
+        if (stateCart[i].id === currentProduct.id) {
+          stateCart[i].quantity++;
+          return {
+            cart: stateCart,
+            total: total(),
+          };
         }
-        return total = total;
-      } //end total
+      }
+      return {
+        cart: [...stateCart, currentProduct],
+        total: total(),
+      };
+    } else {
+      return {
+        cart: [...stateCart, currentProduct],
+        total: total(),
+      };
+    }
+  }
 
-    if (action.type === ADD_CART) {
-        // console.log("action", state.cart);
-        let stateCart = state.cart;
-        let currentProduct = action.payload
+  if (action.type === DELETE_CART) {
+    let stateCart = state.cart;
+    let currentProduct = action.payload;
 
-        // console.log("Estado de cart", state.cart)
-        // console.log("Estado de cart", state.total)
-
-        if ( stateCart.length > 0 ) {
-            for( let i = 0; i < stateCart.length; i++ ) {
-                if( stateCart[i].id === currentProduct.id ) {
-                    stateCart[i].quantity++;
-                    return {
-                        cart: stateCart, 
-                        total: total()
-                    }
-                }
-            }
-            return {
-                cart: [...stateCart, currentProduct],
-                total: total()
-    
-            }
+    for (let i = 0; i < stateCart.length; i++) {
+      if (stateCart[i].id === currentProduct) {
+        if (stateCart[i].quantity > 1) {
+          //decrementamos
+          stateCart[i].quantity--;
+          return {
+            cart: [...stateCart],
+            total: total(),
+          };
         } else {
-
-            return {
-                cart: [...stateCart, currentProduct],
-                total: 0
-    
-            }
+          //eliminamos ese producto del cart
+          stateCart.splice(i, 1);
+          return {
+            cart: [...stateCart],
+            total: total(),
+          };
         }
-
+      }
     }
+  }
 
-    if (action.type === DELETE_CART) {
-        let stateCart = state.cart;
-        let currentProduct = action.payload
+  if (action.type === DELETE_PRODUCT_CART) {
+    let stateCart = state.cart;
+    let currentProduct = action.payload;
 
-        for(let i = 0; i < stateCart.length; i++){
-            if ( stateCart[i].id === currentProduct ) {
-                if (stateCart[i].quantity > 1) {
-                    //decrementamos
-                    stateCart[i].quantity--
-                    return {
-                        cart: [...stateCart],
-                        total: total()
-                    }
-                } else {
-                    //eliminamos ese producto del cart
-                    stateCart.splice(i, 1);
-                    return {
-                        cart: [...stateCart],
-                        total: total()
-                    }
-                }
-            }
-        }
+    for (let i = 0; i < stateCart.length; i++) {
+      if (stateCart[i].id === currentProduct) {
+        stateCart.splice(i, 1);
+        return {
+          cart: [...stateCart],
+          total: total(),
+        };
+      }
     }
+  }
 
-    if(action.type === DELETE_PRODUCT_CART) {
-        let stateCart = state.cart;
-        let currentProduct = action.payload
+  if (action.type === RESET_CART) {
+    return {
+      cart: [],
+      total: 0,
+    };
+  }
 
-        for(let i = 0; i < stateCart.length; i++){
-            if ( stateCart[i].id === currentProduct ) {
-                stateCart.splice(i, 1);
-                return {
-                    cart: [...stateCart],
-                    total: total()
-                }
-            }
-        }
-    }
-
-    return state
+  return state;
 }
