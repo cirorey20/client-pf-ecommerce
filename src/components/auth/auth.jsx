@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-
 import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/actions/auth";
 

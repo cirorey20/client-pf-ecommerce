@@ -1,12 +1,9 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
-
 import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GoogleLogin, GoogleLogout } from "@react-oauth/google";
 import useGsi from "./useGsi";
 
 const Login = () => {
@@ -16,8 +13,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-
-
 
   const handleCredentialResponse = (response) => {
     console.log("Encoded JWT ID token: " + response.credential);
@@ -47,55 +42,77 @@ const Login = () => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  function handleSubmit(e) {
+
+  const handleSubmit = (e) => {
     e.preventDefault(e);
-
-    dispatch(loginUser(input));
-    setInput({
-      email: "",
-      password: "",
-    });
-
-    //navigate("/home");
-    // window.location.reload();
-  }
-
-  const responseGoogle = (response) => {
-    console.log(response);
+    if (input.email && input.password) {
+      dispatch(loginUser(input));
+      setInput({
+        email: "",
+        password: "",
+      });
+      navigate("/");
+      //window.location.reload();
+    } else {
+      alert("te faltan espacios por llenar");
+    }
   };
-  return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <input
-            placeholder="Ingrese email"
-            type="text"
-            name="email"
-            value={input.email.toLowerCase()}
-            onChange={(e) => handleChange(e)}
-            autoComplete="off"
-            //required
-          />
-        </div>
-        <div>
-          <input
-            placeholder="Ingrese password"
-            type="text"
-            name="password"
-            value={input.password.toLowerCase()}
-            onChange={(e) => handleChange(e)}
-            autoComplete="off"
-            //required
-          />
-        </div>
-        <button type="submit">LOGIN</button>
-      </form>
-      <Link to={"/home"}>
-        <button>Home</button>
-      </Link>
 
-      <div id="buttonDiv"></div>
-    </div>
+  return (
+    <section>
+      <div class=" px-72 py-60 h-full">
+        <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+          <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+            <img
+              src="https://freedesignfile.com/upload/2014/10/Hand-drawn-colored-musical-instruments-vector-03.jpg"
+              class="w-max"
+              alt="Phone image"
+            />
+          </div>
+          <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <div class="mb-6">
+                <input
+                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Ingrese email"
+                  type="text"
+                  name="email"
+                  value={input.email.toLowerCase()}
+                  onChange={(e) => handleChange(e)}
+                  autoComplete="off"
+                  //required
+                />
+              </div>
+              <div class="mb-6">
+                <input
+                  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Ingrese password"
+                  type="text"
+                  name="password"
+                  value={input.password.toLowerCase()}
+                  onChange={(e) => handleChange(e)}
+                  autoComplete="off"
+                  //required
+                />
+              </div>
+              <button
+                class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                type="submit"
+              >
+                LOGIN
+              </button>
+            </form>
+            <Link to={"/home"}>
+              <button class="inline-block px-7 py-3 my-5 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full">
+                Home
+              </button>
+            </Link>
+
+            <div id="buttonDiv"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

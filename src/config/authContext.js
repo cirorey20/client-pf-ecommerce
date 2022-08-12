@@ -1,5 +1,3 @@
-import { createContext } from "react";
-
 const AuthContextProvider = ({ element: Element, ...res }) => {
   //logica para saber el estado del usuario
 
