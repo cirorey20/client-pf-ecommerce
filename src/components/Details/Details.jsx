@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer.jsx";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import { addProductToCart } from "../../redux/actions/cart";
+import Swal from "sweetalert2";
 
 const Details = () => {
   const stateCart = useSelector((state) => state.cartReducer.cart);
@@ -25,6 +26,24 @@ const Details = () => {
       image: product.image,
       quantity: 1,
     };
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "The product was added to the cart!",
+    });
+
     dispatch(addProductToCart(productDes));
     //console.log(stateCart);
   }
