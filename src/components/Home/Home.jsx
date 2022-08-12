@@ -45,9 +45,9 @@ const Home = () => {
       image: product.image,
       quantity: 1,
     };
-    console.log("p1" + productDes);
+    // console.log("Product", productDes);
     dispatch(addProductToCart(productDes));
-    // console.log(stateCart);
+    console.log(stateCart);
   }
 
   function handlerFilters(filter) {
@@ -119,7 +119,7 @@ const Home = () => {
                       </div>
                       <button
                         className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={(e) => handlerAddToCart(e)}
+                        onClick={() => handlerAddToCart(e)}
                       >
                         Add Cart
                       </button>

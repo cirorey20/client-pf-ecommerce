@@ -30,11 +30,9 @@ export function cartReducer(state = initialState, action) {
     // console.log("Estado de cart", state.total)
 
     if (stateCart.length > 0) {
-      var newArray = [...stateCart.length];
-      console.log("array", newArray);
-
-      for (let i = 0; i <= stateCart.length; i++) {
-        if (stateCart[i]?.id === currentProduct?.id) {
+      
+      for (let i = 0; i < stateCart.length; i++) {
+        if (stateCart[i].id === currentProduct.id) {
           stateCart[i].quantity++;
           return {
             cart: stateCart,
@@ -49,7 +47,7 @@ export function cartReducer(state = initialState, action) {
     } else {
       return {
         cart: [...stateCart, currentProduct],
-        total: currentProduct.price,
+        total: total(),
       };
     }
   }
