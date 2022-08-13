@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
 import { resetCart } from "../../redux/actions/cart.js";
+import {URL_API_CHECKOUT} from '../../config/config';
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,8 @@ const CheckoutForm = () => {
       console.log(allToPay);
       try {
         const { data } = await axios.post(
-          "http://localhost:3001/api/checkout",
+          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+          `${URL_API_CHECKOUT}checkout`,
           {
             id,
             stateCart,
