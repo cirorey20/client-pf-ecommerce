@@ -24,7 +24,7 @@ const ViewCart = () => {
       toast: true,
       position: "top-end",
       showConfirmButton: false,
-      timer: 800,
+      timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -54,7 +54,7 @@ const ViewCart = () => {
       toast: true,
       position: "top-end",
       showConfirmButton: false,
-      timer: 800,
+      timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
