@@ -54,7 +54,7 @@ export default function Filters() {
         <div className="">
           {users?.user?.rol === "admin" && (
             <Link to={"/product/DashBoard"}>
-              <button class="w-full border border-[#1d4ed8] flex justify-items-center m-1 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
+              <button className="w-full border border-[#1d4ed8] flex justify-items-center m-1 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
                 DashBoard
               </button>
             </Link>

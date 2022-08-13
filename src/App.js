@@ -7,6 +7,7 @@ import UserInfo from "./components/Profile/UserInfo";
 import ViewCart from "./components/Cart/ViewCart";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
+import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 
@@ -15,14 +16,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
 
-
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getLoginUser());
-  },[])
-
+  }, []);
 
   return (
     <div className="App">
@@ -30,6 +29,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<Details />} />
+        <Route path="/product/carrito" element={<CheckoutForm />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
         <Route path="/cart" element={<ViewCart />} />
         <Route

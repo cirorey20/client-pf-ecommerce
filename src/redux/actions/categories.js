@@ -25,7 +25,7 @@ export function createCategory(body) {
       const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
       await axios.post(
-        `http://localhost:3001/api/v1/categories/createCategories`,
+        `${URL_API}categories/createCategories`,
         body,
         {
           "content-type": "application/json",
@@ -40,4 +40,3 @@ export function createCategory(body) {
   };
 }
 
-//http://localhost:3001/api/v1/categories/createCategories

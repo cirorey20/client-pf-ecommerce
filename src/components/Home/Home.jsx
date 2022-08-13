@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer.jsx";
 import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
+import Alert from "../Alert/Alert";
 
 //comment
 const Home = () => {
@@ -33,11 +34,9 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
-  //cart
-  const [productsCart, setProductsCart] = useState([]);
-  const [countCart, setCountCart] = useState(0);
-  const [totalCart, setTotalCart] = useState(0);
-
+  //alert
+  const [alert, setAlert] = useState(false);
+  const [textAlert, setTextAlert] = useState(null);
 
   function handlerAddToCart(product) {
     let productDes = {
@@ -47,7 +46,14 @@ const Home = () => {
       image: product.image,
       quantity: 1,
     };
+    // console.log("Product", productDes);
     dispatch(addProductToCart(productDes));
+    setTextAlert(productDes.name);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+
     // console.log(stateCart);
   }
 
@@ -81,6 +87,7 @@ const Home = () => {
           <FilterCategories allCategories={allCategories} />
         </div>
         <div className="flex-initial w-full md:container md:mx-auto bg-[#e2e8f0] rounded-xl shadow-lg">
+          <Alert alert={alert} textAlert={textAlert} />
           <div className="m-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {allProducts.length <= 0 ? (
               <div>NO HAY PRODUCTOS...</div>

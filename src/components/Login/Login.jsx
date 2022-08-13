@@ -9,11 +9,14 @@ const Login = () => {
     <div>
       {/* <button
         className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]"
-        onClick={() => loginWithRedirect()}
+        onClick={() => loginWithRedirect()}N
       >
         Login
       </button> */}
-      <Link to='/login' className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]" >
+      <Link
+        to="/login"
+        className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]"
+      >
         Login
       </Link>
     </div>

@@ -44,18 +44,18 @@ export function getByFilters(searchFilters) {
 }
 
 export function detailProduct(id) {
-  return async function (dispatch) {
-    try {
-      const detailById = await axios.get(`${URL_API}products/${id}`);
-      console.log(detailById.data);
-      return dispatch({
-        type: "DETAILS_PRODUCT",
-        payload: detailById.data,
-      });
-    } catch (error) {
-      console.log(error);
+    return async function (dispatch) {
+        try {
+            const detailById = await axios.get(`${URL_API}products/${id}`);
+            console.log(detailById.data)
+            return dispatch({
+                type: "DETAILS_PRODUCT",
+                payload: detailById.data,
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }
-  };
 }
 
 export function createProduct(body) {
