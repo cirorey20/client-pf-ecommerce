@@ -1,0 +1,28 @@
+.menuIcon {
+  color: black;
+  margin: auto 16px;
+  cursor: pointer;
+  padding: 0px;
+  font-size: 1.8em;
+}
+
+.itemCount {
+  position: absolute;
+  top: -18px;
+  right: 10px;
+  font-size: 16px;
+  color: black;
+}
+
+.cartIcon {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.userActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
