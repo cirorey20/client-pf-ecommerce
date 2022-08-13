@@ -4,14 +4,15 @@ import axios from "axios";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
 import { resetCart } from "../../redux/actions/cart.js";
-import {URL_API_CHECKOUT} from '../../config/config';
+import {URL_API} from '../../config/config';
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const stateCart = useSelector((state) => state.cartReducer.cart);
+  const { cart:stateCart, total} = useSelector((state) => state.cartReducer);
+  const { user } = useSelector((state) => state.authReducer.userLogin)
   console.log(stateCart);
 
   const handleSubmit = async (e) => {
@@ -31,12 +32,14 @@ const CheckoutForm = () => {
       try {
         const { data } = await axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-          `${URL_API_CHECKOUT}checkout`,
+          `${URL_API}orders/checkout`,
           {
             id,
+            amount: total*100,
             stateCart,
             allQuantity,
-            allToPay,
+            customer: user,
+            allToPay
           }
         );
         console.log(data);
