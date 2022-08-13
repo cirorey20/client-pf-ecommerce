@@ -7,6 +7,12 @@ import store from "./redux/store/index";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import {loadStripe} from "@stripe/stripe-js"
+import {Elements} from "@stripe/react-stripe-js"
+
+const stripePromise = loadStripe("pk_test_51LUuaPGOqvRgizQ9UukIHSt2fL0MTRR2Dyg3olan2uHpTTf4ZvjUqRj60oDSxmX0kt5cufxyFQhipnwVjkcQDG3600vYjUCInl")
+
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,7 +23,9 @@ ReactDOM.render(
           clientId="CzgIJ18eGYa0CEtp8r3peejP05X5Xggi"
           redirectUri={window.location.origin}
         >
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </Auth0Provider>
       </BrowserRouter>
     </React.StrictMode>
