@@ -1,19 +1,23 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { useSelector } from "react-redux";
 import { Popover } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
+import { GrCart } from "react-icons/gr";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import "./NavBarCart.css";
 
 export default function LandingPage() {
   const { isAuthenticated, isLoading } = useAuth0();
+  const stateCart = useSelector((state) => state.cartReducer.cart);
 
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-4 h-40 border-gray-100 py-6 md:justify-start md:space-x-10">
+        <div className="flex justify-between items-center border-b-4 h-28 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to={"/"}>
               <img
@@ -38,6 +42,12 @@ export default function LandingPage() {
             Universal Music
           </Link>
           <SearchBtn />
+          <NavLink to="/cart" activeclassname="activeLink">
+            <div className="cartIcon">
+              <GrCart className="menuIcon" />
+              <span className="itemCount">{stateCart.length}</span>
+            </div>
+          </NavLink>
           {isAuthenticated ? <Profile /> : <Login />}
         </div>
       </div>
