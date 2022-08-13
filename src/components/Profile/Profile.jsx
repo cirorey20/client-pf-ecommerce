@@ -4,20 +4,22 @@ import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logout from "../Logout/Logout";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
-  const { user, isAuthenticated } = useAuth0();
+  const {user} = useSelector(state => state.authReducer.userLogin)
+  // const { user, isAuthenticated } = useAuth0();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
   return (
-    isAuthenticated && (
+    Object.keys(user || {}).length > 0 && (
       <div className="container z-50">
         <div>
           <button onClick={onClick} className="menu-trigger">
             <span>{user.name}</span>
-            <img className="img" src={user.picture} alt={user.name} />
+            <img className="img" src={user.avatar} alt={user.name} />
           </button>
 
           <nav

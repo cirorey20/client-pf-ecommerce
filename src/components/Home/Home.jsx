@@ -18,6 +18,7 @@ const Home = () => {
   const { search } = useLocation();
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.productReducer.products);
+
   const allCategories = useSelector(
     (state) => state.categoryReducer.categories
   );

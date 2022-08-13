@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const initialSort = "CHOOSE A OPTION";
 
 export default function Filters() {
   const [priceSort, setPriceSort] = useState(initialSort);
   const [nameSort, setNameSort] = useState(initialSort);
   const navigate = useNavigate();
-
+  const users = useSelector((state) => state.authReducer.userLogin);
+  console.log(users);
   const { search } = useLocation();
 
   useEffect(() => {
@@ -51,34 +52,35 @@ export default function Filters() {
     <div className="flex justify-center w-35 my-10  rounded-xl shadow-lg">
       <div className="">
         <div className="">
-        <Link to={"/product/DashBoard"}>
-          <button className="w-full border border-[#1d4ed8] flex justify-items-center m-1 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
-            DashBoard
-          </button>
-        </Link>
-        <div />
-        <select
-          name="selectPriceSort"
-          value={priceSort}
-          onChange={onChangedSelect}
-          className="w-full border border-white text-gray-900 m-1 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#cbd5e1] text-white hover:bg-[#0f172a] hover:text-white"
-        >
-          <option>Order by price</option>
-          <option value="asc">Price desc</option>
-          <option value="desc">Price asc</option>
-        </select>
+          {users?.user?.rol === "admin" && (
+            <Link to={"/product/DashBoard"}>
+              <button className="w-full border border-[#1d4ed8] flex justify-items-center m-1 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
+                DashBoard
+              </button>
+            </Link>
+          )}
+          <select
+            name="selectPriceSort"
+            value={priceSort}
+            onChange={onChangedSelect}
+            className="w-full border border-white text-gray-900 m-1 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#cbd5e1] text-white hover:bg-[#0f172a] hover:text-white"
+          >
+            <option>Order by price</option>
+            <option value="asc">Price desc</option>
+            <option value="desc">Price asc</option>
+          </select>
 
-        <select
-          form="filter"
-          name="selectNameSort"
-          value={nameSort}
-          onChange={onChangedSelect}
-          className="w-full ml-1 border border-[#1d4ed8] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black mb-10"
-        >
-          <option>Order by alphabet</option>
-          <option value="A-Z">Product A-Z</option>
-          <option value="Z-A">Product Z-A</option>
-        </select>
+          <select
+            form="filter"
+            name="selectNameSort"
+            value={nameSort}
+            onChange={onChangedSelect}
+            className="w-full ml-1 border border-[#1d4ed8] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black mb-10"
+          >
+            <option>Order by alphabet</option>
+            <option value="A-Z">Product A-Z</option>
+            <option value="Z-A">Product Z-A</option>
+          </select>
         </div>
       </div>
     </div>
