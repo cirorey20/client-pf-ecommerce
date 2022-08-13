@@ -20,7 +20,7 @@ export default function Tendencia() {
               alt="product image"
             />
           </a>
-          <div className="p-5 pb-4 mt-2">
+          <div className="p-5 pb-4">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Guitarra Acústica
