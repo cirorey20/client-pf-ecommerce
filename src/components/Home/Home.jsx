@@ -11,6 +11,7 @@ import { getCategories } from "../../redux/actions/categories";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
+import Swal from "sweetalert2";
 
 //comment
 const Home = () => {
@@ -33,6 +34,11 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
+  //cart
+  const [productsCart, setProductsCart] = useState([]);
+  const [countCart, setCountCart] = useState(0);
+  const [totalCart, setTotalCart] = useState(0);
+
   //alert
   const [alert, setAlert] = useState(false);
   const [textAlert, setTextAlert] = useState(null);
@@ -45,14 +51,32 @@ const Home = () => {
       image: product.image,
       quantity: 1,
     };
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "The product was added to the cart!",
+    });
+
     // console.log("Product", productDes);
     dispatch(addProductToCart(productDes));
-    setTextAlert(productDes.name)
-    setAlert(true)
-    setTimeout(()=> {
-      setAlert(false)
-    },2000)
-    
+    setTextAlert(productDes.name);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+
     // console.log(stateCart);
   }
 
@@ -86,7 +110,7 @@ const Home = () => {
           <FilterCategories allCategories={allCategories} />
         </div>
         <div className="flex-initial w-full md:container md:mx-auto bg-[#e2e8f0] rounded-xl shadow-lg">
-        <Alert alert={alert} textAlert={textAlert}/>
+          <Alert alert={alert} textAlert={textAlert} />
           <div className="m-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {allProducts.length <= 0 ? (
               <div>NO HAY PRODUCTOS...</div>
@@ -136,7 +160,6 @@ const Home = () => {
               })
             )}
           </div>
-        
         </div>
         <div className="flex-none  m-2 w-40 h-100">
           <div className=" rounded-xl shadow-2xl p-8 h-40">
