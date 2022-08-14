@@ -5,6 +5,7 @@ import { BsFillCartXFill } from "react-icons/bs";
 import Footer from "../Footer/Footer.jsx";
 import "./ViewCart.css";
 import NavBar from "../NavBar/NavBar";
+import Swal from "sweetalert2";
 import {
   deleteProductToCart,
   addProductToCart,
@@ -18,6 +19,22 @@ const ViewCart = () => {
 
   function productDelete(id) {
     dispatch(deleteProduct(id));
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: "warning",
+      title: "The product was removed from the cart!",
+    });
   }
 
   function handlerDeleteToCart(id) {
@@ -70,11 +87,13 @@ const ViewCart = () => {
                       key={i}
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                     >
+                      <td>
+                        <img src={item.image} className="h-24 w-28" alt="" />
+                      </td>
                       <td className="py-4 px-6">{item.name}</td>
                       <td className="py-4 px-6">$ {item.price}.00</td>
-                      <td >
+                      <td>
                         <div className="flex flex-row">
-
                           <button onClick={() => handlerDeleteToCart(item.id)}>
                             -
                           </button>
@@ -82,8 +101,6 @@ const ViewCart = () => {
                           <button onClick={() => add(item)}>+</button>
                         </div>
                       </td>
-
-
                       <td className="py-4 px-6">
                         <button onClick={() => productDelete(item.id)}>
                           X
