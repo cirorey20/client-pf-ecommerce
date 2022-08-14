@@ -38,11 +38,6 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
-  //cart
-  const [productsCart, setProductsCart] = useState([]);
-  const [countCart, setCountCart] = useState(0);
-  const [totalCart, setTotalCart] = useState(0);
-
   //alert
   const [alert, setAlert] = useState(false);
   const [textAlert, setTextAlert] = useState(null);
