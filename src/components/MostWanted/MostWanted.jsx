@@ -7,7 +7,7 @@ export default function MostWanted() {
       <div className="relative flex pt-10 items-center">
         <div className="flex-grow border-t border-gray-400"></div>
         <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
-          Más buscado
+          Más buscados
         </span>
         <div className="flex-grow border-t border-gray-400 "></div>
       </div>
