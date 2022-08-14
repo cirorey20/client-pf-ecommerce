@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
 import useGsi from "./useGsi";
+import NavBar from "../NavBar/NavBar";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ const Login = () => {
     // window.google.accounts.id.prompt();
   });
 
-  console.log(input);
   const handleChange = (e) => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -60,7 +60,10 @@ const Login = () => {
 
   return (
     <section>
-      <div class=" px-72 py-60 h-full">
+      <div>
+        <NavBar />
+      </div>
+      <div class=" px-72 py-10 h-full">
         <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
             <img
@@ -87,7 +90,7 @@ const Login = () => {
                 <input
                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Ingrese password"
-                  type="text"
+                  type="password"
                   name="password"
                   value={input.password.toLowerCase()}
                   onChange={(e) => handleChange(e)}

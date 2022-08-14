@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL_API } from "../../config/config";
 export const GET_USERS = "GET_USERS";
 export const LOGIN = "LOGIN";
 export const GET_LOGIN_USER = "GET_LOGIN_USER";
@@ -8,7 +9,7 @@ export function createUser(body) {
   return async function (dispatch) {
     try {
       const token = document.cookie.split("token=")[1];
-      await axios.post(`http://localhost:3001/api/v1/users/createUsers`, body, {
+      await axios.post(`${URL_API}users/createUsers`, body, {
         "content-type": "application/json",
         headers: {
           authorization: token,
@@ -23,13 +24,9 @@ export function createUser(body) {
 export function loginUser(body) {
   return async (dispatch) => {
     try {
-      const login = await axios.post(
-        `http://localhost:3001/api/v1/users/login`,
-        body,
-        {
-          "content-type": "application/json",
-        }
-      );
+      const login = await axios.post(`${URL_API}users/login`, body, {
+        "content-type": "application/json",
+      });
 
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
@@ -48,13 +45,9 @@ export function loginUser(body) {
 export function loginUserGoogle(body) {
   return async (dispatch) => {
     try {
-      const login = await axios.post(
-        `http://localhost:3001/api/v1/users/loginGoogle`,
-        body,
-        {
-          "content-type": "application/json",
-        }
-      );
+      const login = await axios.post(`${URL_API}users/loginGoogle`, body, {
+        "content-type": "application/json",
+      });
 
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
@@ -74,7 +67,7 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const token = document.cookie.split("token=")[1];
-      const allUsers = await axios.get(`http://localhost:3001/api/v1/users`, {
+      const allUsers = await axios.get(`${URL_API}users`, {
         headers: {
           authorization: token,
         },
@@ -93,9 +86,9 @@ export const getUsers = () => {
 export const getLoginUser = () => {
   return async (dispatch) => {
     try {
-      const token = document.cookie.split('token=')[1]
-      console.log('Este es el token', token)
-      const verify = await axios.get(`http://localhost:3001/api/v1/users/getUserLogin`,{
+      const token = document.cookie.split("token=")[1];
+      console.log("Este es el token", token);
+      const verify = await axios.get(`${URL_API}users/getUserLogin`, {
         headers: {
           authorization: token,
         },
@@ -110,8 +103,6 @@ export const getLoginUser = () => {
     }
   };
 };
-
-
 
 export const logout = () => {
   return async (dispatch) => {

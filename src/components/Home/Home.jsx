@@ -24,6 +24,9 @@ const Home = () => {
   );
   const stateCart = useSelector((state) => state.cartReducer.cart);
 
+  // const obtener = localStorage.getItem("product");
+  // console.log(obtener);
+
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPage] = useState(5);
@@ -53,6 +56,14 @@ const Home = () => {
       quantity: 1,
     };
 
+    const obtener = JSON.parse(localStorage.getItem("product")) || [];
+    console.log(obtener);
+
+    const localStores = localStorage.setItem(
+      "product",
+      JSON.stringify([...obtener, productDes])
+    );
+    console.log(localStores);
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
