@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { BsFillCartXFill } from "react-icons/bs";
-import Swal from "sweetalert2";
 import Footer from "../Footer/Footer.jsx";
 import "./ViewCart.css";
 import NavBar from "../NavBar/NavBar";
@@ -19,23 +18,6 @@ const ViewCart = () => {
 
   function productDelete(id) {
     dispatch(deleteProduct(id));
-
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-      },
-    });
-
-    Toast.fire({
-      icon: "warning",
-      title: "The product was removed from the cart!",
-    });
   }
 
   function handlerDeleteToCart(id) {
@@ -50,23 +32,6 @@ const ViewCart = () => {
       image: product.image,
       quantity: 1,
     };
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-      },
-    });
-
-    Toast.fire({
-      icon: "success",
-      title: "The product was added to the cart!",
-    });
-
     dispatch(addProductToCart(productDes));
   }
 
@@ -107,13 +72,18 @@ const ViewCart = () => {
                     >
                       <td className="py-4 px-6">{item.name}</td>
                       <td className="py-4 px-6">$ {item.price}.00</td>
-                      <td>
-                        <button onClick={() => handlerDeleteToCart(item.id)}>
-                          -
-                        </button>
-                        <div className="py-4 px-6">{item.quantity}</div>
-                        <button onClick={() => add(item)}>+</button>
+                      <td >
+                        <div className="flex flex-row">
+
+                          <button onClick={() => handlerDeleteToCart(item.id)}>
+                            -
+                          </button>
+                          <div className="py-4 px-6">{item.quantity}</div>
+                          <button onClick={() => add(item)}>+</button>
+                        </div>
                       </td>
+
+
                       <td className="py-4 px-6">
                         <button onClick={() => productDelete(item.id)}>
                           X
