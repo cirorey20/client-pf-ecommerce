@@ -32,7 +32,7 @@ const CheckoutForm = () => {
       var allToPay = total;
       //console.log(allQuantity)
       try {
-        await axios.post(
+        axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
           `${URL_API}orders/checkout`,
           {
@@ -45,6 +45,7 @@ const CheckoutForm = () => {
           }
         )
         .then(function(response) {
+<<<<<<< HEAD
           console.log(response.data)
           //dispatch(resetCart);
           setLoading(false);
@@ -53,10 +54,19 @@ const CheckoutForm = () => {
         .catch((error)=> {     
           // dispatch(resetCart);
           console.log(error)
+=======
+          console.log(response)
+          dispatch(resetCart());
+          setLoading(false);
+          navigate("/success")
+        })
+        .catch(()=> {     
+           dispatch(resetCart());
+>>>>>>> 92242efdba9167709b465421d888b497ab128f12
           setLoading(false);
           navigate("/rejected")
         })
-        
+        //.finally(()=>{})
         // console.log(data);
         // elements.getElement(CardElement).clear();
         // dispatch(resetCart);

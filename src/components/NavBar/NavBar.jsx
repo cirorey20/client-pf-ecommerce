@@ -18,15 +18,14 @@ export default function LandingPage() {
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-evenly items-center border-b-4 h-28 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link to={"/"}>
-              <img
-                className="h-20 w-25"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-                alt=""
-              />
-            </Link>
-          </div>
+          <Link to={"/"}>
+            <img
+              className="h-20 w-25"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
+              alt=""
+            />
+          </Link>
+
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <Link
               to={"/home"}
@@ -35,17 +34,12 @@ export default function LandingPage() {
               Home
             </Link>
           </div>
-          <Link
-            to={"/"}
-            className="text-5xl mr-8 font-medium text-gray-500 hover:text-gray-900"
-          >
-            Universal Music
-          </Link>
+
           <SearchBtn />
           <NavLink to="/cart" activeclassname="activeLink">
             <div className="cartIcon">
               <GrCart className="menuIcon" />
-              <span className="itemCount">{stateCart.length}</span>
+              <span className="itemCount">{stateCart.reduce((prev,curr)=> prev+curr.quantity,0)}</span>
             </div>
           </NavLink>
           {/* <<<<<<< HEAD
@@ -62,9 +56,9 @@ export default function LandingPage() {
             </div>
           ) : (
             <Link to={"/Profile"}>
-              <button class="p-5 border-4">
+              <button className="p-5 border-4">
                 <div>
-                  <img class="w-10" src={users.user.avatar} alt="" />
+                  <img className="w-10" src={users.user.avatar} alt="" />
                 </div>
                 <div>{users.user.name}</div>
               </button>
@@ -73,13 +67,13 @@ export default function LandingPage() {
           {user && Object.keys(user || {})?.length > 0 ? (
             <Profile />
           ) : (
-            <div class="flex">
+            <div className="flex">
               <div>
-                <Login />,{" "}
+                <Login />{" "}
               </div>
               <div>
                 <Link to={"/createUser"}>
-                  <button class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
+                  <button className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
                     REGISTER
                   </button>
                 </Link>
