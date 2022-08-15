@@ -15,6 +15,8 @@ import AuthContextProvider from "./config/authContext";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
+import { Orders } from "./components/Orders/Orders";
+import { OrderDetail } from "./components/Orders/OrderDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +49,8 @@ function App() {
         />
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders/:idOrder" element={<OrderDetail />} />
       </Routes>
     </div>
   );

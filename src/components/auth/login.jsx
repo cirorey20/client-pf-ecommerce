@@ -31,7 +31,7 @@ const Login = () => {
       document.getElementById("buttonDiv"),
       {
         theme: "outline",
-        size: "medium",
+       
       }
     );
     // window.google.accounts.id.prompt();
@@ -108,7 +108,7 @@ const Login = () => {
               </button>
             </Link>
 
-            <div id="buttonDiv"></div>
+            <div id="buttonDiv" className="flex justify-center"></div>
           </div>
         </div>
       </div>
