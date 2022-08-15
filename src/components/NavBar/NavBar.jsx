@@ -1,46 +1,66 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { useSelector } from "react-redux";
 import { Popover } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
-import { useAuth0 } from "@auth0/auth0-react";
+import Cart from "./cart-73-32.ico";
+import Logo from "../../assets/logo.svg.png";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import "./NavBarCart.css";
 
 export default function LandingPage() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  // const { isAuthenticated, isLoading } = useAuth0();
+  const stateCart = useSelector((state) => state.cartReducer.cart);
+  const { user } = useSelector((state) => state.authReducer.userLogin);
 
-  if (isLoading) return <h1>Loading...</h1>;
   return (
-    <Popover className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-4 h-40 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link to={"/"}>
-              <img
-                className="h-20 w-25"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-                alt=""
-              />
-            </Link>
-          </div>
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link
-              to={"/home"}
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]"
-            >
-              Home
-            </Link>
-          </div>
-          <Link
-            to={"/"}
-            className="text-5xl mr-8 font-medium text-gray-500 hover:text-gray-900"
-          >
-            Universal Music
+    <div className="navbar_container">
+      <div className="navbar_innerContainer_logo">
+        {
+          <Link to={"/"}>
+            <img width={150} src={Logo} alt="" />
           </Link>
-          <SearchBtn />
-          {isAuthenticated ? <Profile /> : <Login />}
-        </div>
+        }
       </div>
-    </Popover>
+
+      <div className="navbar_innerContainer_title">
+        <p className="navbar_title">Universal Music</p>
+      </div>
+
+      <div className="navbar_innerContainer_searchBar">
+        <SearchBtn />
+      </div>
+
+      <div className="navbar_innerContainer_home">
+        <Link to={"/home"} className="link_container">
+          HOME
+        </Link>
+      </div>
+
+      <div className="navbar_innerContainer_buttons">
+        {user && Object.keys(user || {})?.length > 0 ? (
+          <Profile />
+        ) : (
+          <div className="inner">
+            <Login />{" "}
+            <Link to={"/createUser"}>
+              <button className="link_container">REGISTER</button>
+            </Link>
+          </div>
+        )}
+      </div>
+
+      <div className="navbar_innerContainer_home">
+        <NavLink to="/cart" activeclassname="activeLink" className="cart">
+          <div className="cartIcon">
+            <img src={Cart} title="Cart" alt="Cart" />
+            <span className="itemCount">
+              {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
+            </span>
+          </div>
+        </NavLink>
+      </div>
+    </div>
   );
 }

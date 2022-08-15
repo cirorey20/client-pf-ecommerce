@@ -1,7 +1,15 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/auth";
 
 export default function Logout() {
-  const { logout } = useAuth0();
-  return <button onClick={() => logout()}>Log Out</button>;
+  // const { logout } = useAuth0();
+  const dispatch = useDispatch();
+
+  const onLogout = () => {
+    dispatch(logout());
+  };
+
+  return <button onClick={() => onLogout()}>Log Out</button>;
 }

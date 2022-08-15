@@ -22,12 +22,16 @@ export function getCategories() {
 export function createCategory(body) {
   return async function (dispatch) {
     try {
+      const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
       await axios.post(
         `${URL_API}categories/createCategories`,
         body,
         {
           "content-type": "application/json",
+          headers: {
+            authorization: token,
+          },
         }
       );
     } catch (error) {

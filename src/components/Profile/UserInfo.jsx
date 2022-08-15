@@ -1,5 +1,5 @@
 import React from "react";
-import UserProfile from "../UserProfile/UserProfile.jsx";
+import UserProfile from "../UserProfile/UserProfile";
 import Footer from "../Footer/Footer.jsx";
 import NavBar from "../NavBar/NavBar";
 import "./Profile.css";
