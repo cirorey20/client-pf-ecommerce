@@ -18,15 +18,14 @@ export default function LandingPage() {
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-evenly items-center border-b-4 h-28 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link to={"/"}>
-              <img
-                className="h-20 w-25"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-                alt=""
-              />
-            </Link>
-          </div>
+          <Link to={"/"}>
+            <img
+              className="h-20 w-25"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
+              alt=""
+            />
+          </Link>
+
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <Link
               to={"/home"}
@@ -35,12 +34,7 @@ export default function LandingPage() {
               Home
             </Link>
           </div>
-          <Link
-            to={"/"}
-            className="text-5xl mr-8 font-medium text-gray-500 hover:text-gray-900"
-          >
-            Universal Music
-          </Link>
+
           <SearchBtn />
           <NavLink to="/cart" activeclassname="activeLink">
             <div className="cartIcon">
@@ -75,7 +69,7 @@ export default function LandingPage() {
           ) : (
             <div class="flex">
               <div>
-                <Login />,{" "}
+                <Login />{" "}
               </div>
               <div>
                 <Link to={"/createUser"}>
