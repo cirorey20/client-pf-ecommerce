@@ -11,7 +11,10 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const stateCart = useSelector((state) => state.cartReducer.cart);
-  console.log(stateCart);
+  const totalCart = useSelector((state) => state.cartReducer.total);
+  //console.log(allToPay)
+
+  //console.log(totalCart);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,23 +22,22 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
+    //console.log(paymentMethod);
+    
+
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-      const allQuantity = stateCart.length;
-      var allToPay = stateCart.total;
-
+      var allToPay = totalCart;
       try {
-        const { data } = await axios.post(
-          "http://localhost:3001/api/checkout",
-          {
-            id,
-            stateCart,
-            allQuantity,
-            allToPay,
-          }
+        const { data } = await axios.post("http://localhost:3001/api/checkout",
+        {
+          id,
+          amount: allToPay
+        }
         );
-        console.log(data);
+        console.log(paymentMethod)
+        console.log(data)
         elements.getElement(CardElement).clear();
         dispatch(resetCart());
       } catch (error) {
