@@ -87,7 +87,7 @@ export const getLoginUser = () => {
   return async (dispatch) => {
     try {
       const token = document.cookie.split("token=")[1];
-      console.log("Este es el token", token);
+      //console.log("Este es el token", token);
       const verify = await axios.get(`${URL_API}users/getUserLogin`, {
         headers: {
           authorization: token,

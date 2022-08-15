@@ -65,14 +65,14 @@ const Home = () => {
     };
 
     const obtener = JSON.parse(localStorage.getItem("product")) || [];
-    console.log(obtener);
+    // console.log(obtener);
 
     const localStores = localStorage.setItem(
       "product",
       JSON.stringify([...obtener, productDes])
     );
-    console.log(localStores);
-    const Toast = Swal.mixin({
+    // console.log(localStores);
+     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
       showConfirmButton: false,
