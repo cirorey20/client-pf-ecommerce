@@ -11,7 +11,16 @@ const initialState = {
 };
 
 export function cartReducer(state = initialState, action) {
-  function total() {
+  if (action.type === RESET_CART) {
+    return {
+      cart: [],
+      total: 0,
+    };
+  }
+
+
+
+   function total() {
     var total = 0;
     let stateCart = state.cart;
 
@@ -20,42 +29,37 @@ export function cartReducer(state = initialState, action) {
     }
     return (total = total);
   } //end total
-  if (action.type === RESET_CART) {
-    return {
-      cart: [],
-      total: 0,
-    };
-  }
 
   if (action.type === ADD_CART) {
-    //console.log("action", state.cart);
     let stateCart = state.cart;
     let currentProduct = action.payload;
+    var totalF = state.total
 
-    // console.log("Estado de cart", state.cart)
-    // console.log("Estado de cart", state.total)
-
+    console.log("Estado de cart", state.cart)
+    
     if (stateCart.length > 0) {
-      
       for (let i = 0; i < stateCart.length; i++) {
         if (stateCart[i].id === currentProduct.id) {
           stateCart[i].quantity++;
+          
           return {
             cart: stateCart,
-            total: total(),
+            total: state.total += currentProduct.price * currentProduct.quantity,
           };
-        }
+        } 
       }
+      
       return {
         cart: [...stateCart, currentProduct],
-        total: total(),
+        total: state.total += currentProduct.price * currentProduct.quantity,
       };
-    } else {
+    } 
       return {
+        
         cart: [...stateCart, currentProduct],
-        total: total(),
+        total: state.total += currentProduct.price * currentProduct.quantity,
       };
-    }
+    // }
   }
 
   if (action.type === DELETE_CART) {
