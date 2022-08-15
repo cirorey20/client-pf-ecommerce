@@ -30,7 +30,7 @@ const Details = () => {
     dispatch(addProductToCart(productDes));
     history("/cart");
   }
-  console.log(userLogin?.user?.name);
+
   return (
     <Fragment>
       <NavBar />
