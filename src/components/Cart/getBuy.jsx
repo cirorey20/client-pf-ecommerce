@@ -28,9 +28,9 @@ const CheckoutForm = () => {
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-      const allQuantity = stateCart.length;
+      const allQuantity = stateCart.reduce((prev,curr)=> prev+curr.quantity,0);
       var allToPay = total;
-
+      console.log(allQuantity)
       try {
         await axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
