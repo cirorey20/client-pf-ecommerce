@@ -4,7 +4,7 @@ import { Popover } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import { GrCart } from "react-icons/gr";
-
+import Logo from "../../assets/logo.svg.png";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import "./NavBarCart.css";
@@ -19,11 +19,7 @@ export default function LandingPage() {
       <div className="navbar_innerContainer_logo">
         {
           <Link to={"/"}>
-            <img
-              width={150}
-              src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-              alt=""
-            />
+            <img width={150} src={Logo} alt="" />
           </Link>
         }
       </div>
@@ -38,19 +34,8 @@ export default function LandingPage() {
 
       <div className="navbar_innerContainer_home">
         <Link to={"/home"} className="link_container">
-          Home
+          HOME
         </Link>
-      </div>
-
-      <div className="navbar_innerContainer_home">
-        <NavLink to="/cart" activeclassname="activeLink">
-          <div className="cartIcon">
-            <GrCart className="menuIcon" />
-            <span className="itemCount">
-              {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
-            </span>
-          </div>
-        </NavLink>
       </div>
 
       <div className="navbar_innerContainer_buttons">
@@ -64,6 +49,17 @@ export default function LandingPage() {
             </Link>
           </div>
         )}
+      </div>
+
+      <div className="navbar_innerContainer_home">
+        <NavLink to="/cart" activeclassname="activeLink" className="cart">
+          <div className="cartIcon">
+            <GrCart className="menuIcon" color="white" />
+            <span className="itemCount">
+              {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
+            </span>
+          </div>
+        </NavLink>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 .navbar_container {
   display: flex;
   justify-content: space-evenly;
-  background-color: black;
+  background-color: rgb(21, 21, 21);
   color: white;
   height: 130px;
   /* border: 2px solid red; */
