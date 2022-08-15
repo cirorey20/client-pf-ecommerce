@@ -20,7 +20,7 @@ const registerUser = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(input);
+    //console.log(input);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -52,18 +52,18 @@ const registerUser = () => {
   }
 
   return (
-    <div class="bg-grey-lighter min-h-screen flex flex-col">
+    <div className="bg-grey-lighter min-h-screen flex flex-col">
       <div>
         <NavBar />
       </div>
 
-      <div class=" max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div class="border-8  bg-white px-10 py-10 rounded shadow-md text-slate-900 n w-full">
-          <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+      <div className=" max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="border-8  bg-white px-10 py-10 rounded shadow-md text-slate-900 n w-full">
+          <h1 className="mb-8 text-3xl text-center">Sign up</h1>
           <form onSubmit={(e) => handleSubmit(e)}>
             <div>
               <input
-                class="block border border-grey-light w-full p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 placeholder="Ingrese Name"
                 type="text"
                 name="name"
@@ -75,7 +75,7 @@ const registerUser = () => {
             </div>
             <div>
               <input
-                class="block border border-grey-light w-full p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 placeholder="Ingrese apellido"
                 type="text"
                 name="last_name"
@@ -87,7 +87,7 @@ const registerUser = () => {
             </div>
             <div>
               <input
-                class="block border border-grey-light w-full p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 placeholder="Ingrese email"
                 type="text"
                 name="email"
@@ -99,7 +99,7 @@ const registerUser = () => {
             </div>
             <div>
               <input
-                class="block border border-grey-light w-full p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 placeholder="Ingrese password"
                 type="password"
                 name="password"
@@ -111,7 +111,7 @@ const registerUser = () => {
             </div>
             <div>
               <input
-                class="block border border-grey-light w-full p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 placeholder="Ingrese avatar"
                 type="text"
                 name="avatar"
@@ -122,14 +122,14 @@ const registerUser = () => {
               />
             </div>
             <button
-              class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#7a8592] hover:bg-[#0f172a]"
+              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#7a8592] hover:bg-[#0f172a]"
               type="submit"
             >
               Create
             </button>
           </form>
           <a
-            class="my-3 ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#7a8592] hover:bg-[#0f172a]"
+            className="my-3 ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#7a8592] hover:bg-[#0f172a]"
             href="../login"
           >
             Log in

@@ -5,6 +5,8 @@ import Home from "./components/Home/Home";
 import Details from "./components/Details/Details";
 import UserInfo from "./components/Profile/UserInfo";
 import ViewCart from "./components/Cart/ViewCart";
+import Success from "./components/Cart/Success";
+import Rejected from "./components/Cart/Rejected"; 
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import CheckoutForm from "./components/Cart/getBuy";
@@ -32,6 +34,8 @@ function App() {
         <Route path="/product/carrito" element={<CheckoutForm />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
         <Route path="/cart" element={<ViewCart />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/rejected" element={<Rejected />} />
         <Route
           path="/users/dashboard"
           element={<AuthContextProvider element={<Users />} />}

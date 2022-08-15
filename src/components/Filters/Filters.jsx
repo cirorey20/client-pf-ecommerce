@@ -8,7 +8,7 @@ export default function Filters() {
   const [nameSort, setNameSort] = useState(initialSort);
   const navigate = useNavigate();
   const users = useSelector((state) => state.authReducer.userLogin);
-  console.log(users);
+  //console.log(users);
   const { search } = useLocation();
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import {loadStripe} from "@stripe/stripe-js"
 import {Elements} from "@stripe/react-stripe-js"
 
-const stripePromise = loadStripe("pk_test_51LW3beKXLCV01PVd8wRP3zdjEw5oAKBoKZY5O54MeqpeMetilr9Obkj5yIFwuQDFhjRNZ1B4fX6sA3i0C6gzUMML00XmQiEtkG")
+const stripePromise = loadStripe("pk_test_51LUuaPGOqvRgizQ9UukIHSt2fL0MTRR2Dyg3olan2uHpTTf4ZvjUqRj60oDSxmX0kt5cufxyFQhipnwVjkcQDG3600vYjUCInl")
 
 
 
