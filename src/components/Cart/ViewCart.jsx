@@ -16,6 +16,7 @@ const ViewCart = () => {
   const dispatch = useDispatch();
   const stateCart = useSelector((state) => state.cartReducer.cart);
   const total = useSelector((state) => state.cartReducer.total);
+  const userLogin = useSelector((state) => state.authReducer.userLogin);
 
   function productDelete(id) {
     dispatch(deleteProduct(id));
@@ -52,6 +53,7 @@ const ViewCart = () => {
     dispatch(addProductToCart(productDes));
   }
 
+  console.log(userLogin?.user?.name);
   return (
     <Fragment>
       <NavBar />
@@ -117,11 +119,15 @@ const ViewCart = () => {
               </tbody>
             </table>
           </div>
-          <Link to={`/product/carrito`}>
-            <button className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded">
-              Buy now
-            </button>
-          </Link>
+          {userLogin?.user?.name ? (
+            <Link to={`/product/carrito`}>
+              <button className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded">
+                Buy now
+              </button>
+            </Link>
+          ) : (
+            "*Please register to complete your buy"
+          )}
         </div>
       ) : (
         <div className="div_no_cartItem">
