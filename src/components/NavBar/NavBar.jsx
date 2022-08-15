@@ -39,7 +39,7 @@ export default function LandingPage() {
           <NavLink to="/cart" activeclassname="activeLink">
             <div className="cartIcon">
               <GrCart className="menuIcon" />
-              <span className="itemCount">{stateCart.length}</span>
+              <span className="itemCount">{stateCart.reduce((prev,curr)=> prev+curr.quantity,0)}</span>
             </div>
           </NavLink>
           {/* <<<<<<< HEAD
@@ -56,9 +56,9 @@ export default function LandingPage() {
             </div>
           ) : (
             <Link to={"/Profile"}>
-              <button class="p-5 border-4">
+              <button className="p-5 border-4">
                 <div>
-                  <img class="w-10" src={users.user.avatar} alt="" />
+                  <img className="w-10" src={users.user.avatar} alt="" />
                 </div>
                 <div>{users.user.name}</div>
               </button>
@@ -67,13 +67,13 @@ export default function LandingPage() {
           {user && Object.keys(user || {})?.length > 0 ? (
             <Profile />
           ) : (
-            <div class="flex">
+            <div className="flex">
               <div>
                 <Login />{" "}
               </div>
               <div>
                 <Link to={"/createUser"}>
-                  <button class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
+                  <button className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
                     REGISTER
                   </button>
                 </Link>

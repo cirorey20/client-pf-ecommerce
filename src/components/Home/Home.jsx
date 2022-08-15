@@ -189,7 +189,7 @@ const Home = () => {
 
         <div className="flex-none  m-2 w-40 h-100">
           <div className=" rounded-xl shadow-2xl p-8 h-40">
-            <Cart stateCart={stateCart} />
+            {/* <Cart stateCart={stateCart} /> */}
           </div>
         </div>
       </div>
