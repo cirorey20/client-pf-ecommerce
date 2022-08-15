@@ -44,9 +44,14 @@ const createProducts = () => {
 
   return (
     <div>
-      <NavBar />
-
-      <div class="py-10 flex justify-evenly">
+      <div class="py-10 flex justify-evenly bg-slate-500">
+        <div>
+          <Link to={`/home`}>
+            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              Home
+            </button>
+          </Link>
+        </div>
         <Link to={`/product/create`}>
           <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
             Crear Producto
@@ -66,6 +71,13 @@ const createProducts = () => {
           >
             Crear
           </button>
+        </div>
+        <div>
+          <Link to={`/users/dashboard`}>
+            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              Users
+            </button>
+          </Link>
         </div>
       </div>
       <div className="flex mb-6">

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/actions/auth";
 import NavBar from "../NavBar/NavBar";
-
+import Swal from "sweetalert2";
 const registerUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const registerUser = () => {
   };
 
   function handleSubmit(e) {
+    e.preventDefault(e);
     if (input.name && input.last_name && input.email && input.password) {
-      e.preventDefault(e);
       dispatch(createUser(input));
       setInput({
         name: "",
@@ -36,9 +36,18 @@ const registerUser = () => {
         avatar: "",
       });
       navigate("/login");
+      Swal.fire({
+        icon: "success",
+        title: "Ok",
+        text: "Usuario creado correctamente , Ahora puedes loguearte",
+      });
       // window.location.reload();
     } else {
-      alert("Te faltan espacios por llenar");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Tal vez te falten espacios por llenar",
+      });
     }
   }
 
