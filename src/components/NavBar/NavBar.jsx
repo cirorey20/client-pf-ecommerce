@@ -4,7 +4,7 @@ import { Popover } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import { GrCart } from "react-icons/gr";
-
+import Logo from "../../assets/logo.svg.png";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import "./NavBarCart.css";
@@ -15,73 +15,52 @@ export default function LandingPage() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
 
   return (
-    <Popover className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-evenly items-center border-b-4 h-28 border-gray-100 py-6 md:justify-start md:space-x-10">
+    <div className="navbar_container">
+      <div className="navbar_innerContainer_logo">
+        {
           <Link to={"/"}>
-            <img
-              className="h-20 w-25"
-              src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-              alt=""
-            />
+            <img width={150} src={Logo} alt="" />
           </Link>
+        }
+      </div>
 
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link
-              to={"/home"}
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]"
-            >
-              Home
+      <div className="navbar_innerContainer_title">
+        <p className="navbar_title">Universal Music</p>
+      </div>
+
+      <div className="navbar_innerContainer_searchBar">
+        <SearchBtn />
+      </div>
+
+      <div className="navbar_innerContainer_home">
+        <Link to={"/home"} className="link_container">
+          HOME
+        </Link>
+      </div>
+
+      <div className="navbar_innerContainer_buttons">
+        {user && Object.keys(user || {})?.length > 0 ? (
+          <Profile />
+        ) : (
+          <div className="inner">
+            <Login />{" "}
+            <Link to={"/createUser"}>
+              <button className="link_container">REGISTER</button>
             </Link>
           </div>
-
-          <SearchBtn />
-          <NavLink to="/cart" activeclassname="activeLink">
-            <div className="cartIcon">
-              <GrCart className="menuIcon" />
-              <span className="itemCount">{stateCart.reduce((prev,curr)=> prev+curr.quantity,0)}</span>
-            </div>
-          </NavLink>
-          {/* <<<<<<< HEAD
-          {/* {isAuthenticated ? <Profile /> : <Login />} */}
-
-          {/* {!users.user ? (
-            <div>
-              <Link to={"/login"}>
-                <button>LOGIN</button>
-              </Link>
-              <Link to={"/createUser"}>
-                <button>REGISTER</button>
-              </Link>
-            </div>
-          ) : (
-            <Link to={"/Profile"}>
-              <button className="p-5 border-4">
-                <div>
-                  <img className="w-10" src={users.user.avatar} alt="" />
-                </div>
-                <div>{users.user.name}</div>
-              </button>
-            </Link>
-          )} */}
-          {user && Object.keys(user || {})?.length > 0 ? (
-            <Profile />
-          ) : (
-            <div className="flex">
-              <div>
-                <Login />{" "}
-              </div>
-              <div>
-                <Link to={"/createUser"}>
-                  <button className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-[#0f172a]">
-                    REGISTER
-                  </button>
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
-    </Popover>
+
+      <div className="navbar_innerContainer_home">
+        <NavLink to="/cart" activeclassname="activeLink" className="cart">
+          <div className="cartIcon">
+            <GrCart className="menuIcon" color="white" />
+            <span className="itemCount">
+              {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
+            </span>
+          </div>
+        </NavLink>
+      </div>
+    </div>
   );
 }
