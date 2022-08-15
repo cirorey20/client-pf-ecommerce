@@ -12,9 +12,10 @@ import {
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 
-function validate(form){
+function validate(form, categ){
   let err = {};
-  
+  console.log(categ)
+
   if(!form.name.length){
     err.name = "⚠ Name is required"
   }
@@ -24,7 +25,7 @@ function validate(form){
     else if(form.stock <= 0){
       err.stock = "⚠ Stock can not be 0"
     }
-    else if(form.categories[0].checked === false){
+    else if(!categ.length){
       err.categories = "⚠ Select only the existing Categories"
     }
     else if(!form.image.length){
@@ -53,6 +54,8 @@ export default function CreateProduct() {
   const categories = useSelector((state) => state.categoryReducer.categories);
   const productDetail = useSelector((state) => state.productReducer.productDetail);
   const [form, setForm] = useState(initialFormState);
+  const [categ, setCateg] = useState("")
+  console.log(categ)
   
   const { idProduct } = useParams();
   const [err, setErr] = useState("");
@@ -104,25 +107,27 @@ export default function CreateProduct() {
   function onChangeValue(e) {
     if (!form.hasOwnProperty(e.target.name)) return;
     
+    
     if (e.target.name !== "categories") {
       e.target.name === "price" && e.target.name === "stock"
-        ? setForm({ ...form, [e.target.name]: Number(e.target.value)})
-        : setForm({ ...form, [e.target.name]: e.target.value });
+      ? setForm({ ...form, [e.target.name]: Number(e.target.value)})
+      : setForm({ ...form, [e.target.name]: e.target.value });
     }
-     else {
+    else {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
         category.checked = e.target.checked;
-        //console.log(Object.values(category))
+        //console.log(e.target.value)
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
-      console.log(...newCategories)
+      setCateg({...categ, [e.target.name]: e.target.value})
+      //console.log(newCategories.map(e=>e.checked))
     } 
     setErr(validate({...form, [e.target.name]: e.target.value
-    }))
+    }, {...categ }))
   }; 
-
+  
   function onSubmit(e) {
     e.preventDefault();
     const body = { ...form };
