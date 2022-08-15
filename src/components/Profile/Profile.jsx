@@ -30,9 +30,7 @@ export default function Profile() {
               <li>
                 <Link to={"/logged/userInfo"}>My Profile</Link>
               </li>
-              <li>
-                <a href="">Settings</a>
-              </li>
+
               <li>
                 <a href="#">
                   <Logout />

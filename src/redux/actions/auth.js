@@ -20,6 +20,21 @@ export function createUser(body) {
     }
   };
 }
+export function promoteUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}users/promote/${id}`, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function loginUser(body) {
   return async (dispatch) => {

@@ -12,7 +12,7 @@ import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
-
+import Users from "./components/Users/Users";
 import AuthContextProvider from "./config/authContext";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -36,6 +36,10 @@ function App() {
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
+        <Route
+          path="/users/dashboard"
+          element={<AuthContextProvider element={<Users />} />}
+        />
         <Route
           path="/product/create"
           element={<AuthContextProvider element={<CreateProduct />} />}
