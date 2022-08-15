@@ -5,15 +5,19 @@ import { useState } from "react";
 import Cart from "../Cart/Cart";
 import { resetCart } from "../../redux/actions/cart.js";
 import {URL_API} from '../../config/config';
+import { useNavigate } from "react-router-dom";
+import uno from "./1.jpg"
+
 
 const CheckoutForm = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const { cart:stateCart, total} = useSelector((state) => state.cartReducer);
   const { user } = useSelector((state) => state.authReducer.userLogin)
-  console.log(stateCart);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,51 +29,85 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
       const allQuantity = stateCart.length;
-      var allToPay = 300;
-      for (var i = 0; i < stateCart.length; i++)
-        allToPay = allToPay + stateCart[i].price;
-      console.log(allToPay);
+      var allToPay = total;
+
       try {
-        const { data } = await axios.post(
+        await axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
           `${URL_API}orders/checkout`,
           {
             id,
-            amount: total*100,
+            amount: allToPay,
             stateCart,
             allQuantity,
             customer: user,
             allToPay
           }
-        );
-        console.log(data);
-        elements.getElement(CardElement).clear();
-        dispatch(resetCart);
+        )
+        .then(function(response) {
+          dispatch(resetCart);
+          setLoading(false);
+          navigate("/success")
+        })
+        .finally(()=> {     
+           dispatch(resetCart);
+          setLoading(false);
+          navigate("/rejected")
+        })
+        
+        // console.log(data);
+        // elements.getElement(CardElement).clear();
+        // dispatch(resetCart);
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
+      
     }
   };
 
   return (
     <div className="flex justify-center">
-      <div className="border-2 w-100 h-72 mt-24">
-        <Cart stateCart={stateCart} />
-        <form className=" w-96 h-64 mt-36 border-2">
+      <div className="mt-56 mr-8 rounded-xl shadow-lg">
+            <img
+              src={uno}
+              className="w-max"
+            />
+      </div>
+      <div className="border-2 w-96 mt-56 rounded-xl shadow-lg">
           <div className="">
-            <div className="flex justify-initial">Put date's of your card:</div>
-            <div>
-              <CardElement className="border-2" />
-            </div>
-            <button
-              onClick={handleSubmit}
-              type="button"
-              className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"
-            >
-              Buy
-            </button>
+            <Cart stateCart={stateCart} />
           </div>
+          <form className=" w-93 mt-16 bg-gray-100">
+            <div className="">
+                <div className="flex justify-init ml-2 italic">
+                    Put date's of your card:
+                </div>
+                <div>
+                    <CardElement className="border-double border-4 border-black ml-2 mr-2" />
+                </div>
+                <div className="flex justify-center w-64 ml-10">
+                <div className="auto-cols-min mr-2 mt-16 italic">
+                  <div className="pr-16">
+                      Name:  {user.name+" "+user.last_name}
+                  </div>
+                  
+                  <div className="pl-4">
+                    <h4>
+                       Hotmail: {user.email}
+                    </h4>
+                  </div>
+                  </div>
+                </div>
+                <div className="  pr-28 pb-8">
+                <button
+                    onClick={handleSubmit}
+                    type="button"
+                    className="absolute  mt-16 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"
+                  >
+                  Buy
+                </button>
+                </div>
+              </div>
         </form>
       </div>
     </div>

@@ -20,6 +20,12 @@ export function cartReducer(state = initialState, action) {
     }
     return (total = total);
   } //end total
+  if (action.type === RESET_CART) {
+    return {
+      cart: [],
+      total: 0,
+    };
+  }
 
   if (action.type === ADD_CART) {
     //console.log("action", state.cart);
@@ -92,12 +98,6 @@ export function cartReducer(state = initialState, action) {
     }
   }
 
-  if (action.type === RESET_CART) {
-    return {
-      cart: [],
-      total: 0,
-    };
-  }
 
   return state;
 }
