@@ -19,8 +19,6 @@ import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
 import { Orders } from "./components/Orders/Orders";
 import { OrderDetail } from "./components/Orders/OrderDetail";
-import { Render } from "./components/Orders/Render";
-import { PDFViewer } from "@react-pdf/renderer";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,7 +59,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:idOrder" element={<OrderDetail />} />
-        <Route path="/render/:idOrder" element={<Render />} />
       </Routes>
     </div>
   );
