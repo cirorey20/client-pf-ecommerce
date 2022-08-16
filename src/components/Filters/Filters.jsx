@@ -27,7 +27,7 @@ export default function Filters() {
       (v) => !(v.includes("price") || v.includes("name"))
     );
 
-    if (e.target.value !== "CHOOSE A OPTION") {
+    if (e.target.value !== "CHOOSE A OPTION" && e.target.value !== 'Order by price' && e.target.value !== 'Order by alphabet') {
       if (e.target.name === "selectPriceSort") {
         setPriceSort(e.target.value);
         setNameSort(initialSort);
