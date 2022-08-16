@@ -36,7 +36,6 @@ export function cartReducer(state = initialState, action) {
     // console.log("Estado de cart", state.total)
 
     if (stateCart.length > 0) {
-      
       for (let i = 0; i < stateCart.length; i++) {
         if (stateCart[i].id === currentProduct.id) {
           stateCart[i].quantity++;
@@ -97,7 +96,6 @@ export function cartReducer(state = initialState, action) {
       }
     }
   }
-
 
   return state;
 }
