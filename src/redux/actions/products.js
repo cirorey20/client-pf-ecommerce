@@ -16,7 +16,7 @@ export function getProducts(queryFilter = "") {
     axios.get(`${URL_API}products${queryFilter}`).then(
       (json) => {
         return dispatch({
-          type: "GET_PRODUCTS",
+          type: GET_PRODUCTS,
           payload: json.data,
         });
       },
@@ -49,7 +49,7 @@ export function detailProduct(id) {
             const detailById = await axios.get(`${URL_API}products/${id}`);
             console.log(detailById.data)
             return dispatch({
-                type: "DETAILS_PRODUCT",
+                type: DETAILS_PRODUCT,
                 payload: detailById.data,
             });
         } catch (error) {
@@ -64,7 +64,7 @@ export function createProduct(body) {
       const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
       await axios.post(
-        `http://localhost:3001/api/v1/products/createProducts`,
+        `${URL_API}products/createProducts`,
         body,
         {
           "content-type": "application/json",
@@ -87,7 +87,7 @@ export function getNameProducts(searchName) {
       );
       console.log(product);
       return dispatch({
-        type: "GET_NAME_PRODUCTS",
+        type: GET_NAME_PRODUCTS,
         payload: product.data,
       });
     } catch (err) {
@@ -98,14 +98,14 @@ export function getNameProducts(searchName) {
 
 export function setPaginaActual(numPagina) {
   return {
-    type: "SET_PAGINA_ACTUAL",
+    type: SET_PAGINA_ACTUAL,
     payload: numPagina,
   };
 }
 
 export function resetPage() {
   return {
-    type: "RESET_PAGE",
+    type: RESET_PAGE,
     payload: 1,
   };
 }
