@@ -16,10 +16,11 @@ export function cartReducer(state = initialState, action) {
     let stateCart = state.cart;
 
     for (let i = 0; i < stateCart.length; i++) {
-      total = stateCart[i].price * stateCart[i].quantity + total;
+      total = (stateCart[i].price * stateCart[i].quantity) + total;
     }
-    return (total = total);
+    return total
   } //end total
+
   if (action.type === RESET_CART) {
     return {
       cart: [],

@@ -5,8 +5,9 @@ import { useState } from "react";
 import Cart from "../Cart/Cart";
 import { resetCart } from "../../redux/actions/cart.js";
 import {URL_API} from '../../config/config';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, _resetModuleScope } from "react-router-dom";
 import uno from "./1.jpg"
+var url=""
 
 
 const CheckoutForm = () => {
@@ -18,8 +19,8 @@ const CheckoutForm = () => {
   const { cart:stateCart, total} = useSelector((state) => state.cartReducer);
   const { user } = useSelector((state) => state.authReducer.userLogin)
 
-
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -28,9 +29,9 @@ const CheckoutForm = () => {
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-      const allQuantity = stateCart.reduce((prev,curr)=> prev+curr.quantity,0);
+      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
+      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
       var allToPay = total;
-      //console.log(allQuantity)
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
@@ -39,30 +40,19 @@ const CheckoutForm = () => {
             id,
             amount: allToPay,
             stateCart,
-            allQuantity,
+            detail,
             customer: user,
-            allToPay
           }
         )
         .then(function(response) {
-<<<<<<< HEAD
           console.log(response.data)
-          //dispatch(resetCart);
-          setLoading(false);
-          navigate("/success")
-        })
-        .catch((error)=> {     
-          // dispatch(resetCart);
-          console.log(error)
-=======
-          console.log(response)
-          dispatch(resetCart());
+          //url = response.data.url
+          dispatch(resetCart);
           setLoading(false);
           navigate("/success")
         })
         .catch(()=> {     
-           dispatch(resetCart());
->>>>>>> 92242efdba9167709b465421d888b497ab128f12
+          dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
         })
@@ -70,6 +60,7 @@ const CheckoutForm = () => {
         // console.log(data);
         // elements.getElement(CardElement).clear();
         // dispatch(resetCart);
+        console.log(url)
       } catch (error) {
         console.log(error);
       }
@@ -128,6 +119,8 @@ const CheckoutForm = () => {
 
 export default CheckoutForm;
 
+
+ 
 // {loading ?
 //   (
 //     <svg
