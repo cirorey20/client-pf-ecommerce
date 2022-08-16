@@ -4,17 +4,9 @@ import axios from "axios";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
 import { resetCart } from "../../redux/actions/cart.js";
-<<<<<<< HEAD
 import { URL_API } from "../../config/config";
 import { useNavigate } from "react-router-dom";
 import uno from "./1.jpg";
-=======
-import {URL_API} from '../../config/config';
-import { useNavigate, _resetModuleScope } from "react-router-dom";
-import uno from "./1.jpg"
-var url=""
-
->>>>>>> 69921b58306c53cab2a2e377aca0ab58b797788b
 
 const CheckoutForm = () => {
   const navigate = useNavigate();
@@ -22,16 +14,10 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-<<<<<<< HEAD
   const { cart: stateCart, total } = useSelector((state) => state.cartReducer);
   const { user } = useSelector((state) => state.authReducer.userLogin);
-=======
-  const { cart:stateCart, total} = useSelector((state) => state.cartReducer);
-  const { user } = useSelector((state) => state.authReducer.userLogin)
->>>>>>> 69921b58306c53cab2a2e377aca0ab58b797788b
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -40,42 +26,9 @@ const CheckoutForm = () => {
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-<<<<<<< HEAD
-      const allQuantity = stateCart.reduce(
-        (prev, curr) => prev + curr.quantity,
-        0
-      );
+      const allQuantity = stateCart.reduce((prev,curr)=> prev+curr.quantity,0);
       var allToPay = total;
       console.log(allQuantity);
-      try {
-        axios
-          .post(
-            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            `${URL_API}orders/checkout`,
-            {
-              id,
-              amount: allToPay,
-              stateCart,
-              allQuantity,
-              customer: user,
-              allToPay,
-            }
-          )
-          .then(function (response) {
-            console.log(response);
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/success");
-          })
-          .catch(() => {
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/rejected");
-          });
-=======
-      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
-      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
-      var allToPay = total;
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
@@ -84,28 +37,26 @@ const CheckoutForm = () => {
             id,
             amount: allToPay,
             stateCart,
-            detail,
+            allQuantity,
             customer: user,
+            allToPay
           }
         )
         .then(function(response) {
-          console.log(response.data)
-          //url = response.data.url
-          dispatch(resetCart);
+          console.log(response)
+          dispatch(resetCart());
           setLoading(false);
           navigate("/success")
         })
         .catch(()=> {     
-          dispatch(resetCart());
+           dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
         })
->>>>>>> 69921b58306c53cab2a2e377aca0ab58b797788b
         //.finally(()=>{})
         // console.log(data);
         // elements.getElement(CardElement).clear();
         // dispatch(resetCart);
-        console.log(url)
       } catch (error) {
         console.log(error);
       }
@@ -158,8 +109,6 @@ const CheckoutForm = () => {
 
 export default CheckoutForm;
 
-
- 
 // {loading ?
 //   (
 //     <svg
