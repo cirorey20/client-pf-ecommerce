@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ReactPDF, { Page, Text, View, Document, StyleSheet, PDFViewer, Image } from '@react-pdf/renderer';
+import ReactPDF, { Page, Text, View, Document, StyleSheet, Image, PDFViewer } from '@react-pdf/renderer';
 import img from './Universal-Pictures-Logo.png';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -210,6 +210,6 @@ export function OrderDetail() {
                     </View>
                 </Page>
             </Document>
-        </PDFViewer>
+            </PDFViewer>
     );
 }
