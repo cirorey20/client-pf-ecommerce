@@ -7,6 +7,8 @@ import { resetCart } from "../../redux/actions/cart.js";
 import { URL_API } from "../../config/config";
 import { useNavigate } from "react-router-dom";
 import uno from "./1.jpg";
+import NavBar from "../NavBar/NavBar";
+import "./getBuy.css";
 
 const CheckoutForm = () => {
   const navigate = useNavigate();
@@ -68,46 +70,75 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="mt-56 mr-8 rounded-xl shadow-lg">
-        <img src={uno} className="w-max" />
-      </div>
-      <div className="border-2 w-96 mt-56 rounded-xl shadow-lg">
-        <div className="">
-          <Cart stateCart={stateCart} />
+    <>
+      <NavBar />
+      <div className="getBuy_container">
+        <div className="getBuy_image">
+          <div className="pr-8 price">
+            <p className="billing_info">Your billing information</p>
+            <h4>USD 1,180.00</h4>
+          </div>
+          <div className="product_info">Some product info</div>
+          <div className="stripe">
+            Powered by Stripe | Condiciones | Privacidad
+          </div>
         </div>
-        <form className=" w-93 mt-16 bg-gray-100">
-          <div className="">
-            <div className="flex justify-init ml-2 italic">
-              Put date's of your card:
-            </div>
-            <div>
-              <CardElement className="border-double border-4 border-black ml-2 mr-2" />
-            </div>
-            <div className="flex justify-center w-64 ml-10">
-              <div className="auto-cols-min mr-2 mt-16 italic">
-                <div className="pr-16">
-                  Name: {user.name + " " + user.last_name}
-                </div>
-
-                <div className="pl-4">
-                  <h4>Email: {user.email}</h4>
-                </div>
-              </div>
-            </div>
-            <div className="  pr-28 pb-8">
-              <button
-                onClick={handleSubmit}
-                type="button"
-                className="absolute  mt-16 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"
-              >
-                Buy
-              </button>
+        <div className="getBuy_form">
+          <div className="creditCard">
+            <CardElement className="border-double border-4 border-black ml-1 mr-1" />
+            <div className="pr-8">{user.name + " " + user.last_name}</div>
+            <div className="pr-8">
+              <h4>{user.email}</h4>
             </div>
           </div>
-        </form>
+          <button
+            onClick={handleSubmit}
+            type="button"
+            className="absolute  mt-16 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"
+          >
+            Pay
+          </button>
+        </div>
       </div>
-    </div>
+
+      {/* <div className="flex justify-center">
+        <div className="mt-56 mr-8 rounded-xl shadow-lg">
+          <img src={uno} className="w-max" />
+        </div>
+        <div className="border-2 w-96 mt-56 rounded-xl shadow-lg">
+          <form className=" w-93 mt-16 bg-gray-100">
+            <div className="">
+              <div className="flex justify-init ml-2 italic">
+                Put your card's date:
+              </div>
+              <div>
+                <CardElement className="border-double border-4 border-black ml-2 mr-2" />
+              </div>
+              <div className="flex justify-center w-64 ml-10">
+                <div className="auto-cols-min mr-2 mt-16 italic">
+                  <div className="pr-16">
+                    Name: {user.name + " " + user.last_name}
+                  </div>
+
+                  <div className="pl-4">
+                    <h4>Email: {user.email}</h4>
+                  </div>
+                </div>
+              </div>
+              <div className="  pr-28 pb-8">
+                <button
+                  onClick={handleSubmit}
+                  type="button"
+                  className="absolute  mt-16 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded"
+                >
+                  Buy
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div> */}
+    </>
   );
 };
 
