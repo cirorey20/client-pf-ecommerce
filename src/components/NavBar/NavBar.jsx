@@ -40,7 +40,9 @@ export default function LandingPage() {
 
       <div className="navbar_innerContainer_buttons">
         {user && Object.keys(user || {})?.length > 0 ? (
-          <Profile />
+          <div className="inner">
+            <Profile />
+          </div>
         ) : (
           <div className="inner">
             <Login />{" "}

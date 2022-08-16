@@ -1,0 +1,78 @@
+.getBuy_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+}
+
+.getBuy_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  height: 85%;
+  background-color: black;
+}
+
+.price {
+  color: white;
+  margin-top: 20%;
+  font-size: xx-large;
+}
+
+.billing_info {
+  font-size: 2vh;
+  color: rgb(118, 118, 118);
+}
+
+.product_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(43, 43, 43);
+  height: 100%;
+  margin-bottom: 40%;
+  width: 75%;
+  color: white;
+}
+
+.stripe {
+  color: white;
+  font-size: 1.5vh;
+  margin-bottom: 5%;
+}
+
+.getBuy_form {
+  display: flex;
+  width: 60%;
+  height: 85%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border: 2px solid red; */
+}
+
+.form {
+  display: flex;
+  background-color: rgb(226, 232, 240);
+  /* border: 2px solid blue; */
+  height: 50%;
+  width: 85%;
+  border-radius: 10px;
+  margin-bottom: 20%;
+  border: 1px solid lightgray;
+}
+
+.creditCard {
+  border-radius: 10px;
+  padding-top: 5%;
+  height: 40%;
+  width: 50%;
+  border: 2px solid lightgray;
+  background-color: rgb(226, 232, 240);
+  box-shadow: -3px 6px 23px -6px rgba(0, 0, 0, 0.83);
+  -webkit-box-shadow: -3px 6px 23px -6px rgba(0, 0, 0, 0.83);
+  -moz-box-shadow: -3px 6px 23px -6px rgba(0, 0, 0, 0.83);
+}

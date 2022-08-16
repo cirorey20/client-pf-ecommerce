@@ -19,24 +19,24 @@ body {
 }
 
 .menu-trigger {
+  display: flex;
   background: transparent;
   border-radius: 10px;
   width: 200px;
   height: 65px;
   cursor: pointer;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4px 2px;
 
-  border: none;
   vertical-align: middle;
-  transition: box-shadow 0.5s ease;
+  transition: box-shadow 1s ease;
   margin-left: center; /* Strictly for positioning */
 }
 
 .menu-trigger:hover {
-  background: #ffffff;
+  transition: box-shadow 1s ease;
+  background: #1e1e1e;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 

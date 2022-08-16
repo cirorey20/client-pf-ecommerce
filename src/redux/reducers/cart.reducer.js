@@ -108,6 +108,5 @@ export function cartReducer(state = initialState, action) {
     }
   }
 
-
   return state;
 }
