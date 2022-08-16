@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Popover } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
-import { GrCart } from "react-icons/gr";
+import Cart from "./cart-73-32.ico";
 import Logo from "../../assets/logo.svg.png";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
@@ -40,7 +40,9 @@ export default function LandingPage() {
 
       <div className="navbar_innerContainer_buttons">
         {user && Object.keys(user || {})?.length > 0 ? (
-          <Profile />
+          <div className="inner">
+            <Profile />
+          </div>
         ) : (
           <div className="inner">
             <Login />{" "}
@@ -54,7 +56,7 @@ export default function LandingPage() {
       <div className="navbar_innerContainer_home">
         <NavLink to="/cart" activeclassname="activeLink" className="cart">
           <div className="cartIcon">
-            <GrCart className="menuIcon" color="white" />
+            <img src={Cart} title="Cart" alt="Cart" />
             <span className="itemCount">
               {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
             </span>
