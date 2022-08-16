@@ -9,6 +9,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
+import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
 import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
@@ -26,6 +27,9 @@ const Home = () => {
   );
   const stateCart = useSelector((state) => state.cartReducer.cart);
 
+  useEffect(() => {
+    dispatch(createAdmin());
+  });
   // const obtener = localStorage.getItem("product");
   // console.log(obtener);
   useEffect(() => {
@@ -72,7 +76,7 @@ const Home = () => {
       JSON.stringify([...obtener, productDes])
     );
     // console.log(localStores);
-     const Toast = Swal.mixin({
+    const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
       showConfirmButton: false,
