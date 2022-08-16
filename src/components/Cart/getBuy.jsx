@@ -28,24 +28,22 @@ const CheckoutForm = () => {
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-      const allQuantity = stateCart.reduce((prev,curr)=> prev+curr.quantity,0);
-      var allToPay = total;
-      console.log(allQuantity);
+      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
+      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
           `${URL_API}orders/checkout`,
           {
             id,
-            amount: allToPay,
+            amount: total,
             stateCart,
-            allQuantity,
+            detail,
             customer: user,
-            allToPay
           }
         )
         .then(function(response) {
-          console.log(response)
+          console.log(response.data)
           dispatch(resetCart());
           setLoading(false);
           navigate("/success")
@@ -54,8 +52,7 @@ const CheckoutForm = () => {
            dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
-        })
-        //.finally(()=>{})
+        })        //.finally(()=>{})
         // console.log(data);
         // elements.getElement(CardElement).clear();
         // dispatch(resetCart);
@@ -140,14 +137,3 @@ const CheckoutForm = () => {
 
 export default CheckoutForm;
 
-// {loading ?
-//   (
-//     <svg
-//       className="animate-spin h-5 w-5 mr-3 "
-//       viewBox="0 0 24 24"
-//       >
-//       </svg>
-//       )
-//       :
-//       "buy"
-//       }
