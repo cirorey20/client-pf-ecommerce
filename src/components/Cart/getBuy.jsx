@@ -52,8 +52,7 @@ const CheckoutForm = () => {
            dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
-        })
-        //.finally(()=>{})
+        })        //.finally(()=>{})
         // console.log(data);
         // elements.getElement(CardElement).clear();
         // dispatch(resetCart);
@@ -138,14 +137,3 @@ const CheckoutForm = () => {
 
 export default CheckoutForm;
 
-// {loading ?
-//   (
-//     <svg
-//       className="animate-spin h-5 w-5 mr-3 "
-//       viewBox="0 0 24 24"
-//       >
-//       </svg>
-//       )
-//       :
-//       "buy"
-//       }
