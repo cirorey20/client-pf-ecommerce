@@ -11,14 +11,23 @@ const initialState = {
 };
 
 export function cartReducer(state = initialState, action) {
-  function total() {
+  if (action.type === RESET_CART) {
+    return {
+      cart: [],
+      total: 0,
+    };
+  }
+
+
+
+   function total() {
     var total = 0;
     let stateCart = state.cart;
 
     for (let i = 0; i < stateCart.length; i++) {
-      total = stateCart[i].price * stateCart[i].quantity + total;
+      total = (stateCart[i].price * stateCart[i].quantity) + total;
     }
-    return (total = total);
+    return total
   } //end total
   if (action.type === RESET_CART) {
     return {
@@ -28,34 +37,35 @@ export function cartReducer(state = initialState, action) {
   }
 
   if (action.type === ADD_CART) {
-    //console.log("action", state.cart);
     let stateCart = state.cart;
     let currentProduct = action.payload;
+    var totalF = state.total
 
-    // console.log("Estado de cart", state.cart)
-    // console.log("Estado de cart", state.total)
-
+    console.log("Estado de cart", state.cart)
+    
     if (stateCart.length > 0) {
-      
       for (let i = 0; i < stateCart.length; i++) {
         if (stateCart[i].id === currentProduct.id) {
           stateCart[i].quantity++;
+          
           return {
             cart: stateCart,
-            total: total(),
+            total: state.total += currentProduct.price * currentProduct.quantity,
           };
-        }
+        } 
       }
+      
       return {
         cart: [...stateCart, currentProduct],
-        total: total(),
+        total: state.total += currentProduct.price * currentProduct.quantity,
       };
-    } else {
+    } 
       return {
+        
         cart: [...stateCart, currentProduct],
-        total: total(),
+        total: state.total += currentProduct.price * currentProduct.quantity,
       };
-    }
+    // }
   }
 
   if (action.type === DELETE_CART) {
@@ -97,7 +107,6 @@ export function cartReducer(state = initialState, action) {
       }
     }
   }
-
 
   return state;
 }

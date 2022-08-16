@@ -20,6 +20,22 @@ export function createUser(body) {
     }
   };
 }
+
+export function createAdmin(body) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}users/createAdmin`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 export function promoteUser(id) {
   return async function (dispatch) {
     try {
