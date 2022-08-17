@@ -29,7 +29,7 @@ export default function SearchBar() {
   return (
     <div className="flex items-center">
       <input
-        className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+        className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 navbar_searchInput"
         type="text"
         placeholder="Search..."
         onChange={(e) => onHandleChange(e)}

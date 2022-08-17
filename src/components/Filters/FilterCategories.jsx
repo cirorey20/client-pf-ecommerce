@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./Filters.css";
 
 // const categories = [
 //     {
@@ -127,41 +128,32 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div className="mt-5 mb-1 pt-10 w-40 pb-10 rounded-xl shadow-lg">
-      <div className="flex justify-center grid auto-cols-auto">
-        {checksCategory.map((category) => {
-          return (
-            <div key={category.id} className="flex justify-start p-2">
-              <input
-                type="checkbox"
-                id={`custom-checkbox-${category.id}`}
-                name={category.name}
-                value={category.id}
-                checked={category.checked}
-                onChange={() => onChangeCheck(category.id)}
-              />         
-              <label  className="ml-2 " htmlFor={`custom-checkbox-${category.id}`}>
-                {category.name}
-              </label>
-            </div>
-          );
-        })}
-      </div>
-      <div className="mt-3">
-      <button
-        type="button"
-        onClick={onClickFilter}
-        className="focus:outline-none text-gray-900 bg-[#cbd5e1] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-      >
-        Filter
-      </button>
-      <button
-        type="button"
-        onClick={onClickReset}
-        className="focus:outline-none  bg-[#0f172a] text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-      >
-        Reset
-      </button>
+    <div className="inputs_container">
+      {checksCategory.map((category) => {
+        return (
+          <div key={category.id}>
+            <input
+              type="checkbox"
+              id={`custom-checkbox-${category.id}`}
+              name={category.name}
+              value={category.id}
+              checked={category.checked}
+              onChange={() => onChangeCheck(category.id)}
+            />
+            <label className="ml-2 " htmlFor={`custom-checkbox-${category.id}`}>
+              {category.name}
+            </label>
+          </div>
+        );
+      })}
+
+      <div className="filter_flexColumn">
+        <button type="button" onClick={onClickFilter} className="select_styles">
+          Filter
+        </button>
+        <button type="button" onClick={onClickReset} className="select_styles">
+          Reset
+        </button>
       </div>
     </div>
   );

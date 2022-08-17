@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   // const { loginWithRedirect } = useAuth0();
@@ -13,7 +14,9 @@ const Login = () => {
       >
         Login
       </button> */}
-      <Link to="/login">LOGIN</Link>
+      <Link to="/login" className="login_text">
+        LOGIN
+      </Link>
     </div>
   );
 };
