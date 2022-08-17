@@ -28,34 +28,46 @@ const CheckoutForm = () => {
     setLoading(true);
     if (!error) {
       const { id } = paymentMethod;
-      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
-      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
+      var quantity = stateCart.reduce((prev, next) => prev + next.quantity, 0);
+      var detail = (
+        stateCart.map(
+          (e) =>
+            " Prod:" +
+            e.name +
+            " Quant:" +
+            e.quantity +
+            " UnitPrice:$" +
+            e.price
+        ) +
+        ". QTotal:" +
+        quantity +
+        " Total:$" +
+        total
+      ).toString();
       try {
-        axios.post(
-          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-          `${URL_API}orders/checkout`,
-          {
-            id,
-            amount: total,
-            stateCart,
-            detail,
-            customer: user,
-          }
-        )
-        .then(function(response) {
-          console.log(response.data)
-          dispatch(resetCart());
-          setLoading(false);
-          navigate("/success")
-        })
-        .catch(()=> {     
-           dispatch(resetCart());
-          setLoading(false);
-          navigate("/rejected")
-        })        //.finally(()=>{})
-        // console.log(data);
-        // elements.getElement(CardElement).clear();
-        // dispatch(resetCart);
+        axios
+          .post(
+            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+            `${URL_API}orders/checkout`,
+            {
+              id,
+              amount: total,
+              stateCart,
+              detail,
+              customer: user,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            dispatch(resetCart());
+            setLoading(false);
+            navigate("/success");
+          })
+          .catch(() => {
+            dispatch(resetCart());
+            setLoading(false);
+            navigate("/rejected");
+          });
       } catch (error) {
         console.log(error);
       }
@@ -136,4 +148,3 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
-
