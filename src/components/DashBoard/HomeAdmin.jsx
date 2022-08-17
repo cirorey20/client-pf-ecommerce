@@ -41,9 +41,9 @@ const HomeAdmin = () => {
                     <div className="grid grid-cols-3 gap-4 content-center p-10">
 
                         <div className="bg-purple-700">
-                            <a href="#" className="bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                            <Link to={'/product/dashBoard'} className="bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                                 <h5 className="mb-2 text-teal-50 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PRODUCTS</h5>
-                            </a>
+                            </Link>
                         </div>
                         <div className="bg-purple-700">
                             <a href="#" className="bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
