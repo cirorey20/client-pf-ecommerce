@@ -12,9 +12,13 @@ import {
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 
-function validate(form, categ){
+function imprimir(){
+   
+}
+
+function validate(form){
   let err = {};
-  console.log(categ)
+  console.log(form)
 
   if(!form.name.length){
     err.name = "⚠ Name is required"
@@ -25,7 +29,7 @@ function validate(form, categ){
     else if(form.stock <= 0){
       err.stock = "⚠ Stock can not be 0"
     }
-    else if(!categ.length){
+    else if(!form.categories){
       err.categories = "⚠ Select only the existing Categories"
     }
     else if(!form.image.length){
@@ -45,7 +49,7 @@ const initialFormState = {
   categories: [],
   image: "",
   description: "",
-  enable: true,
+  enable: "",
 };
 
 export default function CreateProduct() {
@@ -54,11 +58,10 @@ export default function CreateProduct() {
   const categories = useSelector((state) => state.categoryReducer.categories);
   const productDetail = useSelector((state) => state.productReducer.productDetail);
   const [form, setForm] = useState(initialFormState);
-  const [categ, setCateg] = useState("")
-  console.log(categ)
+  
   
   const { idProduct } = useParams();
-  const [err, setErr] = useState("");
+  const [err, setErr] = useState({});
 
   useEffect(() => {
     dispatch(getCategories());
@@ -117,15 +120,13 @@ export default function CreateProduct() {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
         category.checked = e.target.checked;
-        //console.log(e.target.value)
+        console.log(category)
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
-      setCateg({...categ, [e.target.name]: e.target.value})
-      //console.log(newCategories.map(e=>e.checked))
     } 
     setErr(validate({...form, [e.target.name]: e.target.value
-    }, {...categ }))
+    }))
   }; 
   
   function onSubmit(e) {
