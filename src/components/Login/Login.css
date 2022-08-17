@@ -1,15 +1,10 @@
-.button_search {
+.login_text {
   font-size: 2.2vh;
-  margin-left: 15px;
   color: rgb(130, 130, 130);
   transition: all 0.2s linear 0s;
 }
 
-.button_search:hover {
+.login_text:hover {
   color: white;
   transition: all 0.1s linear 0s;
-}
-
-.navbar_searchInput {
-  padding: 5px;
 }
