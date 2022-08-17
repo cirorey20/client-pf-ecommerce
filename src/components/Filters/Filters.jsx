@@ -55,13 +55,13 @@ export default function Filters() {
   }
   return (
     <div className="inputs_container">
-      {users?.user?.rol === "admin" && (
-        <Link to={"/product/DashBoard"}>
+      {/* {users?.user?.rol === "admin" && (
+        <Link to={"/admin/home"}>
           <button className="w-full border border-[#1d4ed8] flex justify-items-center m-1 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 bg-[#0f172a] text-white hover:bg-[#cbd5e1] hover:text-black">
             DashBoard
           </button>
         </Link>
-      )}
+      )} */}
       <select
         name="selectPriceSort"
         value={priceSort}

@@ -13,33 +13,36 @@ export default function Profile() {
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
+  const getName = (name) => {
+    let result = name.split(" ");
+    return result[0];
+  };
+
   return (
     Object.keys(user || {}).length > 0 && (
-      <div className="container z-50">
-        <div>
-          <button onClick={onClick} className="menu-trigger">
-            <span>{user.name}</span>
-            <img className="img" src={user.avatar} alt={user.name} />
-          </button>
+      <>
+        <button onClick={onClick} className="menu-trigger">
+          <span>{getName(user.name)}</span>
+          <img className="img" src={user.avatar} alt={getName(user.name)} />
+        </button>
 
-          <nav
-            ref={dropdownRef}
-            className={`menu ${isActive ? "active" : "inactive"}`}
-          >
-            <ul>
-              <li>
-                <Link to={"/logged/userInfo"}>My Profile</Link>
-              </li>
+        <nav
+          ref={dropdownRef}
+          className={`menu ${isActive ? "active" : "inactive"}`}
+        >
+          <ul>
+            <li>
+              <Link to={"/logged/userInfo"}>My Profile</Link>
+            </li>
 
-              <li>
-                <a href="#">
-                  <Logout />
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+            <li>
+              <a href="#">
+                <Logout />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </>
     )
   );
 }
