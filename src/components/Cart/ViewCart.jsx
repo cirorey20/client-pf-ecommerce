@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { BsFillCartXFill } from "react-icons/bs";
@@ -53,7 +53,6 @@ const ViewCart = () => {
     dispatch(addProductToCart(productDes));
   }
 
-  console.log(userLogin?.user?.name);
   return (
     <Fragment>
       <NavBar />
