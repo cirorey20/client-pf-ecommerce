@@ -53,6 +53,14 @@ const ViewCart = () => {
     dispatch(addProductToCart(productDes));
   }
 
+  // console.log(userLogin?.user?.name);
+
+  // const [productsCart, setProductsCart] = useState([]);
+  // useEffect(() => {
+  //   setProductsCart(JSON.parse(localStorage.getItem("product")));
+  //   console.table(productsCart);
+  // }, []);
+  console.log(stateCart);
   return (
     <Fragment>
       <NavBar />
