@@ -6,7 +6,7 @@ import Details from "./components/Details/Details";
 import UserInfo from "./components/Profile/UserInfo";
 import ViewCart from "./components/Cart/ViewCart";
 import Success from "./components/Cart/Success";
-import Rejected from "./components/Cart/Rejected"; 
+import Rejected from "./components/Cart/Rejected";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import CheckoutForm from "./components/Cart/getBuy";
@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
 import { Orders } from "./components/Orders/Orders";
 import { OrderDetail } from "./components/Orders/OrderDetail";
-
+import Categories from "./components/CategoriesDashboard/CategoriesDashboard.jsx";
 function App() {
   const dispatch = useDispatch();
 
@@ -39,6 +39,7 @@ function App() {
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
+        <Route path="/product/categories" element={<Categories />} />
         <Route
           path="/users/dashboard"
           element={<AuthContextProvider element={<Users />} />}
