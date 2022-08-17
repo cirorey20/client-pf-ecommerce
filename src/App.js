@@ -53,8 +53,8 @@ function App() {
           path="/product/update/:idProduct"
           element={<AuthContextProvider element={<CreateProduct />} />}
         />
-        <Route 
-          path="/admin/home" 
+        <Route
+          path="/admin/home"
           element={<AuthContextProvider element={<HomeAdmin />} />}
         />
         <Route

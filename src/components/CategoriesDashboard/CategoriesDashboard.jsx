@@ -33,6 +33,27 @@ const Categories = () => {
     setCurrentPage(numPag);
   };
 
+  // const [input, setInput] = useState({
+  //   name: "",
+  // });
+
+  // const handleChange = (e) => {
+  //   setInput({ ...input, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (input.name) {
+  //     dispatch(createCategory(input));
+  //     setInput("");
+  //     alert("Se creado con exito");
+  //     // window.location.reload();
+  //   } else {
+  //     alert("te faltan espacios por llenar");
+  //   }
+  // };
+
   return (
     <div>
       <div class="py-24 flex justify-evenly ">
@@ -50,7 +71,7 @@ const Categories = () => {
         </div>
         <div class=" flex flex-initial ">
           <button class=" text-black font-bold py-3 px-10 mx-5 rounded-full ">
-            NAMEUSER
+            {userLogin?.user?.name}
           </button>
           <button class=" bg-violet-400 hover:bg-blue-700 text-white font-bold py-3  px-10 rounded-full">
             <div>LOGOUT</div>
