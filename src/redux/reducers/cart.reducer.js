@@ -5,9 +5,13 @@ const {
   RESET_CART,
 } = require("../actions/cart");
 
+const localCart = JSON.parse(localStorage.getItem("product"));
+
 const initialState = {
-  cart: [],
-  total: 0,
+  cart: localStorage.product?.length > 0 ? localCart : [],
+  total: localCart?.reduce((acc, curr) => {
+    return acc + curr.price * curr.quantity;
+  }, 0),
 };
 
 export function cartReducer(state = initialState, action) {
@@ -18,17 +22,20 @@ export function cartReducer(state = initialState, action) {
     };
   }
 
-
-
-   function total() {
-    var total = 0;
+  function total() {
+    // var total = 0;
     let stateCart = state.cart;
 
-    for (let i = 0; i < stateCart.length; i++) {
-      total = (stateCart[i].price * stateCart[i].quantity) + total;
-    }
-    return total
+    //for (let i = 0; i < stateCart.length; i++) {
+    //  total = (stateCart[i].price * stateCart[i].quantity) + total;
+    // }
+
+    let total = stateCart.reduce((acc, curr) => {
+      return acc + curr.price * curr.quantity;
+    }, 0);
+    return total;
   } //end total
+
   if (action.type === RESET_CART) {
     return {
       cart: [],
@@ -39,32 +46,32 @@ export function cartReducer(state = initialState, action) {
   if (action.type === ADD_CART) {
     let stateCart = state.cart;
     let currentProduct = action.payload;
-    var totalF = state.total
+    var totalF = state.total;
 
-    console.log("Estado de cart", state.cart)
-    
+    console.log("Estado de cart", state.cart);
+
     if (stateCart.length > 0) {
       for (let i = 0; i < stateCart.length; i++) {
         if (stateCart[i].id === currentProduct.id) {
           stateCart[i].quantity++;
-          
+          localStorage.setItem("product", JSON.stringify(stateCart));
           return {
             cart: stateCart,
-            total: state.total += currentProduct.price * currentProduct.quantity,
+            total: (state.total +=
+              currentProduct.price * currentProduct.quantity),
           };
-        } 
+        }
       }
-      
+
       return {
         cart: [...stateCart, currentProduct],
-        total: state.total += currentProduct.price * currentProduct.quantity,
+        total: (state.total += currentProduct.price * currentProduct.quantity),
       };
-    } 
-      return {
-        
-        cart: [...stateCart, currentProduct],
-        total: state.total += currentProduct.price * currentProduct.quantity,
-      };
+    }
+    return {
+      cart: [...stateCart, currentProduct],
+      total: (state.total += currentProduct.price * currentProduct.quantity),
+    };
     // }
   }
 
@@ -77,6 +84,7 @@ export function cartReducer(state = initialState, action) {
         if (stateCart[i].quantity > 1) {
           //decrementamos
           stateCart[i].quantity--;
+          localStorage.setItem("product", JSON.stringify(stateCart));
           return {
             cart: [...stateCart],
             total: total(),
@@ -84,6 +92,7 @@ export function cartReducer(state = initialState, action) {
         } else {
           //eliminamos ese producto del cart
           stateCart.splice(i, 1);
+          localStorage.setItem("product", JSON.stringify(stateCart));
           return {
             cart: [...stateCart],
             total: total(),
@@ -100,6 +109,7 @@ export function cartReducer(state = initialState, action) {
     for (let i = 0; i < stateCart.length; i++) {
       if (stateCart[i].id === currentProduct) {
         stateCart.splice(i, 1);
+        localStorage.setItem("product", JSON.stringify(stateCart));
         return {
           cart: [...stateCart],
           total: total(),
