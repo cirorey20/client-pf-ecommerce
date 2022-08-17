@@ -56,17 +56,17 @@ const HomeAdmin = () => {
                             </Link>
                         </div>
                         <div className="bg-purple-700 ">
-                            <Link to={'/admin/home'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                            <Link to={'/users/dashboard'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                                 <h5 className="mb-2 text-teal-50 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">USERS</h5>
                             </Link>
                         </div>
                         <div className="bg-purple-700">
-                            <Link to={'/admin/home'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                            <Link to={'/orders'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                                 <h5 className="mb-2 text-teal-50 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">MANAGERS ORDERS</h5>
                             </Link>
                         </div>
                         <div className="bg-purple-700 ">
-                            <Link to={'/admin/home'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                            <Link to={'/product/categories'} className="flex flex-row flex-wrap justify-center content-center h-40 bg-purple-700 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                                 <h5 className="mb-2 text-teal-50 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CATEGORIES</h5>
                             </Link>
                         </div>
