@@ -11,6 +11,7 @@ import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
 import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
+import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
 
@@ -24,7 +25,7 @@ const Home = () => {
   const allCategories = useSelector(
     (state) => state.categoryReducer.categories
   );
-  //const stateCart = useSelector((state) => state.cartReducer.cart);
+  const stateCart = useSelector((state) => state.cartReducer.cart);
 
   useEffect(() => {
     dispatch(createAdmin());
@@ -51,8 +52,8 @@ const Home = () => {
 
   //cart
   const [productsCart, setProductsCart] = useState([]);
-  // const [countCart, setCountCart] = useState(0);
-  //const [totalCart, setTotalCart] = useState(0);
+  const [countCart, setCountCart] = useState(0);
+  const [totalCart, setTotalCart] = useState(0);
 
   //alert
   const [alert, setAlert] = useState(false);
@@ -67,7 +68,7 @@ const Home = () => {
       quantity: 1,
     };
 
-    //const obtener = JSON.parse(localStorage.getItem("product")) || [];
+    const obtener = JSON.parse(localStorage.getItem("product")) || [];
     // console.log(obtener);
     setProductsCart([...productsCart, productDes]);
     localStorage.setItem(
@@ -147,14 +148,13 @@ const Home = () => {
                 productsOfNow.map((e, i) => {
                   if (e.enable === true) {
                     return (
-                      <div className="relative m-5 group">
-                        <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                          <img
-                            src={e.image}
-                            alt="NOT_FOUND"
-                            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                          />
-                        </div>
+                      <div className="relative m-5 group w-56 h-56 mt-14">
+                        <img
+                          src={e.image}
+                          alt="NOT_FOUND"
+                          className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                        />
+
                         <div className="mt-4 flex justify-between">
                           <div>
                             <h3 className="text-sm text-gray-700">
