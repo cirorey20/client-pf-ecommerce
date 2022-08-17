@@ -115,9 +115,9 @@ export default function CreateProduct() {
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
-      setErr(validate({...form, [e.target.name]: e.target.value
-      }))
     }
+    setErr(validate({...form, [e.target.name]: e.target.value
+    }))
   }
 
   function onSubmit(e) {
@@ -174,7 +174,7 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Piano"
                 />
-                {err.name && <p>{err.name}</p>}
+                {err.name && <p className="text-red-500 text-xs italic">{err.name}</p>}
                 {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -197,6 +197,7 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="90210"
                 />
+                {err.price && <p className="text-red-500 text-xs italic">{err.price}</p>}
                 {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -219,6 +220,7 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="25"
                 />
+                {err.stock && <p className="text-red-500 text-xs italic">{err.stock}</p>}
                {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -253,6 +255,7 @@ export default function CreateProduct() {
                     </p>
                   )}
                 </div>
+                {err.categories && <p className="text-red-500 text-xs italic">{err.categories}</p>}
                {/*  <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -274,6 +277,7 @@ export default function CreateProduct() {
                   type="url"
                   placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
                 />
+                {err.image && <p className="text-red-500 text-xs italic">{err.image}</p>}
                 {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -295,6 +299,7 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Description of the product to create..."
                 />
+                {err.description && <p className="text-red-500 text-xs italic" >{err.description}</p>}
                 {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p> */}
@@ -305,7 +310,7 @@ export default function CreateProduct() {
               <button
                 onClick={onSubmit}
                 className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                disabled={Object.keys(err).length}                     
+                //disabled={Object.keys(err).length}                     
               >
                 {idProduct ? "Update" : "Create"}
               </button>
