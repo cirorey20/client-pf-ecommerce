@@ -12,6 +12,7 @@ import {
 import NavBar from "../NavBar/NavBar";
 
 
+
 function validate(form){
   let err = {};
   //console.log(form)
@@ -56,6 +57,7 @@ export default function CreateProduct() {
   );
   const [form, setForm] = useState(initialFormState);
   const[err, setErr] = useState({});
+  const[categ, setCateg] = useState("")
   const { idProduct } = useParams();
 
   useEffect(() => {
@@ -102,6 +104,7 @@ export default function CreateProduct() {
     }
   }, [productDetail]);
 
+
   function onChangeValue(e) {
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
@@ -112,9 +115,11 @@ export default function CreateProduct() {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
           category.checked = e.target.checked;
+          console.log(newCategories)
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
+      setCateg({...categ, categories: [...newCategories] })
     }
     setErr(validate({...form, [e.target.name]: e.target.value
     }))
