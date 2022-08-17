@@ -3,13 +3,24 @@ import { getUsers, promoteUser } from "../../redux/actions/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Paginate from "../Paginate/Paginate";
-const Users = () => {
+import { getCategories } from "../../redux/actions/categories";
+import { getLoginUser } from "../../redux/actions/auth";
+const Categories = () => {
   const dispatch = useDispatch();
-  const allUsers = useSelector((state) => state.authReducer.users);
+  const allCategories = useSelector(
+    (state) => state.categoryReducer.categories
+  );
+  const userLogin = useSelector((state) => state.authReducer.userLogin);
 
-  console.log(allUsers);
+  console.log(userLogin);
   useEffect(() => {
     dispatch(getUsers());
+  }, []);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
+  useEffect(() => {
+    dispatch(getLoginUser());
   }, []);
 
   //paginado
@@ -17,15 +28,9 @@ const Users = () => {
   const [productsPage] = useState(2);
   const lastPage = currentPage * productsPage;
   const firstPage = lastPage - productsPage;
-  const productsOfNow = allUsers.slice(firstPage, lastPage);
-
+  const productsOfNow = allCategories.slice(firstPage, lastPage);
   const paged = (numPag) => {
     setCurrentPage(numPag);
-  };
-
-  const handlePromote = (e) => {
-    dispatch(promoteUser(e));
-    window.location.reload();
   };
 
   return (
@@ -40,7 +45,7 @@ const Users = () => {
         </div>
         <div class="flex-initial w-96">
           <div class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">
-            USERS
+            CATEGORIES
           </div>
         </div>
         <div class=" flex flex-initial ">
@@ -54,8 +59,8 @@ const Users = () => {
       </div>
       <div class="flex justify-between py-16">
         <div>
-          <button class="absolute left-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3  px-10 rounded-full">
-            ALFHABATIC
+          <button class=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
+            CREATE NEW
           </button>
         </div>
         <buttom class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
@@ -66,7 +71,7 @@ const Users = () => {
         <div className="home_pagination">
           <Paginate
             productsPage={productsPage}
-            allProducts={allUsers.length}
+            allProducts={allCategories.length}
             paged={paged}
             currentPage={currentPage}
           />
@@ -79,22 +84,14 @@ const Users = () => {
               key={e.id}
               class="bg-zinc-200 flex justify-evenly bg-white-100  mx-96 border-4  rounded-full my-6 p-5"
             >
-              <div>
-                <img class="w-28 " src={e.avatar} alt="" />
-              </div>
-
-              <div>{e.name}</div>
-              <div>{e.last_name}</div>
-              <div>{e.email}</div>
-              <div>{e.rol}</div>
+              <div class="text-2xl">{e.name}</div>
 
               <div>
                 <button
                   key={e.id}
-                  onClick={() => handlePromote(e.id)}
                   class="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
                 >
-                  PROMOTE
+                  EDIT
                 </button>
                 <button
                   key={e.id}
@@ -111,4 +108,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Categories;
