@@ -11,7 +11,6 @@ import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
 import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
-import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
 
@@ -25,7 +24,7 @@ const Home = () => {
   const allCategories = useSelector(
     (state) => state.categoryReducer.categories
   );
-  const stateCart = useSelector((state) => state.cartReducer.cart);
+  //const stateCart = useSelector((state) => state.cartReducer.cart);
 
   useEffect(() => {
     dispatch(createAdmin());
@@ -52,8 +51,8 @@ const Home = () => {
 
   //cart
   const [productsCart, setProductsCart] = useState([]);
-  const [countCart, setCountCart] = useState(0);
-  const [totalCart, setTotalCart] = useState(0);
+  // const [countCart, setCountCart] = useState(0);
+  //const [totalCart, setTotalCart] = useState(0);
 
   //alert
   const [alert, setAlert] = useState(false);
@@ -68,13 +67,15 @@ const Home = () => {
       quantity: 1,
     };
 
-    const obtener = JSON.parse(localStorage.getItem("product")) || [];
+    //const obtener = JSON.parse(localStorage.getItem("product")) || [];
     // console.log(obtener);
-
-    const localStores = localStorage.setItem(
+    setProductsCart([...productsCart, productDes]);
+    localStorage.setItem(
       "product",
-      JSON.stringify([...obtener, productDes])
+      JSON.stringify([...productsCart, productDes])
     );
+    // JSON.stringify([...obtener, productDes])
+
     // console.log(localStores);
     const Toast = Swal.mixin({
       toast: true,
@@ -146,36 +147,34 @@ const Home = () => {
                 productsOfNow.map((e, i) => {
                   if (e.enable === true) {
                     return (
-                      <div key={i} className="  ">
-                        <div className="relative m-5 group ">
-                          <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                            <img
-                              src={e.image}
-                              alt="NOT_FOUND"
-                              className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                            />
-                          </div>
-
-                          <div className="mt-4 flex justify-between">
-                            <div>
-                              <h3 className="text-sm text-gray-700">
-                                <Link to={`/product/${e.id}`}>
-                                  <span
-                                    aria-hidden="true"
-                                    className="absolute inset-0"
-                                  />
-                                  {e.name}
-                                </Link>
-                              </h3>
-                              <p className="mt-1 text-sm text-gray-500">
-                                Stock {e.stock}
-                              </p>
-                            </div>
-                            <p className="text-sm font-medium text-gray-900">
-                              ${e.price}
+                      <div className="relative m-5 group">
+                        <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                          <img
+                            src={e.image}
+                            alt="NOT_FOUND"
+                            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                          />
+                        </div>
+                        <div className="mt-4 flex justify-between">
+                          <div>
+                            <h3 className="text-sm text-gray-700">
+                              <Link to={`/product/${e.id}`}>
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute inset-0"
+                                />
+                                {e.name}
+                              </Link>
+                            </h3>
+                            <p className="mt-1 text-sm text-gray-500">
+                              Stock {e.stock}
                             </p>
                           </div>
+                          <p className="text-sm font-medium text-gray-900">
+                            ${e.price}
+                          </p>
                         </div>
+
                         <button
                           className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                           onClick={() => handlerAddToCart(e)}
@@ -189,12 +188,6 @@ const Home = () => {
               )}
             </div>
           )}
-        </div>
-
-        <div className="flex-none  m-2 w-40 h-100">
-          <div className=" rounded-xl shadow-2xl p-8 h-40">
-            {/* <Cart stateCart={stateCart} /> */}
-          </div>
         </div>
       </div>
       <Footer />
