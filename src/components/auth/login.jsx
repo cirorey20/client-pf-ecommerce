@@ -51,7 +51,7 @@ const Login = () => {
         email: "",
         password: "",
       });
-      navigate("/");
+      navigate("/admin/home");
       //window.location.reload();
     } else {
       alert("te faltan espacios por llenar");

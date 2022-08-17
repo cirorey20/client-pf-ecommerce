@@ -14,6 +14,7 @@ import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import Users from "./components/Users/Users";
 import AuthContextProvider from "./config/authContext";
+import HomeAdmin from "./components/DashBoard/HomeAdmin";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
@@ -50,6 +51,10 @@ function App() {
         <Route
           path="/product/update/:idProduct"
           element={<AuthContextProvider element={<CreateProduct />} />}
+        />
+        <Route 
+          path="/admin/home" 
+          element={<AuthContextProvider element={<HomeAdmin />} />}
         />
         <Route
           path="/product/dashBoard"
