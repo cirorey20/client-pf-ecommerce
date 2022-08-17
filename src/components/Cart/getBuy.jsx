@@ -49,7 +49,7 @@ const CheckoutForm = () => {
             }
           )
           .then(function (response) {
-            console.log(response);
+            console.log(response.data);
             dispatch(resetCart());
             setLoading(false);
             navigate("/success");

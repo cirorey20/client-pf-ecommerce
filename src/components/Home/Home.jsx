@@ -28,7 +28,7 @@ const Home = () => {
   const stateCart = useSelector((state) => state.cartReducer.cart);
 
   useEffect(() => {
-    dispatch(createAdmin());
+    // dispatch(createAdmin());
   });
   // const obtener = localStorage.getItem("product");
   // console.log(obtener);
