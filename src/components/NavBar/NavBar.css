@@ -5,8 +5,9 @@
   background-color: rgb(21, 21, 21);
   color: white;
   height: 130px;
-  /* border: 2px solid red; */
+  /* border: 2px solid blue; */
 }
+
 .navbar_innerContainer_logo {
   display: flex;
   width: 30%;
@@ -28,7 +29,7 @@
   align-items: center;
   justify-content: center;
   /* border: 2px solid yellow; */
-  width: 70%;
+  width: 40%;
 }
 
 .navbar_innerContainer_home {
@@ -41,7 +42,7 @@
 
 .navbar_innerContainer_buttons {
   display: flex;
-  width: 35%;
+  width: 30%;
   align-items: center;
   justify-content: center;
   /* border: 2px solid blue; */
