@@ -58,7 +58,7 @@ export default function LandingPage() {
           <div className="cartIcon">
             <img src={Cart} title="Cart" alt="Cart" />
             <span className="itemCount">
-              {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
+              {JSON.parse(localStorage.getItem("product"))?.length}
             </span>
           </div>
         </NavLink>
