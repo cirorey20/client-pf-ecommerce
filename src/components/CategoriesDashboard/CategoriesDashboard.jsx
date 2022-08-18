@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Paginate from "../Paginate/Paginate";
 import { getCategories } from "../../redux/actions/categories";
 import { getLoginUser } from "../../redux/actions/auth";
+import { createCategory } from "../../redux/actions/categories";
 const Categories = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(
@@ -33,26 +34,26 @@ const Categories = () => {
     setCurrentPage(numPag);
   };
 
-  // const [input, setInput] = useState({
-  //   name: "",
-  // });
+  const [input, setInput] = useState({
+    name: "",
+  });
 
-  // const handleChange = (e) => {
-  //   setInput({ ...input, [e.target.name]: e.target.value });
-  // };
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //   if (input.name) {
-  //     dispatch(createCategory(input));
-  //     setInput("");
-  //     alert("Se creado con exito");
-  //     // window.location.reload();
-  //   } else {
-  //     alert("te faltan espacios por llenar");
-  //   }
-  // };
+    if (input.name) {
+      dispatch(createCategory(input));
+      setInput("");
+      alert("Se creado con exito");
+      window.location.reload();
+    } else {
+      alert("te faltan espacios por llenar");
+    }
+  };
 
   return (
     <div>
@@ -79,9 +80,19 @@ const Categories = () => {
         </div>
       </div>
       <div class="flex justify-between py-16">
-        <div>
-          <button class=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
-            CREATE NEW
+        <div class="absolute left-40">
+          <input
+            type="text"
+            placeholder="ingrese categoria"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(e)}
+          />
+          <button
+            onClick={(e) => handleSubmit(e)}
+            class="  bg-violet-400 hover:bg-blue-700 text-white font-bold py-3  mx-6 px-10 rounded-full "
+          >
+            Crear
           </button>
         </div>
         <buttom class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
