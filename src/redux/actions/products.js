@@ -64,7 +64,7 @@ export function createProduct(body) {
       const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
       await axios.post(
-        `http://localhost:3001/api/v1/products/createProducts`,
+        `${URL_API}products/createProducts`,
         body,
         {
           "content-type": "application/json",
