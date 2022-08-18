@@ -15,7 +15,8 @@ import NavBar from "../NavBar/NavBar";
 function validate(form, categ){
   
   let err = {};
-  console.log(categ)
+  
+  console.log(form)
 
   if(!form.name.length){
     err.name = "⚠ Name is required"
@@ -26,8 +27,9 @@ function validate(form, categ){
    else if(form.stock <= 0){
       err.stock = "⚠ Stock can not be 0"
     }
-   else if(!categ.categories[0].checked === true){
-      err.categories = "⚠ Select only the existing Categories"
+   else if(categ.categories.length === 0){
+     // err.categories = "⚠ Select only the existing Categories"
+    console.log("Estoy aqui")
     }
    else if(!form.image.length){
       err.image = "⚠ Image is required"
@@ -57,10 +59,10 @@ export default function CreateProduct() {
   const productDetail = useSelector(
     (state) => state.productReducer.productDetail
   );
-  const [form, setForm] = useState(initialFormState);
+  const [form, setForm] = useState({...initialFormState, categories:[...categories]});
+  console.log(form)
   const[err, setErr] = useState({});
-  const[categ, setCateg] = useState([])
-  console.log(categ)
+  const[categ, setCateg] = useState("")
   const { idProduct } = useParams();
 
   useEffect(() => {
@@ -76,6 +78,7 @@ export default function CreateProduct() {
       ...category,
       checked: false,
     }));
+    console.log(newState)
     setForm(newState);
   }, [categories]);
 
@@ -118,12 +121,13 @@ export default function CreateProduct() {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
         category.checked = e.target.checked;
+        //console.log(category)
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
-      setCateg({ ...categ, categories: [...newCategories] })
-      //console.log(newCategories)
+      //setCateg({ ...categ, categories: [...newCategories] })
     }
+    console.log(e.target.name)
     setErr(validate({...form, [e.target.name]: e.target.value
     }, {...categ,  [e.target.checked]: e.target.value}))
   }
