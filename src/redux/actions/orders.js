@@ -5,6 +5,7 @@ export const GET_ORDERS = "GET_ORDERS";
 export const DETAILS_ORDER = "DETAILS_ORDER";
 
 export function getOrders(id='') {
+  console.log(id)
   return function (dispatch) {
     axios.get(`${URL_API}orders/${id}`).then(
       (json) => {
