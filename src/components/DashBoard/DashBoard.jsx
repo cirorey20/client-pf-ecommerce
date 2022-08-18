@@ -75,8 +75,8 @@ const createProducts = () => {
           currentPage={currentPage}
         />
       </div>
-      <div className="flex mb-6">
-        <div className="flex-none  m-2 w-40  border-4">
+      <div className="flex ">
+        <div className="flex-none  m-2 w-40  border-4 bg-indigo-900 relative left-24 rounded-lg ">
           <FilterCategory allCategories={categories} />
         </div>
         <div className="flex-initial w-full">
