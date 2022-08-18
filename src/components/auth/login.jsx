@@ -51,7 +51,10 @@ const Login = () => {
         email: "",
         password: "",
       });
-      navigate("/admin/home");
+      setTimeout(()=>{
+        console.log("hola")
+        navigate("/admin/home");
+      },2000)
       //window.location.reload();
     } else {
       alert("te faltan espacios por llenar");
