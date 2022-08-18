@@ -61,8 +61,8 @@ const Categories = () => {
     <div>
       <NavAdmin />
       <div className="md:container mx-auto pt-10">
-        <div class="flex justify-around ">
-          <div class="absolute left-40">
+        <div className="flex justify-around ">
+          <div className="absolute left-40">
             <input
               type="text"
               placeholder="ingrese categoria"
@@ -72,12 +72,12 @@ const Categories = () => {
             />
             <button
               onClick={(e) => handleSubmit(e)}
-              class="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
+              className="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
             >
               Crear
             </button>
           </div>
-          <button class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
+          <button className="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
             SEARCH
           </button>
         </div>
@@ -93,14 +93,14 @@ const Categories = () => {
         </div>
       </div>
 
-      <div class="containerCategories mt-20">
+      <div className="containerCategories mt-20">
         {productsOfNow.map((e) => {
           return (
             <div
               key={e.id}
               className="flex justify-between bg-zinc-200 rounded-full my-1 p-2"
             >
-              <div class="mt-3 mr-32 ml-5 text-1xl">{e.name}</div>
+              <div className="mt-3 mr-32 ml-5 text-1xl">{e.name}</div>
 
               <div className="flex flex-row mr-2 pb-2 ">
                 <button

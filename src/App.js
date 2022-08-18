@@ -7,8 +7,6 @@ import UserInfo from "./components/Profile/UserInfo";
 import ViewCart from "./components/Cart/ViewCart";
 import Success from "./components/Cart/Success";
 import Rejected from "./components/Cart/Rejected";
-import CreateProduct from "./components/CreateProduct/CreateProduct";
-import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
@@ -17,6 +15,8 @@ import AuthContextProvider from "./config/authContext";
 //ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
 import Users from "./components/Admin/Users";
+import Products from "./components/Admin/Products.jsx";
+import CreateProduct from "./components/Admin/CreateProduct";
 import Categories from "./components/Admin/CategoriesAdmin";
 
 //CLIENT PANEL
@@ -45,20 +45,24 @@ function App() {
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
+
+
+    {/* Panel Admin */}
+        <Route
+          path="/admin/home"
+          element={<AuthContextProvider element={<HomeAdmin />} />}
+        />
+        <Route
+          path="/product/dashBoard"
+          element={<AuthContextProvider element={<Products />} />}
+        />
         <Route
           path="/product/create"
           element={<AuthContextProvider element={<CreateProduct />} />}
         />
-
         <Route
           path="/product/update/:idProduct"
           element={<AuthContextProvider element={<CreateProduct />} />}
-        />
-
-        {/* Panel Admin */}
-        <Route
-          path="/admin/home"
-          element={<AuthContextProvider element={<HomeAdmin />} />}
         />
         <Route path="/product/categories" element={<Categories />} />
         <Route
@@ -66,7 +70,7 @@ function App() {
           element={<AuthContextProvider element={<Users />} />}
         />
 
-        {/* Panel Client */}
+    {/* Panel Client */}
         <Route 
           path="/user/dashboard"
           element={<HomeClient/>}
@@ -74,10 +78,6 @@ function App() {
         />
 
         
-        <Route
-          path="/product/dashBoard"
-          element={<AuthContextProvider element={<DashBoard />} />}
-        />
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/orders" element={<Orders />} />

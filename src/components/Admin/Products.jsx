@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
+import NavAdmin from "./NavAdmin";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -12,13 +13,13 @@ import {
   desBanendUser,
   banendUser,
 } from "../../redux/actions/products";
-import NavBar from "../NavBar/NavBar";
+// import NavAdmim from '../../../'
 import FilterCategory from "../Filters/FilterCategories";
 import Paginate from "../Paginate/Paginate";
 import { getLoginUser } from "../../redux/actions/auth";
 import SearchBar from "../SearchBar/SearchBar";
 
-const createProducts = () => {
+const ProductsAdmin = () => {
   const { search } = useLocation();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
@@ -55,37 +56,16 @@ const createProducts = () => {
 
   return (
     <div>
-      <div class="py-24 flex justify-evenly ">
-        <div class="flex-none h-14">
-          <img
-            class="w-44 top-4"
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-            alt=""
-          />
-        </div>
-        <div class="flex-initial w-96">
-          <div class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">
-            PRODUCTS
-          </div>
-        </div>
-        <div class=" flex flex-initial ">
-          <button class=" text-black font-bold py-3 px-10 mx-5 rounded-full ">
-            {userLogin?.user?.name}
-          </button>
-          <button class=" bg-violet-400 hover:bg-blue-700 text-white font-bold py-3  px-10 rounded-full">
-            <div>LOGOUT</div>
-          </button>
-        </div>
-      </div>
+      <NavAdmin/>
       <div class="flex justify-between py-5">
         <div>
           <Link to="/product/create">
-            <button class=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
+            <button className=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
               CREATE NEW
             </button>
           </Link>
         </div>
-        <button class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
+        <button className="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
           <SearchBar />
         </button>
       </div>
@@ -107,8 +87,9 @@ const createProducts = () => {
             {productsOfNow.map((e) => {
               return (
                 <div
-                  key={e.id}
-                  className=" bg-zinc-200 flex justify-evenly bg-white-100  mx-44 border-4  rounded-full my-11 p-5"
+                key={e.id}
+                className=" bg-zinc-200 flex justify-evenly bg-white-100  mx-44 border-4  rounded-full my-11 p-5"
+                
                 >
                   <div>
                     <img className="w-28" src={e.image} alt="" />
@@ -138,7 +119,7 @@ const createProducts = () => {
                   <div>
                     <button
                       key={e.id}
-                      class="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
+                      className="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
                     >
                       EDIT
                     </button>
@@ -163,4 +144,4 @@ const createProducts = () => {
   );
 };
 
-export default createProducts;
+export default ProductsAdmin;
