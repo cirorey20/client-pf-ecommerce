@@ -1,83 +1,103 @@
-import React, {Fragment, useEffect} from "react";
-import {useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import { detailProduct } from '../../redux/actions/products';
+import React, { Fragment, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { detailProduct } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
+import { Link } from "react-router-dom";
+//import Cart from "../Cart/Cart";
+import { addProductToCart } from "../../redux/actions/cart";
 
 const Details = () => {
+  //  const stateCart = useSelector((state) => state.cartReducer.cart);
+  const userLogin = useSelector((state) => state.authReducer.userLogin);
+  const dispatch = useDispatch();
+  const details = useSelector((state) => state.productReducer.productDetail);
+  let { id } = useParams();
+  let history = useNavigate();
+  useEffect(() => {
+    dispatch(detailProduct(id));
+  }, [dispatch, id]);
 
- const dispatch = useDispatch();
- const details = useSelector((state)=> state.productReducer.productDetail)
- let {id} = useParams()
- console.log(details)
- useEffect(()=>{
- dispatch(detailProduct(id));
- }, [dispatch, id])
+  function handlerAddToCartdos(product) {
+    let productDes = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+    };
+    dispatch(addProductToCart(productDes));
+    history("/cart");
+  }
 
-//lg:h-80
-    return (
-        <Fragment>
-           <NavBar />
-             <br />
-             <br />
-           <div className="flex justify-center italic">
-             <div className="relative w-96 border-x-2">
-                <h1 className="text-6xl">{details.name}</h1>
+  return (
+    <Fragment>
+      <NavBar />
+      <br />
+      <br />
+      <div className="flex justify-center italic">
+        <div className="relative w-30">
+          <h1 className="text-6xl">{details.name}</h1>
+        </div>
+      </div>
+      <br />
+
+      <div className=" ">
+        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
+            <div>
+              <img
+                className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
+                src={details.image}
+                alt=""
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="max-w-xl mb-6">
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                  ${details.price}
+                  <br className="hidden md:block" />
+                </h2>
+                <p className="text-base text-gray-700 md:text-lg">
+                  {details.description}
+                </p>
               </div>
-           </div>
-           <br />
+              <div className="grid gap-5 row-gap-8 sm:grid-cols-2">
+                <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
+                  <div className="h-full p-5 border border-l-0 rounded-r">
+                    <h6 className="mb-2 font-semibold leading-5">Rating:</h6>
+                    <p className="text-sm text-gray-900">★★★★★</p>
+                  </div>
+                </div>
 
-             <div className=" max-w-4xl h-100 mx-auto m-8 sm:px-6 bg-white border-x-4 border-gray ">
-                 <div className=" grid lg:grid-cols-3"> 
-                   <div className="mt-8 h-80 bg-white w-80 border-r-2">
-                         <div className=" mb-8 ml-4">
-                             <img
-                                src={details.image}
-                                alt="NOT_FOUND"
-                                className="lg:w-70 lg:h-80"
-                             />
-                         </div>
-                    </div>
-                    <div className="pl-8 pr-8 h-80 m-8 px-4 w-96 border-gray w-96">
-                           <div className="bg-white relative m-5 group h-69">
-                               <div>
-                                   <h3 className="mx-16 my-8 justify-self-end text-2xl text-gray-700 italic w-full ">
-                                       <a href="#">
-                                           <span aria-hidden="true"/>
-                                           { details.name}
-                                        </a>
-
-                                    </h3>
-                                </div>
-                                <div>
-                                    <h3 className="mx-16 justify-self-end text-2xl text-gray-700 italic w-full ">
-                                             <p>
-                                             <a href="#">
-                                             <span aria-hidden="true" className=" grid justify-items-end absolute inset-0 pr-1" />
-                                             {details.description }
-                                             </a>
-                                             </p>
-                                    </h3>
-                                </div>
-                                <div>
-                                <h3 className="mx-16 justify-self-end text-2xl text-gray-700 italic w-full">
-                                  <span aria-hidden="true" className="bg-white mx-16 justify-self-end text-2xl text-gray-700 italic"/>
-                                  <p> $ { details.price}</p>
-                                </h3>
-                            </div>
-                            <div className="pb-3 text-gray-700 italic w-full mb-2 ml-16">
-                                    <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 px-4 rounded">
-                                        Buy
-                                    </button>
-                            </div>
-                    </div>
+                <div className="bg-white ">
+                  <div className=" h-full p-5 ">
+                    <button
+                      className="m-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => handlerAddToCartdos(details)}
+                    >
+                      Add Cart
+                    </button>
+                    {userLogin?.user?.name ? (
+                      <Link to={`/product/carrito`}>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          Buy
+                        </button>
+                      </Link>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
               </div>
-         </div>
-       </div>
-     <Footer />
-   </Fragment>
- )
-}
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </Fragment>
+  );
+};
 
 export default Details;

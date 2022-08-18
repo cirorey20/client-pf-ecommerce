@@ -3,8 +3,8 @@ import "flowbite";
 
 export default function SliderShow() {
   return (
-    <div id="default-carousel" className="relative" data-carousel="static">
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div id="default-carousel" className="relative" data-carousel="slide">
+      <div className="relative h-96 overflow-hidden rounded-lg md:h-96">
         <div
           className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
           data-carousel-item=""
@@ -55,7 +55,7 @@ export default function SliderShow() {
           data-carousel-item=""
         >
           <img
-            src="https://tutempo.com.co/wp-content/uploads/2020/05/yamaha-banner.jpg"
+            src="https://www.elfinanciero.com.mx/resizer/i7n2Bb3hCFa-eFKae5JwMTZG8-E=/1440x810/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/IEUM66UOW5ET3LSESPXRUULXU4.jpg"
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
@@ -97,13 +97,6 @@ export default function SliderShow() {
           aria-current="false"
           aria-label="Slide 5"
           data-carousel-slide-to="4"
-        ></button>
-        <button
-          type="button"
-          className="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800"
-          aria-current="false"
-          aria-label="Slide 6"
-          data-carousel-slide-to="5"
         ></button>
       </div>
 

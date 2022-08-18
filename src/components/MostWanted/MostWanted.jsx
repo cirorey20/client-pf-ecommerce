@@ -1,18 +1,18 @@
 import React from "react";
 import "flowbite";
 
-export default function Tendencia() {
+export default function MostWanted() {
   return (
-    <div className="md:container md:mx-auto bg-[#e2e8f0]">
-      <div className="relative flex py-10 items-center border-gray-200 shadow-md">
+    <div className="md:container md:mx-auto bg-[#fbfbfccb]">
+      <div className="relative flex pt-10 items-center">
         <div className="flex-grow border-t border-gray-400"></div>
         <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
-          Tendencia
+          Más buscados
         </span>
         <div className="flex-grow border-t border-gray-400 "></div>
       </div>
-      <div className="md:container md:mx-auto mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
-        <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="md:container md:mx-auto mt-10 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
+        <div className=" shadow-gray-900 transform max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="rounded-t-lg"
@@ -20,7 +20,7 @@ export default function Tendencia() {
               alt="product image"
             />
           </a>
-          <div className="p-5 pb-4 mt-2">
+          <div className="p-5 pb-4">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Guitarra Acústica
@@ -83,8 +83,8 @@ export default function Tendencia() {
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                $599
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                $116.000
               </span>
               <a
                 href="#"
@@ -95,7 +95,7 @@ export default function Tendencia() {
             </div>
           </div>
         </div>
-        <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className=" shadow-gray-900 transform max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="rounded-t-lg"
@@ -106,7 +106,7 @@ export default function Tendencia() {
           <div className="p-5 pb-4 mt-2">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                Guitarras eléctrica
+                Guitarra eléctrica
                 <p>Carter-ST350</p>
               </h5>
             </a>
@@ -166,8 +166,8 @@ export default function Tendencia() {
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                $599
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                $90.862
               </span>
               <a
                 href="#"
@@ -178,7 +178,7 @@ export default function Tendencia() {
             </div>
           </div>
         </div>
-        <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className=" shadow-gray-900 transform max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="rounded-t-lg"
@@ -249,8 +249,8 @@ export default function Tendencia() {
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                $599
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                $103.783
               </span>
               <a
                 href="#"
@@ -261,7 +261,7 @@ export default function Tendencia() {
             </div>
           </div>
         </div>
-        <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className=" shadow-gray-900 transform max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="p-0 rounded-t-lg"
@@ -332,8 +332,8 @@ export default function Tendencia() {
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                $599
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                $205.525
               </span>
               <a
                 href="#"
