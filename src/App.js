@@ -19,8 +19,8 @@ import Categories from "./components/Admin/CategoriesAdmin";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
-import { Orders } from "./components/Orders/Orders";
-import { OrderDetail } from "./components/Orders/OrderDetail";
+import { Orders } from "./components/Admin/Orders/Orders";
+import { OrderDetail } from "./components/Admin/Orders/OrderDetail";
 function App() {
   const dispatch = useDispatch();
 
