@@ -5,18 +5,26 @@ import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, createCategory } from "../../redux/actions/categories";
-import { getProducts } from "../../redux/actions/products";
+import Filters from "../Filters/Filters";
+import {
+  getByFilters,
+  getProducts,
+  desBanendUser,
+  banendUser,
+} from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 import FilterCategory from "../Filters/FilterCategories";
 import Paginate from "../Paginate/Paginate";
 import { getLoginUser } from "../../redux/actions/auth";
+import SearchBar from "../SearchBar/SearchBar";
+
 const createProducts = () => {
   const { search } = useLocation();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
   const allProducts = useSelector((state) => state.productReducer.products);
   const userLogin = useSelector((state) => state.authReducer.userLogin);
-  console.log(userLogin);
+  // console.log(allProducts);
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts(search));
@@ -32,6 +40,18 @@ const createProducts = () => {
   const paged = (numPag) => {
     setCurrentPage(numPag);
   };
+
+  const handleBaned = (e) => {
+    dispatch(banendUser(e));
+    window.location.reload();
+  };
+  const handleDesbaned = (e) => {
+    dispatch(desBanendUser(e));
+    window.location.reload();
+  };
+  function handlerFilters(filter) {
+    dispatch(getByFilters(filter));
+  }
 
   return (
     <div>
@@ -59,13 +79,15 @@ const createProducts = () => {
       </div>
       <div class="flex justify-between py-5">
         <div>
-          <button class=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
-            CREATE NEW
-          </button>
+          <Link to="/product/create">
+            <button class=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
+              CREATE NEW
+            </button>
+          </Link>
         </div>
-        <buttom class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
-          SEARCH
-        </buttom>
+        <button class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
+          <SearchBar />
+        </button>
       </div>
       <div className="home_pagination">
         <Paginate
@@ -77,6 +99,7 @@ const createProducts = () => {
       </div>
       <div className="flex ">
         <div className="flex-none  m-2 w-40  border-4 bg-indigo-900 relative left-24 rounded-lg ">
+          <Filters handlerFilters={handlerFilters} />
           <FilterCategory allCategories={categories} />
         </div>
         <div className="flex-initial w-full">
@@ -120,10 +143,14 @@ const createProducts = () => {
                       EDIT
                     </button>
                     <button
-                      key={e.id}
-                      class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                      onClick={() =>
+                        e.enable === true
+                          ? handleBaned(e.id)
+                          : handleDesbaned(e.id)
+                      }
+                      className="h-8 mt-2  md:p-1  text-xs font-medium text-center text-white bg-red-700 hover:bg-red-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      DESTROY
+                      {e.enable === true ? "BANEND" : "DESBANED"}
                     </button>
                   </div>
                 </div>

@@ -48,15 +48,10 @@ function App() {
           path="/product/update/:idProduct"
           element={<AuthContextProvider element={<CreateProduct />} />}
         />
-<<<<<<< HEAD
-        <Route
-          path="/admin/home"
-=======
 
         {/* Panel Admin */}
-        <Route 
-          path="/admin/home" 
->>>>>>> 5ad89652eaa7552a7575c80a41ac3f8c0038a3d5
+        <Route
+          path="/admin/home"
           element={<AuthContextProvider element={<HomeAdmin />} />}
         />
         <Route path="/product/categories" element={<Categories />} />
@@ -65,7 +60,6 @@ function App() {
           element={<AuthContextProvider element={<Users />} />}
         />
 
-        
         <Route
           path="/product/dashBoard"
           element={<AuthContextProvider element={<DashBoard />} />}

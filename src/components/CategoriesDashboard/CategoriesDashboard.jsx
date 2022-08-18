@@ -80,9 +80,9 @@ const Categories = () => {
         </div>
       </div>
       <div class="flex justify-between py-16">
-        <buttom class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
+        <button class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
           SEARCH
-        </buttom>
+        </button>
       </div>
       <div>
         <div className="home_pagination">

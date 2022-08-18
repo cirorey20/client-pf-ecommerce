@@ -77,9 +77,9 @@ const Categories = () => {
               Crear
             </button>
           </div>
-          <buttom class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
+          <button class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
             SEARCH
-          </buttom>
+          </button>
         </div>
       </div>
       <div>
