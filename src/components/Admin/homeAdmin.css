@@ -1,0 +1,17 @@
+.containerBox {
+    /* background-color: rgb(27, 15, 197); */
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+    align-items: unset;
+    align-content: flex-start;
+  
+    width: 65vw; /* le doy un ancho adaptable*/
+    top: -4vh;
+    left: 18vw;
+    position: relative;
+    /* overflow: auto; */
+  }

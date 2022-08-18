@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import Paginate from "../Paginate/Paginate";
 import { getCategories } from "../../redux/actions/categories";
 import { getLoginUser } from "../../redux/actions/auth";
+import NavAdmin from "./NavAdmin";
 import { createCategory } from "../../redux/actions/categories";
+import "./categories.css";
 const Categories = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(
@@ -57,35 +59,31 @@ const Categories = () => {
 
   return (
     <div>
-      <div class="py-24 flex justify-evenly ">
-        <div class="flex-none h-14">
-          <img
-            class="w-44 top-4"
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg"
-            alt=""
-          />
-        </div>
-        <div class="flex-initial w-96">
-          <div class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">
-            CATEGORIES
+      <NavAdmin />
+      <div className="md:container mx-auto pt-10">
+        <div class="flex justify-around ">
+          <div class="absolute left-40">
+            <input
+              type="text"
+              placeholder="ingrese categoria"
+              name="name"
+              value={input.name}
+              onChange={(e) => handleChange(e)}
+            />
+            <button
+              onClick={(e) => handleSubmit(e)}
+              class="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
+            >
+              Crear
+            </button>
           </div>
+          <buttom class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
+            SEARCH
+          </buttom>
         </div>
-        <div class=" flex flex-initial ">
-          <button class=" text-black font-bold py-3 px-10 mx-5 rounded-full ">
-            {userLogin?.user?.name}
-          </button>
-          <button class=" bg-violet-400 hover:bg-blue-700 text-white font-bold py-3  px-10 rounded-full">
-            <div>LOGOUT</div>
-          </button>
-        </div>
-      </div>
-      <div class="flex justify-between py-16">
-        <buttom class="absolute right-40 bg-violet-400 hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
-          SEARCH
-        </buttom>
       </div>
       <div>
-        <div className="home_pagination">
+        <div className="home_pagination pt-12">
           <Paginate
             productsPage={productsPage}
             allProducts={allCategories.length}
@@ -94,25 +92,26 @@ const Categories = () => {
           />
         </div>
       </div>
-      <div class="my-24">
+
+      <div class="containerCategories mt-20">
         {productsOfNow.map((e) => {
           return (
             <div
               key={e.id}
-              class="bg-zinc-200 flex justify-evenly bg-white-100  mx-96 border-4  rounded-full my-6 p-5"
+              className="flex justify-between bg-zinc-200 rounded-full my-1 p-2"
             >
-              <div class="text-2xl">{e.name}</div>
+              <div class="mt-3 mr-32 ml-5 text-1xl">{e.name}</div>
 
-              <div>
+              <div className="flex flex-row mr-2 pb-2 ">
                 <button
                   key={e.id}
-                  class="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
+                  className="h-8  mt-2  md:mr-2  p-1 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   EDIT
                 </button>
                 <button
                   key={e.id}
-                  class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                  className="h-8  mt-2 ml-1 md:mr-2  p-1 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   DESTROY
                 </button>

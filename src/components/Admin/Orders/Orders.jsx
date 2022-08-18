@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getOrders } from "../../redux/actions/orders";
+import { getOrders } from "../../../redux/actions/orders";
+import NavAdmin from "../NavAdmin";
 
 const initialFilters = {
     state: 'BY STATE',
@@ -54,7 +55,7 @@ export function Orders() {
     return (
         <>
             <div>
-                <div class="py-10 flex justify-evenly bg-slate-500">
+                {/* <div class="py-10 flex justify-evenly bg-slate-500">
                     <div>
                         <Link to={`/home`}>
                             <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
@@ -69,7 +70,8 @@ export function Orders() {
                             </button>
                         </Link>
                     </div>
-                </div>
+                </div> */}
+                <NavAdmin/>
                 <div className="overflow-x-auto grid grid-cols-5">
 
 

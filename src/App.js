@@ -12,15 +12,15 @@ import DashBoard from "./components/DashBoard/DashBoard.jsx";
 import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
-import Users from "./components/Users/Users";
 import AuthContextProvider from "./config/authContext";
-import HomeAdmin from "./components/DashBoard/HomeAdmin";
+import HomeAdmin from "./components/Admin/HomeAdmin";
+import Users from "./components/Admin/Users";
+import Categories from "./components/Admin/CategoriesAdmin";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
-import { Orders } from "./components/Orders/Orders";
-import { OrderDetail } from "./components/Orders/OrderDetail";
-import Categories from "./components/CategoriesDashboard/CategoriesDashboard.jsx";
+import { Orders } from "./components/Admin/Orders/Orders";
+import { OrderDetail } from "./components/Admin/Orders/OrderDetail";
 function App() {
   const dispatch = useDispatch();
 
@@ -39,11 +39,6 @@ function App() {
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
-        <Route path="/product/categories" element={<Categories />} />
-        <Route
-          path="/users/dashboard"
-          element={<AuthContextProvider element={<Users />} />}
-        />
         <Route
           path="/product/create"
           element={<AuthContextProvider element={<CreateProduct />} />}
@@ -53,10 +48,24 @@ function App() {
           path="/product/update/:idProduct"
           element={<AuthContextProvider element={<CreateProduct />} />}
         />
+<<<<<<< HEAD
         <Route
           path="/admin/home"
+=======
+
+        {/* Panel Admin */}
+        <Route 
+          path="/admin/home" 
+>>>>>>> 5ad89652eaa7552a7575c80a41ac3f8c0038a3d5
           element={<AuthContextProvider element={<HomeAdmin />} />}
         />
+        <Route path="/product/categories" element={<Categories />} />
+        <Route
+          path="/users/dashboard"
+          element={<AuthContextProvider element={<Users />} />}
+        />
+
+        
         <Route
           path="/product/dashBoard"
           element={<AuthContextProvider element={<DashBoard />} />}
