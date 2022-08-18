@@ -13,9 +13,15 @@ import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import AuthContextProvider from "./config/authContext";
+
+//ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
 import Users from "./components/Admin/Users";
 import Categories from "./components/Admin/CategoriesAdmin";
+
+//CLIENT PANEL
+import HomeClient from "./components/ClientPanel/HomeClient";
+
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
@@ -58,6 +64,13 @@ function App() {
         <Route
           path="/users/dashboard"
           element={<AuthContextProvider element={<Users />} />}
+        />
+
+        {/* Panel Client */}
+        <Route 
+          path="/user/dashboard"
+          element={<HomeClient/>}
+
         />
 
         
