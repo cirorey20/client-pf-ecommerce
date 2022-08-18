@@ -12,10 +12,10 @@ import {
 import NavBar from "../NavBar/NavBar";
 
 
-
-function validate(form){
+function validate(form, categ){
+  
   let err = {};
-  //console.log(form)
+  console.log(categ)
 
   if(!form.name.length){
     err.name = "⚠ Name is required"
@@ -23,20 +23,22 @@ function validate(form){
    else if(form.price <= 0){
       err.price = "⚠ Price can not be 0"
     }
-    else if(form.stock <= 0){
+   else if(form.stock <= 0){
       err.stock = "⚠ Stock can not be 0"
     }
-    else if(!form.categories){
+   else if(!categ.categories[0].checked === true){
       err.categories = "⚠ Select only the existing Categories"
     }
-    else if(!form.image.length){
+   else if(!form.image.length){
       err.image = "⚠ Image is required"
     }
-    else if(!form.description.length){
+   else if(!form.description.length){
       err.description = "⚠ Description is required"
     } 
     return err;
 };
+
+
 
 const initialFormState = {
   name: "",
@@ -57,7 +59,8 @@ export default function CreateProduct() {
   );
   const [form, setForm] = useState(initialFormState);
   const[err, setErr] = useState({});
-  const[categ, setCateg] = useState("")
+  const[categ, setCateg] = useState([])
+  console.log(categ)
   const { idProduct } = useParams();
 
   useEffect(() => {
@@ -104,25 +107,25 @@ export default function CreateProduct() {
     }
   }, [productDetail]);
 
-
   function onChangeValue(e) {
+  
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
-      e.target.name === "price" || e.target.name === "stock"
+      e.target.name === "price" && e.target.name === "stock"
         ? setForm({ ...form, [e.target.name]: Number(e.target.value) })
         : setForm({ ...form, [e.target.name]: e.target.value });
     } else {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
-          category.checked = e.target.checked;
-          console.log(newCategories)
+        category.checked = e.target.checked;
         return category;
       });
       setForm({ ...form, categories: [...newCategories] });
-      setCateg({...categ, categories: [...newCategories] })
+      setCateg({ ...categ, categories: [...newCategories] })
+      //console.log(newCategories)
     }
     setErr(validate({...form, [e.target.name]: e.target.value
-    }))
+    }, {...categ,  [e.target.checked]: e.target.value}))
   }
 
   function onSubmit(e) {
