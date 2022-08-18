@@ -10,6 +10,7 @@ import {
   updateProduct,
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+import UploadImage from "../UploadImage/UploadImage";
 
 const initialFormState = {
   name: "",
@@ -233,7 +234,8 @@ export default function CreateProduct() {
                 >
                   Image
                 </label>
-                <input
+                <UploadImage/>
+               {/*  <input
                   value={form.image}
                   name="image"
                   onChange={onChangeValue}
@@ -241,7 +243,7 @@ export default function CreateProduct() {
                   id="image"
                   type="url"
                   placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
-                />
+                /> */}
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p>

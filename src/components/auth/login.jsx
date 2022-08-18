@@ -65,14 +65,14 @@ const Login = () => {
       </div>
       <div className=" px-72 py-10 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-          <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+          <div className="md:w-8/12 ml-20 lg:w-6/12 mb-12 md:mb-0">
             <img
-              src="https://freedesignfile.com/upload/2014/10/Hand-drawn-colored-musical-instruments-vector-03.jpg"
+              src="https://res.cloudinary.com/ariakisbg/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1659970740/samples/people/jazz.jpg"
               className="w-max"
               alt="Phone image"
             />
           </div>
-          <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
+          <div className="md:w-8/12 mt-10 lg:w-5/12 lg:ml-20">
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="mb-6">
                 <input
