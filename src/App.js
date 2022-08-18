@@ -56,8 +56,8 @@ function App() {
         />
 
         {/* Panel Admin */}
-        <Route 
-          path="/admin/home" 
+        <Route
+          path="/admin/home"
           element={<AuthContextProvider element={<HomeAdmin />} />}
         />
         <Route path="/product/categories" element={<Categories />} />

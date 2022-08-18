@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
 import useGsi from "./useGsi";
@@ -10,6 +10,8 @@ import NavBar from "../NavBar/NavBar";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.authReducer.userLogin);
+  console.log(userLogin);
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -32,7 +34,6 @@ const Login = () => {
       document.getElementById("buttonDiv"),
       {
         theme: "outline",
-       
       }
     );
     // window.google.accounts.id.prompt();
@@ -42,6 +43,7 @@ const Login = () => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  //console.log(userLogin.user);
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
@@ -51,10 +53,18 @@ const Login = () => {
         email: "",
         password: "",
       });
+
       setTimeout(()=>{
         console.log("hola")
         navigate("/admin/home");
       },2000)
+
+      // if (userLogin?.user?.rol === "admin") {
+      //   navigate("/admin/home");
+      // } else {
+      //navigate("/home");
+      // }
+
       //window.location.reload();
     } else {
       alert("te faltan espacios por llenar");
@@ -76,7 +86,7 @@ const Login = () => {
             />
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form>
               <div className="mb-6">
                 <input
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -102,6 +112,7 @@ const Login = () => {
                 />
               </div>
               <button
+                onClick={(e) => handleSubmit(e)}
                 className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                 type="submit"
               >

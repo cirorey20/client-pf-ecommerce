@@ -6,7 +6,8 @@ import Paginate from "../Paginate/Paginate";
 import { getCategories } from "../../redux/actions/categories";
 import { getLoginUser } from "../../redux/actions/auth";
 import NavAdmin from "./NavAdmin";
-import './categories.css'
+import { createCategory } from "../../redux/actions/categories";
+import "./categories.css";
 const Categories = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(
@@ -35,17 +36,50 @@ const Categories = () => {
     setCurrentPage(numPag);
   };
 
+  const [input, setInput] = useState({
+    name: "",
+  });
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (input.name) {
+      dispatch(createCategory(input));
+      setInput("");
+      alert("Se creado con exito");
+      window.location.reload();
+    } else {
+      alert("te faltan espacios por llenar");
+    }
+  };
+
   return (
     <div>
       <NavAdmin />
       <div className="md:container mx-auto pt-10">
         <div class="flex justify-around ">
-          <button class="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full">
-            CREATE NEW
-          </button>
-          <buttom class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
+          <div class="absolute left-40">
+            <input
+              type="text"
+              placeholder="ingrese categoria"
+              name="name"
+              value={input.name}
+              onChange={(e) => handleChange(e)}
+            />
+            <button
+              onClick={(e) => handleSubmit(e)}
+              class="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
+            >
+              Crear
+            </button>
+          </div>
+          <button class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
             SEARCH
-          </buttom>
+          </button>
         </div>
       </div>
       <div>
