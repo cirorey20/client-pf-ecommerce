@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getOrders } from "../../../redux/actions/orders";
 import NavAdmin from "../NavAdmin";
+import Paginate from "../../Paginate/Paginate";
 
 const initialFilters = {
     state: 'BY STATE',
@@ -15,11 +16,25 @@ export function Orders() {
     const navigate = useNavigate();
     const [filters, setFilters] = useState(initialFilters);
     const { search } = useLocation();
+    const allOrders = useSelector(
+        (state) => state.ordersReducer.orders
+      );
 
+      //paginado
+    const [currentPage, setCurrentPage] = useState(1);
+    const [ordersPage] = useState(4);
+    const lastPage = currentPage * ordersPage;
+    const firstPage = lastPage - ordersPage;
+    const ordersOfNow = allOrders.slice(firstPage, lastPage);
+
+    const paged = (numPag) => {
+        setCurrentPage(numPag);
+    };
 
     useEffect(() => {
         const urlSearchParams = new URLSearchParams(search);
         const state = urlSearchParams.get("state");
+        console.log("orders",allOrders)
         if (state) setFilters(state);
     }, []);
 
@@ -55,22 +70,6 @@ export function Orders() {
     return (
         <>
             <div>
-                {/* <div class="py-10 flex justify-evenly bg-slate-500">
-                    <div>
-                        <Link to={`/home`}>
-                            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                Home
-                            </button>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to={`/product/dashBoard`}>
-                            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                DashBoard
-                            </button>
-                        </Link>
-                    </div>
-                </div> */}
                 <NavAdmin/>
                 <div className="overflow-x-auto grid grid-cols-5">
 
@@ -79,27 +78,14 @@ export function Orders() {
                         <input type="search" placeholder="Search here ..." className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent" />
                     </div>
                     <div className="col-start-2 col-end-5 row-start-1 row-end-2 py-4 place-self-center">
-
-                        <nav>
-                            <ul className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-300 rounded-xl shadow-lg">
-
-                                <li className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                                >
-                                    <button className="">Prev</button>
-                                </li>
-
-                                <li className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md bg-white text-black hover:bg-gray-500 hover:text-white">
-                                   
-                                    <button className="">1</button>
-                                </li>
-                                
-                                    <li className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                                        >
-                                        <button className="">Next</button>
-                                    </li>
-                                
-                            </ul>
-                        </nav>
+                        <div className="home_pagination">
+                            <Paginate
+                            ordersPage={ordersPage}
+                            allOrders={allOrders.length}
+                            paged={paged}
+                            currentPage={currentPage}
+                            />
+                        </div>
 
                     </div>
 
@@ -152,7 +138,7 @@ export function Orders() {
                         </thead>
                         <tbody>
                             {
-                                orders.map(o => (
+                                ordersOfNow.map(o => (
                                     <tr key={o.id} className="bg-[#f1eff0]">
                                         <td className="text-black rounded-l-full pl-6 py-6">{o.id}</td>
 
