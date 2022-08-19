@@ -14,8 +14,8 @@ import UploadImage from "../UploadImage/UploadImage";
 
 const initialFormState = {
   name: "",
-  price: 0,
-  stock: 0,
+  price: "",
+  stock: "",
   categories: [],
   image: "",
   description: "",
@@ -26,11 +26,15 @@ export default function CreateProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
-  const productDetail = useSelector(
-    (state) => state.productReducer.productDetail
-  );
+  const productDetail = useSelector((state) => state.productReducer.productDetail);
+  //console.log(productDetail)
   const [form, setForm] = useState(initialFormState);
   const { idProduct } = useParams();
+
+  function getImage(url){
+    console.log(url)
+    return url
+  }
 
   useEffect(() => {
     dispatch(getCategories());
@@ -57,11 +61,11 @@ export default function CreateProduct() {
       !Array.isArray(productDetail) &&
       typeof productDetail === "object" &&
       productDetail !== null
-    ) {
-      const categoriesDetail = productDetail["ProductCategories"].map(
-        (v) => v["Category"].name
-      );
-      const newState = { ...form };
+      ) {
+        const categoriesDetail = productDetail["ProductCategories"].map(
+          (v) => v["Category"].name
+          );
+          const newState = { ...form };
       newState.categories = newState.categories.map((category) => {
         if (categoriesDetail.includes(category.name)) category.checked = true;
         return category;
@@ -75,8 +79,9 @@ export default function CreateProduct() {
       setForm(newState);
     }
   }, [productDetail]);
-
+  
   function onChangeValue(e) {
+    console.log(form)
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
       e.target.name === "price" || e.target.name === "stock"
@@ -88,7 +93,7 @@ export default function CreateProduct() {
           category.checked = e.target.checked;
         return category;
       });
-      setForm({ ...form, categories: [...newCategories] });
+      setForm({ ...form, categories: [...newCategories], image: [getImage()] });
     }
   }
 
@@ -142,7 +147,7 @@ export default function CreateProduct() {
                   className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="name"
                   type="text"
-                  placeholder="Piano"
+                  //placeholder="Piano"
                 />
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
@@ -164,7 +169,7 @@ export default function CreateProduct() {
                   id="price"
                   min="0"
                   type="number"
-                  placeholder="90210"
+                  //placeholder="90210"
                 />
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
@@ -186,7 +191,7 @@ export default function CreateProduct() {
                   id="stock"
                   min="0"
                   type="number"
-                  placeholder="25"
+                  //placeholder="25"
                 />
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
@@ -234,8 +239,8 @@ export default function CreateProduct() {
                 >
                   Image
                 </label>
-                <UploadImage/>
-               {/*  <input
+                <UploadImage getImage={getImage}/>
+                <input
                   value={form.image}
                   name="image"
                   onChange={onChangeValue}
@@ -243,7 +248,7 @@ export default function CreateProduct() {
                   id="image"
                   type="url"
                   placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
-                /> */}
+                /> *
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
                 </p>

@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 
 
-const UploadImage = (props) => {
+const UploadImage = ({getImage}) => {
 
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
+
+    function onHandleGetImage(url){
+        getImage(url)
+    }
 
      const loadingImage = async (e) => {
         const files = e.target.files;
@@ -22,9 +26,11 @@ const UploadImage = (props) => {
             const file = await res.json();
             console.log(file)
             setImage(file.secure_url)
+            onHandleGetImage(file.secure_url)
             console.log(file.secure_url)
         setLoading(false)
      }
+
 
     return ( <div>
         
@@ -32,6 +38,7 @@ const UploadImage = (props) => {
              Upload your image
              </h1>
              <div>
+        
                 <input 
                 type="file" 
                 name="file" 
@@ -39,7 +46,8 @@ const UploadImage = (props) => {
                 placeholder="Upload your image"
                 onChange={loadingImage}
                 />
-                {loading ? (<h3>Cargando Imagenes...</h3>) : (<img src={image} style={{width: "300px"}}/>)}
+            
+                {loading ? (<h3>Loading images...</h3>) : (<img src={image} style={{width: "300px"}}/>)}
              </div>
         
     </div> );
