@@ -5,15 +5,16 @@ import { Link, useLocation } from "react-router-dom";
 import { getProducts, getByFilters } from "../../redux/actions/products";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
+import { addFavorites } from "../../redux/actions/wishlist";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
 import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
-import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
+import { BsHeartFill } from "react-icons/bs";
 import "./Home.css";
 
 //comment
@@ -27,6 +28,8 @@ const Home = () => {
     (state) => state.categoryReducer.categories
   );
   const stateCart = useSelector((state) => state.cartReducer.cart);
+  const favorites = useSelector((state) => state.wishlistReducer);
+  const { user } = useSelector((state) => state.authReducer.userLogin);
 
   useEffect(() => {
     dispatch(createAdmin());
@@ -109,6 +112,11 @@ const Home = () => {
     dispatch(getByFilters(filter));
   }
 
+  const [isFavorite, setIsFavorite] = useState(null);
+  const handlerAddToFav = (e) => {
+    dispatch(addFavorites(e));
+  };
+
   useEffect(() => {
     dispatch(getProducts(search));
     // console.log(allProducts);
@@ -182,6 +190,19 @@ const Home = () => {
                               </p>
                             </div>
                           </div>
+                          {user &&
+                            Object.keys(user || {})?.length > 0 &&
+                            (favorites.some(
+                              (element) => element.id === e.id
+                            ) ? (
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListTrue" />
+                              </div>
+                            ) : (
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListFalse" />
+                              </div>
+                            ))}
                           <button
                             className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             onClick={() => handlerAddToCart(e)}
