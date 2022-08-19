@@ -6,24 +6,25 @@ import { useNavigate, Link } from "react-router-dom";
 import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
 import useGsi from "./useGsi";
 import NavBar from "../NavBar/NavBar";
+import {redirectionByRol} from "./redirection";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.authReducer.userLogin);
-  console.log(userLogin);
+  // console.log(userLogin);
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
 
   const handleCredentialResponse = (response) => {
-    console.log("Encoded JWT ID token: " + response.credential);
-    navigate("/home");
+    // console.log("Encoded JWT ID token: " + response.credential);
     dispatch(loginUserGoogle({ response }));
   };
 
   useGsi("https://accounts.google.com/gsi/client", () => {
+    redirectionByRol(navigate)
     window.google.accounts.id.initialize({
       client_id:
         "677723278728-s1jkmrbpvjhqf98nolkmji6ir1256ql9.apps.googleusercontent.com",
@@ -53,19 +54,7 @@ const Login = () => {
         email: "",
         password: "",
       });
-
-      setTimeout(()=>{
-        console.log("hola")
-        navigate("/admin/home");
-      },2000)
-
-      // if (userLogin?.user?.rol === "admin") {
-      //   navigate("/admin/home");
-      // } else {
-      //navigate("/home");
-      // }
-
-      //window.location.reload();
+      redirectionByRol(navigate)
     } else {
       alert("te faltan espacios por llenar");
     }
