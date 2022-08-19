@@ -6,7 +6,7 @@ const initialState = localStorage.favorites?.length > 0 ? favorites : [];
 export function wishlistReducer(state = initialState, action) {
   const { type, payload } = action;
   const isFavorite = state.some((fav) => fav.id === payload?.id);
-  console.log(isFavorite);
+
   if (type === TOGGLE_WISHLIST) {
     if (isFavorite) {
       const newFavorite = state.filter((fav) => fav.id !== payload.id);
