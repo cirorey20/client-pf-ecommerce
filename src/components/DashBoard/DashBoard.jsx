@@ -14,7 +14,7 @@ const createProducts = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
   const allProducts = useSelector((state) => state.productReducer.products);
-  console.log(allProducts);
+  //console.log(allProducts);
 
   const [input, setInput] = useState({
     name: "",
