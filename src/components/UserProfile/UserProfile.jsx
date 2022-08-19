@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import ProfileFav from "./ProfileFav";
 
 export default function UserInfo() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
@@ -139,6 +140,7 @@ export default function UserInfo() {
                 >
                   Save
                 </button>
+                <ProfileFav />
               </div>
             </div>
           </form>
