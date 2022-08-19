@@ -18,6 +18,7 @@ function validate(form, categ){
   let err = {};
 
   const allChecked = categ.categories.filter(e => e.checked === true)
+  //console.log(allChecked)
   
 
   if(!form.name.length){
