@@ -34,7 +34,7 @@ export function Orders() {
     useEffect(() => {
         const urlSearchParams = new URLSearchParams(search);
         const state = urlSearchParams.get("state");
-        console.log("orders",allOrders)
+        console.log("orders",allOrders);
         if (state) setFilters(state);
     }, []);
 

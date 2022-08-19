@@ -34,7 +34,7 @@ const ProductsAdmin = () => {
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPage] = useState(2);
+  const [productsPage] = useState(4);
   const lastPage = currentPage * productsPage;
   const firstPage = lastPage - productsPage;
   const productsOfNow = allProducts.slice(firstPage, lastPage);
