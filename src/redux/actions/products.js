@@ -44,18 +44,18 @@ export function getByFilters(searchFilters) {
 }
 
 export function detailProduct(id) {
-    return async function (dispatch) {
-        try {
-            const detailById = await axios.get(`${URL_API}products/${id}`);
-            console.log(detailById.data)
-            return dispatch({
-                type: "DETAILS_PRODUCT",
-                payload: detailById.data,
-            });
-        } catch (error) {
-            console.log(error)
-        }
+  return async function (dispatch) {
+    try {
+      const detailById = await axios.get(`${URL_API}products/${id}`);
+      console.log(detailById.data);
+      return dispatch({
+        type: "DETAILS_PRODUCT",
+        payload: detailById.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
+  };
 }
 
 export function createProduct(body) {
@@ -63,16 +63,12 @@ export function createProduct(body) {
     try {
       const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
-      await axios.post(
-        `http://localhost:3001/api/v1/products/createProducts`,
-        body,
-        {
-          "content-type": "application/json",
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      await axios.post(`${URL_API}products/createProducts`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -131,6 +127,37 @@ export function updateProduct(body) {
     try {
       const token = document.cookie.split("token=")[1];
       await axios.put(`${URL_API}products/updateProduct`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function banendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}products/banend/${id}`, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function desBanendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}products/desbaned/${id}`, {
         "content-type": "application/json",
         headers: {
           authorization: token,
