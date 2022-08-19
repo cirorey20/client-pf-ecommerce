@@ -2,17 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import Chatbot from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store/index";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import {loadStripe} from "@stripe/stripe-js"
-import {Elements} from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import ActionProvider from "./ActionProvider";
+import MessageParser from "./MessageParser";
+import config from "./config";
 
-const stripePromise = loadStripe("pk_test_51LW3beKXLCV01PVd8wRP3zdjEw5oAKBoKZY5O54MeqpeMetilr9Obkj5yIFwuQDFhjRNZ1B4fX6sA3i0C6gzUMML00XmQiEtkG")
-
-
+const stripePromise = loadStripe(
+  "pk_test_51LW3beKXLCV01PVd8wRP3zdjEw5oAKBoKZY5O54MeqpeMetilr9Obkj5yIFwuQDFhjRNZ1B4fX6sA3i0C6gzUMML00XmQiEtkG"
+);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,6 +29,11 @@ ReactDOM.render(
           redirectUri={window.location.origin}
         >
           <Elements stripe={stripePromise}>
+            {/* <Chatbot
+              config={config}
+              messageParser={MessageParser}
+              actionProvider={ActionProvider}
+            /> */}
             <App />
           </Elements>
         </Auth0Provider>

@@ -1,0 +1,12 @@
+.Bot-Music-Avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: rgb(83, 83, 63);
+  color: white;
+  margin-right: 15px;
+}

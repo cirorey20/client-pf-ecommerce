@@ -3,6 +3,7 @@ import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getProducts, getByFilters } from "../../redux/actions/products";
+import { addFavorites } from "../../redux/actions/wishlist";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
@@ -15,6 +16,11 @@ import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
 import "./Home.css";
+import { FaBeer } from "react-icons/fa";
+import corazonBlanco from "../Favoritos/corazon.png";
+import corazonRojo from "../Favoritos/favorito.png";
+import { BsHeartFill } from "react-icons/bs";
+import { FaCartPlus } from "react-icons/fa";
 
 //comment
 const Home = () => {
@@ -27,6 +33,8 @@ const Home = () => {
     (state) => state.categoryReducer.categories
   );
   const stateCart = useSelector((state) => state.cartReducer.cart);
+  const favorites = useSelector((state) => state.wishlistReducer);
+  const { user } = useSelector((state) => state.authReducer.userLogin);
 
   useEffect(() => {
     dispatch(createAdmin());
@@ -108,18 +116,14 @@ const Home = () => {
   function handlerFilters(filter) {
     dispatch(getByFilters(filter));
   }
-
-  useEffect(() => {
-    dispatch(getProducts(search));
-    // console.log(allProducts);
-    dispatch(getCategories());
-    paged(1);
-  }, [dispatch, search]);
+  const [isFavorite, setIsFavorite] = useState(null);
+  const handlerAddToFav = (e) => {
+    dispatch(addFavorites(e));
+  };
 
   return (
     <div className="home_container">
       <NavBar />
-
       <br />
       <div className="flex mb-6 ">
         <div className="filters_container">
@@ -182,6 +186,21 @@ const Home = () => {
                               </p>
                             </div>
                           </div>
+                          {user &&
+                            Object.keys(user || {})?.length > 0 &&
+                            (favorites.some(
+                              (element) => element.id === e.id
+                            ) ? (
+                              //Corazon rojo
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListTrue" />
+                              </div>
+                            ) : (
+                              //Corazon blanco
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListFalse" />
+                              </div>
+                            ))}
                           <button
                             className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             onClick={() => handlerAddToCart(e)}
@@ -198,7 +217,6 @@ const Home = () => {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

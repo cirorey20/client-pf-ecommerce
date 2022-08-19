@@ -2,6 +2,21 @@
   background-color: #f4f5f6;
 }
 
+.Container-heart {
+  display: flex;
+  background: #da2b0c;
+}
+
+.wishListFalse {
+  color: black;
+  font-size: 22px;
+}
+
+.wishListTrue {
+  color: #da2b0c;
+  font-size: 22px;
+}
+
 .filters_container {
   width: 20%;
   margin-left: 1%;
