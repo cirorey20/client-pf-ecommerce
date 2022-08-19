@@ -4,8 +4,9 @@ import { Popover } from "@headlessui/react";
 export default function Footer() {
   return (
     <footer>
-      <div className="container pt-9 mx-auto">
-        <div className="flex justify-center mb-9 ">
+      <div className=" pt-10 pb-12 mx-5 bg-gray-200 ">
+      <div className="flex justify-center pt-9 mx-auto">
+        <div className="flex flex-nowrap mb-2 ">
           <a href="#!" className="mr-9 text-gray-800">
             <svg
               aria-hidden="true"
@@ -117,6 +118,7 @@ export default function Footer() {
           {" "}
           UNIVERSAL MUSIC APP
         </a>
+      </div>
       </div>
     </footer>
   );
