@@ -17,15 +17,17 @@ const Details = () => {
   const details = useSelector((state) => state.productReducer.productDetail);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
   const [loading, setLoading] = useState(false);
+  
+  //Product personal comments
+  var reviewsFilter = reviews.filter((e)=>e.UserId===details.id)
 
-
+  //Calc stars of rating
   var sumRating = reviews.reduce((sum,e)=>e.rating+sum,0) 
   var indice = reviews.filter(e=>e.rating!==null)
   var valor = indice.length
   var puntaje = sumRating/valor
   var valor = Math.round(puntaje)
 
-  var estado = false
 
   let { id } = useParams();
   let history = useNavigate();
@@ -132,10 +134,10 @@ const Details = () => {
               </div>
               
           
-              {reviews.length <= 0 ? (
-                  <div>NO HAY COMENTARIOS...</div>
+              {reviewsFilter.length <= 0 ? (
+                  <div className="mt-10">NO COMMENTS YET FOR THIS PRODUCT...</div>
                 ) : (
-                  reviews.map((e,i) => (
+                  reviewsFilter.map((e,i) => (
                   <div key={i} className="  mb-4 ml-10 mr-10 grid grid-cols-4 mt-3 h-22">
                   <div className="w-30 rounded shadow-lg">{e.date}:</div><div className="rounded shadow-lg">{e.title}:</div><div className="w-80 rounded shadow-lg">{e.description}</div><div className="ml-12 w-18  rounded shadow-lg">{e.rating}</div></div>
                 )))

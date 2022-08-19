@@ -47,7 +47,7 @@ export function detailProduct(id) {
   return async function (dispatch) {
     try {
       const detailById = await axios.get(`${URL_API}products/${id}`);
-      console.log(detailById.data);
+      //console.log(detailById.data);
       return dispatch({
         type: "DETAILS_PRODUCT",
         payload: detailById.data,
@@ -81,7 +81,7 @@ export function getNameProducts(searchName) {
       const product = await axios.get(
         `${URL_API}products?searchName=${searchName}`
       );
-      console.log(product);
+      // console.log(product);
       return dispatch({
         type: "GET_NAME_PRODUCTS",
         payload: product.data,
