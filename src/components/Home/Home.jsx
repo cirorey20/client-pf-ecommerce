@@ -11,8 +11,6 @@ import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
 import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
-import Cart from "../Cart/Cart";
-import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
 import "./Home.css";
 
@@ -26,13 +24,11 @@ const Home = () => {
   const allCategories = useSelector(
     (state) => state.categoryReducer.categories
   );
-  const stateCart = useSelector((state) => state.cartReducer.cart);
 
   useEffect(() => {
     dispatch(createAdmin());
   });
-  // const obtener = localStorage.getItem("product");
-  // console.log(obtener);
+  
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -51,15 +47,6 @@ const Home = () => {
     setCurrentPage(numPag);
   };
 
-  //cart
-  const [productsCart, setProductsCart] = useState([]);
-  const [countCart, setCountCart] = useState(0);
-  const [totalCart, setTotalCart] = useState(0);
-
-  //alert
-  const [alert, setAlert] = useState(false);
-  const [textAlert, setTextAlert] = useState(null);
-
   function handlerAddToCart(product) {
     let productDes = {
       id: product.id,
@@ -70,18 +57,17 @@ const Home = () => {
     };
 
     const obtener = JSON.parse(localStorage.getItem("product")) || [];
-    // console.log(obtener);
 
     const localStores = localStorage.setItem(
       "product",
       JSON.stringify([...obtener, productDes])
     );
-    // console.log(localStores);
+    
     const Toast = Swal.mixin({
       toast: true,
-      position: "top-end",
+      position: "bottom",
       showConfirmButton: false,
-      timer: 3000,
+      timer: 2000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -91,18 +77,12 @@ const Home = () => {
 
     Toast.fire({
       icon: "success",
-      title: "The product was added to the cart!",
+      title: productDes.name,
+      text: `Added to Cart`
     });
-
-    // console.log("Product", productDes);
+    
     dispatch(addProductToCart(productDes));
-    setTextAlert(productDes.name);
-    setAlert(true);
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
-
-    // console.log(stateCart);
+    
   }
 
   function handlerFilters(filter) {
@@ -131,8 +111,6 @@ const Home = () => {
           <FilterCategories allCategories={allCategories} />
         </div>
         <div className="flex-initial w-full md:container md:mx-auto bg-[#e2e8f0] rounded-xl shadow-lg">
-          <Alert alert={alert} textAlert={textAlert} />
-
           {loading ? (
             <Loader />
           ) : (
