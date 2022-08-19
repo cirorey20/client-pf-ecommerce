@@ -69,8 +69,8 @@ const Users = () => {
     <div>
       <NavAdmin />
       <div className="md:container mx-auto pt-10">
-        <div class="flex justify-around ">
-          <button class="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-1 px-10 rounded-full">
+        <div className="flex justify-around ">
+          <button className="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-1 px-10 rounded-full">
             ALFHABATIC
           </button>
           <div>

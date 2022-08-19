@@ -53,6 +53,12 @@ const Login = () => {
         email: "",
         password: "",
       });
+
+      setTimeout(()=>{
+        console.log("hola")
+        navigate("/admin/home");
+      },2000)
+
       // if (userLogin?.user?.rol === "admin") {
       //   navigate("/admin/home");
       // } else {

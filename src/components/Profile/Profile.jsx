@@ -32,6 +32,9 @@ export default function Profile() {
         >
           <ul>
             <li>
+              <Link to={"/user/dashboard"}>Dashboard</Link>
+            </li>
+            <li>
               <Link to={"/logged/userInfo"}>My Profile</Link>
             </li>
             <li>

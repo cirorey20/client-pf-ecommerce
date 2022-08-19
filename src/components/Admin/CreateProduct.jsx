@@ -6,7 +6,7 @@ import { getCategories } from "../../redux/actions/categories";
 import {
   createProduct,
   detailProduct,
-  getProducts,
+  // getProducts,
   updateProduct,
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
