@@ -10,6 +10,7 @@ import {
   updateProduct,
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+import UpLoadImage from "../UpLoadImage/UpLoadImage";
 
 
 function validate(form, categ){
@@ -56,9 +57,7 @@ export default function CreateProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
-  const productDetail = useSelector(
-    (state) => state.productReducer.productDetail
-  );
+  const productDetail = useSelector((state) => state.productReducer.productDetail);
   const [form, setForm] = useState({...initialFormState, categories:[...categories]});
   const[err, setErr] = useState({});
   const[categ, setCateg] = useState("")
@@ -81,6 +80,11 @@ export default function CreateProduct() {
     setCateg(newState)
   }, [categories]);
 
+  function getImage(url){
+    const images = url
+    console.log(images)
+    return images
+  }
 
   useEffect(() => {
     if (
@@ -103,6 +107,7 @@ export default function CreateProduct() {
       newState.image = productDetail.image;
       newState.enable = productDetail.enable;
       setForm(newState);
+      console.log(newState.image)
     }
   }, [productDetail]);
 
@@ -119,7 +124,7 @@ export default function CreateProduct() {
         category.checked = e.target.checked;
         return category;
       });
-      setForm({ ...form, categories: [...newCategories] });
+      setForm({ ...form, categories: [...newCategories]});
     }
     setErr(validate({...form, [e.target.name]: e.target.value
     }, {...categ,  [e.target.checked]: e.target.value}))
@@ -270,15 +275,16 @@ export default function CreateProduct() {
                 >
                   Image
                 </label>
-                <input
+                <UpLoadImage getImage={getImage}/>
+                {/* <input
                   value={form.image}
                   name="image"
                   onChange={onChangeValue}
                   className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="image"
                   type="url"
-                  placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
-                />
+                  //placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
+                /> */}
                 {err.image && <p className="text-red-500 text-xs italic">{err.image}</p>}
                 {/* <p className="text-red-500 text-xs italic">
                   Please fill out this field.
