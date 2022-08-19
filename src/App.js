@@ -16,6 +16,7 @@ import AuthContextProvider from "./config/authContext";
 import HomeAdmin from "./components/Admin/HomeAdmin";
 import Users from "./components/Admin/Users";
 import Categories from "./components/Admin/CategoriesAdmin";
+import MyShopping from "./components/MyShopping/MyShopping.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/product/:id" element={<Details />} />
         <Route path="/product/carrito" element={<CheckoutForm />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
+        <Route path="/user/myshopping" element={<MyShopping />} />
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
