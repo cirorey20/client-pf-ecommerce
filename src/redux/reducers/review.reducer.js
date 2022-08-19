@@ -18,10 +18,8 @@ const initialState = {
 }
 
 export function reviewReducer(state = initialState, action) {
-    console.log(action.type)
     
     if (action.type === GET_REVIEWS) {
-        console.log(action.payload)
         var notas = action.payload
         return {
             ...state,
