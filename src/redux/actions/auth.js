@@ -4,6 +4,8 @@ export const GET_USERS = "GET_USERS";
 export const LOGIN = "LOGIN";
 export const GET_LOGIN_USER = "GET_LOGIN_USER";
 export const LOGOUT = "LOGOUT";
+export const GET_NAME_USERS = "GET_NAME_USERS";
+export const USERS_BY_FILTERS = "USERS_BY_FILTERS";
 
 export function createUser(body) {
   return async function (dispatch) {
@@ -51,6 +53,36 @@ export function promoteUser(id) {
     }
   };
 }
+export function banendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}users/banend/${id}`, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function desBanendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}users/desbaned/${id}`, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function loginUser(body) {
   return async (dispatch) => {
@@ -68,7 +100,11 @@ export function loginUser(body) {
         payload: login.data,
       });
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 403) {
+        alert("Estas baneado");
+      } else {
+        alert("No exite usuario");
+      }
     }
   };
 }
@@ -89,7 +125,9 @@ export function loginUserGoogle(body) {
         payload: login.data,
       });
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 403) {
+        alert("Estas baneado");
+      }
     }
   };
 }
@@ -147,3 +185,50 @@ export const logout = () => {
     }
   };
 };
+
+export function getNameUser(searchName) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      console.log(searchName);
+      const product = await axios.get(
+        `${URL_API}users?searchName=${searchName}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      console.log(product);
+      return dispatch({
+        type: "GET_NAME_USERS",
+        payload: product.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export function getByFiltersUsers(name) {
+  return function (dispatch) {
+    const token = document.cookie.split("token=")[1];
+    axios
+      .get(`${URL_API}users?name=${name}`, {
+        headers: {
+          authorization: token,
+        },
+      })
+      .then(
+        (json) => {
+          return dispatch({
+            type: USERS_BY_FILTERS,
+            payload: json.data,
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+}

@@ -1,0 +1,39 @@
+.productContainer_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  min-width: 80%;
+  min-height: 30%;
+  min-height: 30%;
+  padding: 20px;
+  border-bottom: 2px solid lightgray;
+}
+
+.productContainer_division {
+  border: 1px solid lightgray;
+}
+
+.image {
+  min-width: 10%;
+}
+
+.description {
+  min-width: 35%;
+}
+
+.status {
+  min-width: 15%;
+}
+
+.button {
+  min-width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rate_button {
+  border: 2px solid rgb(182, 182, 182);
+  width: 100%;
+  border-radius: 10px;
+}

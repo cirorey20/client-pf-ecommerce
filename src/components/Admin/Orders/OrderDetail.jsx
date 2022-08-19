@@ -3,7 +3,7 @@ import ReactPDF, { Page, Text, View, Document, StyleSheet, Image, PDFViewer } fr
 import img from './Universal-Pictures-Logo.png';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { detailOrder } from '../../redux/actions/orders';
+import { detailOrder } from '../../../redux/actions/orders';
 import { useParams } from 'react-router-dom';
 
 // Create styles

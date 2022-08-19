@@ -22,7 +22,7 @@ export default function SearchBar() {
 
     dispatch(resetPage());
     dispatch(getNameProducts(searchName));
-    navigate("/Home");
+    //navigate("/Home");
     setSearchName("");
   };
 
