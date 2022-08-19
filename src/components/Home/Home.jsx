@@ -1,26 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { getProducts, getByFilters } from "../../redux/actions/products";
+import { getByFilters } from "../../redux/actions/products";
 import { addFavorites } from "../../redux/actions/wishlist";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import Loader from "../Loader/Loader";
-import { getCategories } from "../../redux/actions/categories";
 import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
-import Cart from "../Cart/Cart";
 import Alert from "../Alert/Alert";
 import Swal from "sweetalert2";
 import "./Home.css";
-import { FaBeer } from "react-icons/fa";
-import corazonBlanco from "../Favoritos/corazon.png";
-import corazonRojo from "../Favoritos/favorito.png";
 import { BsHeartFill } from "react-icons/bs";
-import { FaCartPlus } from "react-icons/fa";
 
 //comment
 const Home = () => {
