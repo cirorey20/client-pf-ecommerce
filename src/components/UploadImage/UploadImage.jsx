@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 
 
-const UploadImage = ({getImage}) => {
+const UploadImage = ({data}) => {
 
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
-
-    function onHandleGetImage(url){
-        getImage(url)
-    }
+      
 
      const loadingImage = async (e) => {
         const files = e.target.files;
@@ -24,10 +21,10 @@ const UploadImage = ({getImage}) => {
 
             //console.log(res)
             const file = await res.json();
-            console.log(file)
+            //console.log(file)
             setImage(file.secure_url)
-            onHandleGetImage(file.secure_url)
-            console.log(file.secure_url)
+            data = file.secure_url
+            console.log(data)            //console.log(file.secure_url)
         setLoading(false)
      }
 

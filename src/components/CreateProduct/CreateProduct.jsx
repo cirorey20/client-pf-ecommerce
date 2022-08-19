@@ -31,11 +31,13 @@ export default function CreateProduct() {
   const [form, setForm] = useState(initialFormState);
   const { idProduct } = useParams();
 
-  function getImage(url){
-    console.log(url)
-    return url
-  }
-
+  /* function getImage(url){
+    return data = url
+  } */
+  
+  //const images = getImage(data)
+  
+  
   useEffect(() => {
     dispatch(getCategories());
     if (idProduct) {
@@ -93,7 +95,7 @@ export default function CreateProduct() {
           category.checked = e.target.checked;
         return category;
       });
-      setForm({ ...form, categories: [...newCategories], image: [getImage()] });
+      setForm({ ...form, categories: [...newCategories] });
     }
   }
 
@@ -239,8 +241,8 @@ export default function CreateProduct() {
                 >
                   Image
                 </label>
-                <UploadImage getImage={getImage}/>
-                <input
+                <UploadImage data={data}/>
+               {/*  <input
                   value={form.image}
                   name="image"
                   onChange={onChangeValue}
@@ -251,7 +253,7 @@ export default function CreateProduct() {
                 /> *
                 <p className="text-red-500 text-xs italic">
                   Please fill out this field.
-                </p>
+                </p> */}
               </div>
               <div className="w-full md:w-1/1 px-3 mt-6">
                 <label
