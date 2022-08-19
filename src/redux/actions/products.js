@@ -10,6 +10,7 @@ export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const GET_WISHLIST = "GET_WISHLIST";
 
 export function getProducts(queryFilter = "") {
   return function (dispatch) {
