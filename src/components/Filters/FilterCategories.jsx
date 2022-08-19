@@ -128,10 +128,12 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div className="inputs_container">
+    <div className="inputs_container ">
+      <div className="">
+      <div className=" grid auto-cols-max mb-6 mt-3">
       {checksCategory.map((category) => {
         return (
-          <div key={category.id}>
+          <div key={category.id} className="flex justify-start">
             <input
               type="checkbox"
               id={`custom-checkbox-${category.id}`}
@@ -145,8 +147,9 @@ export default function FilterCategory({ allCategories }) {
             </label>
           </div>
         );
-      })}
-
+      })} 
+      </div>
+      </div>
       <div className="filter_flexColumn">
         <button type="button" onClick={onClickFilter} className="select_styles">
           Filter
