@@ -37,6 +37,11 @@ export default function Profile() {
             <li>
               <Link to={"/logged/userInfo"}>My Profile</Link>
             </li>
+            <li>
+              <a>
+                <Link to={"/user/myshopping"}>My Shoppings</Link>
+              </a>
+            </li>
 
             <li>
               <a href="#">

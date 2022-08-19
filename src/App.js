@@ -21,6 +21,7 @@ import Categories from "./components/Admin/CategoriesAdmin";
 
 //CLIENT PANEL
 import HomeClient from "./components/ClientPanel/HomeClient";
+import MyShopping from "./components/MyShopping/MyShopping.jsx";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -42,12 +43,12 @@ function App() {
         <Route path="/product/:id" element={<Details />} />
         <Route path="/product/carrito" element={<CheckoutForm />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
+
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
 
-
-    {/* Panel Admin */}
+        {/* Panel Admin */}
         <Route
           path="/admin/home"
           element={<AuthContextProvider element={<HomeAdmin />} />}
@@ -70,14 +71,9 @@ function App() {
           element={<AuthContextProvider element={<Users />} />}
         />
 
-    {/* Panel Client */}
-        <Route 
-          path="/user/dashboard"
-          element={<HomeClient/>}
-
-        />
-
-        
+        {/* Panel Client */}
+        <Route path="/user/dashboard" element={<HomeClient />} />
+        <Route path="/user/myshopping" element={<MyShopping />} />
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/orders" element={<Orders />} />
