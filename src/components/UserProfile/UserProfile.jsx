@@ -38,8 +38,7 @@ export default function UserInfo() {
             </div>
 
             <div className="userName">
-              <p>User: {user.nickname}</p>
-              <p>E-mail: {user.email}</p>
+              <p>E-mail: {user?.email}</p>
             </div>
 
             <div className="userInfo">
