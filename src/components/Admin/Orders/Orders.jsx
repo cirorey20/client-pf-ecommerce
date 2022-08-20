@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getOrders, getStates, setState } from "../../../redux/actions/orders";
 import NavAdmin from "../NavAdmin";
+import NavBar from "../../NavBar/NavBar";
 import Paginate from "../../Paginate/Paginate";
 
 const initialFilters = {
@@ -154,7 +155,11 @@ export function Orders() {
         <>
             <div>
 
-                <NavAdmin />
+                {
+                    localStorage.getItem('rol') === 'user' ?
+                    <NavBar /> :
+                    <NavAdmin />    
+                }
 
                 <div className="overflow-x-auto grid grid-cols-5">
 
