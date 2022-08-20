@@ -9,11 +9,11 @@ const ProfileFav = ({ toggleFav }) => {
     <div>
       <button
         className="flex justify-center py-2 px-4 ml-5 mt-5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        onClick={toggleFav}
+        onClick={() => toggleFav()}
       >
         Back
       </button>
-      <h1>Wish List</h1>
+      <h1 className="wish">Wish List</h1>
       {favorites?.length > 0 ? (
         <div>
           <div className="flex gap-5 flex-wrap justify-center">
@@ -23,7 +23,7 @@ const ProfileFav = ({ toggleFav }) => {
           </div>
         </div>
       ) : (
-        <h2>You don't have a favorite!</h2>
+        <h2 className="ordersEmpty">You don't have a favorite!</h2>
       )}
     </div>
   );
