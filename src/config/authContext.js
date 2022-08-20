@@ -1,3 +1,4 @@
+import Error from "../components/Error/Error";
 const AuthContextProvider = ({ element: Element, ...res }) => {
   //logica para saber el estado del usuario
 
@@ -9,10 +10,10 @@ const AuthContextProvider = ({ element: Element, ...res }) => {
     if (json.rol === "admin") {
       return Element;
     } else {
-      return <p>No estas Autorizado</p>;
+      return <Error />
     }
   } else {
-    return <p>No estas Autorizado</p>;
+    return <Error />
   }
 };
 
