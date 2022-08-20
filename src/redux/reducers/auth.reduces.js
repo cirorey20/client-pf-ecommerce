@@ -5,6 +5,7 @@ const {
   LOGOUT,
   GET_NAME_USERS,
   USERS_BY_FILTERS,
+  PROFILE_UPDATE,
 } = require("../actions/auth");
 
 const initialState = {
@@ -19,6 +20,7 @@ export function authReducer(state = initialState, action) {
       users: action.payload,
     };
   }
+
   if (action.type === LOGIN) {
     return {
       ...state,
@@ -42,11 +44,11 @@ export function authReducer(state = initialState, action) {
       ...state,
       users: action.payload,
     };
-     if (action.type === USERS_BY_FILTERS)
-       return {
-         ...state,
-         users: action.payload,
-       };
+  if (action.type === USERS_BY_FILTERS)
+    return {
+      ...state,
+      users: action.payload,
+    };
 
   return state;
 }
