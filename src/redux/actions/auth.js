@@ -6,6 +6,7 @@ export const GET_LOGIN_USER = "GET_LOGIN_USER";
 export const LOGOUT = "LOGOUT";
 export const GET_NAME_USERS = "GET_NAME_USERS";
 export const USERS_BY_FILTERS = "USERS_BY_FILTERS";
+export const PROFILE_UPDATE = "PROFILE_UPDATE";
 
 export function createUser(body) {
   return async function (dispatch) {
@@ -95,6 +96,7 @@ export function loginUser(body) {
         60 * 30
       }; path=/; samesite=strict`;
       console.log(login.data);
+      //PROFILE_UPDATE;
       return dispatch({
         type: LOGIN,
         payload: login.data,
@@ -162,7 +164,6 @@ export const getLoginUser = () => {
           authorization: token,
         },
       });
-
       return dispatch({
         type: GET_LOGIN_USER,
         payload: verify.data,
@@ -232,3 +233,19 @@ export function getByFiltersUsers(name) {
       );
   };
 }
+
+export const profileUpdate = (newProfile) => {
+  return async (dispatch) => {
+    try {
+      const token = document.cookie.split("token=")[1];
+      console.log(token);
+      const verify = await axios.put(
+        `${URL_API}users/updateUser/${newProfile.id}`,
+        newProfile
+      );
+      console.log(verify);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
