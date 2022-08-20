@@ -94,7 +94,8 @@ export function loginUser(body) {
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
       }; path=/; samesite=strict`;
-      console.log(login.data);
+      // console.log("YO",login.data.user.rol);
+      localStorage.setItem('rol', login.data.user.rol)
       return dispatch({
         type: LOGIN,
         payload: login.data,
@@ -119,7 +120,8 @@ export function loginUserGoogle(body) {
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
       }; path=/; samesite=strict`;
-      console.log(login.data);
+      console.log(login.data.user.rol);
+      localStorage.setItem('rol', login.data.user.rol)
       return dispatch({
         type: LOGIN,
         payload: login.data,
@@ -156,6 +158,7 @@ export const getLoginUser = () => {
   return async (dispatch) => {
     try {
       const token = document.cookie.split("token=")[1];
+      if(!token) return;
       //console.log("Este es el token", token);
       const verify = await axios.get(`${URL_API}users/getUserLogin`, {
         headers: {

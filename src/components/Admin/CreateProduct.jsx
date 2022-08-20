@@ -10,6 +10,7 @@ import {
   updateProduct,
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
+import UpLoadImage from "../UpLoadImage/UpLoadImage";
 
 
 function validate(form, categ){
@@ -17,6 +18,7 @@ function validate(form, categ){
   let err = {};
 
   const allChecked = categ.categories.filter(e => e.checked === true)
+  
   
 
   if(!form.name.length){
@@ -56,12 +58,11 @@ export default function CreateProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
-  const productDetail = useSelector(
-    (state) => state.productReducer.productDetail
-  );
+  const productDetail = useSelector((state) => state.productReducer.productDetail);
   const [form, setForm] = useState({...initialFormState, categories:[...categories]});
   const[err, setErr] = useState({});
   const[categ, setCateg] = useState("")
+  const [url, setUrl] = useState("");
   const { idProduct } = useParams();
 
   useEffect(() => {
@@ -81,6 +82,9 @@ export default function CreateProduct() {
     setCateg(newState)
   }, [categories]);
 
+  function getImage(url){
+    setUrl(url)
+  }
 
   useEffect(() => {
     if (
@@ -100,14 +104,17 @@ export default function CreateProduct() {
       newState.price = productDetail.price;
       newState.stock = productDetail.stock;
       newState.description = productDetail.description;
-      newState.image = productDetail.image;
+      newState.image = getImage();
       newState.enable = productDetail.enable;
-      setForm(newState);
+      setForm({...newState})
+      
     }
   }, [productDetail]);
 
+ 
+
   function onChangeValue(e) {
-  
+
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
       e.target.name === "price" && e.target.name === "stock"
@@ -119,12 +126,14 @@ export default function CreateProduct() {
         category.checked = e.target.checked;
         return category;
       });
-      setForm({ ...form, categories: [...newCategories] });
+      setForm({ ...form, categories: [...newCategories]});
     }
+    
     setErr(validate({...form, [e.target.name]: e.target.value
     }, {...categ,  [e.target.checked]: e.target.value}))
   }
-
+  console.log(form)
+  
   function onSubmit(e) {
     e.preventDefault();
     const body = { ...form };
@@ -148,6 +157,10 @@ export default function CreateProduct() {
       alert("Create Sucesfully");
       navigate("/product/DashBoard");
     }
+  }
+
+  function onChangeImage(url){
+    setForm({ ...form, image: url});
   }
 
   return (
@@ -177,9 +190,7 @@ export default function CreateProduct() {
                   placeholder="Piano"
                 />
                 {err.name && <p className="text-red-500 text-xs italic">{err.name}</p>}
-                {/* <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+        
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -200,9 +211,7 @@ export default function CreateProduct() {
                   placeholder="90210"
                 />
                 {err.price && <p className="text-red-500 text-xs italic">{err.price}</p>}
-                {/* <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+                
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
@@ -223,9 +232,7 @@ export default function CreateProduct() {
                   placeholder="25"
                 />
                 {err.stock && <p className="text-red-500 text-xs italic">{err.stock}</p>}
-               {/*  <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+               
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -233,7 +240,7 @@ export default function CreateProduct() {
                   Categories
                 </label>
                 <div className="w-full md:w-1/1 flex flex-wrap justify-center justify-evenly gap-4 rounded border-red-500 border-solid border p-4">
-                  {/* {border-stone-300} */}
+                 
 
                   {form?.categories?.length > 0 ? (
                     form.categories.map((category) => (
@@ -258,9 +265,7 @@ export default function CreateProduct() {
                   )}
                 </div>
                 {err.categories && <p className="text-red-500 text-xs italic">{err.categories}</p>}
-               {/*  <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+              
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
@@ -270,19 +275,10 @@ export default function CreateProduct() {
                 >
                   Image
                 </label>
-                <input
-                  value={form.image}
-                  name="image"
-                  onChange={onChangeValue}
-                  className="border-red-500 appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  id="image"
-                  type="url"
-                  placeholder="http://example.com/ds5f5sas5d2asd5.jpg"
-                />
+                <UpLoadImage getImage={getImage} onChangeImage={onChangeImage}/>
+               
                 {err.image && <p className="text-red-500 text-xs italic">{err.image}</p>}
-                {/* <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+                
               </div>
               <div className="w-full md:w-1/1 px-3 mt-6">
                 <label
@@ -302,9 +298,7 @@ export default function CreateProduct() {
                   placeholder="Description of the product to create..."
                 />
                 {err.description && <p className="text-red-500 text-xs italic" >{err.description}</p>}
-                {/* <p className="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p> */}
+                
               </div>
             </div>
 
@@ -312,7 +306,7 @@ export default function CreateProduct() {
               <button
                 onClick={onSubmit}
                 className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                //disabled={Object.keys(err).length}                     
+                                   
               >
                 {idProduct ? "Update" : "Create"}
               </button>
