@@ -17,17 +17,16 @@ const Details = () => {
   const details = useSelector((state) => state.productReducer.productDetail);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
   const [loading, setLoading] = useState(false);
-  
+
   //Product personal comments
-  var reviewsFilter = reviews.filter((e)=>e.ProductId===details.id)
+  var reviewsOfProduct = reviews.filter((e)=>e.ProductId===details.id)
 
   //Calc stars of rating
-  var sumRating = reviews.reduce((sum,e)=>e.rating+sum,0) 
-  var indice = reviews.filter(e=>e.rating!==null)
-  var valor = indice.length
-  var puntaje = sumRating/valor
+  var sumRating = reviewsOfProduct.reduce((sum,e)=>e.rating+sum,0) 
+  var indice = reviewsOfProduct.filter(e=>e.rating!==null)
+  var cantValores = indice.length
+  var puntaje = sumRating/cantValores
   var valor = Math.round(puntaje)
-
 
   let { id } = useParams();
   let history = useNavigate();
@@ -53,8 +52,15 @@ const Details = () => {
     setLoading(true);
     else setLoading(false)
   }
-
-
+  function dog(){
+      return 1===valor?"★":
+        (2===valor?"★★":
+        (3===valor?"★★★":
+        (4===valor?"★★★★":
+        (5===valor?"★★★★★":
+        (<div className="text-xl">No ranked yet!</div>)
+        ))))
+  }
   return (
     <Fragment>
       <NavBar />
@@ -93,7 +99,7 @@ const Details = () => {
                   <div className="h-full p-5 border border-l-0 rounded-r">
                     <h6 className="mb-2 font-semibold leading-5">Rating:</h6>
                     {/* <p className="text-sm text-gray-900">★★★★★</p> */}
-                    <p className="text-4xl mt-4 text-gray-900">{1===valor?"★":(2===valor?"★★":(3===valor?"★★★":(4===valor?"★★★★":"★★★★★")))}</p>
+                    <p className="text-4xl mt-4 text-gray-900">{dog()}</p>
                   </div>
                 </div>
 
@@ -130,16 +136,16 @@ const Details = () => {
 
              <div className=" m-5 border-x-8 border-gray-100 pb-6  rounded">
              <div className=" text-xl ml-10 mr-10 grid grid-cols-4 h-24 pt-8">
-              <div className="bg-gray-200 w-30 rounded shadow-lg">DATE CREATE:</div><div className="bg-gray-100 rounded shadow-lg">TITLE:</div><div className="bg-gray-200 w-80 rounded shadow-lg">DETAIL</div><div className="bg-gray-100 ml-12 w-18 rounded shadow-lg">RATING</div>
+              <div className="bg-gray-200 w-30 rounded shadow-lg">DATE </div><div className="bg-gray-100 rounded shadow-lg">TITLE</div><div className="bg-gray-200 w-80 rounded shadow-lg">DESCRIPTION</div><div className="bg-gray-100 ml-12 w-18 rounded shadow-lg">RATING</div>
               </div>
               
           
-              {reviewsFilter.length <= 0 ? (
+              {reviewsOfProduct.length <= 0 ? (
                   <div className="mt-10">NO COMMENTS YET FOR THIS PRODUCT...</div>
                 ) : (
-                  reviewsFilter.map((e,i) => (
+                  reviewsOfProduct.map((e,i) => (
                   <div key={i} className="  mb-4 ml-10 mr-10 grid grid-cols-4 mt-3 h-22">
-                  <div className="w-30 rounded shadow-lg">{e.date}:</div><div className="rounded shadow-lg">{e.title}:</div><div className="w-80 rounded shadow-lg">{e.description}</div><div className="ml-12 w-18  rounded shadow-lg">{e.rating}</div></div>
+                  <div className="w-30 rounded shadow-lg">{e.date}</div><div className="rounded shadow-lg">{e.title}</div><div className="w-80 rounded shadow-lg">{e.description}</div><div className="ml-12 w-18  rounded shadow-lg">{dog()}</div></div>
                 )))
               }
             </div> 
