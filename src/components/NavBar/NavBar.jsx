@@ -4,7 +4,8 @@ import { Popover } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import Cart from "./cart-73-32.ico";
-import Logo from "../../assets/logo.svg.png";
+// import Logo from "../../assets/logo.svg.png";
+import Logo from "../../assets/logoUM.jpg";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import "./NavBar.css";
@@ -19,7 +20,7 @@ export default function LandingPage() {
       <div className="navbar_innerContainer_logo">
         {
           <Link to={"/"}>
-            <img width={150} src={Logo} alt="" />
+            <img width={90} className="rounded-full neon" src={Logo} alt="" />
           </Link>
         }
       </div>
