@@ -19,7 +19,7 @@ const Details = () => {
   const [loading, setLoading] = useState(false);
   
   //Product personal comments
-  var reviewsFilter = reviews.filter((e)=>e.UserId===details.id)
+  var reviewsFilter = reviews.filter((e)=>e.ProductId===details.id)
 
   //Calc stars of rating
   var sumRating = reviews.reduce((sum,e)=>e.rating+sum,0) 
