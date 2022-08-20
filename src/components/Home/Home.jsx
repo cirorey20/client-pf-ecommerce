@@ -31,17 +31,17 @@ const Home = () => {
   const favorites = useSelector((state) => state.wishlistReducer);
   const { user } = useSelector((state) => state.authReducer.userLogin);
 
-  useEffect(() => {
-    dispatch(createAdmin());
-  });
+  // useEffect(() => {
+  //   dispatch(createAdmin());
+  // },[allCategories]);
   // const obtener = localStorage.getItem("product");
   // console.log(obtener);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
+  //useEffect(() => {
+  //setLoading(true);
+  //setTimeout(() => {
+  //setLoading(false);
+  //}, 500);
+  //}, []);
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
