@@ -14,11 +14,17 @@ const ProfileFav = ({ toggleFav }) => {
         Back
       </button>
       <h1>Wish List</h1>
-      <div className="flex gap-5 flex-wrap justify-center">
-        {favorites.map((fav) => {
-          return <Favorite key={fav.id} favorite={fav} />;
-        })}
-      </div>
+      {favorites?.length > 0 ? (
+        <div>
+          <div className="flex gap-5 flex-wrap justify-center">
+            {favorites.map((fav) => {
+              return <Favorite key={fav.id} favorite={fav} />;
+            })}
+          </div>
+        </div>
+      ) : (
+        <h2>You don't have a favorite!</h2>
+      )}
     </div>
   );
 };
