@@ -51,33 +51,48 @@ function App() {
         {/* Panel Admin */}
         <Route
           path="/admin/home"
-          element={<AuthContextProvider element={<HomeAdmin />} />}
+          element={<AuthContextProvider user={"admin"} element={ <HomeAdmin /> } /> }
         />
         <Route
           path="/product/dashBoard"
-          element={<AuthContextProvider element={<Products />} />}
+          element={<AuthContextProvider user={"admin"} element={<Products />} />}
         />
         <Route
           path="/product/create"
-          element={<AuthContextProvider element={<CreateProduct />} />}
+          element={<AuthContextProvider user={"admin"} element={<CreateProduct />} />}
         />
         <Route
           path="/product/update/:idProduct"
-          element={<AuthContextProvider element={<CreateProduct />} />}
+          element={<AuthContextProvider user={"admin"} element={<CreateProduct />} />}
         />
         <Route path="/product/categories" element={<Categories />} />
         <Route
           path="/users/dashboard"
-          element={<AuthContextProvider element={<Users />} />}
+          element={<AuthContextProvider user={"admin"} element={<Users />} />}
         />
 
-        {/* Panel Client */}
-        <Route path="/user/dashboard" element={<HomeClient />} />
-        <Route path="/user/myshopping" element={<MyShopping />} />
+        {/* Panel Client  user/dashboard*/}
+        <Route 
+          path="/user/dashboard" 
+          element={<AuthContextProvider user={"user"} element={<HomeClient />} />}
+        />
+        <Route 
+          path="/user/myshopping" 
+          element={<AuthContextProvider user={"user"} element={<MyShopping />} />}
+        />
+
+        <Route 
+          path="/orders" 
+          element={<AuthContextProvider user={["admin", "user"]} element={<Orders />} />}
+        />
+        <Route 
+          path="/orders/:idOrder"
+          element={<AuthContextProvider user={["admin", "user"]} element={<OrderDetail />} />}
+        />
+
+
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/:idOrder" element={<OrderDetail />} />
       </Routes>
     </div>
   );
