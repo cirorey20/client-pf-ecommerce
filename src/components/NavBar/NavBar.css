@@ -22,6 +22,7 @@
   justify-content: center;
   /* border: 2px solid purple; */
   width: 80%;
+  padding-right: 10px;
 }
 
 .navbar_innerContainer_searchBar {
