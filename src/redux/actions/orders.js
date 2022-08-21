@@ -7,7 +7,7 @@ export const USER_ORDERS = "USER_ORDERS";
 export const GET_STATES = "GET_STATES";
 export const SET_STATE = "SET_STATE";
 
-export function getOrders(querySearch = '') {
+export function getOrders(querySearch = "") {
   return async function (dispatch) {
     try {
       const orders = await axios.get(`${URL_API}orders/${querySearch}`);
@@ -16,7 +16,6 @@ export function getOrders(querySearch = '') {
         type: GET_ORDERS,
         payload: orders.data,
       });
-
     } catch (error) {
       console.log(error);
     }
@@ -50,11 +49,6 @@ export function getOrdersByUser(id) {
     }
   };
 }
-      console.log(error)
-    }
-  }
-}
-
 
 export function getStates() {
   return async function (dispatch) {
@@ -62,29 +56,32 @@ export function getStates() {
       const states = await axios.get(`${URL_API}orders/states`);
       return dispatch({
         type: GET_STATES,
-        payload: states.data
-      })
+        payload: states.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function setState(id, state) {
   return async function (dispatch) {
     try {
-      await axios.post(`${URL_API}orders/setState`, {
-        id,
-        state
-      },
+      await axios.post(
+        `${URL_API}orders/setState`,
+        {
+          id,
+          state,
+        },
         {
           "content-type": "application/json",
           // headers: {
           //   authorization: token,
           // },
-        });
+        }
+      );
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
