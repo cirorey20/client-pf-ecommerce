@@ -1,13 +1,13 @@
 import React from "react";
 import "flowbite";
 
-export default function Tendencia() {
+export default function MostWanted() {
   return (
     <div className="md:container md:mx-auto bg-[#fbfbfccb]">
       <div className="relative flex pt-10 items-center">
         <div className="flex-grow border-t border-gray-400"></div>
         <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
-          Tendencia
+          Más buscados
         </span>
         <div className="flex-grow border-t border-gray-400 "></div>
       </div>
@@ -20,7 +20,7 @@ export default function Tendencia() {
               alt="product image"
             />
           </a>
-          <div className="p-5 pb-4 mt-2">
+          <div className="p-5 pb-4">
             <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                 Guitarra Acústica

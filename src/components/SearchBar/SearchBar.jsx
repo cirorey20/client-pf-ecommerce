@@ -1,16 +1,15 @@
-
-import {React, useState } from "react";
+import { React, useState } from "react";
 import { useDispatch } from "react-redux";
-
+import "./SearchBar.css";
 import { getNameProducts, resetPage } from "../../redux/actions/products";
 import { useNavigate } from "react-router-dom";
 //import { getProductByName } from "../../redux/actions/products";
 
-
 export default function SearchBar() {
-    var navigate = useNavigate()
-    const [searchName, setSearchName] = useState("");
-    console.log(searchName)
+  var navigate = useNavigate();
+  const [searchName, setSearchName] = useState("");
+
+  // console.log(searchName)
   const dispatch = useDispatch();
 
   const onHandleChange = (e) => {
@@ -21,28 +20,25 @@ export default function SearchBar() {
   const onHandleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(resetPage())
-    dispatch(getNameProducts(searchName))
-    navigate("/Home")
-    setSearchName("")
-
+    dispatch(resetPage());
+    dispatch(getNameProducts(searchName));
+    //navigate("/Home");
+    setSearchName("");
   };
 
-    return (
-        <div className="flex items-center">
-            <div className="flex border border-purple-200 rounded">
-                <input className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    type="text"
-
-                    placeholder="Search..."
-                    onChange={(e) => onHandleChange(e)}
-                />
-                <button className="px-4 text-white bg-[#cbd5e1] border-l rounded hover:bg-[#0f172a]"
-                onClick={(e) => onHandleSubmit(e)}>Search</button>
-
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex items-center">
+      <input
+        className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 navbar_searchInput"
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => onHandleChange(e)}
+      />
+      <button onClick={(e) => onHandleSubmit(e)} className="button_search">
+        SEARCH
+      </button>
+    </div>
+  );
 }
 
 // import React from "react";
@@ -54,22 +50,22 @@ export default function SearchBar() {
 // export default function SearchBar() {
 //   const dispatch = useDispatch();
 //   const [name, setName] = useState("");
-  
+
 //   function handleInputChange(e) {
 //     e.preventDefault();
 //     setName(e.target.value);
 //   }
-  
+
 //   function handleSubmit(e) {
 //     e.preventDefault();
 // //    dispatch(getVideogameByName(name));
 //     setName("");
 //   }
-  
+
 //   return (
 //     <div >
 //       <input
-//         className={style.input}       
+//         className={style.input}
 //         value={name}
 //         type="text"
 //         placeholder="Search a instrument..."

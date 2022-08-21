@@ -4,42 +4,53 @@ import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logout from "../Logout/Logout";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useSelector((state) => state.authReducer.userLogin);
+  // const { user, isAuthenticated } = useAuth0();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
-  return (
-    isAuthenticated && (
-      <div className="container z-50">
-        <div>
-          <button onClick={onClick} className="menu-trigger">
-            <span>{user.name}</span>
-            <img className="img" src={user.picture} alt={user.name} />
-          </button>
+  const getName = (name) => {
+    let result = name.split(" ");
+    return result[0];
+  };
 
-          <nav
-            ref={dropdownRef}
-            className={`menu ${isActive ? "active" : "inactive"}`}
-          >
-            <ul>
-              <li>
-                <Link to={"/logged/userInfo"}>My Profile</Link>
-              </li>
-              <li>
-                <a href="">Settings</a>
-              </li>
-              <li>
-                <a href="#">
-                  <Logout />
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+  return (
+    Object.keys(user || {}).length > 0 && (
+      <>
+        <button onClick={onClick} className="menu-trigger">
+          <span>{getName(user.name)}</span>
+          <img className="img" src={user.avatar} alt={getName(user.name)} />
+        </button>
+
+        <nav
+          ref={dropdownRef}
+          className={`menu ${isActive ? "active" : "inactive"} z-40`}
+        >
+          <ul className="z-40">
+            <li>
+              <Link to={"/user/dashboard"}>Dashboard</Link>
+            </li>
+            <li>
+              <Link to={"/logged/userInfo"}>My Profile</Link>
+            </li>
+            <li>
+              <a>
+                <Link to={"/user/myshopping"}>My Shoppings</Link>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <Logout />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </>
     )
   );
 }

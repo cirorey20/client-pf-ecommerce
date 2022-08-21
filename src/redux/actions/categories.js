@@ -22,12 +22,16 @@ export function getCategories() {
 export function createCategory(body) {
   return async function (dispatch) {
     try {
+      const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
       await axios.post(
-        `http://localhost:3001/api/v1/categories/createCategories`,
+        `${URL_API}categories/createCategories`,
         body,
         {
           "content-type": "application/json",
+          headers: {
+            authorization: token,
+          },
         }
       );
     } catch (error) {
@@ -36,4 +40,3 @@ export function createCategory(body) {
   };
 }
 
-//http://localhost:3001/api/v1/categories/createCategories

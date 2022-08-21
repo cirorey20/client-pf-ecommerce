@@ -1,0 +1,10 @@
+.login_text {
+  font-size: 2.2vh;
+  color: rgb(130, 130, 130);
+  transition: all 0.2s linear 0s;
+}
+
+.login_text:hover {
+  color: white;
+  transition: all 0.1s linear 0s;
+}

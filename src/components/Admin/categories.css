@@ -1,0 +1,16 @@
+.containerCategories{
+    /* background-color: tomato; */
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+
+    width: 85vw; /* le doy un ancho adaptable*/
+    top: -3vh;
+    left: 7vw;
+    position: relative;
+    /* overflow: auto; */
+}

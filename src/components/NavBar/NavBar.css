@@ -1,0 +1,115 @@
+/* --------Flexbox----------- */
+.navbar_container {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(21, 21, 21);
+  color: white;
+  height: 130px;
+  /* border: 2px solid blue; */
+}
+
+.navbar_innerContainer_logo {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid orange; */
+}
+
+.navbar_innerContainer_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid purple; */
+  width: 80%;
+  padding-right: 10px;
+}
+
+.navbar_innerContainer_searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid yellow; */
+  width: 40%;
+}
+
+.navbar_innerContainer_home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid brown; */
+  width: 10%;
+}
+
+.navbar_innerContainer_buttons {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid blue; */
+}
+
+.navbar_innerContainer_buttons .login {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.inner {
+  padding: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid orange; */
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------- */
+.navbar_title {
+  font-size: 6vh;
+}
+
+.itemCount {
+  position: absolute;
+  top: -18px;
+  right: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.cartIcon {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /* border: 1px solid red; */
+}
+
+.userActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.navBar_icon {
+  height: 20px;
+  /* border: 1px solid yellow; */
+}
+
+.navBar_linkContainer {
+  color: rgb(130, 130, 130);
+  font-size: 2.2vh;
+  transition: all 0.2s linear 0s;
+}
+
+.navBar_linkContainer:hover {
+  color: white;
+  transition: all 0.1s linear 0s;
+}
+ .neon{
+  box-shadow: 0 0 7px rgb(20, 20, 20), 0 0 10px rgba(61, 59, 59, 0.449), 0 0 21px rgba(88, 85, 85, 0.441), 0 0 42px rgb(114, 126, 122),
+  0 0 20px rgba(0, 89, 255, 0.554), 0 0 10px rgba(0, 115, 255, 0.349), 0 0 20px rgba(0, 102, 255, 0.431), 0 0 10px rgba(0, 255, 170, 0.259);
+ }
