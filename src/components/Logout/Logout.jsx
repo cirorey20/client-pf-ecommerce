@@ -10,6 +10,7 @@ export default function Logout() {
 
   const onLogout = () => {
     dispatch(logout());
+    localStorage.removeItem('rol');
   };
 
   return (

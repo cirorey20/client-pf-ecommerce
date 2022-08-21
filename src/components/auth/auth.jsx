@@ -39,8 +39,16 @@ const registerUser = () => {
       Swal.fire({
         icon: "success",
         title: "Ok",
-        text: "Usuario creado correctamente , Ahora puedes loguearte",
-      });
+        text: "Usuario creado correctamente",
+      }).then(e => {
+        if(e.isConfirmed){
+          Swal.fire({
+            icon: 'info',
+            title: '',
+            text: 'A tu email se ha enviado el link de autenticación'
+          })
+        }
+      })
       // window.location.reload();
     } else {
       Swal.fire({

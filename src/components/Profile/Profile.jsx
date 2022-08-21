@@ -28,9 +28,9 @@ export default function Profile() {
 
         <nav
           ref={dropdownRef}
-          className={`menu ${isActive ? "active" : "inactive"}`}
+          className={`menu ${isActive ? "active" : "inactive"} z-40`}
         >
-          <ul>
+          <ul className="z-40">
             <li>
               <Link to={"/user/dashboard"}>Dashboard</Link>
             </li>
