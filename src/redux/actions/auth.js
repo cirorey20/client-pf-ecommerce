@@ -7,6 +7,7 @@ export const GET_LOGIN_USER = "GET_LOGIN_USER";
 export const LOGOUT = "LOGOUT";
 export const GET_NAME_USERS = "GET_NAME_USERS";
 export const USERS_BY_FILTERS = "USERS_BY_FILTERS";
+export const PROFILE_UPDATE = "PROFILE_UPDATE";
 
 export function createUser(body) {
   return async function (dispatch) {
@@ -92,16 +93,16 @@ export function loginUser(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
-        }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${
+        60 * 30
+      }; path=/; samesite=strict`;
       // console.log("YO",login.data.user.rol);
-      localStorage.setItem('rol', login.data.user.rol)
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
       });
     } catch (error) {
-
       if (error.response.status === 403) {
         Swal.fire({
           icon: "error",
@@ -132,10 +133,11 @@ export function loginUserGoogle(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
-        }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${
+        60 * 30
+      }; path=/; samesite=strict`;
       console.log(login.data.user.rol);
-      localStorage.setItem('rol', login.data.user.rol)
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
@@ -266,18 +268,17 @@ export function getByFiltersUsers(name) {
   };
 }
 
-export  function sendAuthenticate(idUser = '', code = '') {
-  console.log(idUser, code)
+export function sendAuthenticate(idUser = "", code = "") {
+  console.log(idUser, code);
   return async function (dispatch) {
     // const token = document.cookie.split("token=")[1];
     try {
-
       await axios.post(`${URL_API}/users/authenticateAccount`, {
         idUser,
-        code
+        code,
       });
     } catch (error) {
-      if(error.response.status === 406){
+      if (error.response.status === 406) {
         Swal.fire({
           icon: "info",
           title: "Oppps",
@@ -291,6 +292,21 @@ export  function sendAuthenticate(idUser = '', code = '') {
         });
       }
     }
-
   };
 }
+
+export const profileUpdate = (newProfile) => {
+  return async (dispatch) => {
+    try {
+      const token = document.cookie.split("token=")[1];
+      console.log(token);
+      const verify = await axios.put(
+        `${URL_API}users/updateUser/${newProfile.id}`,
+        newProfile
+      );
+      console.log(verify);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
