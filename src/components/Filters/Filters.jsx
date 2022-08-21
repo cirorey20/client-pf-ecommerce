@@ -84,6 +84,18 @@ export default function Filters() {
         <option value="A-Z">Product A-Z</option>
         <option value="Z-A">Product Z-A</option>
       </select>
+
+      <select
+        name="selectRatingSort"
+        value={priceSort}
+        onChange={onChangedSelect}
+        className="select_styles"
+      >
+        <option>By rating</option>
+        <option value="asc">Max</option>
+        <option value="desc">Min</option>
+      </select>
+
     </div>
   );
 }

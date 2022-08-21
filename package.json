@@ -30,7 +30,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "stream-browserify": "^3.0.0",
-    "sweetalert2": "^11.1.9",
+    "sweetalert2": "^11.4.28",
     "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
