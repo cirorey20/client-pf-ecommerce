@@ -37,7 +37,7 @@ function App() {
     if (token === undefined) {
       localStorage.removeItem('rol');
     }
-    console.log("Este es el token", token);
+    // console.log("Este es el token", token);
   });
 
   return (
