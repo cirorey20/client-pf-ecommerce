@@ -30,6 +30,7 @@ const CheckoutForm = () => {
       const { id } = paymentMethod;
       var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
       var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
+      console.log(stateCart)
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
@@ -44,12 +45,17 @@ const CheckoutForm = () => {
         )
         .then(function(response) {
           console.log(response.data)
-          dispatch(resetCart());
-          setLoading(false);
-          navigate("/success")
-        })
+          // if (response.data==="Successfull payment"){
+            //dispatch(resetCart());
+            setLoading(false);
+            navigate("/success")
+        //   }else {
+        //   //dispatch(resetCart());
+        //   navigate("/rejected")
+        // }
+         })
         .catch(()=> {     
-           dispatch(resetCart());
+          //j dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
         })        //.finally(()=>{})
@@ -60,7 +66,7 @@ const CheckoutForm = () => {
         console.log(error);
       }
     }
-  };
+    }
 
   return (
     <>
