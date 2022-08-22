@@ -110,6 +110,9 @@ const CheckoutForm = () => {
         console.log(error);
       }
     }
+    catch(error){
+      console.log(error)
+    }
   };
 
   return (
@@ -196,6 +199,7 @@ const CheckoutForm = () => {
       </div> */}
     </>
   );
+}
 };
 
 export default CheckoutForm;
