@@ -1,0 +1,45 @@
+.product-cardLan {
+  width: 250px;
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  margin: 1px;
+  background: #fcfafa;
+  border-radius: 10px;
+}
+.product-cardLan:hover {
+  -webkit-box-shadow: -2px 2px 14px -2px #2e2e2e;
+  box-shadow: -2px 2px 14px -2px #2e2e2e;
+  /* transform: scale(1);
+  transition: 0.5s ease-in-out; */
+}
+
+.containerWishList {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5% auto 7%;
+}
+
+.menuIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.product-card:hover {
+  -webkit-box-shadow: -2px 2px 14px -2px #2e2e2e;
+  box-shadow: -2px 2px 14px -2px #2e2e2e;
+  transform: scale(1.01);
+  transition: 0.5s ease-in-out;
+}
+
+.badge2 {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  background: green;
+  color: #fff;
+  padding: 3px 10px;
+}
