@@ -319,11 +319,22 @@ export const profileUpdate = (newProfile) => {
   return async (dispatch) => {
     try {
       const token = document.cookie.split("token=")[1];
-      console.log(token);
-      const verify = await axios.put(
-        `${URL_API}users/updateUser/${newProfile.id}`,
-        newProfile
-      );
+
+      let verify;
+
+      if(newProfile.AddressId){
+        verify = await axios.put(
+          `${URL_API}users/updateAddress/${newProfile.AddressId}`,
+          newProfile
+        );
+      }
+      if(newProfile.id){
+
+        verify = await axios.put(
+          `${URL_API}users/updateUser/${newProfile.id}`,
+          newProfile
+        );
+      }
       console.log(verify);
     } catch (error) {
       console.log(error);
