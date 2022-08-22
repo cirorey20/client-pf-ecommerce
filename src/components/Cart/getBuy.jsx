@@ -47,17 +47,17 @@ const CheckoutForm = () => {
       ).toString();
       try {
         axios
-          .post(
-            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            `${URL_API}orders/checkout`,
-            {
-              id,
-              amount: total,
-              stateCart,
-              detail,
-              customer: user,
-            }
-          )
+        .post(
+          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+          `${URL_API}orders/checkout`,
+          {
+            id,
+            amount: total,
+            stateCart,
+            detail,
+            customer: user,
+          }
+        )
         .then(function(response) {
           console.log(response.data)
           if (response.data.estado){

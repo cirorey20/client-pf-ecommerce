@@ -7,6 +7,7 @@ export const GET_NAME_PRODUCTS = "GET_NAME_PRODUCTS";
 export const SET_PAGINA_ACTUAL = "SET_PAGINA_ACTUAL";
 export const RESET_PAGE = "RESET_PAGE";
 export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
+export const PRODUCTS_BY_RANGE = "PRODUCTS_BY_RANGE";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
@@ -42,6 +43,8 @@ export function getByFilters(searchFilters) {
     );
   };
 }
+
+
 
 export function detailProduct(id) {
   return async function (dispatch) {
