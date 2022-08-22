@@ -25,10 +25,11 @@ const MyShopping = () => {
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
           {ordersByUser.length === 0 ? "There isn't any purchases" : ""}
-          {ordersByUser.map((e) => {
+          {ordersByUser.map((e, id) => {
             return (
               <>
                 <ProductContainer
+                  key={id}
                   id={e.id}
                   image={e.image.map((e) => e)}
                   description={e.description.map((e) => e)}

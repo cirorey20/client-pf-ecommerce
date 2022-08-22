@@ -16,27 +16,27 @@ const RateProduct = () => {
   const [loading, setLoading] = useState(false);
   const [stars, setStars] = useState([
     {
-      name: 1,
+      name: "1",
       value: 1,
       checked: false,
     },
     {
-      name: 2,
+      name: "2",
       value: 2,
       checked: false,
     },
     {
-      name: 3,
+      name: "3",
       value: 3,
       checked: false,
     },
     {
-      name: 4,
+      name: "4",
       value: 4,
       checked: false,
     },
     {
-      name: 5,
+      name: "5",
       value: 5,
       checked: false,
     },
@@ -58,18 +58,15 @@ const RateProduct = () => {
     if (idOrder) {
       dispatch(detailOrder(idOrder));
     }
-  }, [dispatch]);
-
-  function renderRadioButtons() {
-    for (let i = 0; i <= stars.length; i++) {
-      return <input type="radio" value={stars[i].value} />;
-    }
-  }
+  }, []);
 
   function onHandleChange(e) {
-    const hey = stars.map((e) => e.name);
-    console.log(hey);
-    //setStars([{ name: { checked: true } }]);
+    stars.map((element, id) => {
+      if (e.target.name === stars[id].name) {
+        setStars([...stars, (stars[id].checked = true)]);
+        console.log(stars);
+      }
+    });
   }
 
   function handlerComment() {
@@ -102,38 +99,48 @@ const RateProduct = () => {
   const paymentMethod = details.payment_method;
 
   return (
-    <div className="rateProduct_container">
+    <div>
       <NavBar />
-      <h1 className="rateProduct_title">Purchase Details</h1>
-      <div className="rateProduct_innerContainer">
-        <p>{time}</p>
-        <p>{name}</p>
-        {<img src={image} alt="product image" width={"200px"} />}
-        <p>{description}</p>
-        <p>Quantity:{quantity}</p>
-        <p>Price: {price}</p>
-        <p>Payment Method:{paymentMethod}</p>
-        <div className="rate_review">
-          <textarea rows="6" className="review" />
-          <div className="stars_container">
-            {renderRadioButtons()}
-            {/*             {stars.map((e, id) => {
-              return (
-                <div key={id}>
-                  <input
-                    name={e.name}
-                    type="radio"
-                    value={e.value}
-                    onChange={onHandleChange}
-                    checked={e.checked}
-                  />
-                  {e.name}
-                </div>
-              );
-            })} */}
+      <div className="rateProduct_container">
+        <h1 className="rateProduct_title">Purchase Details</h1>
+        <div className="rateProduct_innerContainer">
+          <div className="productDetails_container">
+            <div>{<img src={image} alt="product image" width={"200px"} />}</div>
+            <div>
+              <p>{time}</p>
+              <p>{name}</p>
+              <p>{description}</p>
+              <p>Quantity:{quantity}</p>
+              <p>Price: {price}</p>
+              <p>Payment Method:{paymentMethod}</p>
+            </div>
           </div>
-          <button className="generic_button">Review</button>
-          <button className="generic_button">Rate</button>
+          {/* <div className="any">
+            <div className="rateProduct_innerContainer_division">
+              <h3>Leave your comment</h3>
+              <textarea rows="6" className="review" />
+              <button className="generic_button">Review</button>
+            </div>
+            <div className="rateProduct_innerContainer_division">
+              <div className="stars_container">
+                {stars.map((e, id) => {
+                  return (
+                    <div key={id}>
+                      <input
+                        name={e.name}
+                        type="radio"
+                        value={e.value}
+                        onChange={onHandleChange}
+                        checked={e.checked}
+                      />
+                      {e.name}
+                    </div>
+                  );
+                })}
+              </div>
+              <button className="generic_button">Rate</button>
+            </div>
+          </div> */}
         </div>
       </div>
     </div>
