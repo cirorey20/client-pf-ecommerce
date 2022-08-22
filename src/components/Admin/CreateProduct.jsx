@@ -11,6 +11,7 @@ import {
 } from "../../redux/actions/products";
 import NavBar from "../NavBar/NavBar";
 import UpLoadImage from "../UpLoadImage/UpLoadImage";
+import Swal from "sweetalert2";
 
 
 function validate(form, categ){
@@ -132,13 +133,27 @@ export default function CreateProduct() {
     setErr(validate({...form, [e.target.name]: e.target.value
     }, {...categ,  [e.target.checked]: e.target.value}))
   }
-  console.log(form)
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
   
   function onSubmit(e) {
     e.preventDefault();
     const body = { ...form };
     if(Object.keys(err).length || !form.name || !form.price || !form.stock  || !form.image || !form.categories || !form.description){
-      return alert("All fields are required to be filled")
+      return Toast.fire({
+        icon: "warning",
+        title: "Please complete all required fields"
+      });
     }
 
     body.categories = body.categories.reduce((prev, curr) => {
@@ -149,12 +164,18 @@ export default function CreateProduct() {
       body.id = idProduct;
       dispatch(updateProduct(body));
       setForm(initialFormState);
-      alert("Actualizado Correctamente");
+      Toast.fire({
+        icon: "success",
+        title: "Successfully updated"
+      });
       navigate("/product/DashBoard");
     } else {
       dispatch(createProduct(body));
       setForm(initialFormState);
-      alert("Create Sucesfully");
+       Toast.fire({
+        icon: "success",
+        title: "Successfully created"
+      });
       navigate("/product/DashBoard");
     }
   }
