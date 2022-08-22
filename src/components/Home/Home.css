@@ -10,6 +10,16 @@
   border-radius: 15px;
 }
 
+.product-card {
+  width: 315px;
+
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  margin: 0;
+  background: #ece6e6;
+  border-radius: 10px;
+}
+
 .wishListFalse {
   color: black;
   font-size: 22px;
