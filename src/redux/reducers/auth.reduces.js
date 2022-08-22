@@ -42,11 +42,11 @@ export function authReducer(state = initialState, action) {
       ...state,
       users: action.payload,
     };
-     if (action.type === USERS_BY_FILTERS)
-       return {
-         ...state,
-         users: action.payload,
-       };
+  if (action.type === USERS_BY_FILTERS)
+    return {
+      ...state,
+      users: action.payload,
+    };
 
   return state;
 }
