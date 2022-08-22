@@ -164,12 +164,18 @@ export default function CreateProduct() {
       body.id = idProduct;
       dispatch(updateProduct(body));
       setForm(initialFormState);
-      alert("Actualizado Correctamente");
+      Toast.fire({
+        icon: "success",
+        title: "Successfully updated"
+      });
       navigate("/product/DashBoard");
     } else {
       dispatch(createProduct(body));
       setForm(initialFormState);
-      alert("Create Sucesfully");
+       Toast.fire({
+        icon: "success",
+        title: "Successfully created"
+      });
       navigate("/product/DashBoard");
     }
   }
