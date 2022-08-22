@@ -15,7 +15,7 @@ const Favorite = ({ favorite }) => {
     <div className="product-card">
       <div className="containerWishList">
         <Link to={`/product/${favorite.id}`}>
-          <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+          <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
             <img src={favorite.image} />
           </div>
 
@@ -24,7 +24,8 @@ const Favorite = ({ favorite }) => {
           </div>
         </Link>
         <div>
-          <p>{favorite.description}</p>
+          {/* <p>{favorite.description}</p> */}
+          <p className="mt-1 text-sm text-gray-500">Stock {favorite.stock}</p>
           <div className="badge2">{favorite.price} </div>
 
           <button onClick={() => handlerAddToFav(favorite)}>
