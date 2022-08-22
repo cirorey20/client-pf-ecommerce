@@ -3,6 +3,7 @@ import { URL_API } from "../../config/config";
 
 export const GET_ORDERS = "GET_ORDERS";
 export const DETAILS_ORDER = "DETAILS_ORDER";
+export const USER_ORDERS = "USER_ORDERS";
 export const GET_STATES = "GET_STATES";
 export const SET_STATE = "SET_STATE";
 
@@ -35,6 +36,20 @@ export function detailOrder(id) {
   };
 }
 
+export function getOrdersByUser(id) {
+  return async function (dispatch) {
+    try {
+      const ordersByUser = await axios.get(`${URL_API}orders/user/${id}`);
+      return dispatch({
+        type: USER_ORDERS,
+        payload: ordersByUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function getStates() {
   return async function (dispatch) {
     try {
@@ -52,7 +67,9 @@ export function getStates() {
 export function setState(id, state, email, name, last_name) {
   return async function (dispatch) {
     try {
+
       console.log(email);
+
       await axios.post(
         `${URL_API}orders/setState`,
         {
@@ -61,6 +78,7 @@ export function setState(id, state, email, name, last_name) {
           email,
           name,
           last_name,
+
         },
         {
           "content-type": "application/json",

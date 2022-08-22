@@ -13,6 +13,7 @@ import { Elements } from "@stripe/react-stripe-js";
 const stripePromise = loadStripe(
   "pk_test_51LUcLbJTdGcYjfmaWDJaTeHwDAPDRalsxN6XYiEvwSoiXXDIkoeOsRdr9oPHFUiFc5QZZPLyJVBkrnDIY9HR6M2L00QyubdMaM"
 );
+//index.js
 
 ReactDOM.render(
   <Provider store={store}>

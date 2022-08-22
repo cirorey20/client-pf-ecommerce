@@ -11,6 +11,7 @@ import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import AuthContextProvider from "./config/authContext";
+import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 
 //ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
@@ -28,13 +29,17 @@ import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
 import { Orders } from "./components/Admin/Orders/Orders";
 import { OrderDetail } from "./components/Admin/Orders/OrderDetail";
-import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getLoginUser());
-  }, []);
+    const token = document.cookie.split("token=")[1];
+    if (token === undefined) {
+      localStorage.removeItem('rol');
+    }
+    // console.log("Este es el token", token);
+  });
 
   return (
     <div className="App">
