@@ -8,6 +8,7 @@ import { BsHeartFill } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
 import ProfileFav from "./ProfileFav";
 import "./UserProfile.css";
+import AddressEditForm from "../Favorite/AddressEditForm";
 
 export default function UserInfo() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
@@ -30,6 +31,7 @@ export default function UserInfo() {
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isEditAddress, setIsEditAddress] = useState(false);
 
   const toggleFav = () => {
     setIsFavorite(!isFavorite);
@@ -37,11 +39,24 @@ export default function UserInfo() {
   const toggleEdit = () => {
     setIsEdit(!isEdit);
   };
+  const toggleEditAddress = () => {
+    setIsEditAddress(!isEditAddress);
+  };
   const [newProfile, setNewProfile] = useState({
     id: "",
     name: "",
     last_name: "",
   });
+
+  const [newProfileAddress, setNewProfileAddress] = useState({
+    AddressId: "",
+    city: "",
+    province: "",
+    street_number: "",
+    locality: "",
+    apartment_floor: ""
+  });
+
   const editProfile = (e) => {
     const newData = e.target.value;
     const dataType = e.target.name;
@@ -53,9 +68,34 @@ export default function UserInfo() {
     }
   };
 
+  const editProfileAddress = (e) => {
+    const newData = e.target.value;
+    const dataType = e.target.name;
+    if (dataType === "city") {
+      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, city: newData });
+    }
+    if (dataType === "province") {
+      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, province: newData });
+    }
+    if (dataType === "street_number") {
+      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, street_number: newData });
+    }
+    if (dataType === "locality") {
+      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, locality: newData });
+    }
+    if (dataType === "apartment_floor") {
+      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, apartment_floor: newData });
+    }
+  };
+
   const onSubmit = (e) => {
     //e.preventDefault();
     dispatch(profileUpdate(newProfile));
+  };
+
+  const onSubmitAddress = (e) => {
+    //e.preventDefault();
+    dispatch(profileUpdate(newProfileAddress));
   };
   //console.log(user);
 
@@ -72,6 +112,14 @@ export default function UserInfo() {
               onSubmit={onSubmit}
               editProfile={editProfile}
               toggleEdit={toggleEdit}
+            />
+          )}
+
+          {isEditAddress && (
+            <AddressEditForm
+              onSubmit={onSubmitAddress}
+              editProfile={editProfileAddress}
+              toggleEdit={toggleEditAddress}
             />
           )}
 
@@ -105,6 +153,26 @@ export default function UserInfo() {
                 </div>
               ) : null}
 
+              <div className="userInfo">
+                <h2>Address Information</h2>
+              </div>
+
+              {user ? (
+                <div className="userName">
+                  <button className="userBtnTopRight" onClick={toggleEditAddress}>
+                    <FaRegEdit className="editIcon" />
+                    Edit
+                  </button>
+
+                  <p>City: {user?.Address?.city || 'N/A'}</p>
+                  <p>Province: {user?.Address?.province || 'N/A'}</p>
+                  <p>Street number: {user?.Address?.street_number || 'N/A'}</p>
+                  <p>Locality: {user?.Address?.locality || 'N/A'}</p>
+                  <p>Apartment floor: {user?.Address?.apartment_floor || 'N/A'}</p>
+                </div>
+              ) : null}
+              {console.log(user)}
+
               <button
                 className="btnOrders"
                 onClick={() => toggleFav()}
@@ -116,71 +184,6 @@ export default function UserInfo() {
           </div>
         </>
 
-        <div>
-          <img src={userProfile?.avatar} alt="" />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            type="text"
-            name="name"
-            value={userProfile?.name}
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            name="last_name"
-            type="text"
-            value={userProfile?.last_name}
-          />
-        </div>
-        <div>{userProfile?.email}</div>
-        <div>
-          <input
-            onChange={handleChange}
-            name="city"
-            type="text"
-            value={userProfile?.city}
-          />
-        </div>
-
-        <div>
-          <input
-            onChange={handleChange}
-            name="locality"
-            type="text"
-            value={userProfile?.locality}
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            name="province"
-            type="text"
-            value={userProfile?.province}
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            name="street_number"
-            type="text"
-            value={userProfile?.street_number}
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            name="apartment_floor"
-            type="text"
-            value={userProfile?.apartment_floor}
-          />
-        </div>
-
-        <div>
-          <button onClick={handleClick}>SAVE</button>
-        </div>
       </div>
     );
   }
