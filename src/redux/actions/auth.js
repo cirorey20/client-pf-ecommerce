@@ -7,6 +7,7 @@ export const GET_LOGIN_USER = "GET_LOGIN_USER";
 export const LOGOUT = "LOGOUT";
 export const GET_NAME_USERS = "GET_NAME_USERS";
 export const USERS_BY_FILTERS = "USERS_BY_FILTERS";
+export const PROFILE_UPDATE = "PROFILE_UPDATE";
 
 export function createUser(body) {
   return async function (dispatch) {
@@ -313,3 +314,19 @@ export function updateUser(body) {
     }
   };
 }
+
+export const profileUpdate = (newProfile) => {
+  return async (dispatch) => {
+    try {
+      const token = document.cookie.split("token=")[1];
+      console.log(token);
+      const verify = await axios.put(
+        `${URL_API}users/updateUser/${newProfile.id}`,
+        newProfile
+      );
+      console.log(verify);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
