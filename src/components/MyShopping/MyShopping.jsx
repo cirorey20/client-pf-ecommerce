@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
 import Footer from "../Footer/Footer.jsx";
 import "./MyShopping.css";
 import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
+
 import ProductContainer from "./ProductContainer";
 import { getOrdersByUser } from "../../redux/actions/orders.js";
 
@@ -24,7 +24,7 @@ const MyShopping = () => {
       <h1 className="myshopping_title">My Shoppings</h1>
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
-          {ordersByUser.length === 0 ? "There isn't any buys" : ""}
+          {ordersByUser.length === 0 ? "There isn't any purchases" : ""}
           {ordersByUser.map((e) => {
             return (
               <>
