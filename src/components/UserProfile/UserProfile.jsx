@@ -21,7 +21,6 @@ export default function UserInfo() {
   useEffect(() => {
     setUserProfile({ ...user?.Address, ...user });
   }, [user]);
-  console.log(userProfile);
 
   const handleChange = (e) => {
     setUserProfile({ ...userProfile, [e.target.name]: e.target.value });
@@ -37,11 +36,15 @@ export default function UserInfo() {
   const toggleEdit = () => {
     setIsEdit(!isEdit);
   };
-  const [newProfile, setNewProfile] = useState({
-    id: "",
-    name: "",
-    last_name: "",
-  });
+
+  const [newProfile, setNewProfile] = useState("");
+  useEffect(() => {
+    setNewProfile({
+      name: user?.name,
+      last_name: user?.last_name,
+    });
+  }, [user]);
+
   const editProfile = (e) => {
     const newData = e.target.value;
     const dataType = e.target.name;
@@ -57,7 +60,6 @@ export default function UserInfo() {
     //e.preventDefault();
     dispatch(profileUpdate(newProfile));
   };
-  //console.log(user);
 
   if (isFavorite) {
     return <ProfileFav toggleFav={toggleFav} />;
@@ -72,6 +74,7 @@ export default function UserInfo() {
               onSubmit={onSubmit}
               editProfile={editProfile}
               toggleEdit={toggleEdit}
+              newProfile={newProfile}
             />
           )}
 
