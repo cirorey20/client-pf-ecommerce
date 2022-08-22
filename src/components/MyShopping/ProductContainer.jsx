@@ -1,7 +1,10 @@
 import React from "react";
 import "./ProductContainer.css";
+import { useNavigate } from "react-router-dom";
 
 const ProductContainer = ({ image, description, state, id }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="productContainer_container">
       <img
@@ -12,7 +15,12 @@ const ProductContainer = ({ image, description, state, id }) => {
       <div className="productContainer_division description">{description}</div>
       <div className="productContainer_division status">{state}</div>
       <div className="productContainer_division button">
-        <button className="rate_button">Rate</button>
+        <button
+          className="rate_button"
+          onClick={() => navigate(`/rateProduct/${id}`)}
+        >
+          Rate
+        </button>
       </div>
     </div>
   );
