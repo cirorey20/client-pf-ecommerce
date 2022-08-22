@@ -2,7 +2,6 @@ import React from "react";
 import "./ProductContainer.css";
 
 const ProductContainer = ({ image, description, state, id }) => {
-  console.log(image, description, state, id);
   return (
     <div className="productContainer_container">
       <img
