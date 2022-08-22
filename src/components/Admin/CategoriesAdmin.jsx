@@ -8,6 +8,8 @@ import { getLoginUser } from "../../redux/actions/auth";
 import NavAdmin from "./NavAdmin";
 import { createCategory } from "../../redux/actions/categories";
 import "./categories.css";
+import Swal from "sweetalert2";
+
 const Categories = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(
@@ -44,16 +46,35 @@ const Categories = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (input.name) {
       dispatch(createCategory(input));
       setInput("");
-      alert("Se creado con exito");
+      return Toast.fire({
+        icon: "success",
+        title: "Successfully created"
+      });
+
       window.location.reload();
     } else {
-      alert("te faltan espacios por llenar");
+      return Toast.fire({
+        icon: "warning",
+        title: "Spaces to be filled"
+      });
     }
   };
 
