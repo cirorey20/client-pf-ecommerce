@@ -11,7 +11,6 @@ import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import AuthContextProvider from "./config/authContext";
-import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 
 //ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
