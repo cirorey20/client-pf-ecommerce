@@ -235,3 +235,31 @@ export function getByFiltersUsers(name) {
       );
   };
 }
+export  function sendAuthenticate(idUser = '', code = '') {
+  console.log(idUser, code)
+  return async function (dispatch) {
+    // const token = document.cookie.split("token=")[1];
+    try {
+
+      await axios.post(`${URL_API}/users/authenticateAccount`, {
+        idUser,
+        code
+      });
+    } catch (error) {
+      if(error.response.status === 406){
+        Swal.fire({
+          icon: "info",
+          title: "Oppps",
+          text: "El usuario se encuentra autenticado",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Ocurrio un error al intentar autenticar",
+        });
+      }
+    }
+
+  };
+}

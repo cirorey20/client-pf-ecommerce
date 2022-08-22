@@ -28,6 +28,8 @@ import { useDispatch } from "react-redux";
 import { getLoginUser } from "./redux/actions/auth";
 import { Orders } from "./components/Admin/Orders/Orders";
 import { OrderDetail } from "./components/Admin/Orders/OrderDetail";
+
+import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 function App() {
   const dispatch = useDispatch();
 
@@ -94,6 +96,7 @@ function App() {
 
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/account/authenticate/:idUser/:code" element={<AuthenticateAccount />} />
       </Routes>
     </div>
   );
