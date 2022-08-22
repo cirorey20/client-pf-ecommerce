@@ -61,5 +61,50 @@ export default function MostWanted({ favorite }) {
     dispatch(addProductToCart(productDes));
   }
 
-  return <div></div>;
+  return (
+    <div className="">
+      <div className="relative flex pt-10 items-center">
+        <div className="flex-grow border-t border-gray-400"></div>
+        <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
+          Más buscados
+        </span>
+        <div className="flex-grow border-t border-gray-400 "></div>
+      </div>
+      <div className="flex gap-2 flex-wrap justify-center">
+        {productsOfNow.map((e, i) => {
+          return (
+            <div className="flex flex-wrap justify-center">
+              <div className="min-h-80 flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52 product-cardLan ">
+                <img src={e.image} alt="" className="h-28 m-6 imgLan" />
+
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <Link to={`/product/${e.id}`}>
+                        <h2>{e.name}</h2>
+                      </Link>
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500">
+                      Stock {e.stock}
+                    </p>
+                  </div>
+                  <div className="badge2">${e.price} </div>
+                </div>
+                <button onClick={() => handlerAddToFav(favorite)}>
+                  <BsHeartFill className="wishListTrue" />
+                </button>
+
+                <button
+                  className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handlerAddToCart(e)}
+                >
+                  Add Cart
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
