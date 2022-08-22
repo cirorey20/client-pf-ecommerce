@@ -2,7 +2,7 @@ import React from "react";
 
 const EditForm = ({ onSubmit, editProfile, toggleEdit }) => {
   return (
-    <div className="absolute px-24 border shadow-lg rounded-lg ring-offset-2 ring-2 left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4  bg-white">
+    <div className="absolute px-24 py-4 border shadow-lg rounded-lg ring-offset-2 ring-2 left-2/4 top-3/4 -translate-x-2/4 -translate-y-2/4  bg-white">
       <form action="" onSubmit={onSubmit} className="w-full max-w-sm my-5 ">
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
