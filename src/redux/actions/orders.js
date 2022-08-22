@@ -64,14 +64,21 @@ export function getStates() {
   };
 }
 
-export function setState(id, state) {
+export function setState(id, state, email, name, last_name) {
   return async function (dispatch) {
     try {
+
+      console.log(email);
+
       await axios.post(
         `${URL_API}orders/setState`,
         {
           id,
           state,
+          email,
+          name,
+          last_name,
+
         },
         {
           "content-type": "application/json",
