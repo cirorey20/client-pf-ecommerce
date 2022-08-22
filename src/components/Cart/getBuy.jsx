@@ -30,6 +30,8 @@ const CheckoutForm = () => {
       const { id } = paymentMethod;
       var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
       var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
+      // console.log(stateCart)
+      // console.log(total)
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
@@ -44,9 +46,14 @@ const CheckoutForm = () => {
         )
         .then(function(response) {
           console.log(response.data)
+          if (response.data.estado){
           dispatch(resetCart());
           setLoading(false);
           navigate("/success")
+          }else {
+            dispatch(resetCart());
+            navigate("/rejected")
+          }
         })
         .catch(()=> {     
            dispatch(resetCart());
@@ -68,7 +75,7 @@ const CheckoutForm = () => {
       <div className="getBuy_container">
         <div className="getBuy_image">
           <div className="pr-8 price">
-            <p className="billing_info">Your billing information</p>
+            <p className="billing_info">Your billing pay information</p>
             <h4>USD 1,180.00</h4>
           </div>
           <div className="product_info">Some product info</div>
