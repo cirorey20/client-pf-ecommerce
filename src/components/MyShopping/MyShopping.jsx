@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Footer from "../Footer/Footer.jsx";
@@ -10,13 +10,13 @@ import { getOrdersByUser } from "../../redux/actions/orders.js";
 
 const MyShopping = () => {
   const ordersByUser = useSelector((state) => state.ordersReducer.ordersUser);
+  const userLogin = useSelector((state) => state.authReducer.userLogin);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOrdersByUser("c545f64f-385f-4762-bf67-8ddfc7f415c6"));
+    dispatch(getOrdersByUser(userLogin.user?.id));
   }, []);
-
-  console.log(ordersByUser);
 
   return (
     <div>
@@ -24,14 +24,17 @@ const MyShopping = () => {
       <h1 className="myshopping_title">My Shoppings</h1>
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
+          {ordersByUser.length === 0 ? "There isn't any buys" : ""}
           {ordersByUser.map((e) => {
             return (
-              <ProductContainer
-                id={e.id}
-                image={e.image.map((e) => e)}
-                description={e.description.map((e) => e)}
-                state={e.state}
-              />
+              <>
+                <ProductContainer
+                  id={e.id}
+                  image={e.image.map((e) => e)}
+                  description={e.description.map((e) => e)}
+                  state={e.state}
+                />
+              </>
             );
           })}
         </div>
