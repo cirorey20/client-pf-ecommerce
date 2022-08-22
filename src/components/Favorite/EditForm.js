@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-const EditForm = ({ onSubmit, editProfile, toggleEdit }) => {
+const EditForm = ({ onSubmit, editProfile, toggleEdit, newProfile }) => {
   return (
     <div className="absolute px-24 py-4 border shadow-lg rounded-lg ring-offset-2 ring-2 left-2/4 top-3/4 -translate-x-2/4 -translate-y-2/4  bg-white">
       <form action="" onSubmit={onSubmit} className="w-full max-w-sm my-5 ">
@@ -19,6 +19,7 @@ const EditForm = ({ onSubmit, editProfile, toggleEdit }) => {
               id="inline-full-name"
               type="text"
               name="name"
+              value={newProfile?.name}
               onChange={editProfile}
             />
           </div>
@@ -37,6 +38,7 @@ const EditForm = ({ onSubmit, editProfile, toggleEdit }) => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               type="text"
               name="lastName"
+              value={newProfile?.last_name}
               onChange={editProfile}
             />
           </div>
@@ -48,16 +50,16 @@ const EditForm = ({ onSubmit, editProfile, toggleEdit }) => {
           <div className="md:w-1/3"></div>
           <div className="md:w-2/3 flex gap-5">
             <button
-              className="shadow bg-red-300 hover:bg-slate-900 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-              onClick={(e) => toggleEdit(e)}
-            >
-              Cancel
-            </button>
-            <button
               className="shadow bg-slate-700 hover:bg-slate-900 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
               Confirm
+            </button>
+            <button
+              className="shadow bg-red-300 hover:bg-slate-900 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+              onClick={(e) => toggleEdit(e)}
+            >
+              Cancel
             </button>
           </div>
         </div>
