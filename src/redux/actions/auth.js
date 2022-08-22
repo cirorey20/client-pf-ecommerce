@@ -92,16 +92,16 @@ export function loginUser(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
-        }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${
+        60 * 30
+      }; path=/; samesite=strict`;
       // console.log("YO",login.data.user.rol);
-      localStorage.setItem('rol', login.data.user.rol)
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
       });
     } catch (error) {
-
       if (error.response.status === 403) {
         Swal.fire({
           icon: "error",
@@ -132,10 +132,11 @@ export function loginUserGoogle(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
-        }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${
+        60 * 30
+      }; path=/; samesite=strict`;
       console.log(login.data.user.rol);
-      localStorage.setItem('rol', login.data.user.rol)
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
@@ -266,18 +267,17 @@ export function getByFiltersUsers(name) {
   };
 }
 
-export  function sendAuthenticate(idUser = '', code = '') {
-  console.log(idUser, code)
+export function sendAuthenticate(idUser = "", code = "") {
+  console.log(idUser, code);
   return async function (dispatch) {
     // const token = document.cookie.split("token=")[1];
     try {
-
       await axios.post(`${URL_API}/users/authenticateAccount`, {
         idUser,
-        code
+        code,
       });
     } catch (error) {
-      if(error.response.status === 406){
+      if (error.response.status === 406) {
         Swal.fire({
           icon: "info",
           title: "Oppps",
@@ -291,7 +291,26 @@ export  function sendAuthenticate(idUser = '', code = '') {
         });
       }
     }
+  };
+}
 
+export function updateUser(body) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.put(
+        `${URL_API}users/updateUser/${body.id}/${body.AddressId}`,
+        body,
+        {
+          "content-type": "application/json",
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
   
