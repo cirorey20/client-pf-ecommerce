@@ -10,6 +10,16 @@
   border-radius: 15px;
 }
 
+.wishListFalse {
+  color: black;
+  font-size: 22px;
+}
+
+.wishListTrue {
+  color: #da2b0c;
+  font-size: 22px;
+}
+
 .controls_container {
   display: flex;
   flex-direction: column;
