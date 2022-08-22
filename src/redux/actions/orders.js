@@ -6,7 +6,7 @@ export const DETAILS_ORDER = "DETAILS_ORDER";
 export const GET_STATES = "GET_STATES";
 export const SET_STATE = "SET_STATE";
 
-export function getOrders(querySearch = '') {
+export function getOrders(querySearch = "") {
   return async function (dispatch) {
     try {
       const orders = await axios.get(`${URL_API}orders/${querySearch}`);
@@ -15,7 +15,6 @@ export function getOrders(querySearch = '') {
         type: GET_ORDERS,
         payload: orders.data,
       });
-
     } catch (error) {
       console.log(error);
     }
@@ -31,11 +30,10 @@ export function detailOrder(id) {
         payload: orderById.data,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
-
 
 export function getStates() {
   return async function (dispatch) {
@@ -43,29 +41,36 @@ export function getStates() {
       const states = await axios.get(`${URL_API}orders/states`);
       return dispatch({
         type: GET_STATES,
-        payload: states.data
-      })
+        payload: states.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
-export function setState(id, state) {
+export function setState(id, state, email, name, last_name) {
   return async function (dispatch) {
     try {
-      await axios.post(`${URL_API}orders/setState`, {
-        id,
-        state
-      },
+      console.log(email);
+      await axios.post(
+        `${URL_API}orders/setState`,
+        {
+          id,
+          state,
+          email,
+          name,
+          last_name,
+        },
         {
           "content-type": "application/json",
           // headers: {
           //   authorization: token,
           // },
-        });
+        }
+      );
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }

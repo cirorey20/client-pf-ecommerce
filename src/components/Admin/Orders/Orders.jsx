@@ -26,6 +26,7 @@ export function Orders() {
   const { orders: allOrders, states } = useSelector(
     (state) => state.ordersReducer
   );
+  console.log(allOrders);
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -131,9 +132,10 @@ export function Orders() {
     setSave([...newOrders]);
   }
 
-  async function onClickSave(idOrder) {
+  async function onClickSave(idOrder, email, name, last_name) {
     const { id, state } = save.find((o) => o.id === idOrder);
-    await dispatch(setState(id, state));
+    //console.log(email);
+    await dispatch(setState(id, state, email, name, last_name));
     setSave([]);
     dispatch(getOrders(search));
   }
@@ -143,7 +145,9 @@ export function Orders() {
       if (e.target.value.trim() === "") {
         navigate("");
       } else {
-        navigate(`?order=${e.target.value.trim()}`);
+        navigate(
+          `?order=${e.target.value.trim()}&email=${e.target.value.trim()}`
+        );
       }
     }
   }
@@ -249,6 +253,9 @@ export function Orders() {
                   State
                 </th>
                 <th scope="col" className="p-3">
+                  Email
+                </th>
+                <th scope="col" className="p-3">
                   Date
                 </th>
                 <th scope="col" className="p-3">
@@ -275,15 +282,26 @@ export function Orders() {
                         <option value={state}>{state.toUpperCase()}</option>
                       ))}
                     </select>
+
                     {save?.find((s) => s.id === o.id)?.isChange && (
                       <button
-                        onClick={() => onClickSave(o.id)}
+                        onClick={() =>
+                          onClickSave(
+                            o.id,
+                            o.User.email,
+                            o.User.name,
+                            o.User.last_name
+                          )
+                        }
                         className="rounded bg-green-500 p-1 mt-0.5"
                       >
                         SAVE
                       </button>
                     )}
                   </td>
+
+                  <td className="py-6 px-6 text-black">{o.User.email}</td>
+
                   <td className="py-6 px-6 text-black">
                     {`${new Date(o.date).getDate()}-${
                       new Date(o.date).getMonth() + 1

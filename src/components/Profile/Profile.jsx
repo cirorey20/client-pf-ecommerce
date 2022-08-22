@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
+ // console.log(user);
   // const { user, isAuthenticated } = useAuth0();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
