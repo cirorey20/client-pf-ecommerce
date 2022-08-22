@@ -11,6 +11,7 @@ import CheckoutForm from "./components/Cart/getBuy";
 import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import AuthContextProvider from "./config/authContext";
+import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 
 //ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
@@ -21,6 +22,8 @@ import Categories from "./components/Admin/CategoriesAdmin";
 
 //CLIENT PANEL
 import HomeClient from "./components/ClientPanel/HomeClient";
+import MyShopping from "./components/MyShopping/MyShopping.jsx";
+import RateProduct from "./components/RateProduct/RateProduct.jsx";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -32,7 +35,12 @@ function App() {
 
   useEffect(() => {
     dispatch(getLoginUser());
-  }, []);
+    const token = document.cookie.split("token=")[1];
+    if (token === undefined) {
+      localStorage.removeItem("rol");
+    }
+    // console.log("Este es el token", token);
+  });
 
   return (
     <div className="App">
@@ -42,46 +50,85 @@ function App() {
         <Route path="/product/:id" element={<Details />} />
         <Route path="/product/carrito" element={<CheckoutForm />} />
         <Route path="/logged/userInfo" element={<UserInfo />} />
+
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/rejected" element={<Rejected />} />
 
-
-    {/* Panel Admin */}
+        {/* Panel Admin */}
         <Route
           path="/admin/home"
-          element={<AuthContextProvider element={<HomeAdmin />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<HomeAdmin />} />
+          }
         />
         <Route
           path="/product/dashBoard"
-          element={<AuthContextProvider element={<Products />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<Products />} />
+          }
         />
         <Route
           path="/product/create"
-          element={<AuthContextProvider element={<CreateProduct />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<CreateProduct />} />
+          }
         />
         <Route
           path="/product/update/:idProduct"
-          element={<AuthContextProvider element={<CreateProduct />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<CreateProduct />} />
+          }
         />
         <Route path="/product/categories" element={<Categories />} />
         <Route
           path="/users/dashboard"
-          element={<AuthContextProvider element={<Users />} />}
+          element={<AuthContextProvider user={"admin"} element={<Users />} />}
         />
 
-    {/* Panel Client */}
-        <Route 
+        {/* Panel Client  user/dashboard*/}
+        <Route
           path="/user/dashboard"
-          element={<HomeClient/>}
-
+          element={
+            <AuthContextProvider user={"user"} element={<HomeClient />} />
+          }
+        />
+        <Route
+          path="/user/myshopping"
+          element={
+            <AuthContextProvider user={"user"} element={<MyShopping />} />
+          }
         />
 
-        
+        {/* Admin y User pueder acceder a esta vista */}
+        <Route
+          path="/orders"
+          element={
+            <AuthContextProvider
+              user={["admin", "user"]}
+              element={<Orders />}
+            />
+          }
+        />
+        <Route
+          path="/orders/:idOrder"
+          element={
+            <AuthContextProvider
+              user={["admin", "user"]}
+              element={<OrderDetail />}
+            />
+          }
+        />
+
+        {/* User puede calificar un producto */}
+        <Route path="/rateProduct/:idOrder" element={<RateProduct />} />
+
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/:idOrder" element={<OrderDetail />} />
+        <Route
+          path="/account/authenticate/:idUser/:code"
+          element={<AuthenticateAccount />}
+        />
       </Routes>
     </div>
   );

@@ -9,6 +9,8 @@ const NavAdmin = () => {
 
     const onLogout = () => {
         dispatch(logout());
+        localStorage.removeItem('rol');
+        
         navigate("/login");
     };
     return (

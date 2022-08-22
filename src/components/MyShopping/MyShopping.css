@@ -1,0 +1,32 @@
+.myshopping_title {
+  font-size: 2.5vh;
+}
+
+.myshopping_container {
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  width: 90%;
+  height: 70%;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: rgb(226, 232, 240);
+}
+
+.myshopping_productContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid orange; */
+  position: fixed;
+  justify-content: center;
+}
+
+.myshopping_footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+  position: fixed;
+}

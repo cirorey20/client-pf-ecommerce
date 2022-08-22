@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
+ // console.log(user);
   // const { user, isAuthenticated } = useAuth0();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
@@ -28,14 +29,19 @@ export default function Profile() {
 
         <nav
           ref={dropdownRef}
-          className={`menu ${isActive ? "active" : "inactive"}`}
+          className={`menu ${isActive ? "active" : "inactive"} z-40`}
         >
-          <ul>
+          <ul className="z-40">
             <li>
               <Link to={"/user/dashboard"}>Dashboard</Link>
             </li>
             <li>
               <Link to={"/logged/userInfo"}>My Profile</Link>
+            </li>
+            <li>
+              <a>
+                <Link to={"/user/myshopping"}>My Shoppings</Link>
+              </a>
             </li>
 
             <li>

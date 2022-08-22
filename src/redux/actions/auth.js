@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import { URL_API } from "../../config/config";
 export const GET_USERS = "GET_USERS";
 export const LOGIN = "LOGIN";
@@ -94,16 +95,31 @@ export function loginUser(body) {
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
       }; path=/; samesite=strict`;
-      console.log(login.data);
+      // console.log("YO",login.data.user.rol);
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
       });
     } catch (error) {
       if (error.response.status === 403) {
-        alert("Estas baneado");
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Usuario baneado, comuniquese con el administrador",
+        });
+      } else if (error.response.status === 401) {
+        Swal.fire({
+          icon: "info",
+          title: "Oppps",
+          text: "Cuenta no autenticada, hemos enviado un link de verificacion a tu correo",
+        });
       } else {
-        alert("No exite usuario");
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Credenciales invalidas",
+        });
       }
     }
   };
@@ -119,14 +135,31 @@ export function loginUserGoogle(body) {
       document.cookie = `token=${login.data.tokenSession}; max-age=${
         60 * 30
       }; path=/; samesite=strict`;
-      console.log(login.data);
+      console.log(login.data.user.rol);
+      localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
         type: LOGIN,
         payload: login.data,
       });
     } catch (error) {
       if (error.response.status === 403) {
-        alert("Estas baneado");
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Usuario baneado, comuniquese con el administrador",
+        });
+      } else if (error.response.status === 401) {
+        Swal.fire({
+          icon: "info",
+          title: "Oppps",
+          text: "Cuenta no autenticada, hemos enviado un link de verificacion a tu correo",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Credenciales invalidas",
+        });
       }
     }
   };
@@ -156,6 +189,7 @@ export const getLoginUser = () => {
   return async (dispatch) => {
     try {
       const token = document.cookie.split("token=")[1];
+      if (!token) return;
       //console.log("Este es el token", token);
       const verify = await axios.get(`${URL_API}users/getUserLogin`, {
         headers: {
@@ -230,5 +264,52 @@ export function getByFiltersUsers(name) {
           console.log(error);
         }
       );
+  };
+}
+
+export function sendAuthenticate(idUser = "", code = "") {
+  console.log(idUser, code);
+  return async function (dispatch) {
+    // const token = document.cookie.split("token=")[1];
+    try {
+      await axios.post(`${URL_API}/users/authenticateAccount`, {
+        idUser,
+        code,
+      });
+    } catch (error) {
+      if (error.response.status === 406) {
+        Swal.fire({
+          icon: "info",
+          title: "Oppps",
+          text: "El usuario se encuentra autenticado",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oppps",
+          text: "Ocurrio un error al intentar autenticar",
+        });
+      }
+    }
+  };
+}
+
+export function updateUser(body) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.put(
+        `${URL_API}users/updateUser/${body.id}/${body.AddressId}`,
+        body,
+        {
+          "content-type": "application/json",
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
