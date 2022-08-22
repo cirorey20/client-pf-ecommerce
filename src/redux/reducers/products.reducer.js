@@ -7,6 +7,7 @@ const {
     RESET_PAGE,
     GET_PRODUCT_BY_NAME,
     PRODUCTS_BY_FILTERS,
+    PRODUCTS_BY_RANGE
 
 } = require('../actions/products');
 
@@ -28,6 +29,12 @@ export function productReducer(state = initialState, action) {
     }
 
     if (action.type === PRODUCTS_BY_FILTERS) {
+        return {
+            ...state,
+            products: action.payload
+        }
+    }
+    if (action.type === PRODUCTS_BY_RANGE) {
         return {
             ...state,
             products: action.payload

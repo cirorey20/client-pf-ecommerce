@@ -45,35 +45,35 @@ const CheckoutForm = () => {
         " Total:$" +
         total
       ).toString();
-      try {
-        axios
-          .post(
-            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            `${URL_API}orders/checkout`,
-            {
-              id,
-              amount: total,
-              stateCart,
-              detail,
-              customer: user,
-            }
-          )
-          .then(function (response) {
-            console.log(response.data);
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/success");
-          })
-          .catch(() => {
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/rejected");
-          }); //.finally(()=>{})
+      // try {
+      //   axios
+      //     .post(
+      //       // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+      //       `${URL_API}orders/checkout`,
+      //       {
+      //         id,
+      //         amount: total,
+      //         stateCart,
+      //         detail,
+      //         customer: user,
+      //       }
+      //     )
+      //     .then(function (response) {
+      //       console.log(response.data);
+      //       dispatch(resetCart());
+      //       setLoading(false);
+      //       navigate("/success");
+      //     })
+      //     .catch(() => {
+      //       dispatch(resetCart());
+      //       setLoading(false);
+      //       navigate("/rejected");
+      //     }); //.finally(()=>{})
 
-      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
-      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
-      // console.log(stateCart)
-      // console.log(total)
+      // var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
+      // var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
+      // // console.log(stateCart)
+      // // console.log(total)
       try {
         axios.post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!

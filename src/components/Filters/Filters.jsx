@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Filters.css";
+import FilterRange from "./FilterRange";
 const initialSort = "CHOOSE A OPTION";
 
 export default function Filters() {
@@ -72,6 +73,9 @@ export default function Filters() {
         <option value="asc">Price desc</option>
         <option value="desc">Price asc</option>
       </select>
+
+
+      <FilterRange/>
 
       <select
         form="filter"
