@@ -70,7 +70,7 @@ const Login = () => {
           Login
           <input
             className="input_login"
-            placeholder="Ingrese email"
+            placeholder="Enter your email"
             type="text"
             name="email"
             value={input.email.toLowerCase()}
@@ -80,7 +80,7 @@ const Login = () => {
           />
           <input
             className="input_login"
-            placeholder="Ingrese password"
+            placeholder="Enter your password"
             type="password"
             name="password"
             value={input.password.toLowerCase()}
