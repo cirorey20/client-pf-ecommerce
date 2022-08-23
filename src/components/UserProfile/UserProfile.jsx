@@ -9,6 +9,9 @@ import { FaRegEdit } from "react-icons/fa";
 import ProfileFav from "./ProfileFav";
 import "./UserProfile.css";
 import AddressEditForm from "../Favorite/AddressEditForm";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer.jsx";
+
 
 export default function UserInfo() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
@@ -131,6 +134,7 @@ export default function UserInfo() {
   if (!isFavorite) {
     return (
       <div>
+              <NavBar />
         <>
           {isEdit && (
             <EditForm
@@ -215,6 +219,7 @@ export default function UserInfo() {
             </div>
           </div>
         </>
+
       </div>
     );
   }

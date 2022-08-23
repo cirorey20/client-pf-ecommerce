@@ -32,11 +32,11 @@ export default function Profile() {
           className={`menu ${isActive ? "active" : "inactive"} z-40`}
         >
           <ul className="z-40">
-            <li>
-              <Link to={"/user/dashboard"}>Dashboard</Link>
+          <li>
+              <Link to={"/logged/userInfo"}>My Profile</Link>
             </li>
             <li>
-              <Link to={"/logged/userInfo"}>My Profile</Link>
+              <Link to={"/favorites"}>Favorites</Link>
             </li>
             <li>
               <a>
