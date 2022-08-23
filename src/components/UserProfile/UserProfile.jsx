@@ -48,16 +48,16 @@ export default function UserInfo() {
       last_name: user?.last_name,
     });
   }, [user]);
-
+  console.log(user);
   const [newProfileAddress, setNewProfileAddress] = useState("");
   useEffect(() => {
     setNewProfileAddress({
       AddressId: user?.AddressId,
-      city: user?.city,
-      province: user?.province,
-      street_number: user?.street_number,
-      locality: user?.locality,
-      apartment_floor: user?.apartment_floor,
+      city: user?.Address.city,
+      province: user?.Address.province,
+      street_number: user?.Address.street_number,
+      locality: user?.Address.locality,
+      apartment_floor: user?.Address.apartment_floor,
     });
   }, [user]);
 
@@ -78,35 +78,35 @@ export default function UserInfo() {
     if (dataType === "city") {
       setNewProfileAddress({
         ...newProfileAddress,
-        AddressId: user.AddressId,
+        id: user.AddressId,
         city: newData,
       });
     }
     if (dataType === "province") {
       setNewProfileAddress({
         ...newProfileAddress,
-        AddressId: user.AddressId,
+        id: user.AddressId,
         province: newData,
       });
     }
     if (dataType === "street_number") {
       setNewProfileAddress({
         ...newProfileAddress,
-        AddressId: user.AddressId,
+        id: user.AddressId,
         street_number: newData,
       });
     }
     if (dataType === "locality") {
       setNewProfileAddress({
         ...newProfileAddress,
-        AddressId: user.AddressId,
+        id: user.AddressId,
         locality: newData,
       });
     }
     if (dataType === "apartment_floor") {
       setNewProfileAddress({
         ...newProfileAddress,
-        AddressId: user.AddressId,
+        id: user.AddressId,
         apartment_floor: newData,
       });
     }
