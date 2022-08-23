@@ -30,10 +30,10 @@ const Rejected = () => {
           <div>
             <div className="pt-12 pr-7 ">
               <Link
-                to="/home"
+                to="/cart"
                 className=" ml-8 mb-5 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#cbd5e1] hover:bg-black"
               >
-                Return to homePage
+                Return to cart
               </Link>
             </div>
           </div>
