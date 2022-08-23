@@ -47,34 +47,34 @@ const CheckoutForm = () => {
       ).toString();
       try {
         axios
-          .post(
-            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            `${URL_API}orders/checkout`,
-            {
-              id,
-              amount: total,
-              stateCart,
-              detail,
-              customer: user,
-            }
-          )
-          .then(function (response) {
-            console.log(response.data)
-            if (response.data.estado) {
-              dispatch(resetCart());
-              setLoading(false);
-              navigate("/success")
-            } else {
-              // dispatch(resetCart());
-              navigate("/rejected")
-            }
-          })
-          .catch(() => {
-            // dispatch(resetCart());
+        .post(
+          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+          `${URL_API}orders/checkout`,
+          {
+            id,
+            amount: total,
+            stateCart,
+            detail,
+            customer: user,
+          }
+        )
+        .then(function(response) {
+          console.log(response.data)
+          if (response.data.estado){
+            dispatch(resetCart());
             setLoading(false);
-            navigate("/rejected")
-          })        //.finally(()=>{})
-        //.finally(()=>{})
+            navigate("/success")
+          }else {
+          // dispatch(resetCart());
+          navigate("/rejected")
+        }
+         })
+        .catch(()=> {     
+          // dispatch(resetCart());
+          setLoading(false);
+          navigate("/rejected")
+        })        //.finally(()=>{})
+       //.finally(()=>{})
 
         // console.log(data);
         // elements.getElement(CardElement).clear();
@@ -101,10 +101,10 @@ const CheckoutForm = () => {
         </div>
         <div className="getBuy_form">
           {user?.Address?.city &&
-            user?.Address?.province &&
-            user?.Address?.locality &&
-            user?.Address?.street_number &&
-            user?.Address?.apartment_floor ? (
+          user?.Address?.province &&
+          user?.Address?.locality &&
+          user?.Address?.street_number &&
+          user?.Address?.apartment_floor ? (
             <div className="creditCard">
               <CardElement className="border-double border-4 border-black ml-1 mr-1" />
               <div className="pr-8">{user.name + " " + user.last_name}</div>
