@@ -46,35 +46,8 @@ const CheckoutForm = () => {
         total
       ).toString();
       try {
-        axios.post(
-            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            `${URL_API}orders/checkout`,
-            {
-              id,
-              amount: total,
-              stateCart,
-              detail,
-              customer: user,
-            }
-          )
-          .then(function (response) {
-            console.log(response.data);
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/success");
-          })
-          .catch(() => {
-            dispatch(resetCart());
-            setLoading(false);
-            navigate("/rejected");
-          }); //.finally(()=>{})
-
-      var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
-      var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
-      // console.log(stateCart)
-      // console.log(total)
-      try {
-        axios.post(
+        axios
+        .post(
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
           `${URL_API}orders/checkout`,
           {
@@ -175,7 +148,6 @@ const CheckoutForm = () => {
                   <div className="pr-16">
                     Name: {user.name + " " + user.last_name}
                   </div>
-
                   <div className="pl-4">
                     <h4>Email: {user.email}</h4>
                   </div>
