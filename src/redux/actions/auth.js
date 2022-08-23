@@ -321,15 +321,14 @@ export const profileUpdate = (newProfile) => {
       const token = document.cookie.split("token=")[1];
 
       let verify;
-
-      if(newProfile.AddressId){
+      //console.log(newProfile.Address.AddressId);
+      if (newProfile.AddressId) {
         verify = await axios.put(
           `${URL_API}users/updateAddress/${newProfile.AddressId}`,
           newProfile
         );
       }
-      if(newProfile.id){
-
+      if (newProfile.id) {
         verify = await axios.put(
           `${URL_API}users/updateUser/${newProfile.id}`,
           newProfile
