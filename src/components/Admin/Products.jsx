@@ -56,8 +56,8 @@ const ProductsAdmin = () => {
 
   return (
     <div>
-      <NavAdmin/>
-      <div class="flex justify-between py-5">
+      <NavAdmin />
+      <div className="flex justify-between py-5">
         <div>
           <Link to="/product/create">
             <button className=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
@@ -87,9 +87,9 @@ const ProductsAdmin = () => {
             {productsOfNow.map((e) => {
               return (
                 <div
-                key={e.id}
-                className=" bg-zinc-200 flex justify-evenly bg-white-100  mx-44 border-4  rounded-full my-11 p-5"
-                
+                  key={e.id}
+                  className=" bg-zinc-200 flex justify-evenly bg-white-100  mx-44 border-4  rounded-full my-11 p-5"
+
                 >
                   <div>
                     <img className="w-28" src={e.image} alt="" />
@@ -117,12 +117,10 @@ const ProductsAdmin = () => {
                   </div>
 
                   <div>
-                    <button
-                      key={e.id}
-                      className="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
-                    >
-                      EDIT
-                    </button>
+                    <Link className="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5" to={`/product/update/${e.id}`}>
+                      Edit
+                    </Link>
+
                     <button
                       onClick={() =>
                         e.enable === true

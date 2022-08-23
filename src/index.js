@@ -11,7 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(
-  "pk_test_51LW3beKXLCV01PVd8wRP3zdjEw5oAKBoKZY5O54MeqpeMetilr9Obkj5yIFwuQDFhjRNZ1B4fX6sA3i0C6gzUMML00XmQiEtkG"
+  "pk_test_51LW3beKXLCV01PVdY0hOv5bpE8LAzs1SozeS9tDkFd1RVJzygXqZfJr8yQeLrvpAr0KisOpDNVthasVBYuRdz74F004UnAmIMF"
 );
 
 ReactDOM.render(
