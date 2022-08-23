@@ -8,11 +8,7 @@ const AddressEditForm = ({
 }) => {
   return (
     <div className="absolute px-24 py-4 border shadow-lg rounded-lg ring-offset-2 ring-2 left-2/4 top-full -translate-x-2/4 -translate-y-2/4  bg-white">
-      <form
-        action=""
-        onSubmit={onSubmitAddress}
-        className="w-full max-w-sm my-5 "
-      >
+      <form onSubmit={onSubmitAddress} className="w-full max-w-sm my-5 ">
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
