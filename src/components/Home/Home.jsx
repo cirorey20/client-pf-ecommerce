@@ -113,10 +113,10 @@ const Home = () => {
       <br />
       <div className="flex mb-6 ">
         <div className="filters_container">
-          <p className="home_subtitle">Order</p>
+          <p className="home_subtitle ">Order</p>
           <hr />
           <Filters handlerFilters={handlerFilters} />
-          <p className="home_subtitle">Filter</p>
+          <p className="home_subtitle ">Filter</p>
           <hr />
           <FilterCategories allCategories={allCategories} />
         </div>

@@ -99,17 +99,17 @@ function App() {
             <AuthContextProvider user={"user"} element={<MyShopping />} />
           }
         />
-
-        {/* Admin y User pueder acceder a esta vista */}
         <Route
           path="/orders"
           element={
             <AuthContextProvider
-              user={["admin", "user"]}
+              user={"admin"}
               element={<Orders />}
             />
           }
         />
+
+        {/* Admin y User pueder acceder a esta vista */}
         <Route
           path="/orders/:idOrder"
           element={

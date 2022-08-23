@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Filters.css";
-
+import FilterRange from "./FilterRange";
 // const categories = [
 //     {
 //         id: '123456-1234-1234-1234-123456789011',
@@ -128,7 +128,7 @@ export default function FilterCategory({ allCategories }) {
   }
 
   return (
-    <div className="inputs_container ">
+    <div className="inputs_container  ">
       <div className="">
       <div className=" grid auto-cols-max mb-6 mt-3">
       {checksCategory.map((category) => {
@@ -158,6 +158,7 @@ export default function FilterCategory({ allCategories }) {
           Reset
         </button>
       </div>
+      <FilterRange/>
     </div>
   );
 }

@@ -64,17 +64,18 @@ const Users = () => {
     e.preventDefault();
     dispatch(getByFiltersUsers(e.target.value));
   };
-
   return (
     <div>
       <NavAdmin />
+      <h1 className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">USERS</h1>
+      <br/>
       <div className="md:container mx-auto pt-10">
         <div className="flex justify-around ">
-          <button className="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-1 px-10 rounded-full">
+          {/* <button className="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-1 px-10 rounded-full">
             ALFHABATIC
-          </button>
+          </button> */}
           <div>
-            <select onChange={(e) => handleOrder(e)} id="select-order">
+            <select onChange={(e) => handleOrder(e)} id="select-order" className="bg-[#644b9c] hover:bg-violet-600 text-white text-xs font-medium py-3 px-10 rounded-full">
               <option value="all">Order Alphabetically</option>
               <option value="A-Z">A-Z</option>
               <option value="Z-A">Z-A</option>
@@ -82,14 +83,14 @@ const Users = () => {
           </div>
           <div className="flex items-center">
             <input
-              className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 navbar_searchInput"
+              className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent"
               type="text"
-              placeholder="Search..."
+              placeholder="Input your date..."
               onChange={(e) => onHandleChange(e)}
             />
             <button
               onClick={(e) => onHandleSubmit(e)}
-              className="button_search"
+              className="rounded-full py-2   text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent"
             >
               SEARCH
             </button>

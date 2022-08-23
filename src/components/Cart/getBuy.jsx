@@ -46,8 +46,7 @@ const CheckoutForm = () => {
         total
       ).toString();
       try {
-        axios
-          .post(
+        axios.post(
             // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
             `${URL_API}orders/checkout`,
             {
@@ -76,8 +75,8 @@ const CheckoutForm = () => {
       // console.log(total)
       try {
         axios.post(
-           'http://localhost:3001/api/orders/checkout', //NO PONER ASI LAS RUTAS!!
-         // `${URL_API}orders/checkout`,
+          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+          `${URL_API}orders/checkout`,
           {
             id,
             amount: total,
@@ -89,19 +88,20 @@ const CheckoutForm = () => {
         .then(function(response) {
           console.log(response.data)
           if (response.data.estado){
-          dispatch(resetCart());
-          setLoading(false);
-          navigate("/success")
-          }else {
             dispatch(resetCart());
-            navigate("/rejected")
-          }
-        })
+            setLoading(false);
+            navigate("/success")
+          }else {
+          // dispatch(resetCart());
+          navigate("/rejected")
+        }
+         })
         .catch(()=> {     
-           dispatch(resetCart());
+          // dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
         })        //.finally(()=>{})
+       //.finally(()=>{})
 
         // console.log(data);
         // elements.getElement(CardElement).clear();
@@ -110,10 +110,6 @@ const CheckoutForm = () => {
         console.log(error);
       }
     }
-    catch(error){
-      console.log(error)
-    }
-  }
   };
 
   return (

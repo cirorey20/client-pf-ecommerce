@@ -65,6 +65,7 @@ const Details = () => {
       <div className="text-xl">No ranked yet!</div>
     );
   }
+  console.log(details)
   return (
     <Fragment>
       <NavBar />
