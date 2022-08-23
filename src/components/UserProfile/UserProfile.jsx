@@ -145,7 +145,7 @@ export default function UserInfo() {
               onSubmit={onSubmitAddress}
               editProfile={editProfileAddress}
               toggleEditAddress={toggleEditAddress}
-              newProfileAddress={newProfileAddress}
+              newProfile={newProfileAddress}
             />
           )}
 
