@@ -142,10 +142,10 @@ export default function UserInfo() {
 
           {isEditAddress && (
             <AddressEditForm
-              onSubmit={onSubmitAddress}
-              editProfile={editProfileAddress}
+              onSubmitAddress={onSubmitAddress}
+              editProfileAddress={editProfileAddress}
               toggleEditAddress={toggleEditAddress}
-              newProfile={newProfileAddress}
+              newProfileAddress={newProfileAddress}
             />
           )}
 
@@ -202,7 +202,6 @@ export default function UserInfo() {
                   </p>
                 </div>
               ) : null}
-              {console.log(user)}
 
               <button
                 className="btnOrders"
