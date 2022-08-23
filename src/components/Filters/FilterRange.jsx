@@ -31,6 +31,7 @@ const FilterRange = () => {
         dispatch(getByFilters(`?minrange=${input.min}&maxrange=${input.max}`))
         e.target[0].value = null
         e.target[1].value = null
+        setShow('hidden')
     }
     useEffect (()=>{
         if (input.min > 0){
