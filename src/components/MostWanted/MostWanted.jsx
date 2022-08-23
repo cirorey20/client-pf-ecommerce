@@ -9,19 +9,10 @@ import "flowbite";
 
 export default function MostWanted({ favorite }) {
   const allProducts = useSelector((state) => state.productReducer.products);
-  const dispatch = useDispatch();
-  console.log(allProducts);
-
-  const handlerAddToFav = (favorite) => {
-    dispatch(addFavorites(favorite));
-  };
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPage] = useState(4);
-  const lastPage = currentPage * productsPage;
-  const firstPage = lastPage - productsPage;
-  const productsOfNow = allProducts.slice(firstPage, lastPage);
 
   return (
     <div className="">
