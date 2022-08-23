@@ -45,70 +45,36 @@ const CheckoutForm = () => {
         " Total:$" +
         total
       ).toString();
-<<<<<<< HEAD
-            // try {
-            //   axios
-            //     .post(
-            //       // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-            //       `${URL_API}orders/checkout`,
-            //       {
-            //         id,
-            //         amount: total,
-            //         stateCart,
-            //         detail,
-            //         customer: user,
-            //       }
-            //     )
-            //     .then(function (response) {
-            //       console.log(response.data);
-            //       dispatch(resetCart());
-            //       setLoading(false);
-            //       navigate("/success");
-            //     })
-            //     .catch(() => {
-            //       dispatch(resetCart());
-            //       setLoading(false);
-            //       navigate("/rejected");
-            //     }); //.finally(()=>{})
-
-            // var quantity = stateCart.reduce((prev,next)=>prev+next.quantity,0)
-            // var detail = (stateCart.map((e)=> " Prod:"+e.name+" Quant:"+e.quantity+" UnitPrice:$"+e.price)+". QTotal:"+quantity+" Total:$"+total).toString();
-            // // console.log(stateCart)
-            // // console.log(total)
-      try {
-        axios.post(
-=======
       try {
         axios
-        .post(
->>>>>>> de5688bae89aa81567e147b4fe84a723c6305c3b
-          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-          `${URL_API}orders/checkout`,
-          {
-            id,
-            amount: total,
-            stateCart,
-            detail,
-            customer: user,
-          }
-        )
-        .then(function(response) {
-          console.log(response.data)
-          if (response.data.estado){
-            dispatch(resetCart());
+          .post(
+            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+            `${URL_API}orders/checkout`,
+            {
+              id,
+              amount: total,
+              stateCart,
+              detail,
+              customer: user,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data)
+            if (response.data.estado) {
+              dispatch(resetCart());
+              setLoading(false);
+              navigate("/success")
+            } else {
+              // dispatch(resetCart());
+              navigate("/rejected")
+            }
+          })
+          .catch(() => {
+            // dispatch(resetCart());
             setLoading(false);
-            navigate("/success")
-          }else {
-          // dispatch(resetCart());
-          navigate("/rejected")
-        }
-         })
-        .catch(()=> {     
-          // dispatch(resetCart());
-          setLoading(false);
-          navigate("/rejected")
-        })        //.finally(()=>{})
-       //.finally(()=>{})
+            navigate("/rejected")
+          })        //.finally(()=>{})
+        //.finally(()=>{})
 
         // console.log(data);
         // elements.getElement(CardElement).clear();
@@ -135,10 +101,10 @@ const CheckoutForm = () => {
         </div>
         <div className="getBuy_form">
           {user?.Address?.city &&
-          user?.Address?.province &&
-          user?.Address?.locality &&
-          user?.Address?.street_number &&
-          user?.Address?.apartment_floor ? (
+            user?.Address?.province &&
+            user?.Address?.locality &&
+            user?.Address?.street_number &&
+            user?.Address?.apartment_floor ? (
             <div className="creditCard">
               <CardElement className="border-double border-4 border-black ml-1 mr-1" />
               <div className="pr-8">{user.name + " " + user.last_name}</div>
@@ -182,7 +148,6 @@ const CheckoutForm = () => {
                   <div className="pr-16">
                     Name: {user.name + " " + user.last_name}
                   </div>
-
                   <div className="pl-4">
                     <h4>Email: {user.email}</h4>
                   </div>

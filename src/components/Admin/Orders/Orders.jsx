@@ -6,6 +6,7 @@ import { getOrders, getStates, setState } from "../../../redux/actions/orders";
 import NavAdmin from "../NavAdmin";
 import NavBar from "../../NavBar/NavBar";
 import Paginate from "../../Paginate/Paginate";
+import ClientData from "./ClientData";
 
 const initialFilters = {
   state: "BY STATE",
@@ -23,6 +24,7 @@ export function Orders() {
   const { search } = useLocation();
   const [save, setSave] = useState([]);
   const [date, setDate] = useState(initialDate);
+  const [isClientData, setIsClientData] = useState(false)
   const { orders: allOrders, states } = useSelector(
     (state) => state.ordersReducer
   );
@@ -152,8 +154,17 @@ export function Orders() {
     }
   }
 
+
+  const clientData = () => {
+    setIsClientData(!isClientData);
+  }
+
+
   return (
     <>
+
+
+
       <div>
         {localStorage.getItem("rol") === "user" ? <NavBar /> : <NavAdmin />}
         <h1 
@@ -270,74 +281,84 @@ export function Orders() {
               </tr>
             </thead>
             <tbody>
-              {save?.map((o) => (
-                <tr key={o.id} className="bg-[#f1eff0]">
-                  <td className="text-black rounded-l-full pl-6 py-6">
-                    {o.id}
-                  </td>
-
-                  <td className="py-6 px-6">
-                    <select
-                      value={o.state}
-                      onChange={(e) => onChangeState(e, o.id)}
-                      className="block text-white bg-[#644b9c]  px-6 rounded-full  border-none focus:ring-transparent"
-                    >
-                      {states.map((state) => (
-                        <option value={state}>{state.toUpperCase()}</option>
-                      ))}
-                    </select>
-
-                    {save?.find((s) => s.id === o.id)?.isChange && (
-                      <button
-                        onClick={() =>
-                          onClickSave(
-                            o.id,
-                            o.User.email,
-                            o.User.name,
-                            o.User.last_name
-                          )
-                        }
-                        className="rounded bg-green-500 p-1 mt-0.5"
-                      >
-                        SAVE
-                      </button>
-                    )}
-                  </td>
-
-                  <td className="py-6 px-6 text-black">{o.User.email}</td>
-
-                  <td className="py-6 px-6 text-black">
-                    {`${new Date(o.date).getDate()}-${
-                      new Date(o.date).getMonth() + 1
-                    }-${new Date(o.date).getFullYear()} ${new Date(
-                      o.date
-                    ).getHours()}:${new Date(o.date).getMinutes()}`}
-                  </td>
-                  <td className="py-6 px-6 text-black">
-                    {"USD "}
-                    {o.ProductOrders?.reduce(
-                      (prev, curr) => prev + curr.quantity * curr.price,
-                      0
-                    )}
-                  </td>
-                  <td className="py-4 px-6">
-                    <Link
-                      className="text-white rounded-full bg-[#007d34] px-2 py-1"
-                      to={`/orders/${o.id}`}
-                    >
-                      PDF
-                    </Link>
-                  </td>
-                  <td className="rounded-r-full pr-6">
-                    <Link
-                      className="text-white rounded-full bg-[#fe914e] px-2 py-1"
-                      to={`/orders/${o.id}`}
-                    >
-                      CLIENT DATA
-                    </Link>
-                  </td>
+              {(save?.length === 0) ? (<tr className="bg-[#f1eff0]"><td className="text-black rounded-full pl-6 py-6" colSpan="7">No hay ordenes</td></tr>) : save?.map((o) => (
+                <>
+                <tr>
+                <td>
+                  
+                  {
+                    isClientData && <ClientData addressOrder={o.address_order} user={o.User} setIsClientData={setIsClientData} />
+                  }
+                </td>
                 </tr>
-              ))}
+                  <tr key={o.id} className="bg-[#f1eff0]">
+                    <td className="text-black rounded-l-full pl-6 py-6">
+                      {o.id}
+                    </td>
+
+                    <td className="py-6 px-6">
+                      <select
+                        value={o.state}
+                        onChange={(e) => onChangeState(e, o.id)}
+                        className="block text-white bg-[#644b9c]  px-6 rounded-full  border-none focus:ring-transparent"
+                      >
+                        {states.map((state) => (
+                          <option value={state}>{state.toUpperCase()}</option>
+                        ))}
+                      </select>
+
+                      {save?.find((s) => s.id === o.id)?.isChange && (
+                        <button
+                          onClick={() =>
+                            onClickSave(
+                              o.id,
+                              o.User.email,
+                              o.User.name,
+                              o.User.last_name
+                            )
+                          }
+                          className="rounded bg-green-500 p-1 mt-0.5"
+                        >
+                          SAVE
+                        </button>
+                      )}
+                    </td>
+
+                    <td className="py-6 px-6 text-black">{o.User.email}</td>
+
+                    <td className="py-6 px-6 text-black">
+                      {`${new Date(o.date).getDate()}-${new Date(o.date).getMonth() + 1
+                        }-${new Date(o.date).getFullYear()} ${new Date(
+                          o.date
+                        ).getHours()}:${new Date(o.date).getMinutes()}`}
+                    </td>
+                    <td className="py-6 px-6 text-black">
+                      {"USD "}
+                      {o.ProductOrders?.reduce(
+                        (prev, curr) => prev + curr.quantity * curr.price,
+                        0
+                      )}
+                    </td>
+                    <td className="py-4 px-6">
+                      <Link
+                        className="text-white rounded-full bg-[#007d34] px-2 py-1"
+                        to={`/orders/${o.id}`}
+                      >
+                        PDF
+                      </Link>
+                    </td>
+                    <td className="rounded-r-full pr-6">
+                      <button
+                        className="text-white rounded-full bg-[#fe914e] px-2 py-1"
+                        onClick={clientData}>
+                        CLIENT DATA
+                      </button>
+
+                    </td>
+                  </tr>
+                </>
+              )
+              )}
             </tbody>
           </table>
         </div>
