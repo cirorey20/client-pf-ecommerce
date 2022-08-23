@@ -22,7 +22,6 @@ export default function UserInfo() {
   useEffect(() => {
     setUserProfile({ ...user?.Address, ...user });
   }, [user]);
-  console.log(userProfile);
 
   const handleChange = (e) => {
     setUserProfile({ ...userProfile, [e.target.name]: e.target.value });
@@ -42,20 +41,25 @@ export default function UserInfo() {
   const toggleEditAddress = () => {
     setIsEditAddress(!isEditAddress);
   };
-  const [newProfile, setNewProfile] = useState({
-    id: "",
-    name: "",
-    last_name: "",
-  });
+  const [newProfile, setNewProfile] = useState("");
+  useEffect(() => {
+    setNewProfile({
+      name: user?.name,
+      last_name: user?.last_name,
+    });
+  }, [user]);
 
-  const [newProfileAddress, setNewProfileAddress] = useState({
-    AddressId: "",
-    city: "",
-    province: "",
-    street_number: "",
-    locality: "",
-    apartment_floor: ""
-  });
+  const [newProfileAddress, setNewProfileAddress] = useState("");
+  useEffect(() => {
+    setNewProfileAddress({
+      AddressId: user?.AddressId,
+      city: user?.city,
+      province: user?.province,
+      street_number: user?.street_number,
+      locality: user?.locality,
+      apartment_floor: user?.apartment_floor,
+    });
+  }, [user]);
 
   const editProfile = (e) => {
     const newData = e.target.value;
@@ -72,19 +76,39 @@ export default function UserInfo() {
     const newData = e.target.value;
     const dataType = e.target.name;
     if (dataType === "city") {
-      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, city: newData });
+      setNewProfileAddress({
+        ...newProfileAddress,
+        AddressId: user.AddressId,
+        city: newData,
+      });
     }
     if (dataType === "province") {
-      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, province: newData });
+      setNewProfileAddress({
+        ...newProfileAddress,
+        AddressId: user.AddressId,
+        province: newData,
+      });
     }
     if (dataType === "street_number") {
-      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, street_number: newData });
+      setNewProfileAddress({
+        ...newProfileAddress,
+        AddressId: user.AddressId,
+        street_number: newData,
+      });
     }
     if (dataType === "locality") {
-      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, locality: newData });
+      setNewProfileAddress({
+        ...newProfileAddress,
+        AddressId: user.AddressId,
+        locality: newData,
+      });
     }
     if (dataType === "apartment_floor") {
-      setNewProfileAddress({ ...newProfileAddress, AddressId: user.AddressId, apartment_floor: newData });
+      setNewProfileAddress({
+        ...newProfileAddress,
+        AddressId: user.AddressId,
+        apartment_floor: newData,
+      });
     }
   };
 
@@ -112,6 +136,7 @@ export default function UserInfo() {
               onSubmit={onSubmit}
               editProfile={editProfile}
               toggleEdit={toggleEdit}
+              newProfile={newProfile}
             />
           )}
 
@@ -119,7 +144,8 @@ export default function UserInfo() {
             <AddressEditForm
               onSubmit={onSubmitAddress}
               editProfile={editProfileAddress}
-              toggleEdit={toggleEditAddress}
+              toggleEditAddress={toggleEditAddress}
+              newProfileAddress={newProfileAddress}
             />
           )}
 
@@ -159,16 +185,21 @@ export default function UserInfo() {
 
               {user ? (
                 <div className="userName">
-                  <button className="userBtnTopRight" onClick={toggleEditAddress}>
+                  <button
+                    className="userBtnTopRight"
+                    onClick={toggleEditAddress}
+                  >
                     <FaRegEdit className="editIcon" />
                     Edit
                   </button>
 
-                  <p>City: {user?.Address?.city || 'N/A'}</p>
-                  <p>Province: {user?.Address?.province || 'N/A'}</p>
-                  <p>Street number: {user?.Address?.street_number || 'N/A'}</p>
-                  <p>Locality: {user?.Address?.locality || 'N/A'}</p>
-                  <p>Apartment floor: {user?.Address?.apartment_floor || 'N/A'}</p>
+                  <p>City: {user?.Address?.city || "N/A"}</p>
+                  <p>Province: {user?.Address?.province || "N/A"}</p>
+                  <p>Street number: {user?.Address?.street_number || "N/A"}</p>
+                  <p>Locality: {user?.Address?.locality || "N/A"}</p>
+                  <p>
+                    Apartment floor: {user?.Address?.apartment_floor || "N/A"}
+                  </p>
                 </div>
               ) : null}
               {console.log(user)}
@@ -183,7 +214,6 @@ export default function UserInfo() {
             </div>
           </div>
         </>
-
       </div>
     );
   }
