@@ -30,9 +30,9 @@ export default function ProductsView() {
             />
             <div className=" bg-white">
               <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
-                -30%
+                -10%
               </span>
-              <h1 className="mt-4 font-bold text-2xl">Pianos</h1>
+              <h1 className="mt-4 font-bold text-2xl">Acústicos</h1>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function ProductsView() {
             />
             <div className=" bg-white">
               <span className="text-sm font-semibold text-red-50 bg-red-400 py-3 px-3 rounded-full">
-                -30%
+                -5%
               </span>
               <h1 className="mt-4 font-bold text-2xl">Viento</h1>
             </div>
