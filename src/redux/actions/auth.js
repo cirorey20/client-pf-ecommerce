@@ -314,9 +314,6 @@ export function updateUser(body) {
     }
   };
 }
-<<<<<<< HEAD
-  
-=======
 
 export const profileUpdate = (newProfile) => {
   return async (dispatch) => {
@@ -344,4 +341,3 @@ export const profileUpdate = (newProfile) => {
     }
   };
 };
->>>>>>> de5688bae89aa81567e147b4fe84a723c6305c3b
