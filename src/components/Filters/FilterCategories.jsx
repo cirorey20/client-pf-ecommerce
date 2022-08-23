@@ -130,35 +130,47 @@ export default function FilterCategory({ allCategories }) {
   return (
     <div className="inputs_container  ">
       <div className="">
-      <div className=" grid auto-cols-max mb-6 mt-3">
-      {checksCategory.map((category) => {
-        return (
-          <div key={category.id} className="flex justify-start">
-            <input
-              type="checkbox"
-              id={`custom-checkbox-${category.id}`}
-              name={category.name}
-              value={category.id}
-              checked={category.checked}
-              onChange={() => onChangeCheck(category.id)}
-            />
-            <label className="ml-2 " htmlFor={`custom-checkbox-${category.id}`}>
-              {category.name}
-            </label>
-          </div>
-        );
-      })} 
-      </div>
+        <div className=" grid auto-cols-max mb-6 mt-3">
+          {checksCategory.map((category) => {
+            return (
+              <div key={category.id} className="flex justify-start">
+                <input
+                  type="checkbox"
+                  id={`custom-checkbox-${category.id}`}
+                  name={category.name}
+                  value={category.id}
+                  checked={category.checked}
+                  onChange={() => onChangeCheck(category.id)}
+                />
+                <label
+                  className="ml-2 "
+                  htmlFor={`custom-checkbox-${category.id}`}
+                >
+                  {category.name}
+                </label>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className="filter_flexColumn">
-        <button type="button" onClick={onClickFilter} className="select_styles">
+        <button
+          type="button"
+          onClick={onClickFilter}
+          className="select_styles simple_button"
+        >
           Filter
         </button>
-        <button type="button" onClick={onClickReset} className="select_styles">
+        <FilterRange />
+
+        <button
+          type="button"
+          onClick={onClickReset}
+          className="select_styles simple_button"
+        >
           Reset
         </button>
       </div>
-      <FilterRange/>
     </div>
   );
 }
