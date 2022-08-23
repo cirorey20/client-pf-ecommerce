@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer.jsx";
 import "./MyShopping.css";
@@ -7,16 +7,18 @@ import Swal from "sweetalert2";
 
 import ProductContainer from "./ProductContainer";
 import { getOrdersByUser } from "../../redux/actions/orders.js";
+import { ordersReducer } from "../../redux/reducers/orders.reducer.js";
 
 const MyShopping = () => {
   const ordersByUser = useSelector((state) => state.ordersReducer.ordersUser);
   const userLogin = useSelector((state) => state.authReducer.userLogin);
+  console.log(userLogin)
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getOrdersByUser(userLogin.user?.id));
-  }, []);
+  useEffect(async() => {
+       dispatch(getOrdersByUser(userLogin.user.id));
+  }, [userLogin]);
 
   return (
     <div>

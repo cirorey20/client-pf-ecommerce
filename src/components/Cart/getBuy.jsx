@@ -76,8 +76,8 @@ const CheckoutForm = () => {
       // console.log(total)
       try {
         axios.post(
-          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-          `${URL_API}orders/checkout`,
+           'http://localhost:3001/api/orders/checkout', //NO PONER ASI LAS RUTAS!!
+         // `${URL_API}orders/checkout`,
           {
             id,
             amount: total,

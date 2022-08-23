@@ -40,6 +40,7 @@ export function getOrdersByUser(id) {
   return async function (dispatch) {
     try {
       const ordersByUser = await axios.get(`${URL_API}orders/user/${id}`);
+      console.log(ordersByUser.data)
       return dispatch({
         type: USER_ORDERS,
         payload: ordersByUser.data,
