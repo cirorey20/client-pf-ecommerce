@@ -21,6 +21,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
           <div className="footer-col">
             <ul className="list-services">
               <h4>contact us</h4>
