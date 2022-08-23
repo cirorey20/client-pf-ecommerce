@@ -77,7 +77,8 @@
 .productDetails_container {
   /* border: 1px solid blue; */
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, minmax(1fr));
+
   grid-template-rows: 200px;
   justify-content: center;
   align-items: center;

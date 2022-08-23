@@ -14,6 +14,9 @@ const RateProduct = () => {
   const details = useSelector((state) => state.ordersReducer.orderDetail);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
+  const [disabled, setDisabled] = useState(false);
+
   const [stars, setStars] = useState([
     {
       name: "1",
@@ -64,7 +67,6 @@ const RateProduct = () => {
     stars.map((element, id) => {
       if (e.target.name === stars[id].name) {
         setStars([...stars, (stars[id].checked = true)]);
-        console.log(stars);
       }
     });
   }
@@ -90,10 +92,6 @@ const RateProduct = () => {
     );
   }
 
-  /*   function getLength(e) {
-    console.log(target.value.length);
-  } */
-
   const image = details.ProductOrders?.map((e) => e.Product?.image);
   const price = details.ProductOrders?.map((e) => e.Product?.price);
   const name = details.ProductOrders?.map((e) => e.Product?.name);
@@ -112,10 +110,12 @@ const RateProduct = () => {
           <div className="productDetails_container">
             <img src={image} alt="product image" width={"400px"} />
             <p>{name}</p>
-            <p>{description}</p>
+            <p>
+              asdlakjsdl;kjsd;sadijf;oaijdf;lasdjfl;akjdf;laskjdfl;sakjdfal;skdjf;laksdjfaasoidj;psaiojdoisudopaisudopAIDOAPISD[aiposjdpoasjdopajskdl'ojkasd'lkjas'djklask;ldjla;skjd;laksjd;laksjd]
+            </p>
             <p>Quantity:{quantity}</p>
             <p>Price: {price}</p>
-            <p>Payment Method:{paymentMethod}</p>
+            {/* <p>Payment Method:{paymentMethod}</p> */}
             {/* <p>{time}</p> */}
           </div>
           <hr />
@@ -123,8 +123,22 @@ const RateProduct = () => {
           <div className="any">
             <div className="rateProduct_innerContainer_division">
               <h3>Leave your comment</h3>
-              <textarea rows="6" className="review" />
-              <button className="generic_button">Review</button>
+              <textarea
+                rows="6"
+                className="review"
+                onChange={(e) => setCount(e.target.value.length)}
+              />
+              <button
+                className="generic_button"
+                disabled={disabled}
+                onClick={() =>
+                  count > 10
+                    ? setDisabled(true)
+                    : console.log("Please leave your comment")
+                }
+              >
+                Review
+              </button>
             </div>
             <div className="rateProduct_innerContainer_division">
               <div className="stars_container">
