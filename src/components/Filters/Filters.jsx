@@ -74,9 +74,6 @@ export default function Filters() {
         <option value="desc">Price asc</option>
       </select>
 
-
-      
-
       <select
         form="filter"
         name="selectNameSort"

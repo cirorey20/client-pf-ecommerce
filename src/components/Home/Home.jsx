@@ -111,7 +111,7 @@ const Home = () => {
       <NavBar />
 
       <br />
-      <div className="flex mb-6 ">
+      <div className="flex mb-2 ">
         <div className="filters_container">
           <p className="home_subtitle ">Order</p>
           <hr />

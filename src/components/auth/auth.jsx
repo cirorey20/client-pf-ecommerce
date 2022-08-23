@@ -7,7 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/actions/auth";
 import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
+import defaultImage from "../../assets/axel.jpg"
+
+
 const registerUser = () => {
+  //const defaultImage = 'https://scontent.fscl13-1.fna.fbcdn.net/v/t1.18169-9/13512181_623585791137546_6297130873815159109_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeE0UE4M65cMocfw212Z9fqSDVJTiFfxMV8NUlOIV_ExXx4eJvJpFe-hxlgW6FmQW0Y&_nc_ohc=1WV957_HOY4AX_wOn9P&_nc_ht=scontent.fscl13-1.fna&oh=00_AT9VVKv2BBodyeqCxTNc5gpopYp88I3byESP5Tu0wB_s6g&oe=6329426E'
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -27,6 +31,7 @@ const registerUser = () => {
   function handleSubmit(e) {
     e.preventDefault(e);
     if (input.name && input.last_name && input.email && input.password) {
+      if (!input.avatar) input.avatar=defaultImage
       dispatch(createUser(input));
       setInput({
         name: "",
@@ -123,7 +128,7 @@ const registerUser = () => {
                 placeholder="Ingrese avatar"
                 type="text"
                 name="avatar"
-                value={input.avatar.toLowerCase()}
+                value={input.avatar}
                 onChange={(e) => handleChange(e)}
                 autoComplete="off"
                 //required
