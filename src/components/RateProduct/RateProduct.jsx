@@ -90,6 +90,10 @@ const RateProduct = () => {
     );
   }
 
+  /*   function getLength(e) {
+    console.log(target.value.length);
+  } */
+
   const image = details.ProductOrders?.map((e) => e.Product?.image);
   const price = details.ProductOrders?.map((e) => e.Product?.price);
   const name = details.ProductOrders?.map((e) => e.Product?.name);
@@ -103,19 +107,20 @@ const RateProduct = () => {
       <NavBar />
       <div className="rateProduct_container">
         <h1 className="rateProduct_title">Purchase Details</h1>
+
         <div className="rateProduct_innerContainer">
           <div className="productDetails_container">
-            <div>{<img src={image} alt="product image" width={"200px"} />}</div>
-            <div>
-              <p>{time}</p>
-              <p>{name}</p>
-              <p>{description}</p>
-              <p>Quantity:{quantity}</p>
-              <p>Price: {price}</p>
-              <p>Payment Method:{paymentMethod}</p>
-            </div>
+            <img src={image} alt="product image" width={"400px"} />
+            <p>{name}</p>
+            <p>{description}</p>
+            <p>Quantity:{quantity}</p>
+            <p>Price: {price}</p>
+            <p>Payment Method:{paymentMethod}</p>
+            {/* <p>{time}</p> */}
           </div>
-          {/* <div className="any">
+          <hr />
+
+          <div className="any">
             <div className="rateProduct_innerContainer_division">
               <h3>Leave your comment</h3>
               <textarea rows="6" className="review" />
@@ -140,7 +145,7 @@ const RateProduct = () => {
               </div>
               <button className="generic_button">Rate</button>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
