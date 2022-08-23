@@ -3,14 +3,16 @@ import Paginate from "../Paginate/Paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getProducts, getByFilters } from "../../redux/actions/products";
+import { addFavorites } from "../../redux/actions/wishlist";
 import Filters from "../Filters/Filters";
 import FilterCategories from "../Filters/FilterCategories";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 import Loader from "../Loader/Loader";
 import { getCategories } from "../../redux/actions/categories";
-import { createAdmin } from "../../redux/actions/auth";
 import { addProductToCart } from "../../redux/actions/cart";
+import { BsHeartFill } from "react-icons/bs";
+import { createAdmin } from "../../redux/actions/auth";
 import Swal from "sweetalert2";
 import "./Home.css";
 
@@ -25,10 +27,14 @@ const Home = () => {
     (state) => state.categoryReducer.categories
   );
 
+  const stateCart = useSelector((state) => state.cartReducer.cart);
+  const favorites = useSelector((state) => state.wishlistReducer);
+  const { user } = useSelector((state) => state.authReducer.userLogin);
+
   useEffect(() => {
     dispatch(createAdmin());
-  },[]);
-  
+  }, []);
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -62,7 +68,7 @@ const Home = () => {
       "product",
       JSON.stringify([...obtener, productDes])
     );
-    
+
     const Toast = Swal.mixin({
       toast: true,
       position: "bottom",
@@ -78,16 +84,20 @@ const Home = () => {
     Toast.fire({
       icon: "success",
       title: productDes.name,
-      text: `Added to Cart`
+      text: `Added to Cart`,
     });
-    
+
     dispatch(addProductToCart(productDes));
-    
   }
 
   function handlerFilters(filter) {
     dispatch(getByFilters(filter));
   }
+
+  const [isFavorite, setIsFavorite] = useState(null);
+  const handlerAddToFav = (e) => {
+    dispatch(addFavorites(e));
+  };
 
   useEffect(() => {
     dispatch(getProducts(search));
@@ -103,10 +113,10 @@ const Home = () => {
       <br />
       <div className="flex mb-6 ">
         <div className="filters_container">
-          <p className="home_subtitle">Order</p>
+          <p className="home_subtitle ">Order</p>
           <hr />
           <Filters handlerFilters={handlerFilters} />
-          <p className="home_subtitle">Filter</p>
+          <p className="home_subtitle ">Filter</p>
           <hr />
           <FilterCategories allCategories={allCategories} />
         </div>
@@ -160,6 +170,20 @@ const Home = () => {
                               </p>
                             </div>
                           </div>
+                          {user &&
+                            Object.keys(user || {})?.length > 0 &&
+                            (favorites.some(
+                              (element) => element.id === e.id
+                            ) ? (
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListTrue" />
+                              </div>
+                            ) : (
+                              <div onClick={() => handlerAddToFav(e)}>
+                                <BsHeartFill className="wishListFalse" />
+                              </div>
+                            ))}
+
                           <button
                             className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             onClick={() => handlerAddToCart(e)}

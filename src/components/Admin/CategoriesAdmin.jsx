@@ -8,6 +8,8 @@ import { getLoginUser } from "../../redux/actions/auth";
 import NavAdmin from "./NavAdmin";
 import { createCategory } from "../../redux/actions/categories";
 import "./categories.css";
+import Swal from "sweetalert2";
+
 const Categories = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector(
@@ -44,22 +46,47 @@ const Categories = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (input.name) {
       dispatch(createCategory(input));
       setInput("");
-      alert("Se creado con exito");
+      return Toast.fire({
+        icon: "success",
+        title: "Successfully created"
+      });
+
       window.location.reload();
     } else {
-      alert("te faltan espacios por llenar");
+      return Toast.fire({
+        icon: "warning",
+        title: "Spaces to be filled"
+      });
     }
   };
 
   return (
     <div>
       <NavAdmin />
+      <h1 
+      className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
+        CATEGORIES
+        </h1>
+      <br/>
+
       <div className="md:container mx-auto pt-10">
         <div className="flex justify-around ">
           <div className="absolute left-40">
@@ -72,14 +99,16 @@ const Categories = () => {
             />
             <button
               onClick={(e) => handleSubmit(e)}
-              className="bg-green-700 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
+              className="bg-green-700 py-3 hover:bg-green-600 text-white text-xs font-medium py-1 px-10 rounded-full"
             >
               Crear
             </button>
           </div>
-          <button className="bg-violet-700 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
+          <div className="absolute right-40">
+          <button className="bg-[#644b9c] py-3 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
             SEARCH
           </button>
+          </div>
         </div>
       </div>
       <div>

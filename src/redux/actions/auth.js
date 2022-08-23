@@ -7,6 +7,7 @@ export const GET_LOGIN_USER = "GET_LOGIN_USER";
 export const LOGOUT = "LOGOUT";
 export const GET_NAME_USERS = "GET_NAME_USERS";
 export const USERS_BY_FILTERS = "USERS_BY_FILTERS";
+export const PROFILE_UPDATE = "PROFILE_UPDATE";
 
 export function createUser(body) {
   return async function (dispatch) {
@@ -313,4 +314,34 @@ export function updateUser(body) {
     }
   };
 }
+<<<<<<< HEAD
   
+=======
+
+export const profileUpdate = (newProfile) => {
+  return async (dispatch) => {
+    try {
+      const token = document.cookie.split("token=")[1];
+
+      let verify;
+
+      if(newProfile.AddressId){
+        verify = await axios.put(
+          `${URL_API}users/updateAddress/${newProfile.AddressId}`,
+          newProfile
+        );
+      }
+      if(newProfile.id){
+
+        verify = await axios.put(
+          `${URL_API}users/updateUser/${newProfile.id}`,
+          newProfile
+        );
+      }
+      console.log(verify);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+>>>>>>> de5688bae89aa81567e147b4fe84a723c6305c3b

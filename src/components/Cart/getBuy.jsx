@@ -45,6 +45,7 @@ const CheckoutForm = () => {
         " Total:$" +
         total
       ).toString();
+<<<<<<< HEAD
             // try {
             //   axios
             //     .post(
@@ -76,6 +77,11 @@ const CheckoutForm = () => {
             // // console.log(total)
       try {
         axios.post(
+=======
+      try {
+        axios
+        .post(
+>>>>>>> de5688bae89aa81567e147b4fe84a723c6305c3b
           // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
           `${URL_API}orders/checkout`,
           {
@@ -89,19 +95,20 @@ const CheckoutForm = () => {
         .then(function(response) {
           console.log(response.data)
           if (response.data.estado){
-          dispatch(resetCart());
-          setLoading(false);
-          navigate("/success")
-          }else {
             dispatch(resetCart());
-            navigate("/rejected")
-          }
-        })
+            setLoading(false);
+            navigate("/success")
+          }else {
+          // dispatch(resetCart());
+          navigate("/rejected")
+        }
+         })
         .catch(()=> {     
-           dispatch(resetCart());
+          // dispatch(resetCart());
           setLoading(false);
           navigate("/rejected")
         })        //.finally(()=>{})
+       //.finally(()=>{})
 
         // console.log(data);
         // elements.getElement(CardElement).clear();

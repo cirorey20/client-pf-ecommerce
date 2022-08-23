@@ -22,6 +22,7 @@ import Categories from "./components/Admin/CategoriesAdmin";
 //CLIENT PANEL
 import HomeClient from "./components/ClientPanel/HomeClient";
 import MyShopping from "./components/MyShopping/MyShopping.jsx";
+import RateProduct from "./components/RateProduct/RateProduct.jsx";
 
 import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 
@@ -39,7 +40,7 @@ function App() {
     dispatch(getLoginUser());
     const token = document.cookie.split("token=")[1];
     if (token === undefined) {
-      localStorage.removeItem('rol');
+      localStorage.removeItem("rol");
     }
     // console.log("Este es el token", token);
   });
@@ -60,19 +61,27 @@ function App() {
         {/* Panel Admin */}
         <Route
           path="/admin/home"
-          element={<AuthContextProvider user={"admin"} element={ <HomeAdmin /> } /> }
+          element={
+            <AuthContextProvider user={"admin"} element={<HomeAdmin />} />
+          }
         />
         <Route
           path="/product/dashBoard"
-          element={<AuthContextProvider user={"admin"} element={<Products />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<Products />} />
+          }
         />
         <Route
           path="/product/create"
-          element={<AuthContextProvider user={"admin"} element={<CreateProduct />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<CreateProduct />} />
+          }
         />
         <Route
           path="/product/update/:idProduct"
-          element={<AuthContextProvider user={"admin"} element={<CreateProduct />} />}
+          element={
+            <AuthContextProvider user={"admin"} element={<CreateProduct />} />
+          }
         />
         <Route path="/product/categories" element={<Categories />} />
         <Route
@@ -81,29 +90,48 @@ function App() {
         />
 
         {/* Panel Client  user/dashboard*/}
-        <Route 
-          path="/user/dashboard" 
-          element={<AuthContextProvider user={"user"} element={<HomeClient />} />}
+        <Route
+          path="/user/dashboard"
+          element={
+            <AuthContextProvider user={"user"} element={<HomeClient />} />
+          }
         />
-        <Route 
-          path="/user/myshopping" 
-          element={<AuthContextProvider user={"user"} element={<MyShopping />} />}
+        <Route
+          path="/user/myshopping"
+          element={
+            <AuthContextProvider user={"user"} element={<MyShopping />} />
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <AuthContextProvider
+              user={"admin"}
+              element={<Orders />}
+            />
+          }
         />
 
-      {/* Admin y User pueder acceder a esta vista */}
-        <Route 
-          path="/orders" 
-          element={<AuthContextProvider user={["admin", "user"]} element={<Orders />} />}
-        />
-        <Route 
+        {/* Admin y User pueder acceder a esta vista */}
+        <Route
           path="/orders/:idOrder"
-          element={<AuthContextProvider user={["admin", "user"]} element={<OrderDetail />} />}
+          element={
+            <AuthContextProvider
+              user={["admin", "user"]}
+              element={<OrderDetail />}
+            />
+          }
         />
 
+        {/* User puede calificar un producto */}
+        <Route path="/rateProduct/:idOrder" element={<RateProduct />} />
 
         <Route path="/createUser" element={<RegisterUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/account/authenticate/:idUser/:code" element={<AuthenticateAccount />} />
+        <Route
+          path="/account/authenticate/:idUser/:code"
+          element={<AuthenticateAccount />}
+        />
       </Routes>
     </div>
   );
