@@ -3,12 +3,14 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
+import { loginUser, loginUserGoogle, resendAuthenticateAccount } from "../../redux/actions/auth";
 import useGsi from "./useGsi";
 import NavBar from "../NavBar/NavBar";
 import { redirectionByRol } from "./redirection";
 import "./login.css";
 import texture from "../../cloudinary/bg.jpg";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -62,6 +64,23 @@ const Login = () => {
     }
   };
 
+  const handleResendMail = () => {
+    Swal.fire({
+      title: 'Enter email',
+      input: 'email',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Send',
+      showLoaderOnConfirm: true,
+      preConfirm: async (email) => {
+        await dispatch(resendAuthenticateAccount(email));
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    })
+  };
+
   return (
     <div>
       <NavBar />
@@ -76,7 +95,7 @@ const Login = () => {
             value={input.email.toLowerCase()}
             onChange={(e) => handleChange(e)}
             autoComplete="off"
-            //required
+          //required
           />
           <input
             className="input_login"
@@ -86,7 +105,7 @@ const Login = () => {
             value={input.password.toLowerCase()}
             onChange={(e) => handleChange(e)}
             autoComplete="off"
-            //required
+          //required
           />
           <button
             onClick={(e) => handleSubmit(e)}
@@ -98,6 +117,7 @@ const Login = () => {
           <Link to={"/home"}>
             <button className="login_button">Home</button>
           </Link>
+          <button onClick={handleResendMail} className="text-white text-sm underline">Re-send authenticate email</button>
           <div id="buttonDiv" className="flex justify-center"></div>
         </div>
       </div>

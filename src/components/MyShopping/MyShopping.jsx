@@ -5,6 +5,7 @@ import "./MyShopping.css";
 import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
 
+
 import ProductContainer from "./ProductContainer";
 import { getOrdersByUser } from "../../redux/actions/orders.js";
 import { ordersReducer } from "../../redux/reducers/orders.reducer.js";
@@ -21,11 +22,12 @@ const MyShopping = () => {
   }, [userLogin]);
 
   return (
-    <div>
+    <div className="">
       <NavBar />
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
           <h1 className="myshopping_title">My Shoppings</h1>
+
           {ordersByUser.length === 0 ? "There isn't any purchases" : ""}
           {ordersByUser.map((e, id) => {
             return (
@@ -41,6 +43,11 @@ const MyShopping = () => {
             );
           })}
         </div>
+      </div>
+      </div>
+      </div>
+      <div className="col-start-1 col-end-7">
+      <footer class="sticky top-[100vh]"><Footer /></footer>
       </div>
     </div>
   );
