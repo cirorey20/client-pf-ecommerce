@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer.jsx";
 import { Link } from "react-router-dom";
 import "./RateProduct.css";
 import { detailOrder } from "../../redux/actions/orders.js";
+import { getReview } from "../../redux/actions/review";
 
 const RateProduct = () => {
   //  const stateCart = useSelector((state) => state.cartReducer.cart);
@@ -13,9 +14,29 @@ const RateProduct = () => {
   const userLogin = useSelector((state) => state.authReducer.userLogin);
   const details = useSelector((state) => state.ordersReducer.orderDetail);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
+  console.log(reviews)
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [disabled, setDisabled] = useState(false);
+  const [ input, setInput ] = useState({
+    description: "",
+    rating: "",
+  });
+  //console.log(input)
+
+  function handleChange(e){
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
+   const getStar = stars.find(star => star.checked)
+  }
+  
+  function onSumbit(e){
+    e.preventDefault();
+    const getStar = stars.find(star => star.checked)
+    dispatch(getReview({...input, rating: getStar.value }));
+  }
 
   const [stars, setStars] = useState([
     {
@@ -42,8 +63,12 @@ const RateProduct = () => {
       name: "5",
       value: 5,
       checked: false,
-    },
-  ]);
+    }]
+  );
+  
+
+  
+ 
 
   const { idOrder } = useParams();
 
@@ -60,15 +85,30 @@ const RateProduct = () => {
   useEffect(() => {
     if (idOrder) {
       dispatch(detailOrder(idOrder));
+      
     }
   }, []);
 
+ /*  const newCategories = form?.categories?.map((category) => {
+    if (e.target.value === category.name)
+    category.checked = e.target.checked;
+    return category;
+  }); */
+
   function onHandleChange(e) {
-    stars.map((element, id) => {
-      if (e.target.name === stars[id].name) {
-        setStars([...stars, (stars[id].checked = true)]);
+    const allStars = stars.map((element, id) => {
+      if (e.target.name === element.name){
+        element.checked = e.target.checked
       }
+      else{
+        element.checked = false
+      }
+      return element
+      //return Object.assign({}, element)
+
     });
+    setStars([...allStars]);
+    console.log(allStars)
   }
 
   function handlerComment() {
@@ -91,6 +131,8 @@ const RateProduct = () => {
       <div className="text-xl">No ranked yet!</div>
     );
   }
+
+
 
   const image = details.ProductOrders?.map((e) => e.Product?.image);
   const price = details.ProductOrders?.map((e) => e.Product?.price);
@@ -120,26 +162,20 @@ const RateProduct = () => {
           </div>
           <hr />
 
+          <form onSubmit={(e) => onSumbit(e)}>
           <div className="any">
             <div className="rateProduct_innerContainer_division">
               <h3>Leave your comment</h3>
               <textarea
                 rows="6"
                 className="review"
-                onChange={(e) => setCount(e.target.value.length)}
+                value={input.description}
+                name="description"
+                onChange={(e) => handleChange(e)}
               />
-              <button
-                className="generic_button"
-                disabled={disabled}
-                onClick={() =>
-                  count > 10
-                    ? setDisabled(true)
-                    : console.log("Please leave your comment")
-                }
-              >
-                Review
-              </button>
+              
             </div>
+            
             <div className="rateProduct_innerContainer_division">
               <div className="stars_container">
                 {stars.map((e, id) => {
@@ -157,9 +193,20 @@ const RateProduct = () => {
                   );
                 })}
               </div>
-              <button className="generic_button">Rate</button>
+              {/* <button className="generic_button"
+                      type="sumbit"
+              >Rate</button> */}
             </div>
           </div>
+          <button
+                className="generic_button"
+                type="sumbit"
+                disabled={disabled}
+                //onChange={(e) => handleChange(e)}
+              >
+                Review
+              </button>
+          </form>
         </div>
       </div>
     </div>
