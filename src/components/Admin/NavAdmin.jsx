@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/auth";
+import Logo from "../../assets/logoUM.jpg";
 
 const NavAdmin = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const NavAdmin = () => {
                     <div className="text-sky-400 ">
                         {
                             <Link to={"/admin/home"}>
-                                <img className="" width={150} src={'https://upload.wikimedia.org/wikipedia/commons/4/4f/Universal-Pictures-Logo.svg'} alt="" />
+                                <img width={90} className="rounded-full neon" src={Logo} alt="" />
                             </Link>
                         }
                     </div>
