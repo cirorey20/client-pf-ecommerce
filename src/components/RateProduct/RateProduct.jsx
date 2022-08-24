@@ -104,60 +104,62 @@ const RateProduct = () => {
     <div>
       <NavBar />
       <div className="rateProduct_container">
-        <h1 className="rateProduct_title">Purchase Details</h1>
+        <div className="myshopping_container">
+          <h1 className="myshopping_title">Purchase Details</h1>
 
-        <div className="rateProduct_innerContainer">
-          <div className="productDetails_container">
-            <img src={image} alt="product image" width={"400px"} />
-            <p>{name}</p>
-            <p>
-              asdlakjsdl;kjsd;sadijf;oaijdf;lasdjfl;akjdf;laskjdfl;sakjdfal;skdjf;laksdjfaasoidj;psaiojdoisudopaisudopAIDOAPISD[aiposjdpoasjdopajskdl'ojkasd'lkjas'djklask;ldjla;skjd;laksjd;laksjd]
-            </p>
-            <p>Quantity:{quantity}</p>
-            <p>Price: {price}</p>
-            {/* <p>Payment Method:{paymentMethod}</p> */}
-            {/* <p>{time}</p> */}
-          </div>
-          <hr />
-
-          <div className="any">
-            <div className="rateProduct_innerContainer_division">
-              <h3>Leave your comment</h3>
-              <textarea
-                rows="6"
-                className="review"
-                onChange={(e) => setCount(e.target.value.length)}
-              />
-              <button
-                className="generic_button"
-                disabled={disabled}
-                onClick={() =>
-                  count > 10
-                    ? setDisabled(true)
-                    : console.log("Please leave your comment")
-                }
-              >
-                Review
-              </button>
+          <div className="rateProduct_innerContainer">
+            <div className="productDetails_container">
+              <img src={image} alt="product image" width={"400px"} />
+              <p>{name}</p>
+              <p>
+                asdlakjsdl;kjsd;sadijf;oaijdf;lasdjfl;akjdf;laskjdfl;sakjdfal;skdjf;laksdjfaasoidj;psaiojdoisudopaisudopAIDOAPISD[aiposjdpoasjdopajskdl'ojkasd'lkjas'djklask;ldjla;skjd;laksjd;laksjd]
+              </p>
+              <p>Quantity:{quantity}</p>
+              <p>Price: {price}</p>
+              <p>Payment Method:{paymentMethod}</p>
+              <p>{time}</p>
             </div>
-            <div className="rateProduct_innerContainer_division">
-              <div className="stars_container">
-                {stars.map((e, id) => {
-                  return (
-                    <div key={id}>
-                      <input
-                        name={e.name}
-                        type="radio"
-                        value={e.value}
-                        onChange={onHandleChange}
-                        checked={e.checked}
-                      />
-                      {e.name}
-                    </div>
-                  );
-                })}
+            <hr />
+
+            <div className="any">
+              <div className="rateProduct_innerContainer_division">
+                <h3>Leave your comment</h3>
+                <textarea
+                  rows="6"
+                  className="review"
+                  onChange={(e) => setCount(e.target.value.length)}
+                />
+                <button
+                  className="generic_button"
+                  disabled={disabled}
+                  onClick={() =>
+                    count > 10
+                      ? setDisabled(true)
+                      : console.log("Please leave your comment")
+                  }
+                >
+                  Review
+                </button>
               </div>
-              <button className="generic_button">Rate</button>
+              <div className="rateProduct_innerContainer_division">
+                <div className="stars_container">
+                  {stars.map((e, id) => {
+                    return (
+                      <div key={id}>
+                        <input
+                          name={e.name}
+                          type="radio"
+                          value={e.value}
+                          onChange={onHandleChange}
+                          checked={e.checked}
+                        />
+                        {e.name}
+                      </div>
+                    );
+                  })}
+                </div>
+                <button className="generic_button">Rate</button>
+              </div>
             </div>
           </div>
         </div>

@@ -107,105 +107,115 @@ const Home = () => {
   }, [dispatch, search]);
 
   return (
-    <div className="home_container">
+    <div>
       <NavBar />
-
-      <br />
-      <div className="flex mb-6 ">
+      <div className="homePage_container">
         <div className="filters_container">
           <p className="home_subtitle ">Order</p>
-          <hr />
           <Filters handlerFilters={handlerFilters} />
-          <p className="home_subtitle ">Filter</p>
-          <hr />
+          <p className="home_subtitle ">Filters</p>
           <FilterCategories allCategories={allCategories} />
         </div>
-        <div className="flex-initial w-full md:container md:mx-auto bg-[#e2e8f0] rounded-xl shadow-lg">
-          {loading ? (
-            <Loader />
-          ) : (
-            <div className="m-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 home_productContainer">
-              <div className="home_pagination">
-                <Paginate
-                  productsPage={productsPage}
-                  allProducts={allProducts.length}
-                  paged={paged}
-                  currentPage={currentPage}
-                />
-              </div>
-              <div className="home_products">
-                {allProducts.length <= 0 ? (
-                  <div>NO HAY PRODUCTOS...</div>
-                ) : (
-                  productsOfNow.map((e, i) => {
-                    if (e.enable === true) {
-                      return (
-                        <div key={i} className="  ">
-                          <div className="relative m-5 group ">
-                            <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                              <img
-                                src={e.image}
-                                alt="NOT_FOUND"
-                                className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                              />
-                            </div>
 
-                            <div className="mt-4 flex justify-between">
-                              <div>
-                                <h3 className="text-sm text-gray-700">
-                                  <Link to={`/product/${e.id}`}>
-                                    <span
-                                      aria-hidden="true"
-                                      className="absolute inset-0"
-                                    />
-                                    {e.name}
-                                  </Link>
-                                </h3>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  Stock {e.stock}
-                                </p>
-                              </div>
-                              <p className="text-sm font-medium text-gray-900">
-                                ${e.price}
-                              </p>
-                            </div>
-                          </div>
-                          {user &&
-                            Object.keys(user || {})?.length > 0 &&
-                            (favorites.some(
-                              (element) => element.id === e.id
-                            ) ? (
-                              <div onClick={() => handlerAddToFav(e)}>
-                                <BsHeartFill className="wishListTrue" />
-                              </div>
-                            ) : (
-                              <div onClick={() => handlerAddToFav(e)}>
-                                <BsHeartFill className="wishListFalse" />
-                              </div>
-                            ))}
-
-                          <button
-                            className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={() => handlerAddToCart(e)}
-                          >
-                            Add Cart
-                          </button>
-                        </div>
-                      );
-                    }
-                  })
-                )}
-              </div>
+        <div className="homePage_productsContainer">
+          <div className="innerProduct_container">
+            <div className="home_pagination">
+              <Paginate
+                productsPage={productsPage}
+                allProducts={allProducts.length}
+                paged={paged}
+                currentPage={currentPage}
+              />
             </div>
-          )}
+            <div className="homePage_productsContainer">
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  <div className="home_products">
+                    {allProducts.length <= 0 ? (
+                      <div>NO HAY PRODUCTOS...</div>
+                    ) : (
+                      productsOfNow.map((e, i) => {
+                        if (e.enable === true) {
+                          return (
+                            <div key={i} className="  ">
+                              <div className="relative m-5 group ">
+                                <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                                  <img
+                                    src={e.image}
+                                    alt="NOT_FOUND"
+                                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                                  />
+                                </div>
+
+                                <div className="homePage_productDetails">
+                                  <h3 className="text-sm text-white">
+                                    <Link to={`/product/${e.id}`}>
+                                      <span
+                                        aria-hidden="true"
+                                        className="absolute inset-0"
+                                      />
+                                      {e.name}
+                                    </Link>
+                                  </h3>
+                                  <p className="mt-1 text-sm text-gray-400">
+                                    Stock {e.stock}
+                                  </p>
+                                  <p className="text-m font-bold text-gray-400">
+                                    ${e.price}
+                                  </p>
+                                  <div></div>
+                                </div>
+                              </div>
+                              {user &&
+                                Object.keys(user || {})?.length > 0 &&
+                                (favorites.some(
+                                  (element) => element.id === e.id
+                                ) ? (
+                                  <div onClick={() => handlerAddToFav(e)}>
+                                    <BsHeartFill className="wishListTrue" />
+                                  </div>
+                                ) : (
+                                  <div onClick={() => handlerAddToFav(e)}>
+                                    <BsHeartFill
+                                      className="wishListFalse"
+                                      color="lightgray"
+                                    />
+                                  </div>
+                                ))}
+
+                              <button
+                                className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={() => handlerAddToCart(e)}
+                              >
+                                Add Cart
+                              </button>
+                            </div>
+                          );
+                        }
+                      })
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+
+            <Footer />
+          </div>
         </div>
+
+        {/*  */}
       </div>
-      <Footer />
     </div>
   );
 };
 
 export default Home;
+
+{
+  /*  */
+}
 
 /*
     allProducts.map((e, i) => {
