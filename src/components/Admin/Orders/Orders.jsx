@@ -166,11 +166,11 @@ export function Orders() {
 
 
       <div>
-        {localStorage.getItem("rol") === "user" ? <NavBar /> : <NavAdmin />}
-        <h1 
+        {localStorage.getItem("rol") === "user" ? <NavBar/> : <NavAdmin section={"Orders"}/>}
+        {/* <h1 
       className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
         ORDERS
-        </h1>
+        </h1> */}
         <br/>
         <div className="overflow-x-auto grid grid-cols-5">
           <div className="col-start-5 col-end-6 row-start-1 row-end-2 py-4 place-self-center ">

@@ -9,7 +9,7 @@ const HomeAdmin = () => {
         <div className="contenParehnt">
 
             <div className="contenFull relative">
-                <NavAdmin />
+                <NavAdmin section={'Admin'}/>
 
                 <br /><br /><br />
                 <div className="containerBox z-1 ">
