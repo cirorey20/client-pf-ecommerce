@@ -139,7 +139,7 @@ const Home = () => {
                     ) : (
                       productsOfNow.map((e, i) => {
                         if (e.enable === true) {
-                          return (
+                          return (      
                             <div key={i} className="  ">
                               <div className="relative m-5 group ">
                                 <div className="w-full min-h-80 bg-gray-200 border-2 border-white aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
@@ -197,60 +197,19 @@ const Home = () => {
                               </button>
                               
                             </div>
-                          );
-                        }
-                      })
-                    )}
-                  </div>
-                </>
-              )}
+                            
             </div>
-
-             
-          </div>
-        </div>
-
-        {/*  */}
-      </div>
-      {/* </div> */}
-       {/* <Footer /><div class="sticky top-[100vh]">Footer</div>  */}
-    </div>
-  );
+                          )}}))}
+              </div>
+        </>)
+  
 };
+</div>
+</div>
+</div>
+</div>
+</div>
+)}
 
 export default Home;
 
-{
-  /*  */
-}
-
-/*
-    allProducts.map((e, i) => {
-        return(
-            <div key={i} className="group relative m-5">
-
-                <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img
-                    src={e.image}
-                    alt="NOT_FOUND"
-                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-                    />
-                </div>
-
-                <div className="mt-4 flex justify-between">
-                    <div>
-                    <h3 className="text-sm text-gray-700">
-                        <a href="#">
-                            <span aria-hidden="true" className="absolute inset-0" />
-                            {e.name}
-                        </a>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">Stock</p>
-                    </div>
-                    <p className="text-sm font-medium text-gray-900">${e.price}</p>
-                </div>
-            </div>
-        )
-    })
-
-*/

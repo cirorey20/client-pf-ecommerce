@@ -44,13 +44,14 @@ const MyShopping = () => {
           })}
         </div>
       </div>
+            <div className="col-start-1 col-end-7">
+            <footer class="sticky top-[100vh]"><Footer /></footer>
+            </div>
       </div>
-      </div>
-      <div className="col-start-1 col-end-7">
-      <footer class="sticky top-[100vh]"><Footer /></footer>
-      </div>
-    </div>
-  );
+            
+       
+      )
+ 
 };
 
 export default MyShopping;
