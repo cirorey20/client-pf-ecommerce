@@ -14,7 +14,7 @@ export default function NewSection() {
   };
 
   return (
-    <div className=" md:container md:mx-auto bg-[#fbfbfccb]">
+    <div className=" md:container md:mx-auto">
       <div className="relative flex py-10 items-center">
         <div className="flex-grow border-t border-gray-400"></div>
         <span className="flex-shrink mx-4 px-3 text-xl text-gray-400">
