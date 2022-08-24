@@ -33,6 +33,11 @@ const HomeAdmin = () => {
                             <h5 className="  mb-2 text-2xl font-bold tracking-tight text-white">CATEGORIES</h5>
                         </div>
                     </Link>
+                    <Link to={'/admin/earnings'} className="">
+                        <div className="h-60 w-60 bg-[#1B0FC5] hover:bg-violet-800 m-5 rounded-lg grid justify-items-center content-center">
+                            <h5 className="  mb-2 text-2xl font-bold tracking-tight text-white">EARNINGS</h5>
+                        </div>
+                    </Link>
                 </div>
 
             </div>

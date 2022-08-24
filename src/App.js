@@ -19,6 +19,7 @@ import Users from "./components/Admin/Users";
 import Products from "./components/Admin/Products.jsx";
 import CreateProduct from "./components/Admin/CreateProduct";
 import Categories from "./components/Admin/CategoriesAdmin";
+import Earning from "./components/Admin/Earnings/Earnings";
 
 //CLIENT PANEL
 import HomeClient from "./components/ClientPanel/HomeClient";
@@ -60,6 +61,12 @@ function App() {
           path="/admin/home"
           element={
             <AuthContextProvider user={"admin"} element={<HomeAdmin />} />
+          }
+        />
+        <Route
+          path="/admin/earnings"
+          element={
+            <AuthContextProvider user={"admin"} element={<Earning />} />
           }
         />
         <Route
