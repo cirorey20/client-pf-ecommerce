@@ -13,8 +13,8 @@ const RateProduct = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.authReducer.userLogin);
   const details = useSelector((state) => state.ordersReducer.orderDetail);
+  console.log(details.User.id)
   const reviews = useSelector((state) => state.reviewReducer.reviews);
-  console.log(reviews)
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [disabled, setDisabled] = useState(false);
@@ -35,7 +35,7 @@ const RateProduct = () => {
   function onSumbit(e){
     e.preventDefault();
     const getStar = stars.find(star => star.checked)
-    dispatch(getReview({...input, rating: getStar.value }));
+    dispatch(getReview({...input, rating: getStar.value, UserId:details.User.id }));
   }
 
   const [stars, setStars] = useState([
