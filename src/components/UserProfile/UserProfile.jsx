@@ -133,9 +133,10 @@ export default function UserInfo() {
 
   if (!isFavorite) {
     return (
-      <div>
+      <div class="h-screen">
               <NavBar />
         <>
+
           {isEdit && (
             <EditForm
               onSubmit={onSubmit}
@@ -219,7 +220,7 @@ export default function UserInfo() {
             </div>
           </div>
         </>
-        
+        <div class="sticky top-[100vh]"><Footer /></div>
       </div>
     );
   }

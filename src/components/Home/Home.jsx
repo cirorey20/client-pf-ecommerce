@@ -107,9 +107,10 @@ const Home = () => {
   }, [dispatch, search]);
 
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <div className="homePage_container">
+      {/* <div className=" flex flex-col min-h-screen"> */}
+      <div className="homePage_container h-screen">
         <div className="filters_container">
           <p className="home_subtitle ">Order</p>
           <Filters handlerFilters={handlerFilters} />
@@ -204,12 +205,14 @@ const Home = () => {
               )}
             </div>
 
-            <Footer />
+             
           </div>
         </div>
 
         {/*  */}
       </div>
+      {/* </div> */}
+       {/* <Footer /><div class="sticky top-[100vh]">Footer</div>  */}
     </div>
   );
 };

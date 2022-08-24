@@ -3,7 +3,7 @@ import { Popover } from "@headlessui/react";
 
 export default function Footer() {
   return (
-    <footer className="absolute inset-x-0 bottom-0 mt-10">
+    <footer className="mt-auto">
       <div className=" pt-10 pb-20 mx-5 bg-gray-200 mt-10 absolute relative inset-x-0 bottom-0">
       <div className="flex justify-center pt-9 mx-auto">
         <div className="flex flex-nowrap mb-2 ">

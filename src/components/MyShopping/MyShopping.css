@@ -3,11 +3,11 @@
 }
 
 .myshopping_container {
-  display: flex;
-  overflow: scroll;
-  flex-direction: column;
+  /* display: flex; */
+  /* overflow: scroll; */
+  /* flex-direction: column; */
   width: 90%;
-  height: 50%;
+  height: 40%;
   margin-top: 70px;
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -29,5 +29,5 @@
   align-items: center;
   width: 100%;
   height: 15%;
-  position: fixed;
+  /* position: fixed; */
 }
