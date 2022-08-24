@@ -12,20 +12,20 @@ import { ordersReducer } from "../../redux/reducers/orders.reducer.js";
 const MyShopping = () => {
   const ordersByUser = useSelector((state) => state.ordersReducer.ordersUser);
   const userLogin = useSelector((state) => state.authReducer.userLogin);
-  console.log(userLogin)
+  console.log(userLogin);
 
   const dispatch = useDispatch();
 
-  useEffect(async() => {
-       dispatch(getOrdersByUser(userLogin.user.id));
+  useEffect(async () => {
+    dispatch(getOrdersByUser(userLogin.user.id));
   }, [userLogin]);
 
   return (
     <div>
       <NavBar />
-      <h1 className="myshopping_title">My Shoppings</h1>
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
+          <h1 className="myshopping_title">My Shoppings</h1>
           {ordersByUser.length === 0 ? "There isn't any purchases" : ""}
           {ordersByUser.map((e, id) => {
             return (

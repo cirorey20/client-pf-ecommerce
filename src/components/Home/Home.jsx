@@ -165,26 +165,25 @@ const Home = () => {
                                   <p className="text-m font-bold text-gray-400">
                                     ${e.price}
                                   </p>
-                                  <div>
-                                    {user &&
-                                      Object.keys(user || {})?.length > 0 &&
-                                      (favorites.some(
-                                        (element) => element.id === e.id
-                                      ) ? (
-                                        <div onClick={() => handlerAddToFav(e)}>
-                                          <BsHeartFill className="wishListTrue" />
-                                        </div>
-                                      ) : (
-                                        <div onClick={() => handlerAddToFav(e)}>
-                                          <BsHeartFill
-                                            className="wishListFalse"
-                                            color="lightgray"
-                                          />
-                                        </div>
-                                      ))}
-                                  </div>
+                                  <div></div>
                                 </div>
                               </div>
+                              {user &&
+                                Object.keys(user || {})?.length > 0 &&
+                                (favorites.some(
+                                  (element) => element.id === e.id
+                                ) ? (
+                                  <div onClick={() => handlerAddToFav(e)}>
+                                    <BsHeartFill className="wishListTrue" />
+                                  </div>
+                                ) : (
+                                  <div onClick={() => handlerAddToFav(e)}>
+                                    <BsHeartFill
+                                      className="wishListFalse"
+                                      color="lightgray"
+                                    />
+                                  </div>
+                                ))}
 
                               <button
                                 className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
