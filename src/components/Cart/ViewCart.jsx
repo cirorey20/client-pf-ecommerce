@@ -57,7 +57,7 @@ const ViewCart = () => {
   return (
     <Fragment>
       <NavBar />
-      <h1>Shopping Cart</h1>
+      <h1 className="dark:text-white ">Shopping Cart</h1>
       <br />
       <br />
       {stateCart.length > 0 ? (
@@ -66,16 +66,16 @@ const ViewCart = () => {
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-40">
                 <tr>
-                  <th scope="col" className="py-3 px-6">
+                  <th scope="col" className="dark:text-white py-3 px-6">
                     Product
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  <th scope="col" className="dark:text-white py-3 px-6">
                     Price
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  <th scope="col" className="dark:text-white py-3 px-6">
                     Quantity
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  <th scope="col" className="dark:text-white py-3 px-6">
                     Delete
                   </th>
                 </tr>
@@ -87,12 +87,12 @@ const ViewCart = () => {
                   return (
                     <tr
                       key={i}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                      className=" dark:text-white bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                     >
                       <td>
                         <img src={item.image} className="h-24 w-28" alt="" />
                       </td>
-                      <td className="py-4 px-6">{item.name}</td>
+                      <td className=" py-4 px-6">{item.name}</td>
                       <td className="py-4 px-6">$ {item.price}.00</td>
                       <td>
                         <div className="flex flex-row">
