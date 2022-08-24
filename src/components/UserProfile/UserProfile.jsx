@@ -156,7 +156,7 @@ export default function UserInfo() {
                 <img src={user?.avatar} alt={user?.name} className="image" />
               </div>
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h1>My profile</h1>
               </div>
 
@@ -164,7 +164,7 @@ export default function UserInfo() {
                 <p>E-mail: {user?.email}</p>
               </div>
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h2>Personal Information</h2>
               </div>
 
@@ -180,7 +180,7 @@ export default function UserInfo() {
                 </div>
               ) : null}
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h2>Address Information</h2>
               </div>
 
