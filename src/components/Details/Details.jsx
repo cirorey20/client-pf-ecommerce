@@ -154,7 +154,7 @@ const Details = () => {
                 </div>
 
                 {reviewsOfProduct.length <= 0 ? (
-                  <div className="mt-10">
+                  <div className="mt-10 dark:text-white">
                     NO COMMENTS YET FOR THIS PRODUCT...
                   </div>
                 ) : (
