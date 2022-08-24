@@ -2,7 +2,9 @@ import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/auth";
+
 import Logo  from "../../assets/logoUM.jpg";
+
 
 const NavAdmin = ({section}) => {
     const dispatch = useDispatch();
@@ -22,7 +24,9 @@ const NavAdmin = ({section}) => {
                     <div className="text-sky-400 ">
                         {
                             <Link to={"/admin/home"}>
+
                                 <img className="rounded-full " width={90} src={Logo} alt="" />
+
                             </Link>
                         }
                     </div>

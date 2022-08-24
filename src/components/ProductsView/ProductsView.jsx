@@ -4,10 +4,10 @@ import "flowbite";
 
 export default function ProductsView() {
   return (
-    <div className="flex space-x-5 md:container md:mx-auto mb-24 h-[68vh] bg-[#fbfbfccb] shadow-gray-900">
+    <div className="flex space-x-5 md:container md:mx-auto mb-24 h-[68vh] shadow-gray-900">
       <Link to={"/home?categories=Cuerdas"}>
         <div className=" min-h-screen bg-[#e2e8f0]flex pt-8">
-          <div className="pt-2 border-2 w-70 h-min rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
+          <div className="border-2 my-5 w-70 h-min rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
             <img
               src="http://cdn1.appsisecommerce.com.br/clientes/cliente1614/produtos/137468/Z6581.jpg"
               alt=""
@@ -21,9 +21,9 @@ export default function ProductsView() {
           </div>
         </div>
       </Link>
-      <Link to={"/home?categories=Cuerdas"}>
+      <Link to={"/home?categories=Acústico"}>
         <div className="min-h-screen bg-[#e2e8f0]flex pt-8">
-          <div className="border-2 w-70 h-min rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
+          <div className="border-2 w-70 h-min  my-5 rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
             <img
               src="https://ih1.redbubble.net/image.2245188445.9470/st,small,845x845-pad,1000x1000,f8f8f8.jpg"
               alt=""
@@ -39,7 +39,7 @@ export default function ProductsView() {
       </Link>
       <Link to={"/home?categories=Percusión"}>
         <div className="min-h-screen bg-[#e2e8f0]flex pt-8">
-          <div className="pt-2 border-2 w-70 h-min rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
+          <div className="border-2 w-70 my-5 rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
             <img
               src="https://cdn1.coppel.com/images/catalog/mkp/147/3000/1471001-1.jpg"
               alt=""
@@ -56,9 +56,9 @@ export default function ProductsView() {
 
       <Link to={"/home?categories=Viento"}>
         <div className="min-h-screen bg-[#e2e8f0]flex pt-8">
-          <div className="border-2 w-70 h-min rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
+          <div className="border-2 w-96 h-max my-5 rounded-md cursor-pointer shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500">
             <img
-              src="https://ih1.redbubble.net/image.3051489577.3866/poster,840x830,f8f8f8-pad,1000x1000,f8f8f8.jpg"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Yamaha_Horn_YHR-314II.tif/lossy-page1-800px-Yamaha_Horn_YHR-314II.tif.jpg"
               alt=""
             />
             <div className=" bg-white">

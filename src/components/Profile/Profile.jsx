@@ -37,7 +37,7 @@ export default function Profile() {
               <Link to={"/logged/userInfo"}><div className="text-white">My Profile</div></Link>
             </li>
             <li className="text-white hover:bg-gray-400 py-2 border-4 border-black rounded">
-              <Link to={"/favorites"}><div className="text-white">Favourites</div></Link>
+              <Link to={"/favorites"}><div className="text-white">Favourites  ❤</div></Link>
             </li>
             <li className="hover:bg-gray-400 border-4 border-black rounded">
               <a>

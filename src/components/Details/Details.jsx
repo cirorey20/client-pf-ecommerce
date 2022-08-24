@@ -65,14 +65,14 @@ const Details = () => {
       <div className="text-xl">No ranked yet!</div>
     );
   }
-  console.log(details)
+  console.log(details);
   return (
     <Fragment>
       <NavBar />
       <br />
       <br />
       <div className="flex justify-center italic">
-        <div className="relative w-30">
+        <div className="relative w-30 dark:text-white">
           <h1 className="text-6xl">{details.name}</h1>
         </div>
       </div>
@@ -90,11 +90,11 @@ const Details = () => {
             </div>
             <div className="flex flex-col justify-center ml-4">
               <div className="max-w-xl mb-6">
-                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                <h2 className="dark:text-white max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
                   ${details.price}
                   <br className="hidden md:block" />
                 </h2>
-                <p className="text-base text-gray-700 md:text-lg">
+                <p className="dark:text-white text-base text-gray-700 md:text-lg">
                   {details.description}
                 </p>
               </div>
@@ -154,7 +154,7 @@ const Details = () => {
                 </div>
 
                 {reviewsOfProduct.length <= 0 ? (
-                  <div className="mt-10">
+                  <div className="mt-10 dark:text-white">
                     NO COMMENTS YET FOR THIS PRODUCT...
                   </div>
                 ) : (

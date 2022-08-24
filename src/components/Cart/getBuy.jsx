@@ -121,10 +121,12 @@ const CheckoutForm = () => {
             </div>
           ) : (
             <div>
-              <p>debes actulizar tus datos para poder hacer la compra</p>
+              <button className="bg-red-900 text-white px-4 pt-8 border-2 border-blue-500 hover:bg-green-900 focus:shadow-outline focus:outline-none rounded shadow-2xl shadow-red-500/50 hover:shadow-green-500/50">
               <Link to="/logged/userInfo">
-                <button>actaulizar datos</button>
+              <p>You must update your dates before buy</p>
+                  <h1>TOUCH HERE</h1>
               </Link>
+              </button>
             </div>
           )}
         </div>

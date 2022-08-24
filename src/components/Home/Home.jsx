@@ -138,7 +138,7 @@ const Home = () => {
                     ) : (
                       productsOfNow.map((e, i) => {
                         if (e.enable === true) {
-                          return (
+                          return (      
                             <div key={i} className="  ">
                               <div className="relative m-5 group ">
                                 <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">

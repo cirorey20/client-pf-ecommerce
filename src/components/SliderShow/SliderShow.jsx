@@ -24,7 +24,7 @@ export default function SliderShow() {
           data-carousel-item=""
         >
           <img
-            src="https://www.musicheadstore.com/wp-content/uploads/2021/03/Charvel-banner.png"
+            src="https://bairesrocks.vteximg.com.br/arquivos/ids/238291/25_07_webchico.jpg?v=637949533234800000"
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
