@@ -167,8 +167,9 @@ const Home = () => {
                                     ${e.price}
                                   </p>
                                   </div>
+
                                 </div>
-                                <div className="grid grid-cols-3 border-2 border-white p-2 mx-6">
+                                
                                 <div className="pl-2 m-2">
                                   {user &&
                                     Object.keys(user || {})?.length > 0 &&
@@ -186,15 +187,15 @@ const Home = () => {
                                         />
                                       </div>
                                     ))}
-                              </div>
-                              
+
+
                               <button
                                 className="col-span-2 mb-18 hover:bg-black border-2 border-white-500 bg-blue-700 text-white font-bold py-1 mr-4 rounded"
                                 onClick={() => handlerAddToCart(e)}
                               >
                                 Add Cart
                               </button>
-                              </div>
+                              
                             </div>
                           );
                         }
