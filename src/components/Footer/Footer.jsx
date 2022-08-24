@@ -53,12 +53,12 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
-      <div className=" text-center text-white pt-6 mx-8">
-        © 2022 Copyright:
-        <a className=" text-white" href="/">
-          UNIVERSAL MUSIC APP
-        </a>
+        <div className=" text-center text-white pt-6 mx-8">
+          © 2022 Copyright:
+          <a className=" text-white" href="/">
+            UNIVERSAL MUSIC APP
+          </a>
+        </div>
       </div>
     </footer>
   );
