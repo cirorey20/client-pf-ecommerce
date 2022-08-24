@@ -1,0 +1,12 @@
+.navbaradmin_container {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
+  align-items: center;
+  justify-content: space-evenly;
+  justify-items: center;
+  height: 130px;
+  background-color: black;
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
