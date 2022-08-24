@@ -22,7 +22,7 @@ export default function Profile() {
   return (
     Object.keys(user || {}).length > 0 && (
       <>
-        <button onClick={onClick} className="menu-trigger">
+        <button onClick={onClick} className="menu-trigger border-2 border-white">
           <span>{getName(user.name)}</span>
           <img className="img" src={user.avatar} alt={getName(user.name)} />
         </button>
@@ -31,24 +31,26 @@ export default function Profile() {
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"} z-40`}
         >
-          <ul className="z-40">
-            <li>
-              <Link to={"/user/dashboard"}>Dashboard</Link>
+          <ul className=" bg-black border-2 border-white font-bold rounded">
+          <div className="">
+          <li className="hover:bg-gray-400 border-4 border-black py-2 rounded">
+              <Link to={"/logged/userInfo"}><div className="text-white">My Profile</div></Link>
             </li>
-            <li>
-              <Link to={"/logged/userInfo"}>My Profile</Link>
+            <li className="text-white hover:bg-gray-400 py-2 border-4 border-black rounded">
+              <Link to={"/favorites"}><div className="text-white">Favourites</div></Link>
             </li>
-            <li>
+            <li className="hover:bg-gray-400 border-4 border-black rounded">
               <a>
-                <Link to={"/user/myshopping"}>My Shoppings</Link>
+                <Link to={"/user/myshopping"}><div className="text-white">My Shoppings</div></Link>
               </a>
             </li>
 
-            <li>
+            <li className="hover:bg-blue-700 border-8 border-black rounded  py-4">
               <a href="#">
-                <Logout />
+                <div className="text-white"><Logout /></div>
               </a>
             </li>
+            </div>
           </ul>
         </nav>
       </>

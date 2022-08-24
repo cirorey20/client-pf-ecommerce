@@ -60,7 +60,9 @@ const ViewCart = () => {
       <h1>Shopping Cart</h1>
       <br />
       <br />
+      <div className="flex flex-col h-96 min-h-full">
       {stateCart.length > 0 ? (
+        
         <div className="sm:container md:mx-auto bg-[#e2e8f0]">
           <div className="flex justify-center">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
@@ -143,7 +145,9 @@ const ViewCart = () => {
             </NavLink>
           </div>
         </div>
-      )}
+        
+        )}
+        </div>
       <Footer />
     </Fragment>
   );

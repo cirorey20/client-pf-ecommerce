@@ -107,9 +107,10 @@ const Home = () => {
   }, [dispatch, search]);
 
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <div className="homePage_container">
+      {/* <div className=" flex flex-col min-h-screen"> */}
+      <div className="homePage_container h-screen">
         <div className="filters_container">
           <p className="home_subtitle ">Order</p>
           <Filters handlerFilters={handlerFilters} />
@@ -141,7 +142,7 @@ const Home = () => {
                           return (
                             <div key={i} className="  ">
                               <div className="relative m-5 group ">
-                                <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                                <div className="w-full min-h-80 bg-gray-200 border-2 border-white aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                                   <img
                                     src={e.image}
                                     alt="NOT_FOUND"
@@ -149,8 +150,8 @@ const Home = () => {
                                   />
                                 </div>
 
-                                <div className="homePage_productDetails">
-                                  <h3 className="text-sm text-white">
+                                <div className="homePage_productDetails bg-black border-2 border-white">
+                                  <h3 className="text-sm text-white mt-2">
                                     <Link to={`/product/${e.id}`}>
                                       <span
                                         aria-hidden="true"
@@ -165,33 +166,35 @@ const Home = () => {
                                   <p className="text-m font-bold text-gray-400">
                                     ${e.price}
                                   </p>
-                                  <div>
-                                    {user &&
-                                      Object.keys(user || {})?.length > 0 &&
-                                      (favorites.some(
-                                        (element) => element.id === e.id
-                                      ) ? (
-                                        <div onClick={() => handlerAddToFav(e)}>
-                                          <BsHeartFill className="wishListTrue" />
-                                        </div>
-                                      ) : (
-                                        <div onClick={() => handlerAddToFav(e)}>
-                                          <BsHeartFill
-                                            className="wishListFalse"
-                                            color="lightgray"
-                                          />
-                                        </div>
-                                      ))}
                                   </div>
                                 </div>
+                                <div className="grid grid-cols-3 border-2 border-white p-2 mx-6">
+                                <div className="pl-2 m-2">
+                                  {user &&
+                                    Object.keys(user || {})?.length > 0 &&
+                                    (favorites.some(
+                                      (element) => element.id === e.id
+                                    ) ? (
+                                      <div onClick={() => handlerAddToFav(e)}>
+                                        <BsHeartFill className="wishListTrue" />
+                                      </div>
+                                    ) : (
+                                      <div onClick={() => handlerAddToFav(e)}>
+                                        <BsHeartFill
+                                          className="wishListFalse"
+                                          color="lightgray"
+                                        />
+                                      </div>
+                                    ))}
                               </div>
-
+                              
                               <button
-                                className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                className="col-span-2 mb-18 hover:bg-black border-2 border-white-500 bg-blue-700 text-white font-bold py-1 mr-4 rounded"
                                 onClick={() => handlerAddToCart(e)}
                               >
                                 Add Cart
                               </button>
+                              </div>
                             </div>
                           );
                         }
@@ -202,12 +205,14 @@ const Home = () => {
               )}
             </div>
 
-            <Footer />
+             
           </div>
         </div>
 
         {/*  */}
       </div>
+      {/* </div> */}
+       {/* <Footer /><div class="sticky top-[100vh]">Footer</div>  */}
     </div>
   );
 };
