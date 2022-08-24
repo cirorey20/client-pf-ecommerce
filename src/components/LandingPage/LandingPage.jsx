@@ -8,7 +8,8 @@ import MostWanted from "../MostWanted/MostWanted";
 
 export default function LandingPage() {
   return (
-    <div className="bg-[#fbfbfccb] flex flex-col min-h-screen">
+    <div className=" justify-center flex flex-col min-h-screen">
+      {" "}
       <NavBar />
       <SliderShow />
       <ProductsView />
