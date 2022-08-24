@@ -5,6 +5,7 @@ import "./MyShopping.css";
 import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
 
+
 import ProductContainer from "./ProductContainer";
 import { getOrdersByUser } from "../../redux/actions/orders.js";
 import { ordersReducer } from "../../redux/reducers/orders.reducer.js";
@@ -21,9 +22,10 @@ const MyShopping = () => {
   }, [userLogin]);
 
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <h1 className="myshopping_title">My Shoppings</h1>
+      <div className="grid grid-cols-6 gap-4">
+      <h1 className="myshopping_title mb-4">My Shoppings</h1>
       <div className="myshopping_productContainer">
         <div className="myshopping_container">
           {ordersByUser.length === 0 ? "There isn't any purchases" : ""}
@@ -41,6 +43,10 @@ const MyShopping = () => {
             );
           })}
         </div>
+      </div>
+      <div className="mt-4 col-start-1 col-end-7">
+      <Footer />
+      </div>
       </div>
     </div>
   );
