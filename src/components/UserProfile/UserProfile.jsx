@@ -12,7 +12,6 @@ import AddressEditForm from "../Favorite/AddressEditForm";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer.jsx";
 
-
 export default function UserInfo() {
   const { user } = useSelector((state) => state.authReducer.userLogin);
   const [userProfile, setUserProfile] = useState([]);
@@ -134,9 +133,8 @@ export default function UserInfo() {
   if (!isFavorite) {
     return (
       <div class="h-screen">
-              <NavBar />
+        <NavBar />
         <>
-
           {isEdit && (
             <EditForm
               onSubmit={onSubmit}
@@ -161,7 +159,7 @@ export default function UserInfo() {
                 <img src={user?.avatar} alt={user?.name} className="image" />
               </div>
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h1>My profile</h1>
               </div>
 
@@ -169,7 +167,7 @@ export default function UserInfo() {
                 <p>E-mail: {user?.email}</p>
               </div>
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h2>Personal Information</h2>
               </div>
 
@@ -185,7 +183,7 @@ export default function UserInfo() {
                 </div>
               ) : null}
 
-              <div className="userInfo">
+              <div className="userInfo dark:text-white">
                 <h2>Address Information</h2>
               </div>
 
@@ -220,7 +218,9 @@ export default function UserInfo() {
             </div>
           </div>
         </>
-        <div class="sticky top-[100vh]"><Footer /></div>
+        <div class="sticky top-[100vh]">
+          <Footer />
+        </div>
       </div>
     );
   }
