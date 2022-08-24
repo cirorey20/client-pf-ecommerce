@@ -65,10 +65,10 @@
   border-radius: 4px;
 }
 
-.containerUserProfile {
+/* .containerUserProfile {
   min-height: 20vh;
   background-color: #f5f5f5;
-}
+} */
 
 .userProfileContainer {
   display: flex;
