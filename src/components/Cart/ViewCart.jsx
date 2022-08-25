@@ -68,10 +68,13 @@ const ViewCart = () => {
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-40">
                   <tr>
                     <th scope="col" className="dark:text-white py-3 px-6">
-                      Product
+                      Picture
                     </th>
                     <th scope="col" className="dark:text-white py-3 px-6">
-                      Price
+                      Name
+                    </th>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Price for unit
                     </th>
                     <th scope="col" className="dark:text-white py-3 px-6">
                       Quantity
@@ -117,7 +120,7 @@ const ViewCart = () => {
                   })}
                   {/* </tr> */}
                   <tr>
-                    <td>TOTAL: $ {total}</td>
+                    <td  className="py-2 px-5"><h1>TOTAL:  $ {total}</h1></td>
                   </tr>
                 </tbody>
               </table>
