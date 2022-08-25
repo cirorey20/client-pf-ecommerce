@@ -80,7 +80,7 @@ const Categories = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-500 ">
       <NavAdmin section={'Categories'}/>
       <br/>
 
@@ -88,6 +88,7 @@ const Categories = () => {
         <div className="flex justify-around ">
           <div className="absolute left-40">
             <input
+            className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="text"
               placeholder="ingrese categoria"
               name="name"
@@ -102,9 +103,7 @@ const Categories = () => {
             </button>
           </div>
           <div className="absolute right-40">
-          <button className="bg-[#644b9c] py-3 hover:bg-violet-600 text-white text-xs font-medium py-2 px-32 rounded-full">
-            SEARCH
-          </button>
+          <input type="search" id="default-search" class="block p-4 pl-10 w-full h-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required/>
           </div>
         </div>
       </div>
@@ -131,13 +130,13 @@ const Categories = () => {
               <div className="flex flex-row mr-2 pb-2 ">
                 <button
                   key={e.id}
-                  className="h-8  mt-2  md:mr-2  p-1 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="h-8  mt-2  md:mr-2  p-1 text-xs font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   EDIT
                 </button>
                 <button
                   key={e.id}
-                  className="h-8  mt-2 ml-1 md:mr-2  p-1 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="h-8  mt-2 ml-1 md:mr-2  p-1 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   DESTROY
                 </button>
