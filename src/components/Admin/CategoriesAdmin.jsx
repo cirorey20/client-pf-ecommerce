@@ -41,6 +41,7 @@ const Categories = () => {
   const [input, setInput] = useState({
     name: "",
   });
+  const [uploading, setUploading] = useState("");
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -60,7 +61,9 @@ const Categories = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (uploading.length > 1 ) {
+      //EDITAMOS CATEGORIA
+    }
     if (input.name) {
       dispatch(createCategory(input));
       setInput("");
@@ -77,6 +80,9 @@ const Categories = () => {
       });
     }
   };
+  const edit = (e) => {
+    console.log("click", e.target.value)
+  }
 
   return (
     <div>
@@ -130,6 +136,8 @@ const Categories = () => {
               <div className="flex flex-row mr-2 pb-2 ">
                 <button
                   key={e.id}
+                  value={e.id}
+                  onClick={(e)=>edit(e)}
                   className="h-8  mt-2  md:mr-2  p-1 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   EDIT
