@@ -2,14 +2,19 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar"
-// import { resetCart } from "../../redux/actions/cart.js";
-// import { useDispatch } from "react-redux";
+import { resetCart } from "../../redux/actions/cart.js";
+ import { useDispatch } from "react-redux";
+
 
 const Success = () => {
-    // const dispatch = useDispatch();  
-    // useEffect =()=> {
-    //    dispatch(resetCart);
-    // }
+
+  const dispatch = useDispatch();  
+  
+     useEffect(() => {
+      dispatch(resetCart())
+     }, []);
+
+    
     return (
       <div>
       <NavBar />

@@ -1,45 +1,75 @@
-.containerBox {
-    /* background-color: rgb(27, 15, 197); */
-  
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* align-items: center; */
-    justify-content: center;
-    align-items: unset;
-    align-content: flex-start;
-  
-    width: 65vw; /* le doy un ancho adaptable*/
-    top: 2vh;
-    
-    left: 18vw;
-    position: relative;
-    /* overflow: auto; */
-  }
+.containerBox2 {
+  /* background-color: rgb(27, 15, 197); */
 
-  .contenFull{
-    margin-bottom: -35vh;
-    
-  }
-  .contenParehnt{
-    position: relative;
-    bottom: 0vh;
-    
-  }
-  .wave{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  justify-content: center;
+  align-items: unset;
+  align-content: flex-start;
+
+  width: 65vw; /* le doy un ancho adaptable*/
+  top: 2vh;
+
+  left: 18vw;
+  position: relative;
+  /* overflow: auto; */
+}
+
+.contenFull {
+  margin-bottom: -35vh;
+}
+.contenParehnt {
+  position: relative;
+  bottom: 0vh;
+}
+.wave {
+  z-index: -10;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  top: 8.8vh;
+}
+@media screen and (max-width: 998px) {
+  .wave {
     z-index: -10;
     position: relative;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    top: 8.8vh;
+    top: 20.8vh;
   }
-  @media screen and (max-width: 998px) {
-    .wave {
-      z-index: -10;
-      position: relative;
-      top: 20.8vh;
+}
+/* -------------------------------------------- */
+.admin_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-items: center;
+  position: fixed;
+  height: 85%;
+  width: 100%;
+  background-image: url("../../cloudinary/bg2.jpg");
+}
 
-    }
- }
- 
+.admin_option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35%;
+  width: 50%;
+  border: 2px solid white;
+  border-radius: 10px;
+  transition: all 0.2s linear 0s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.admin_option:hover {
+  transition: all 0.1s linear 0s;
+  box-shadow: -1px -2px 24px -4px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: -1px -2px 24px -4px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: -1px -2px 24px -4px rgba(255, 255, 255, 0.75);
+}
+
+h5 {
+  color: white;
+}

@@ -80,7 +80,7 @@ const registerUser = () => {
                 placeholder="Ingrese Name"
                 type="text"
                 name="name"
-                value={input.name}
+                value={input.name=input.name.charAt(0).toUpperCase()+input.name.slice(1).toLowerCase()}
                 onChange={(e) => handleChange(e)}
                 autoComplete="off"
                 //required
@@ -92,7 +92,7 @@ const registerUser = () => {
                 placeholder="Ingrese apellido"
                 type="text"
                 name="last_name"
-                value={input.last_name.toLowerCase()}
+                value={input.last_name=input.last_name.charAt(0).toUpperCase()+input.last_name.slice(1).toLowerCase()}
                 onChange={(e) => handleChange(e)}
                 autoComplete="off"
                 //required

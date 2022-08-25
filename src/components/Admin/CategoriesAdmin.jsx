@@ -6,7 +6,7 @@ import Paginate from "../Paginate/Paginate";
 import { getCategories } from "../../redux/actions/categories";
 import { getLoginUser } from "../../redux/actions/auth";
 import NavAdmin from "./NavAdmin";
-import { createCategory } from "../../redux/actions/categories";
+import { createCategory, updateCategory } from "../../redux/actions/categories";
 import "./categories.css";
 import Swal from "sweetalert2";
 
@@ -81,11 +81,7 @@ const Categories = () => {
 
   return (
     <div>
-      <NavAdmin />
-      <h1 
-      className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
-        CATEGORIES
-        </h1>
+      <NavAdmin section={'Categories'}/>
       <br/>
 
       <div className="md:container mx-auto pt-10">

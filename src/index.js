@@ -12,7 +12,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import ThemeContextProvider from "./hooks/useTheme";
 
 const stripePromise = loadStripe(
-  "pk_test_51LW3beKXLCV01PVdY0hOv5bpE8LAzs1SozeS9tDkFd1RVJzygXqZfJr8yQeLrvpAr0KisOpDNVthasVBYuRdz74F004UnAmIMF"
+  "pk_test_51LVJYJHeLDBhzI8L9l0UDBeiCVju6HCha7U4so3Cj3eCrK0rykfVetJ7P8VJ0fj7zYe7sLtuUoiX1ltRPUVNQq6P00LhZCTzH6"
 );
 
 ReactDOM.render(

@@ -39,4 +39,18 @@ export function createCategory(body) {
     }
   };
 }
-
+export function updateCategory(body) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.put(`${URL_API}categories/updateCategory`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
