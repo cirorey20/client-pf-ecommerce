@@ -90,7 +90,7 @@ export default function MostWanted({ favorite }) {
             </Link>
           </div>
           <div className="min-h-60 flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52 product-cardLan ">
-            <Link to={`/product/7c2f101a-6582-489f-a14f-3721ba0ea9f5`}>
+            <Link to={`/product/90c5095b-ab20-4aeb-a9a9-58e63313acd4`}>
               <img
                 src="https://cdn.pixabay.com/photo/2017/03/28/23/13/guitar-2183684_960_720.jpg"
                 alt=""
@@ -98,7 +98,7 @@ export default function MostWanted({ favorite }) {
               />
               <div className="mt-4 pb-3">
                 <span className="text-sm text-gray-700">
-                  Intelligent Rubber Chips
+                  Ergonomic Rubber Hat
                 </span>
               </div>
 
