@@ -10,6 +10,8 @@ import "flowbite";
 export default function MostWanted({ favorite }) {
   const allProducts = useSelector((state) => state.productReducer.products);
 
+  console.log(">>>>>>>>>>", allProducts);
+
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPage] = useState(4);
@@ -24,7 +26,7 @@ export default function MostWanted({ favorite }) {
         <div className="flex-grow border-t border-gray-400 "></div>
       </div>
       <div className="mt-10 flex flex-wrap justify-center">
-        <div className="gap-3 flex flex-wrap justify-center">
+        <div className="gap-12 flex flex-wrap justify-center">
           <div className="min-h-60 flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52 product-cardLan ">
             <Link to={`/product/3d680ea0-cd5c-4509-9b08-ae8eb4087c17`}>
               <img
@@ -81,6 +83,22 @@ export default function MostWanted({ favorite }) {
               <div className="mt-4 pb-3">
                 <span className="text-sm text-gray-700">
                   Intelligent Rubber Chips
+                </span>
+              </div>
+
+              <div className="badge2">$832 </div>
+            </Link>
+          </div>
+          <div className="min-h-60 flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52 product-cardLan ">
+            <Link to={`/product/90c5095b-ab20-4aeb-a9a9-58e63313acd4`}>
+              <img
+                src="https://cdn.pixabay.com/photo/2017/03/28/23/13/guitar-2183684_960_720.jpg"
+                alt=""
+                className="max-h-40 w-full h-full object-center object-cover lg:w-full lg:h-full"
+              />
+              <div className="mt-4 pb-3">
+                <span className="text-sm text-gray-700">
+                  Ergonomic Rubber Hat
                 </span>
               </div>
 

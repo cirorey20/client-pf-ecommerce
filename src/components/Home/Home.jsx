@@ -15,6 +15,7 @@ import { BsHeartFill } from "react-icons/bs";
 import { createAdmin } from "../../redux/actions/auth";
 import Swal from "sweetalert2";
 import "./Home.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 //comment
 const Home = () => {
@@ -108,7 +109,7 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar SearchBar={SearchBar}/>
       <div className="homePage_container">
         <div className="filters_container">
           <p className="home_subtitle ">Order</p>
