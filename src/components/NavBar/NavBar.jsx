@@ -8,12 +8,17 @@ import Cart from "./cart-73-32.ico";
 import Logo from "../../assets/logoUM.jpg";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
+import { BsFillLightbulbFill } from "react-icons/bs";
+import { MdDarkMode } from "react-icons/md";
+import { useTheme } from "../../hooks/useTheme";
 import "./NavBar.css";
 
 export default function LandingPage() {
   // const { isAuthenticated, isLoading } = useAuth0();
   const stateCart = useSelector((state) => state.cartReducer.cart);
   const { user } = useSelector((state) => state.authReducer.userLogin);
+
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="navbar_container">
@@ -51,6 +56,22 @@ export default function LandingPage() {
               <button className="navBar_linkContainer">REGISTER</button>
             </Link>
           </div>
+        )}
+      </div>
+
+      <div className="">
+        {theme === "bg-[#fbfbfccb]" ? (
+          <MdDarkMode
+            size={26}
+            className="cursor-pointer mt-12"
+            onClick={() => setTheme("dark")}
+          />
+        ) : (
+          <BsFillLightbulbFill
+            size={22}
+            className="cursor-pointer text-white mt-12"
+            onClick={() => setTheme("bg-[#fbfbfccb]")}
+          />
         )}
       </div>
 

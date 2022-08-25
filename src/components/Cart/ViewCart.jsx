@@ -57,93 +57,100 @@ const ViewCart = () => {
   return (
     <Fragment>
       <NavBar />
-      <h1>Shopping Cart</h1>
+      <h1 className="dark:text-white ">Shopping Cart</h1>
       <br />
       <br />
-      {stateCart.length > 0 ? (
-        <div className="sm:container md:mx-auto bg-[#e2e8f0]">
-          <div className="flex justify-center">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-40">
-                <tr>
-                  <th scope="col" className="py-3 px-6">
-                    Product
-                  </th>
-                  <th scope="col" className="py-3 px-6">
-                    Price
-                  </th>
-                  <th scope="col" className="py-3 px-6">
-                    Quantity
-                  </th>
-                  <th scope="col" className="py-3 px-6">
-                    Delete
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* <tr> */}
+      <div className="flex flex-col h-96 min-h-full">
+        {stateCart.length > 0 ? (
+          <div className="sm:container md:mx-auto bg-[#e2e8f0]">
+            <div className="flex justify-center">
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-40">
+                  <tr>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Picture
+                    </th>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Name
+                    </th>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Price for unit
+                    </th>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Quantity
+                    </th>
+                    <th scope="col" className="dark:text-white py-3 px-6">
+                      Delete
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* <tr> */}
 
-                {stateCart.map((item, i) => {
-                  return (
-                    <tr
-                      key={i}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    >
-                      <td>
-                        <img src={item.image} className="h-24 w-28" alt="" />
-                      </td>
-                      <td className="py-4 px-6">{item.name}</td>
-                      <td className="py-4 px-6">$ {item.price}.00</td>
-                      <td>
-                        <div className="flex flex-row">
-                          <button onClick={() => handlerDeleteToCart(item.id)}>
-                            -
+                  {stateCart.map((item, i) => {
+                    return (
+                      <tr
+                        key={i}
+                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                      >
+                        <td>
+                          <img src={item.image} className="h-24 w-28" alt="" />
+                        </td>
+                        <td className="py-4 px-6">{item.name}</td>
+                        <td className="py-4 px-6">$ {item.price}.00</td>
+                        <td>
+                          <div className="flex flex-row">
+                            <button
+                              onClick={() => handlerDeleteToCart(item.id)}
+                            >
+                              -
+                            </button>
+                            <div className="py-4 px-6">{item.quantity}</div>
+                            <button onClick={() => add(item)}>+</button>
+                          </div>
+                        </td>
+
+                        <td className="py-4 px-6">
+                          <button onClick={() => productDelete(item.id)}>
+                            X
                           </button>
-                          <div className="py-4 px-6">{item.quantity}</div>
-                          <button onClick={() => add(item)}>+</button>
-                        </div>
-                      </td>
-
-                      <td className="py-4 px-6">
-                        <button onClick={() => productDelete(item.id)}>
-                          X
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-                {/* </tr> */}
-                <tr>
-                  <td>TOTAL: $ {total}</td>
-                </tr>
-              </tbody>
-            </table>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                  {/* </tr> */}
+                  <tr>
+                    <td  className="py-2 px-5"><h1>TOTAL:  $ {total}</h1></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {userLogin?.user?.name ? (
+              <Link to={`/product/carrito`}>
+                <button className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded">
+                  Buy now
+                </button>
+              </Link>
+            ) : (
+              "*Please register to complete your buy"
+            )}
           </div>
-          {userLogin?.user?.name ? (
-            <Link to={`/product/carrito`}>
-              <button className="absolute mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold w-32 py-2 rounded">
-                Buy now
-              </button>
-            </Link>
-          ) : (
-            "*Please register to complete your buy"
-          )}
-        </div>
-      ) : (
-        <div className="div_no_cartItem">
-          <div className="icon_cartEmpty">
-            <BsFillCartXFill />
+        ) : (
+          <div className="div_no_cartItem">
+            <div className="icon_cartEmpty">
+              <BsFillCartXFill />
+            </div>
+            <div>
+              <h4>Shopping cart empty</h4>
+            </div>
+            <div>
+              <NavLink className="keepShopping" to="/home">
+                ¡Keep Shopping!
+              </NavLink>
+            </div>
           </div>
-          <div>
-            <h4>Shopping cart empty</h4>
-          </div>
-          <div>
-            <NavLink className="keepShopping" to="/home">
-              ¡Keep Shopping!
-            </NavLink>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
       <Footer />
     </Fragment>
   );

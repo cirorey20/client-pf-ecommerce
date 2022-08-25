@@ -6,14 +6,16 @@ const ProductContainer = ({ image, description, state, id }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="productContainer_container">
-      <img
-        className="productContainer_division image"
-        src={image}
-        height={"200px"}
-      />
-      <div className="productContainer_division description">{description}</div>
-      <div className="productContainer_division status">{state}</div>
+    <div className="productContainer">
+      <img className="imageProduct" src={image} height={"150px"} />
+      <div className="productContainer_division description">
+        <p className="productContainer_title">Description</p>
+        {description}
+      </div>
+      <div className="productContainer_division status">
+        <p className="productContainer_title">Status</p>
+        {state}
+      </div>
       <div className="productContainer_division button">
         <button
           className="rate_button"

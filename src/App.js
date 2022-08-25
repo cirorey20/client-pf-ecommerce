@@ -12,6 +12,10 @@ import Login from "./components/auth/login.jsx";
 import RegisterUser from "./components/auth/auth.jsx";
 import AuthContextProvider from "./config/authContext";
 
+import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
+import ProfileFav from "./components/UserProfile/ProfileFav";
+
+
 //ADMIN PANEL
 import HomeAdmin from "./components/Admin/HomeAdmin";
 import Users from "./components/Admin/Users";
@@ -24,7 +28,6 @@ import HomeClient from "./components/ClientPanel/HomeClient";
 import MyShopping from "./components/MyShopping/MyShopping.jsx";
 import RateProduct from "./components/RateProduct/RateProduct.jsx";
 
-import AuthenticateAccount from "./components/AuthenticateAccount/AuthenticateAccount";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -94,6 +97,13 @@ function App() {
           path="/user/dashboard"
           element={
             <AuthContextProvider user={"user"} element={<HomeClient />} />
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            <AuthContextProvider user={"user"} element={<ProfileFav />} />
+            
           }
         />
         <Route

@@ -65,11 +65,6 @@
   border-radius: 4px;
 }
 
-.containerUserProfile {
-  min-height: 20vh;
-  background-color: #f5f5f5;
-}
-
 .userProfileContainer {
   display: flex;
   flex-direction: column;
@@ -77,7 +72,8 @@
   padding: 10px;
   width: 100%;
   border-radius: 5px;
-  margin-bottom: 15%;
+
+  /* margin-bottom: 1%; */
 }
 
 .btnOrders {

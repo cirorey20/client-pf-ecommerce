@@ -19,6 +19,24 @@ const CheckoutForm = () => {
   const { cart: stateCart, total } = useSelector((state) => state.cartReducer);
   const { user } = useSelector((state) => state.authReducer.userLogin);
   console.log(user);
+  var quantity = stateCart.reduce((prev, next) => prev + next.quantity, 0);
+
+  var detail = (
+    stateCart.map(
+      (e) =>
+        " Prod:" +
+        e.name +
+        " Quantity:" +
+        e.quantity +
+        " UnitPrice:$" +
+        e.price
+    ) +
+    ". Total to pay:" +
+    quantity +
+    " Total:$" +
+    total
+  ).toString();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -29,22 +47,7 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
 
-      var quantity = stateCart.reduce((prev, next) => prev + next.quantity, 0);
-      var detail = (
-        stateCart.map(
-          (e) =>
-            " Prod:" +
-            e.name +
-            " Quant:" +
-            e.quantity +
-            " UnitPrice:$" +
-            e.price
-        ) +
-        ". QTotal:" +
-        quantity +
-        " Total:$" +
-        total
-      ).toString();
+      
       try {
         axios
         .post(
@@ -84,7 +87,7 @@ const CheckoutForm = () => {
       }
     }
   };
-
+  console.log(detail)
   return (
     <>
       <NavBar />
@@ -92,9 +95,9 @@ const CheckoutForm = () => {
         <div className="getBuy_image">
           <div className="pr-8 price">
             <p className="billing_info">Your billing pay information</p>
-            <h4>USD 1,180.00</h4>
+            <h4>USD$ {total}.00</h4>
           </div>
-          <div className="product_info">Some product info</div>
+          <div className="product_info p-10 text-xl">{!detail?"No Products":detail}</div>
           <div className="stripe">
             Powered by Stripe | Condiciones | Privacidad
           </div>
@@ -121,10 +124,12 @@ const CheckoutForm = () => {
             </div>
           ) : (
             <div>
-              <p>debes actulizar tus datos para poder hacer la compra</p>
+              <button className="bg-red-900 text-white px-4 pt-8 border-2 border-blue-500 hover:bg-green-900 focus:shadow-outline focus:outline-none rounded shadow-2xl shadow-red-500/50 hover:shadow-green-500/50">
               <Link to="/logged/userInfo">
-                <button>actaulizar datos</button>
+              <p>You must update your dates before buy</p>
+                  <h1>TOUCH HERE</h1>
               </Link>
+              </button>
             </div>
           )}
         </div>

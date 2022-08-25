@@ -12,9 +12,26 @@ export const GET_REVIEWS = "GET_REVIEWS";
 // export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 
-export function getReview(queryFilter = "") {
-  return function (dispatch) {
-    axios.get(`${URL_API}reviews${queryFilter}`).then(
+export function createReview(payload) {
+  return async function (dispatch) {
+    await axios.post(`${URL_API}reviews/addReview`, payload).then(
+      (json) => {
+        console.log(json)
+        return dispatch({
+          type: "ADD_REVIEWS",
+          payload: json.data,
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+}
+
+export function getReview(payload) {
+  return async function (dispatch) {
+    await axios.get(`${URL_API}reviews`, payload).then(
       (json) => {
         console.log(json)
         return dispatch({

@@ -32,6 +32,8 @@ export default function SearchBar() {
         className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 navbar_searchInput"
         type="text"
         placeholder="Search..."
+        autoComplete="off"
+        onKeyPress={(e) => e.key === "Enter" && onHandleSubmit(e)}
         onChange={(e) => onHandleChange(e)}
       />
       <button onClick={(e) => onHandleSubmit(e)} className="button_search">

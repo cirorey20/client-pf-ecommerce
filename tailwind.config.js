@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
+  darkMode: "class",
   plugins: [require("flowbite/plugin")],
-  content: ["./src/**/*.{js,jsx,ts,tsx,flowbite}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx,flowbite}", "./public/index.html"],
   theme: {
     extend: {
       // keyframes: {

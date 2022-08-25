@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import ThemeContextProvider from "./hooks/useTheme";
 
 const stripePromise = loadStripe(
 
@@ -26,7 +27,9 @@ ReactDOM.render(
           redirectUri={window.location.origin}
         >
           <Elements stripe={stripePromise}>
-            <App />
+            <ThemeContextProvider>
+              <App />
+            </ThemeContextProvider>
           </Elements>
         </Auth0Provider>
       </BrowserRouter>

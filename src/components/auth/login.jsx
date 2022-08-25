@@ -3,10 +3,14 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { loginUser, loginUserGoogle } from "../../redux/actions/auth";
+import { loginUser, loginUserGoogle, resendAuthenticateAccount } from "../../redux/actions/auth";
 import useGsi from "./useGsi";
 import NavBar from "../NavBar/NavBar";
-import {redirectionByRol} from "./redirection";
+import { redirectionByRol } from "./redirection";
+import "./login.css";
+import texture from "../../cloudinary/bg.jpg";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +28,7 @@ const Login = () => {
   };
 
   useGsi("https://accounts.google.com/gsi/client", () => {
-    redirectionByRol(navigate)
+    redirectionByRol(navigate);
     window.google.accounts.id.initialize({
       client_id:
         "677723278728-s1jkmrbpvjhqf98nolkmji6ir1256ql9.apps.googleusercontent.com",
@@ -54,72 +58,91 @@ const Login = () => {
         email: "",
         password: "",
       });
-      redirectionByRol(navigate)
+      redirectionByRol(navigate);
     } else {
       alert("te faltan espacios por llenar");
     }
   };
 
-  return (
-    <section>
-      <div>
-        <NavBar />
-      </div>
-      <div className=" px-72 py-10 h-full">
-        <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-          <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img
-              src="https://freedesignfile.com/upload/2014/10/Hand-drawn-colored-musical-instruments-vector-03.jpg"
-              className="w-max"
-              alt="Phone image"
-            />
-          </div>
-          <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            <form>
-              <div className="mb-6">
-                <input
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Ingrese email"
-                  type="text"
-                  name="email"
-                  value={input.email.toLowerCase()}
-                  onChange={(e) => handleChange(e)}
-                  autoComplete="off"
-                  //required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Ingrese password"
-                  type="password"
-                  name="password"
-                  value={input.password.toLowerCase()}
-                  onChange={(e) => handleChange(e)}
-                  autoComplete="off"
-                  //required
-                />
-              </div>
-              <button
-                onClick={(e) => handleSubmit(e)}
-                className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-                type="submit"
-              >
-                LOGIN
-              </button>
-            </form>
-            <Link to={"/home"}>
-              <button className="inline-block px-7 py-3 my-5 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full">
-                Home
-              </button>
-            </Link>
+  const handleResendMail = () => {
+    Swal.fire({
+      title: 'Enter email',
+      input: 'email',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Send',
+      showLoaderOnConfirm: true,
+      preConfirm: async (email) => {
+        await dispatch(resendAuthenticateAccount(email));
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    })
+  };
 
-            <div id="buttonDiv" className="flex justify-center"></div>
-          </div>
+  return (
+    <div>
+      <NavBar />
+      <div className="loginPage_container">
+        <div className="loginContainer">
+          Login
+          <input
+            className="input_login"
+            placeholder="Enter your email"
+            type="text"
+            name="email"
+            value={input.email.toLowerCase()}
+            onChange={(e) => handleChange(e)}
+            autoComplete="off"
+          //required
+          />
+          <input
+            className="input_login"
+            placeholder="Enter your password"
+            type="password"
+            name="password"
+            value={input.password.toLowerCase()}
+            onChange={(e) => handleChange(e)}
+            autoComplete="off"
+          //required
+          />
+          <button
+            onClick={(e) => handleSubmit(e)}
+            className="login_button"
+            type="submit"
+          >
+            Login
+          </button>
+          <Link to={"/home"}>
+            <button className="login_button">Home</button>
+          </Link>
+          <button onClick={handleResendMail} className="text-white text-sm underline">Re-send authenticate email</button>
+          <div id="buttonDiv" className="flex justify-center"></div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 export default Login;
+
+{
+  /* <div className=" px-72 py-10 h-full">
+        <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+
+          <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
+            <form>
+
+              <div className="mb-6">
+
+              </div>
+              
+            </form>
+
+
+            
+          </div>
+        </div>
+      </div> */
+}
