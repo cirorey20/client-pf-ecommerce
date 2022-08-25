@@ -15,6 +15,7 @@ const Details = () => {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.productReducer.productDetail);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
+  console.log(reviews)
   const [loading, setLoading] = useState(false);
 
   //Product personal comments
@@ -29,6 +30,7 @@ const Details = () => {
 
   let { id } = useParams();
   let history = useNavigate();
+
   useEffect(() => {
     dispatch(detailProduct(id));
     dispatch(getReview());
@@ -144,7 +146,6 @@ const Details = () => {
                   <div className="bg-gray-200 w-30 rounded shadow-lg">
                     DATE{" "}
                   </div>
-                  <div className="bg-gray-100 rounded shadow-lg">TITLE</div>
                   <div className="bg-gray-200 w-80 rounded shadow-lg">
                     DESCRIPTION
                   </div>
@@ -164,7 +165,6 @@ const Details = () => {
                       className="  mb-4 ml-10 mr-10 grid grid-cols-4 mt-3 h-22"
                     >
                       <div className="w-30 rounded shadow-lg">{e.date}</div>
-                      <div className="rounded shadow-lg">{e.title}</div>
                       <div className="w-80 rounded shadow-lg">
                         {e.description}
                       </div>
