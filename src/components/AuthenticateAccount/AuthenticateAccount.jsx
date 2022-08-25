@@ -15,7 +15,7 @@ function AuthenticateAccount() {
         Swal.fire({
             icon: "success",
             title: "Auth",
-            text: "El usuario fue autenticado con exito",
+            text: "The user was successfully authenticated",
         });
         navigate('/login');
     }
