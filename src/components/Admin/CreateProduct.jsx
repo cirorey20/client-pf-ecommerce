@@ -13,37 +13,26 @@ import NavBar from "../NavBar/NavBar";
 import UpLoadImage from "../UpLoadImage/UpLoadImage";
 import Swal from "sweetalert2";
 
-
-function validate(form, categ){
-  
+function validate(form, categ) {
   let err = {};
 
-  const allChecked = categ.categories.filter(e => e.checked === true)
-  
-  
+  const allChecked = categ.categories.filter((e) => e.checked === true);
 
-  if(!form.name.length){
-    err.name = "⚠ Name is required"
+  if (!form.name.length) {
+    err.name = "⚠ Name is required";
+  } else if (form.price <= 0) {
+    err.price = "⚠ Price can not be 0";
+  } else if (form.stock <= 0) {
+    err.stock = "⚠ Stock can not be 0";
+  } else if (!allChecked.length) {
+    err.categories = "⚠ Select only the existing Categories";
+  } else if (!form.image.length) {
+    err.image = "⚠ Image is required";
+  } else if (!form.description.length) {
+    err.description = "⚠ Description is required";
   }
-   else if(form.price <= 0){
-      err.price = "⚠ Price can not be 0"
-    }
-   else if(form.stock <= 0){
-      err.stock = "⚠ Stock can not be 0"
-    }
-   else if(!allChecked.length){
-    err.categories = "⚠ Select only the existing Categories"
-    }
-   else if(!form.image.length){
-      err.image = "⚠ Image is required"
-    }
-   else if(!form.description.length){
-      err.description = "⚠ Description is required"
-    } 
-    return err;
-};
-
-
+  return err;
+}
 
 const initialFormState = {
   name: "",
@@ -59,10 +48,15 @@ export default function CreateProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
-  const productDetail = useSelector((state) => state.productReducer.productDetail);
-  const [form, setForm] = useState({...initialFormState, categories:[...categories]});
-  const[err, setErr] = useState({});
-  const[categ, setCateg] = useState("")
+  const productDetail = useSelector(
+    (state) => state.productReducer.productDetail
+  );
+  const [form, setForm] = useState({
+    ...initialFormState,
+    categories: [...categories],
+  });
+  const [err, setErr] = useState({});
+  const [categ, setCateg] = useState("");
   const [url, setUrl] = useState("");
   const { idProduct } = useParams();
 
@@ -80,11 +74,11 @@ export default function CreateProduct() {
       checked: false,
     }));
     setForm(newState);
-    setCateg(newState)
+    setCateg(newState);
   }, [categories]);
 
-  function getImage(url){
-    setUrl(url)
+  function getImage(url) {
+    setUrl(url);
   }
 
   useEffect(() => {
@@ -107,15 +101,11 @@ export default function CreateProduct() {
       newState.description = productDetail.description;
       newState.image = getImage();
       newState.enable = productDetail.enable;
-      setForm({...newState})
-      
+      setForm({ ...newState });
     }
   }, [productDetail]);
 
- 
-
   function onChangeValue(e) {
-
     if (!form.hasOwnProperty(e.target.name)) return;
     if (e.target.name !== "categories") {
       e.target.name === "price" && e.target.name === "stock"
@@ -124,14 +114,18 @@ export default function CreateProduct() {
     } else {
       const newCategories = form?.categories?.map((category) => {
         if (e.target.value === category.name)
-        category.checked = e.target.checked;
+          category.checked = e.target.checked;
         return category;
       });
-      setForm({ ...form, categories: [...newCategories]});
+      setForm({ ...form, categories: [...newCategories] });
     }
-    
-    setErr(validate({...form, [e.target.name]: e.target.value
-    }, {...categ,  [e.target.checked]: e.target.value}))
+
+    setErr(
+      validate(
+        { ...form, [e.target.name]: e.target.value },
+        { ...categ, [e.target.checked]: e.target.value }
+      )
+    );
   }
 
   const Toast = Swal.mixin({
@@ -145,14 +139,22 @@ export default function CreateProduct() {
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
-  
+
   function onSubmit(e) {
     e.preventDefault();
     const body = { ...form };
-    if(Object.keys(err).length || !form.name || !form.price || !form.stock  || !form.image || !form.categories || !form.description){
+    if (
+      Object.keys(err).length ||
+      !form.name ||
+      !form.price ||
+      !form.stock ||
+      !form.image ||
+      !form.categories ||
+      !form.description
+    ) {
       return Toast.fire({
         icon: "warning",
-        title: "Please complete all required fields"
+        title: "Please complete all required fields",
       });
     }
 
@@ -166,22 +168,22 @@ export default function CreateProduct() {
       setForm(initialFormState);
       Toast.fire({
         icon: "success",
-        title: "Successfully updated"
+        title: "Successfully updated",
       });
       navigate("/product/DashBoard");
     } else {
       dispatch(createProduct(body));
       setForm(initialFormState);
-       Toast.fire({
+      Toast.fire({
         icon: "success",
-        title: "Successfully created"
+        title: "Successfully created",
       });
       navigate("/product/DashBoard");
     }
   }
 
-  function onChangeImage(url){
-    setForm({ ...form, image: url});
+  function onChangeImage(url) {
+    setForm({ ...form, image: url });
   }
 
   return (
@@ -196,7 +198,7 @@ export default function CreateProduct() {
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="dark:text-white block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="name"
                 >
                   Name
@@ -210,13 +212,14 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Piano"
                 />
-                {err.name && <p className="text-red-500 text-xs italic">{err.name}</p>}
-        
+                {err.name && (
+                  <p className="text-red-500 text-xs italic">{err.name}</p>
+                )}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="dark:text-white sblock uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="price"
                 >
                   Price
@@ -231,13 +234,14 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="90210"
                 />
-                {err.price && <p className="text-red-500 text-xs italic">{err.price}</p>}
-                
+                {err.price && (
+                  <p className="text-red-500 text-xs italic">{err.price}</p>
+                )}
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="dark:text-white block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="stock"
                 >
                   Stock
@@ -252,17 +256,16 @@ export default function CreateProduct() {
                   type="number"
                   placeholder="25"
                 />
-                {err.stock && <p className="text-red-500 text-xs italic">{err.stock}</p>}
-               
+                {err.stock && (
+                  <p className="text-red-500 text-xs italic">{err.stock}</p>
+                )}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <label className="dark:text-white block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Categories
                 </label>
-                <div className="w-full md:w-1/1 flex flex-wrap justify-center justify-evenly gap-4 rounded border-red-500 border-solid border p-4">
-                 
-
+                <div className="w-full md:w-1/1 flex flex-wrap justify-center justify-evenly gap-4 rounded dark:text-white border-red-500 border-solid border p-4">
                   {form?.categories?.length > 0 ? (
                     form.categories.map((category) => (
                       <div key={category.id}>
@@ -285,25 +288,32 @@ export default function CreateProduct() {
                     </p>
                   )}
                 </div>
-                {err.categories && <p className="text-red-500 text-xs italic">{err.categories}</p>}
-              
+                {err.categories && (
+                  <p className="text-red-500 text-xs italic">
+                    {err.categories}
+                  </p>
+                )}
               </div>
 
               <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="dark:text-white block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="image"
                 >
                   Image
                 </label>
-                <UpLoadImage getImage={getImage} onChangeImage={onChangeImage}/>
-               
-                {err.image && <p className="text-red-500 text-xs italic">{err.image}</p>}
-                
+                <UpLoadImage
+                  getImage={getImage}
+                  onChangeImage={onChangeImage}
+                />
+
+                {err.image && (
+                  <p className="text-red-500 text-xs italic">{err.image}</p>
+                )}
               </div>
               <div className="w-full md:w-1/1 px-3 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="dark:text-white block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="description"
                 >
                   Description
@@ -318,8 +328,11 @@ export default function CreateProduct() {
                   type="text"
                   placeholder="Description of the product to create..."
                 />
-                {err.description && <p className="text-red-500 text-xs italic" >{err.description}</p>}
-                
+                {err.description && (
+                  <p className="text-red-500 text-xs italic">
+                    {err.description}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -327,7 +340,6 @@ export default function CreateProduct() {
               <button
                 onClick={onSubmit}
                 className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                                   
               >
                 {idProduct ? "Update" : "Create"}
               </button>
