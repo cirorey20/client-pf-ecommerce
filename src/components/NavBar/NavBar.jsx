@@ -4,10 +4,11 @@ import { Popover } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBtn from "../SearchBar/SearchBar";
 import Cart from "./cart-73-32.ico";
-import Logo from "../../assets/logo.svg.png";
+// import Logo from "../../assets/logo.svg.png";
+import Logo from "../../assets/logoUM.jpg";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
-import "./NavBarCart.css";
+import "./NavBar.css";
 
 export default function LandingPage() {
   // const { isAuthenticated, isLoading } = useAuth0();
@@ -19,7 +20,7 @@ export default function LandingPage() {
       <div className="navbar_innerContainer_logo">
         {
           <Link to={"/"}>
-            <img width={150} src={Logo} alt="" />
+            <img width={90} className="rounded-full neon" src={Logo} alt="" />
           </Link>
         }
       </div>
@@ -33,7 +34,7 @@ export default function LandingPage() {
       </div>
 
       <div className="navbar_innerContainer_home">
-        <Link to={"/home"} className="link_container">
+        <Link to={"/home"} className="navBar_linkContainer">
           HOME
         </Link>
       </div>
@@ -47,7 +48,7 @@ export default function LandingPage() {
           <div className="inner">
             <Login />{" "}
             <Link to={"/createUser"}>
-              <button className="link_container">REGISTER</button>
+              <button className="navBar_linkContainer">REGISTER</button>
             </Link>
           </div>
         )}
@@ -56,7 +57,7 @@ export default function LandingPage() {
       <div className="navbar_innerContainer_home">
         <NavLink to="/cart" activeclassname="activeLink" className="cart">
           <div className="cartIcon">
-            <img src={Cart} title="Cart" alt="Cart" />
+            <img src={Cart} title="Cart" alt="Cart" className="navBar_icon" />
             <span className="itemCount">
               {stateCart.reduce((prev, curr) => prev + curr.quantity, 0)}
             </span>

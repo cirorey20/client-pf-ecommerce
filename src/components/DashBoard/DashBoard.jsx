@@ -14,7 +14,7 @@ const createProducts = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryReducer.categories);
   const allProducts = useSelector((state) => state.productReducer.products);
-  console.log(allProducts);
+  //console.log(allProducts);
 
   const [input, setInput] = useState({
     name: "",
@@ -55,6 +55,11 @@ const createProducts = () => {
         <Link to={`/product/create`}>
           <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
             Crear Producto
+          </button>
+        </Link>
+        <Link to={`/orders`}>
+          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            Odenes
           </button>
         </Link>
         <div>

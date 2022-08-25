@@ -1,0 +1,45 @@
+.containerBox {
+    /* background-color: rgb(27, 15, 197); */
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+    align-items: unset;
+    align-content: flex-start;
+  
+    width: 65vw; /* le doy un ancho adaptable*/
+    top: 2vh;
+    
+    left: 18vw;
+    position: relative;
+    /* overflow: auto; */
+  }
+
+  .contenFull{
+    margin-bottom: -35vh;
+    
+  }
+  .contenParehnt{
+    position: relative;
+    bottom: 0vh;
+    
+  }
+  .wave{
+    z-index: -10;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 8.8vh;
+  }
+  @media screen and (max-width: 998px) {
+    .wave {
+      z-index: -10;
+      position: relative;
+      top: 20.8vh;
+
+    }
+ }
+ 

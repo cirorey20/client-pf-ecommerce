@@ -7,6 +7,7 @@ export const GET_NAME_PRODUCTS = "GET_NAME_PRODUCTS";
 export const SET_PAGINA_ACTUAL = "SET_PAGINA_ACTUAL";
 export const RESET_PAGE = "RESET_PAGE";
 export const PRODUCTS_BY_FILTERS = "PRODUCTS_BY_FILTERS";
+export const PRODUCTS_BY_RANGE = "PRODUCTS_BY_RANGE";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
@@ -43,7 +44,10 @@ export function getByFilters(searchFilters) {
   };
 }
 
+
+
 export function detailProduct(id) {
+<<<<<<< HEAD
     return async function (dispatch) {
         try {
             const detailById = await axios.get(`${URL_API}products/${id}`);
@@ -55,7 +59,20 @@ export function detailProduct(id) {
         } catch (error) {
             console.log(error)
         }
+=======
+  return async function (dispatch) {
+    try {
+      const detailById = await axios.get(`${URL_API}products/${id}`);
+      //console.log(detailById.data);
+      return dispatch({
+        type: "DETAILS_PRODUCT",
+        payload: detailById.data,
+      });
+    } catch (error) {
+      console.log(error);
+>>>>>>> e2db4d4b30cbfccf3ab8ce8a5aaa5f842fa87286
     }
+  };
 }
 
 export function createProduct(body) {
@@ -63,6 +80,7 @@ export function createProduct(body) {
     try {
       const token = document.cookie.split("token=")[1];
       body.categorie = body.categories;
+<<<<<<< HEAD
       await axios.post(
         `${URL_API}products/createProducts`,
         body,
@@ -73,6 +91,14 @@ export function createProduct(body) {
           },
         }
       );
+=======
+      await axios.post(`${URL_API}products/createProducts`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+>>>>>>> e2db4d4b30cbfccf3ab8ce8a5aaa5f842fa87286
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +111,7 @@ export function getNameProducts(searchName) {
       const product = await axios.get(
         `${URL_API}products?searchName=${searchName}`
       );
-      console.log(product);
+      // console.log(product);
       return dispatch({
         type: GET_NAME_PRODUCTS,
         payload: product.data,
@@ -131,6 +157,37 @@ export function updateProduct(body) {
     try {
       const token = document.cookie.split("token=")[1];
       await axios.put(`${URL_API}products/updateProduct`, body, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function banendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}products/banend/${id}`, {
+        "content-type": "application/json",
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function desBanendUser(id) {
+  return async function (dispatch) {
+    try {
+      const token = document.cookie.split("token=")[1];
+      await axios.post(`${URL_API}products/desbaned/${id}`, {
         "content-type": "application/json",
         headers: {
           authorization: token,

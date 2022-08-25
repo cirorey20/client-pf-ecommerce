@@ -7,12 +7,14 @@ import store from "./redux/store/index";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-import {loadStripe} from "@stripe/stripe-js"
-import {Elements} from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("pk_test_51LXH3JCJgSlYWB07iTvnGxwOhueuCIClrDv0odG92tmV98iserEMYKdQaoYZIc953acV4u21Qtaq7CEBysKOsOfK00VulZLdY8")
+const stripePromise = loadStripe(
 
+  "pk_test_51LXH3JCJgSlYWB07GdcxJdyT6ICoLopZ3Vivio5QRSC9TUc4E5Qyp4BzYCZr02lMCJ9urIdCapwUdIOBfgi2aaMY0068bhWcFW" //esta key es para produccion
 
+);
 
 ReactDOM.render(
   <Provider store={store}>
