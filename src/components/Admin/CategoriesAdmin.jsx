@@ -58,18 +58,19 @@ const Categories = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (input.name) {
-      dispatch(createCategory(input));
+      await dispatch(createCategory(input));
       setInput("");
+      await dispatch(getCategories())
+      setInput({name: ""})
       return Toast.fire({
         icon: "success",
         title: "Successfully created"
       });
 
-      window.location.reload();
     } else {
       return Toast.fire({
         icon: "warning",

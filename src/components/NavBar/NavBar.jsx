@@ -13,7 +13,7 @@ import { MdDarkMode } from "react-icons/md";
 import { useTheme } from "../../hooks/useTheme";
 import "./NavBar.css";
 
-export default function LandingPage() {
+export default function LandingPage({SearchBar}) {
   // const { isAuthenticated, isLoading } = useAuth0();
   const stateCart = useSelector((state) => state.cartReducer.cart);
   const { user } = useSelector((state) => state.authReducer.userLogin);
@@ -35,7 +35,7 @@ export default function LandingPage() {
       </div>
 
       <div className="navbar_innerContainer_searchBar">
-        <SearchBtn />
+        {SearchBar && <SearchBar />}
       </div>
 
       <div className="navbar_innerContainer_home">

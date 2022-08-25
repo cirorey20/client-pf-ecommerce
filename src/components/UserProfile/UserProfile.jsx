@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useDebugValue } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { updateUser } from "../../redux/actions/auth";
+import { getLoginUser, updateUser } from "../../redux/actions/auth";
 import { profileUpdate } from "../../redux/actions/auth";
 import EditForm from "../Favorite/EditForm";
 import { BsHeartFill } from "react-icons/bs";
@@ -116,14 +116,18 @@ export default function UserInfo() {
     }
   };
 
-  const onSubmit = (e) => {
-    //e.preventDefault();
-    dispatch(profileUpdate(newProfile));
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(profileUpdate(newProfile));
+    setIsEdit(false);
+    await dispatch(getLoginUser());
   };
 
-  const onSubmitAddress = (e) => {
-    //e.preventDefault();
-    dispatch(profileUpdate(newProfileAddress));
+  const onSubmitAddress = async (e) => {
+    e.preventDefault();
+    await dispatch(profileUpdate(newProfileAddress));
+    setIsEditAddress(false);
+    await dispatch(getLoginUser());
   };
   //console.log(user);
 

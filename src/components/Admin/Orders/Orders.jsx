@@ -28,7 +28,6 @@ export function Orders() {
   const { orders: allOrders, states } = useSelector(
     (state) => state.ordersReducer
   );
-  console.log(allOrders);
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,8 +43,11 @@ export function Orders() {
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(search);
     const state = urlSearchParams.get("state");
+    const dateFrom = urlSearchParams.get("dateFrom");
+    const dateTo = urlSearchParams.get("dateTo");
+    if(dateFrom || dateTo) setDate({dateFrom: dateFrom || '', dateTo: dateTo || ''});
+    if (state) setFilters({state});
 
-    // if (state) setFilters({state: 'process'});
   }, []);
 
   useEffect(() => {
@@ -143,15 +145,15 @@ export function Orders() {
   }
 
   function onSearch(e) {
-    if (e.key === "Enter") {
+    // if (e.key === "Enter") {
       if (e.target.value.trim() === "") {
         navigate("");
       } else {
         navigate(
-          `?order=${e.target.value.trim()}&email=${e.target.value.trim()}`
+          `?order=${e.target.value.trim()}`
         );
       }
-    }
+    // }
   }
 
 
@@ -176,8 +178,8 @@ export function Orders() {
           <div className="col-start-5 col-end-6 row-start-1 row-end-2 py-4 place-self-center ">
             <input
               type="search"
-              placeholder="Search here ..."
-              onKeyDown={onSearch}
+              placeholder="Search #order,email here..."
+             onChange={onSearch}
               className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent"
             />
           </div>
@@ -197,6 +199,7 @@ export function Orders() {
               name="state"
               onChange={onChangeSelect}
               className="rounded-full text-center block text-white bg-[#644b9c] border-none focus:ring-transparent p-3"
+              value={filters.state}
             >
               <option value={initialFilters.state}>
                 {initialFilters.state}
@@ -281,7 +284,7 @@ export function Orders() {
               </tr>
             </thead>
             <tbody>
-              {(save?.length === 0) ? (<tr className="bg-[#f1eff0]"><td className="text-black rounded-full pl-6 py-6" colSpan="7">No hay ordenes</td></tr>) : save?.map((o) => (
+              {(save?.length === 0) ? (<tr className="bg-[#f1eff0]"><td className="text-black rounded-full pl-6 py-6" colSpan="7">No orders</td></tr>) : save?.map((o) => (
                 <>
                 <tr>
                 <td>
