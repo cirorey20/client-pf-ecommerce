@@ -140,22 +140,22 @@ const Details = () => {
           {loading === false ? (
             ""
           ) : (
-            <div className="border-l-4 border-r-2 p-4  shadow-sm border-deep-purple-accent-400 mt-10  rounded shadow-lg">
-              <div className=" m-5 border-x-8 border-gray-100 pb-6  rounded">
+            <div className="border-l-4 border-r-2 p-4 shadow-sm border-deep-purple-accent-400 mt-10 pl-24  rounded shadow-lg">
+              <div className=" m-5 border-x-8 border-gray-100 pb-6 ml-20 rounded">
                 <div className=" text-xl ml-10 mr-10 grid grid-cols-4 h-24 pt-8">
-                  <div className="bg-gray-200 w-30 rounded shadow-lg">
+                  <div className="bg-gray-300 w-30 rounded shadow-lg">
                     DATE{" "}
                   </div>
-                  <div className="bg-gray-200 w-80 rounded shadow-lg">
+                  <div className="bg-gray-200 w-96 rounded shadow-lg">
                     DESCRIPTION
                   </div>
-                  <div className="bg-gray-100 ml-12 w-18 rounded shadow-lg">
+                  <div className="bg-gray-300 ml-44 w-40 rounded shadow-lg">
                     RATING
                   </div>
                 </div>
 
                 {reviewsOfProduct.length <= 0 ? (
-                  <div className="mt-10 dark:text-white">
+                  <div className="mt-10 ml-10 dark:text-white">
                     NO COMMENTS YET FOR THIS PRODUCT...
                   </div>
                 ) : (
@@ -165,10 +165,10 @@ const Details = () => {
                       className="  mb-4 ml-10 mr-10 grid grid-cols-4 mt-3 h-22"
                     >
                       <div className="w-30 rounded shadow-lg">{e.date}</div>
-                      <div className="w-80 rounded shadow-lg">
+                      <div className="w-96 rounded shadow-lg">
                         {e.description}
                       </div>
-                      <div className="ml-12 w-18  rounded shadow-lg">
+                      <div className="ml-44 w-40 rounded shadow-lg">
                         {dog()}
                       </div>
                     </div>

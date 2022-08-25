@@ -40,12 +40,15 @@ const RateProduct = () => {
     e.preventDefault();
     const getStar = stars.find(star => star.checked===true)
     console.log("getStar"+getStar)
-    var descriptionString = description.toString()
+    var descriptionString = input.description.toString()
     var title = "hola"
+    console.log(getStar.value)
+    console.log(idProduct)
     dispatch(
       createReview(
-        {description:descriptionString, title, ranking:getStar.value, UserId:details.User.id, ProductId:idProduct.toString() }));
-      navigate("/user/myshopping")
+        {description:descriptionString, title, rating:getStar.value, UserId:details.User.id, ProductId:idProduct.toString() }));
+        console.log(descriptionString, title, getStar.value, details.User.id, idProduct )
+         navigate("/user/myshopping")
       }
 
   const [stars, setStars] = useState([
@@ -193,7 +196,7 @@ const RateProduct = () => {
                       <textarea
                         rows="6"
                         placeholder="What do you think?"
-                        className="w-96 border-4 border-black"
+                        className="w-96 border-4 border-black text-black" 
                         value={input.description}
                         name="description"
                         onChange={(e) => handleChange(e)}

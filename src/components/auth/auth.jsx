@@ -44,13 +44,13 @@ const registerUser = () => {
       Swal.fire({
         icon: "success",
         title: "Ok",
-        text: "Usuario creado correctamente",
+        text: "User created successfully",
       }).then(e => {
         if(e.isConfirmed){
           Swal.fire({
             icon: 'info',
             title: '',
-            text: 'A tu email se ha enviado el link de autenticación'
+            text: 'The authentication link has been sent to your email'
           })
         }
       })
@@ -59,7 +59,7 @@ const registerUser = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Tal vez te falten espacios por llenar",
+        text: "Maybe you lack spaces to fill",
       });
     }
   }
@@ -77,7 +77,7 @@ const registerUser = () => {
             <div>
               <input
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                placeholder="Ingrese Name"
+                placeholder="Input name"
                 type="text"
                 name="name"
                 value={input.name=input.name.charAt(0).toUpperCase()+input.name.slice(1).toLowerCase()}
@@ -89,7 +89,7 @@ const registerUser = () => {
             <div>
               <input
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                placeholder="Ingrese apellido"
+                placeholder="Input Last Name"
                 type="text"
                 name="last_name"
                 value={input.last_name=input.last_name.charAt(0).toUpperCase()+input.last_name.slice(1).toLowerCase()}
@@ -101,7 +101,7 @@ const registerUser = () => {
             <div>
               <input
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                placeholder="Ingrese email"
+                placeholder="Input email"
                 type="text"
                 name="email"
                 value={input.email.toLowerCase()}
@@ -113,7 +113,7 @@ const registerUser = () => {
             <div>
               <input
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                placeholder="Ingrese password"
+                placeholder="Input password"
                 type="password"
                 name="password"
                 value={input.password.toLowerCase()}
@@ -125,7 +125,7 @@ const registerUser = () => {
             <div>
               <input
                 className="block border border-grey-light w-full p-3 rounded mb-4"
-                placeholder="Ingrese avatar"
+                placeholder="Input avatar"
                 type="text"
                 name="avatar"
                 value={input.avatar}
