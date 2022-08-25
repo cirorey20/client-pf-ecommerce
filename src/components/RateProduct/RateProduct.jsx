@@ -6,14 +6,15 @@ import Footer from "../Footer/Footer.jsx";
 import { Link } from "react-router-dom";
 import "./RateProduct.css";
 import { detailOrder } from "../../redux/actions/orders.js";
-import { getReview } from "../../redux/actions/review";
+import { createReview } from "../../redux/actions/review";
+
 
 const RateProduct = () => {
   //  const stateCart = useSelector((state) => state.cartReducer.cart);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.authReducer.userLogin);
   const details = useSelector((state) => state.ordersReducer.orderDetail);
-  console.log(details.User.id)
+  console.log(details.User)
   const reviews = useSelector((state) => state.reviewReducer.reviews);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -35,7 +36,7 @@ const RateProduct = () => {
   function onSumbit(e){
     e.preventDefault();
     const getStar = stars.find(star => star.checked)
-    dispatch(getReview({...input, rating: getStar.value, UserId:details.User.id }));
+    dispatch(createReview({...input, rating: getStar.value, UserId:details.User.id }));
   }
 
   const [stars, setStars] = useState([
