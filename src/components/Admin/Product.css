@@ -3,9 +3,12 @@
   grid-template-columns: 0.3fr 1fr;
   align-items: center;
   justify-items: center;
-  height: 100%;
+  position: fixed;
+  height: 90%;
   width: 100%;
   background-image: url("../../cloudinary/bg2.jpg");
+  overflow: scroll;
+  margin-bottom: 20px;
 }
 
 .admin_controllers {
