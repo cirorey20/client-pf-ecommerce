@@ -24,12 +24,7 @@ const CheckoutForm = () => {
   var detail = (
     stateCart.map(
       (e) =>
-        " Prod:" +
-        e.name +
-        " Quantity:" +
-        e.quantity +
-        " UnitPrice:$" +
-        e.price
+        " Prod:" + e.name + " Quantity:" + e.quantity + " UnitPrice:$" + e.price
     ) +
     ". Total to pay:" +
     quantity +
@@ -47,37 +42,36 @@ const CheckoutForm = () => {
     if (!error) {
       const { id } = paymentMethod;
 
-      
       try {
         axios
-        .post(
-          // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
-          `${URL_API}orders/checkout`,
-          {
-            id,
-            amount: total,
-            stateCart,
-            detail,
-            customer: user,
-          }
-        )
-        .then(function(response) {
-          console.log(response.data)
-          if (response.data.estado){
-            dispatch(resetCart());
+          .post(
+            // `http://localhost:3001/api/checkout`, //NO PONER ASI LAS RUTAS!!
+            `${URL_API}orders/checkout`,
+            {
+              id,
+              amount: total,
+              stateCart,
+              detail,
+              customer: user,
+            }
+          )
+          .then(function (response) {
+            console.log(response.data);
+            if (response.data.estado) {
+              dispatch(resetCart());
+              setLoading(false);
+              navigate("/success");
+            } else {
+              // dispatch(resetCart());
+              navigate("/rejected");
+            }
+          })
+          .catch(() => {
+            // dispatch(resetCart());
             setLoading(false);
-            navigate("/success")
-          }else {
-          // dispatch(resetCart());
-          navigate("/rejected")
-        }
-         })
-        .catch(()=> {     
-          // dispatch(resetCart());
-          setLoading(false);
-          navigate("/rejected")
-        })        //.finally(()=>{})
-       //.finally(()=>{})
+            navigate("/rejected");
+          }); //.finally(()=>{})
+        //.finally(()=>{})
 
         // console.log(data);
         // elements.getElement(CardElement).clear();
@@ -87,7 +81,7 @@ const CheckoutForm = () => {
       }
     }
   };
-  console.log(detail)
+  console.log(detail);
   return (
     <>
       <NavBar />
@@ -97,7 +91,9 @@ const CheckoutForm = () => {
             <p className="billing_info">Your billing pay information</p>
             <h4>USD$ {total}.00</h4>
           </div>
-          <div className="product_info p-10 text-xl">{!detail?"No Products":detail}</div>
+          <div className="product_info p-10 text-xl">
+            {!detail ? "No Products" : detail}
+          </div>
           <div className="stripe">
             Powered by Stripe | Condiciones | Privacidad
           </div>
@@ -124,11 +120,11 @@ const CheckoutForm = () => {
             </div>
           ) : (
             <div>
-              <button className="bg-red-900 text-white px-4 pt-8 border-2 border-blue-500 hover:bg-green-900 focus:shadow-outline focus:outline-none rounded shadow-2xl shadow-red-500/50 hover:shadow-green-500/50">
-              <Link to="/logged/userInfo">
-              <p>You must update your dates before buy</p>
+              <button style={{ color: "white" }} className="select_styles">
+                <Link to="/logged/userInfo">
+                  <p>You must update your dates before buy</p>
                   <h1>TOUCH HERE</h1>
-              </Link>
+                </Link>
               </button>
             </div>
           )}
