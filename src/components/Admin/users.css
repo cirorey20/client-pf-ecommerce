@@ -1,16 +1,67 @@
-.containerUser {
-    /* background-color: tomato; */
-  
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
+.adminusers_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url("../../cloudinary/bg2.jpg");
+}
 
-    width: 85vw; /* le doy un ancho adaptable*/
-    top: -3vh;
-    left: 7vw;
-    position: relative;
-    /* overflow: auto; */
-  }
+.containerUser {
+  /* background-color: tomato; */
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+
+  width: 85vw; /* le doy un ancho adaptable*/
+  top: -3vh;
+  left: 7vw;
+  position: relative;
+  /* overflow: auto; */
+}
+
+.adminusers_inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* border: 2px solid white; */
+  margin-bottom: 20px;
+}
+
+.adminusers_darkbackground {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.adminusers_search {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  padding-left: 10%;
+  padding-right: 10%;
+  align-items: center;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.item_usercontainer {
+  display: grid;
+  grid-template-columns: 0.3fr 0.5fr 0.5fr 0.3fr 0.3fr 0.4fr;
+  min-height: 150px;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-items: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  color: white;
+}

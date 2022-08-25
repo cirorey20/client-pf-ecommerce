@@ -2,6 +2,7 @@ import axios from "axios";
 import { URL_API } from "../../config/config";
 
 export const GET_REVIEWS = "GET_REVIEWS";
+export const CREATE_REVIEWS = "CREATE_REVIEWS";
 // export const DETAILS_PRODUCT = "DETAILS_PRODUCT";
 // export const GET_NAME_PRODUCTS = "GET_NAME_PRODUCTS";
 // export const SET_PAGINA_ACTUAL = "SET_PAGINA_ACTUAL";
@@ -14,11 +15,12 @@ export const GET_REVIEWS = "GET_REVIEWS";
 
 export function createReview(payload) {
   return async function (dispatch) {
+    console.log(payload)
     await axios.post(`${URL_API}reviews/addReview`, payload).then(
       (json) => {
         console.log(json)
         return dispatch({
-          type: "ADD_REVIEWS",
+          type: "CREATE_REVIEWS",
           payload: json.data,
         });
       },

@@ -7,6 +7,7 @@ import NavAdmin from "../NavAdmin";
 import NavBar from "../../NavBar/NavBar";
 import Paginate from "../../Paginate/Paginate";
 import ClientData from "./ClientData";
+import "./Orders.css";
 
 const initialFilters = {
   state: "BY STATE",
@@ -24,12 +25,12 @@ export function Orders() {
   const { search } = useLocation();
   const [save, setSave] = useState([]);
   const [date, setDate] = useState(initialDate);
-  const [isClientData, setIsClientData] = useState(false)
+  const [isClientData, setIsClientData] = useState(false);
   const { orders: allOrders, states } = useSelector(
     (state) => state.ordersReducer
   );
-  console.log(allOrders);
 
+  //#region
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const [ordersPage] = useState(4);
@@ -40,12 +41,14 @@ export function Orders() {
   const paged = (numPag) => {
     setCurrentPage(numPag);
   };
-
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(search);
     const state = urlSearchParams.get("state");
+    const dateFrom = urlSearchParams.get("dateFrom");
+    const dateTo = urlSearchParams.get("dateTo");
+    if(dateFrom || dateTo) setDate({dateFrom: dateFrom || '', dateTo: dateTo || ''});
+    if (state) setFilters({state});
 
-    // if (state) setFilters({state: 'process'});
   }, []);
 
   useEffect(() => {
@@ -143,41 +146,230 @@ export function Orders() {
   }
 
   function onSearch(e) {
-    if (e.key === "Enter") {
+    // if (e.key === "Enter") {
       if (e.target.value.trim() === "") {
         navigate("");
       } else {
         navigate(
-          `?order=${e.target.value.trim()}&email=${e.target.value.trim()}`
+          `?order=${e.target.value.trim()}`
         );
       }
-    }
+    // }
   }
-
+  //#endregion
 
   const clientData = () => {
     setIsClientData(!isClientData);
-  }
-
+  };
 
   return (
-    <>
+    <div>
+      {localStorage.getItem("rol") === "user" ? (
+        <NavBar />
+      ) : (
+        <NavAdmin section={"Orders"} />
+      )}
+      <div className="adminorders_container">
+        <div className="adminusers_darkbackground direction">
+          <div className="adminorders_inputs">
+            {/* <------Controllers Container---------> */}
+            <div className="adminorders_search">
+              <select
+                name="state"
+                onChange={onChangeSelect}
+                className="select_styles"
+              >
+                <option value={initialFilters.state}>
+                  {initialFilters.state}
+                </option>
+                {states.map((state, id) => (
+                  <option key={id} value={state}>
+                    {state.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+              <div>
+                <label htmlFor="floatingInput" className="text-white">
+                  From
+                </label>
+                <input
+                  type="date"
+                  onChange={onChangeDate}
+                  value={date.dateFrom}
+                  name="dateFrom"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Select a date"
+                />
 
+                <label htmlFor="floatingInput" className="text-white">
+                  To
+                </label>
+                <input
+                  className="form-control mb-8 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  type="date"
+                  onChange={onChangeDate}
+                  name="dateTo"
+                  value={date.dateTo}
+                  placeholder="Select a date"
+                  data-mdb-toggle="datepicker"
+                />
 
+                <button onClick={onClickFilter} className="select_styles">
+                  Filter
+                </button>
+                <button onClick={onClickFilterReset} className="select_styles">
+                  Reset
+                </button>
+              </div>
+            </div>
+            {/* <------Main Container---------> */}
 
+            <table className="col-start-1 col-end-6 m-auto text-sm text-left text-center border-separate border-spacing-y-1.5">
+              {/*               <thead className="text-xs text-gray-900 uppercase">
+                <tr>
+                  <th scope="col" style={{ color: "white" }}>
+                    Order ID
+                  </th>
+                  <th scope="col" style={{ color: "white" }}>
+                    State
+                  </th>
+                  <th scope="col" style={{ color: "white" }}>
+                    Email
+                  </th>
+                  <th scope="col" style={{ color: "white" }}>
+                    Date
+                  </th>
+                  <th scope="col" style={{ color: "white" }}>
+                    Total
+                  </th>
+                  <th scope="col" style={{ color: "white" }}></th>
+                  <th scope="col" className="p-3"></th>
+                </tr>
+              </thead> */}
+              <tbody>
+                {save?.length === 0 ? (
+                  <tr className="bg-[#f1eff0]">
+                    <td
+                      className="text-black rounded-full pl-6 py-6"
+                      colSpan="7"
+                    >
+                      No hay ordenes
+                    </td>
+                  </tr>
+                ) : (
+                  save?.map((o, id) => (
+                    <>
+                      <tr>
+                        <td>
+                          {isClientData && (
+                            <ClientData
+                              addressOrder={o.address_order}
+                              user={o.User}
+                              setIsClientData={setIsClientData}
+                            />
+                          )}
+                        </td>
+                      </tr>
+                      <tr
+                        key={o.id}
+                        style={{ width: "100%" }}
+                        className="item_usercontainer2"
+                      >
+                        <td className="text-white rounded-l-full pl-6 py-6">
+                          {o.id}
+                        </td>
+
+                        <td className="py-6 px-6">
+                          <select
+                            value={o.state}
+                            onChange={(e) => onChangeState(e, o.id)}
+                            style={{ width: "120px" }}
+                            className="select_styles"
+                          >
+                            {states.map((state) => (
+                              <option value={state}>
+                                {state.toUpperCase()}
+                              </option>
+                            ))}
+                          </select>
+
+                          {save?.find((s) => s.id === o.id)?.isChange && (
+                            <button
+                              onClick={() =>
+                                onClickSave(
+                                  o.id,
+                                  o.User.email,
+                                  o.User.name,
+                                  o.User.last_name
+                                )
+                              }
+                              className="rounded bg-green-500 p-1 mt-0.5"
+                            >
+                              SAVE
+                            </button>
+                          )}
+                        </td>
+
+                        <td className="py-6 px-6 text-white">{o.User.email}</td>
+
+                        <td className="py-6 px-6 text-white">
+                          {`${new Date(o.date).getDate()}-${
+                            new Date(o.date).getMonth() + 1
+                          }-${new Date(o.date).getFullYear()} ${new Date(
+                            o.date
+                          ).getHours()}:${new Date(o.date).getMinutes()}`}
+                        </td>
+                        <td className="py-6 px-6 text-white">
+                          {"USD "}
+                          {o.ProductOrders?.reduce(
+                            (prev, curr) => prev + curr.quantity * curr.price,
+                            0
+                          )}
+                        </td>
+                        <td className="py-4 px-6">
+                          <Link
+                            className="select_styles"
+                            to={`/orders/${o.id}`}
+                          >
+                            PDF
+                          </Link>
+                        </td>
+                        <td className="rounded-r-full pr-6">
+                          <button
+                            className="select_styles"
+                            onClick={clientData}
+                          >
+                            CLIENT DATA
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* 
+<>
       <div>
-        {localStorage.getItem("rol") === "user" ? <NavBar/> : <NavAdmin section={"Orders"}/>}
-        {/* <h1 
-      className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
-        ORDERS
-        </h1> */}
-        <br/>
+        {localStorage.getItem("rol") === "user" ? (
+          <NavBar />
+        ) : (
+          <NavAdmin section={"Orders"} />
+        )}
+        <br />
         <div className="overflow-x-auto grid grid-cols-5">
           <div className="col-start-5 col-end-6 row-start-1 row-end-2 py-4 place-self-center ">
             <input
               type="search"
-              placeholder="Search here ..."
-              onKeyDown={onSearch}
+              placeholder="Search #order,email here..."
+             onChange={onSearch}
               className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent"
             />
           </div>
@@ -197,6 +389,7 @@ export function Orders() {
               name="state"
               onChange={onChangeSelect}
               className="rounded-full text-center block text-white bg-[#644b9c] border-none focus:ring-transparent p-3"
+              value={filters.state}
             >
               <option value={initialFilters.state}>
                 {initialFilters.state}
@@ -281,7 +474,8 @@ export function Orders() {
               </tr>
             </thead>
             <tbody>
-              {(save?.length === 0) ? (<tr className="bg-[#f1eff0]"><td className="text-black rounded-full pl-6 py-6" colSpan="7">No hay ordenes</td></tr>) : save?.map((o) => (
+
+              {(save?.length === 0) ? (<tr className="bg-[#f1eff0]"><td className="text-black rounded-full pl-6 py-6" colSpan="7">No orders</td></tr>) : save?.map((o) => (
                 <>
                 <tr>
                 <td>
@@ -290,79 +484,93 @@ export function Orders() {
                     isClientData && <ClientData addressOrder={o.address_order} user={o.User} setIsClientData={setIsClientData} />
                   }
                 </td>
+
                 </tr>
-                  <tr key={o.id} className="bg-[#f1eff0]">
-                    <td className="text-black rounded-l-full pl-6 py-6">
-                      {o.id}
-                    </td>
+              ) : (
+                save?.map((o) => (
+                  <>
+                    <tr>
+                      <td>
+                        {isClientData && (
+                          <ClientData
+                            addressOrder={o.address_order}
+                            user={o.User}
+                            setIsClientData={setIsClientData}
+                          />
+                        )}
+                      </td>
+                    </tr>
+                    <tr key={o.id} className="bg-[#f1eff0]">
+                      <td className="text-black rounded-l-full pl-6 py-6">
+                        {o.id}
+                      </td>
 
-                    <td className="py-6 px-6">
-                      <select
-                        value={o.state}
-                        onChange={(e) => onChangeState(e, o.id)}
-                        className="block text-white bg-[#644b9c]  px-6 rounded-full  border-none focus:ring-transparent"
-                      >
-                        {states.map((state) => (
-                          <option value={state}>{state.toUpperCase()}</option>
-                        ))}
-                      </select>
-
-                      {save?.find((s) => s.id === o.id)?.isChange && (
-                        <button
-                          onClick={() =>
-                            onClickSave(
-                              o.id,
-                              o.User.email,
-                              o.User.name,
-                              o.User.last_name
-                            )
-                          }
-                          className="rounded bg-green-500 p-1 mt-0.5"
+                      <td className="py-6 px-6">
+                        <select
+                          value={o.state}
+                          onChange={(e) => onChangeState(e, o.id)}
+                          className="block text-white bg-[#644b9c]  px-6 rounded-full  border-none focus:ring-transparent"
                         >
-                          SAVE
-                        </button>
-                      )}
-                    </td>
+                          {states.map((state) => (
+                            <option value={state}>{state.toUpperCase()}</option>
+                          ))}
+                        </select>
 
-                    <td className="py-6 px-6 text-black">{o.User.email}</td>
+                        {save?.find((s) => s.id === o.id)?.isChange && (
+                          <button
+                            onClick={() =>
+                              onClickSave(
+                                o.id,
+                                o.User.email,
+                                o.User.name,
+                                o.User.last_name
+                              )
+                            }
+                            className="rounded bg-green-500 p-1 mt-0.5"
+                          >
+                            SAVE
+                          </button>
+                        )}
+                      </td>
 
-                    <td className="py-6 px-6 text-black">
-                      {`${new Date(o.date).getDate()}-${new Date(o.date).getMonth() + 1
+                      <td className="py-6 px-6 text-black">{o.User.email}</td>
+
+                      <td className="py-6 px-6 text-black">
+                        {`${new Date(o.date).getDate()}-${
+                          new Date(o.date).getMonth() + 1
                         }-${new Date(o.date).getFullYear()} ${new Date(
                           o.date
                         ).getHours()}:${new Date(o.date).getMinutes()}`}
-                    </td>
-                    <td className="py-6 px-6 text-black">
-                      {"USD "}
-                      {o.ProductOrders?.reduce(
-                        (prev, curr) => prev + curr.quantity * curr.price,
-                        0
-                      )}
-                    </td>
-                    <td className="py-4 px-6">
-                      <Link
-                        className="text-white rounded-full bg-[#007d34] px-2 py-1"
-                        to={`/orders/${o.id}`}
-                      >
-                        PDF
-                      </Link>
-                    </td>
-                    <td className="rounded-r-full pr-6">
-                      <button
-                        className="text-white rounded-full bg-[#fe914e] px-2 py-1"
-                        onClick={clientData}>
-                        CLIENT DATA
-                      </button>
-
-                    </td>
-                  </tr>
-                </>
-              )
+                      </td>
+                      <td className="py-6 px-6 text-black">
+                        {"USD "}
+                        {o.ProductOrders?.reduce(
+                          (prev, curr) => prev + curr.quantity * curr.price,
+                          0
+                        )}
+                      </td>
+                      <td className="py-4 px-6">
+                        <Link
+                          className="text-white rounded-full bg-[#007d34] px-2 py-1"
+                          to={`/orders/${o.id}`}
+                        >
+                          PDF
+                        </Link>
+                      </td>
+                      <td className="rounded-r-full pr-6">
+                        <button
+                          className="text-white rounded-full bg-[#fe914e] px-2 py-1"
+                          onClick={clientData}
+                        >
+                          CLIENT DATA
+                        </button>
+                      </td>
+                    </tr>
+                  </>
+                ))
               )}
             </tbody>
           </table>
         </div>
       </div>
-    </>
-  );
-}
+    </> */

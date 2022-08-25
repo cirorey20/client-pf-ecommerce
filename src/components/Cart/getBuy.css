@@ -52,6 +52,8 @@
   align-items: center;
   flex-direction: column;
   /* border: 2px solid red; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-image: url("../../cloudinary/bg2.jpg");
 }
 
 .form {

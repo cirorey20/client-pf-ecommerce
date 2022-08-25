@@ -34,7 +34,6 @@ ReactDOM.render(
         </Auth0Provider>
       </BrowserRouter>
     </React.StrictMode>
-    ,
   </Provider>,
   document.getElementById("root")
 );

@@ -1,5 +1,6 @@
 const {
     GET_REVIEWS,
+    CREATE_REVIEWS,
     // DETAILS_PRODUCT,
     // GET_NAME_PRODUCTS,
     // GET_PRODUCT_DETAIL,
@@ -27,5 +28,13 @@ export function reviewReducer(state = initialState, action) {
     //         copyReviews: action.payload
         }
     }
+    // if (action.type === CREATE_REVIEWS) {
+    //     console.log(state)
+    //     return {
+    //         ...state,
+    //         reviews: action.payload,
+    // //         copyReviews: action.payload
+    //     }
+    // }
      return state
 }

@@ -31,8 +31,8 @@ export default function Filters() {
 
     if (
       e.target.value !== "CHOOSE A OPTION" &&
-      e.target.value !== "Order by price" &&
-      e.target.value !== "Order by alphabet"
+      e.target.value !== "By price" &&
+      e.target.value !== "By alphabet"
     ) {
       if (e.target.name === "selectPriceSort") {
         setPriceSort(e.target.value);
