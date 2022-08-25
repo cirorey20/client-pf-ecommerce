@@ -57,11 +57,11 @@ const ProductsAdmin = () => {
   return (
     <div>
 
-      <NavAdmin/>
-      <h1 
+      <NavAdmin section={'Products'}/>
+      {/* <h1 
       className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
         PRODUCTS
-        </h1>
+        </h1> */}
       <div class="flex justify-between py-5">
         <div>
           <Link to="/product/create">

@@ -3,14 +3,17 @@
 }
 
 .myshopping_container {
-  display: flex;
-  overflow: scroll;
-  flex-direction: column;
+  /* display: flex; */
+  /* overflow: scroll; */
+  /* flex-direction: column; */
   width: 90%;
-  height: 70%;
+  height: 40%;
+  margin-top: 70px;
   border: 1px solid lightgray;
   border-radius: 10px;
-  background-color: rgb(226, 232, 240);
+  background-color: rgba(226, 232, 240);
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 
 .myshopping_productContainer {
@@ -18,7 +21,7 @@
   width: 100%;
   height: 100%;
   /* border: 1px solid orange; */
-  position: fixed;
+  background-image: url("../../cloudinary/dashboard.jpg");
   justify-content: center;
 }
 
@@ -28,5 +31,8 @@
   align-items: center;
   width: 100%;
   height: 15%;
-  position: fixed;
+  /* position: fixed; */
+}
+.container {
+  overflow: scroll;
 }

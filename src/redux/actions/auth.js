@@ -93,9 +93,8 @@ export function loginUser(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${
-        60 * 30
-      }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
+        }; path=/; samesite=strict`;
       // console.log("YO",login.data.user.rol);
       localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
@@ -107,19 +106,19 @@ export function loginUser(body) {
         Swal.fire({
           icon: "error",
           title: "Oppps",
-          text: "Usuario baneado, comuniquese con el administrador",
+          text: "Banned user, contact administrator",
         });
       } else if (error.response.status === 401) {
         Swal.fire({
           icon: "info",
-          title: "Oppps",
-          text: "Cuenta no autenticada, hemos enviado un link de verificacion a tu correo",
+          title: "",
+          text: "Account not authenticated, we have sent a verification link to your email",
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oppps",
-          text: "Credenciales invalidas",
+          text: "Invalid credentials",
         });
       }
     }
@@ -133,9 +132,8 @@ export function loginUserGoogle(body) {
         "content-type": "application/json",
       });
 
-      document.cookie = `token=${login.data.tokenSession}; max-age=${
-        60 * 30
-      }; path=/; samesite=strict`;
+      document.cookie = `token=${login.data.tokenSession}; max-age=${60 * 30
+        }; path=/; samesite=strict`;
       console.log(login.data.user.rol);
       localStorage.setItem("rol", login.data.user.rol);
       return dispatch({
@@ -147,19 +145,19 @@ export function loginUserGoogle(body) {
         Swal.fire({
           icon: "error",
           title: "Oppps",
-          text: "Usuario baneado, comuniquese con el administrador",
+          text: "Banned user, contact administrator",
         });
       } else if (error.response.status === 401) {
         Swal.fire({
           icon: "info",
-          title: "Oppps",
-          text: "Cuenta no autenticada, hemos enviado un link de verificacion a tu correo",
+          title: "",
+          text: "Account not authenticated, we have sent a verification link to your email",
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oppps",
-          text: "Credenciales invalidas",
+          text: "Invalid credentials",
         });
       }
     }
@@ -281,14 +279,14 @@ export function sendAuthenticate(idUser = "", code = "") {
       if (error.response.status === 406) {
         Swal.fire({
           icon: "info",
-          title: "Oppps",
-          text: "El usuario se encuentra autenticado",
+          title: "",
+          text: "The user is authenticated",
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oppps",
-          text: "Ocurrio un error al intentar autenticar",
+          text: "An error occurred while trying to authenticate",
         });
       }
     }
@@ -322,13 +320,13 @@ export const profileUpdate = (newProfile) => {
 
       let verify;
 
-      if(newProfile.AddressId){
+      if (newProfile.AddressId) {
         verify = await axios.put(
           `${URL_API}users/updateAddress/${newProfile.AddressId}`,
           newProfile
         );
       }
-      if(newProfile.id){
+      if (newProfile.id) {
 
         verify = await axios.put(
           `${URL_API}users/updateUser/${newProfile.id}`,
@@ -338,6 +336,44 @@ export const profileUpdate = (newProfile) => {
       console.log(verify);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+};
+
+export const resendAuthenticateAccount = (email = '') => {
+  return async (dispatch) => {
+    try {
+
+
+
+      const verify = await axios.post(
+        `${URL_API}users/resendAuthenticateAccount`,
+        {
+          email
+        }
+      );
+      console.log(verify)
+      Swal.fire({
+        icon: 'success',
+        title: `Ok`,
+        text: 'We have sent a verification link to your email.'
+      })
+
+    } catch (error) {
+      if(error.response.status === 404){
+        Swal.showValidationMessage(
+          `Email not found`
+        )
+      } else if(error.response.status === 400){
+        Swal.showValidationMessage(
+          `The user is authenticated`
+        )
+      } else {
+        Swal.showValidationMessage(
+          `Request failed`
+        )
+      }
     }
   };
 };

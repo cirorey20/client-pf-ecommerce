@@ -1,0 +1,42 @@
+.loginPage_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-image: url("../../cloudinary//bg.jpg");
+}
+
+.loginContainer {
+  display: grid;
+  background-color: rgba(0, 0, 0, 0.5);
+  grid-template-rows: 1fr 0.3fr 0.3fr 0.3fr 0.3fr 1fr;
+  gap: 10%;
+  margin-top: 10%;
+  width: 100%;
+  height: 50%;
+  border-radius: 15px;
+  color: white;
+  font-size: 4vh;
+  padding: 1%;
+  grid-column: 2/3;
+  align-items: center;
+  justify-items: center;
+  -webkit-box-shadow: -1px 13px 47px -15px rgba(255, 255, 255, 1);
+  -moz-box-shadow: -1px 13px 47px -15px rgba(255, 255, 255, 1);
+  box-shadow: -1px 13px 47px -15px rgba(255, 255, 255, 1);
+}
+
+.input_login {
+  width: 90%;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.login_button {
+  width: 200px;
+  background-color: rgba(0, 76, 255, 0.5);
+  border: 1px solid white;
+  font-size: 2vh;
+  border-radius: 20px;
+}

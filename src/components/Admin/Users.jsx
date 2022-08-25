@@ -66,8 +66,8 @@ const Users = () => {
   };
   return (
     <div>
-      <NavAdmin />
-      <h1 className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">USERS</h1>
+      <NavAdmin section={'Users'}/>
+      {/* <h1 className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">USERS</h1> */}
       <br/>
       <div className="md:container mx-auto pt-10">
         <div className="flex justify-around ">
