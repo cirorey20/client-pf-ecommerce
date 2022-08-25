@@ -18,6 +18,7 @@ import FilterCategory from "../Filters/FilterCategories";
 import Paginate from "../Paginate/Paginate";
 import { getLoginUser } from "../../redux/actions/auth";
 import SearchBar from "../SearchBar/SearchBar";
+import "./Product.css";
 
 const ProductsAdmin = () => {
   const { search } = useLocation();
@@ -56,46 +57,88 @@ const ProductsAdmin = () => {
 
   return (
     <div>
-
-      <NavAdmin section={'Products'}/>
-      {/* <h1 
-      className="rounded-full text-white placeholder:text-gray-300 bg-[#644b9c] border-none focus:ring-transparent mr-32 ml-32 text-7xl">
-        PRODUCTS
-        </h1> */}
-      <div class="flex justify-between py-5">
-        <div>
-          <Link to="/product/create">
-            <button className=" absolute left-40 bg-green-700 hover:bg-green-700 text-white font-bold py-3  px-10 rounded-full">
-              CREATE NEW
-            </button>
-          </Link>
-        </div>
-        <button className="absolute right-40 bg-[#644b9c] hover:bg-blue-700 text-white font-bold py-3   px-32 rounded-full ">
-          <SearchBar />
-        </button>
-      </div>
-      <div className="home_pagination">
-        <Paginate
-          productsPage={productsPage}
-          allProducts={allProducts.length}
-          paged={paged}
-          currentPage={currentPage}
-        />
-      </div>
-      <div className="flex ">
-        <div className="flex-none  m-2 w-40  border-4 bg-[#644b9c] relative left-24 rounded-lg ">
-          <Filters handlerFilters={handlerFilters} />
-          <FilterCategory allCategories={categories} />
-        </div>
-        <div className="flex-initial w-full">
+      <NavAdmin section={"Products"} />
+      <div className="adminProduct_maincontainer">
+        <div className="admin_controllers">
           <div>
+            <Filters handlerFilters={handlerFilters} />
+            <FilterCategory allCategories={categories} />
+          </div>
+        </div>
+        <div className="admin_productcontainer">
+          {/* Search and CreateProduct inputs */}
+          <div className="admin_searchinput">
+            <SearchBar />
+            <Link to="/product/create">
+              <button className="select_styles">Create Product</button>
+            </Link>
+          </div>
+          <div className="home_pagination">
+            <Paginate
+              productsPage={productsPage}
+              allProducts={allProducts.length}
+              paged={paged}
+              currentPage={currentPage}
+            />
+            {/* Products Container */}
             {productsOfNow.map((e) => {
               return (
-                <div
-                  key={e.id}
-                  className=" bg-zinc-200 flex justify-evenly bg-white-100  mx-44 border-4  rounded-full my-11 p-5"
+                <div style={{ paddingTop: "20px" }}>
+                  <div className="item_container">
+                    <div>
+                      <img className="w-28" src={e.image} alt="" />
+                    </div>
+                    <div className="font-bold">{e.name}</div>
+                    <div>
+                      <div className="font-bold">Description</div>
+                      {e.description}
+                    </div>
+                    <div>
+                      <div className="font-bold">Stock</div>
+                      {e.stock}
+                    </div>
+                    <div>
+                      <div className="font-bold">Precio</div>
+                      {e.price}
+                    </div>
+                    <div>
+                      <div className="font-bold"> Categorias</div>
+                      {e.ProductCategories?.map((e) => e.Category.name)}
+                    </div>
+                    <div className="admin_editban">
+                      <Link
+                        className="select_styles"
+                        to={`/product/update/${e.id}`}
+                      >
+                        EDIT
+                      </Link>
 
-                >
+                      <button
+                        onClick={() =>
+                          e.enable === true
+                            ? handleBaned(e.id)
+                            : handleDesbaned(e.id)
+                        }
+                        className="select_styles"
+                      >
+                        {e.enable === true ? "BANNED" : "UNBAN"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductsAdmin;
+
+{
+  /* <div key={e.id} className="adminProductDetails_container">
                   <div>
                     <img className="w-28" src={e.image} alt="" />
                   </div>
@@ -122,7 +165,10 @@ const ProductsAdmin = () => {
                   </div>
 
                   <div>
-                    <Link className="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5" to={`/product/update/${e.id}`}>
+                    <Link
+                      className="bg-green-700 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mx-5"
+                      to={`/product/update/${e.id}`}
+                    >
                       Edit
                     </Link>
 
@@ -137,14 +183,21 @@ const ProductsAdmin = () => {
                       {e.enable === true ? "BANEND" : "DESBANED"}
                     </button>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+                </div> */
+}
 
-export default ProductsAdmin;
+{
+  /* 
+
+<div className="flex ">
+
+  <div className="flex-initial w-full">
+    <div>
+      
+    </div>
+  </div>
+</div>
+</div>  
+        </div>
+      </div> */
+}

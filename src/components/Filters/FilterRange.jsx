@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getByFilters } from "../../redux/actions/products";
 import { useDispatch } from "react-redux";
-import "./FilterRange.css";
 
 const FilterRange = () => {
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ const FilterRange = () => {
     }
   }, [input]);
   return (
-    <div className="filterRange_container ">
+    <div>
       <label htmlFor="">By range</label>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
