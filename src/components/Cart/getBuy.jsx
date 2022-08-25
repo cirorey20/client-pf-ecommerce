@@ -97,7 +97,20 @@ const CheckoutForm = () => {
             <p className="billing_info">Your billing pay information</p>
             <h4>USD$ {total}.00</h4>
           </div>
-          <div className="product_info p-10 text-xl">{!detail?"No Products":detail}</div>
+          <div className="product_info p-10 text-xl">
+            {
+              !stateCart?"No Products"
+                :
+                stateCart.map((i, key)=>{
+                  return(
+                    <div key={key}>
+                      <p>Produc: {i.name}</p>
+                      <p>Price ${i.price}</p> 
+                    </div>
+                  )
+                })
+            }
+          </div>
           <div className="stripe">
             Powered by Stripe | Condiciones | Privacidad
           </div>
