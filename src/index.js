@@ -13,7 +13,7 @@ import ThemeContextProvider from "./hooks/useTheme";
 
 const stripePromise = loadStripe(
 
-  "pk_test_51LXH3JCJgSlYWB07GdcxJdyT6ICoLopZ3Vivio5QRSC9TUc4E5Qyp4BzYCZr02lMCJ9urIdCapwUdIOBfgi2aaMY0068bhWcFW" //esta key es para produccion
+  "pk_test_51LXH3JCJgSlYWB07bQIIwiWYEE21OGO6dWfTT8QkaMVOqdIlazc5gqs61BTSh35uqCJuOka30YseaWMUTwkIh8Zm00589AoWuV" //esta key es para produccion
 
 );
 
